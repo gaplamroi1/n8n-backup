@@ -1,0 +1,176 @@
+{
+  "active": true,
+  "activeVersion": {
+    "updatedAt": "2026-02-23T07:08:00.090Z",
+    "createdAt": "2026-02-23T01:45:30.034Z",
+    "versionId": "90f55bd8-cefe-47a5-8d1c-10591cc9300b",
+    "workflowId": "W0OYzkAzk9EPo8MZ",
+    "nodes": [
+      {
+        "parameters": {
+          "multipleMethods": true,
+          "httpMethod": [
+            "POST"
+          ],
+          "path": "pva-feedback",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.webhook",
+        "typeVersion": 2.1,
+        "position": [
+          0,
+          0
+        ],
+        "id": "60bdb2d8-a99d-49ed-a15b-b631d1d63b1b",
+        "name": "Webhook",
+        "webhookId": "ad997299-8a3b-4978-a607-45fbaac6abbf"
+      },
+      {
+        "parameters": {
+          "sendTo": "hoang.nv1@phongvu-mna.vn",
+          "subject": "Phongvu - OpsHub Feedback",
+          "message": "=<br>\nNgười gửi: {{ $json.body.user_email }}\n<br>\nChức năng: {{ $json.body.function }}\n<br>\nMô tả: {{ $json.body.description }}\n<br>\nThời gian: {{ $json.body.timestamp }}",
+          "options": {
+            "attachmentsUi": {
+              "attachmentsBinary": [
+                {
+                  "property": "=images{{$itemIndex}}"
+                }
+              ]
+            }
+          }
+        },
+        "type": "n8n-nodes-base.gmail",
+        "typeVersion": 2.1,
+        "position": [
+          208,
+          0
+        ],
+        "id": "be476e80-6faa-4af5-904f-f58e6760cd5c",
+        "name": "Send a message",
+        "webhookId": "3310d833-d456-4968-8c35-8ea5d7d8860d",
+        "credentials": {
+          "gmailOAuth2": {
+            "id": "vOArwpSoe9d3FYtc",
+            "name": "hoanghochoi1618"
+          }
+        }
+      }
+    ],
+    "connections": {
+      "Webhook": {
+        "main": [
+          [
+            {
+              "node": "Send a message",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "authors": "Hoang Nguyen",
+    "name": "Version 90f55bd8",
+    "description": "",
+    "autosaved": true
+  },
+  "activeVersionId": "90f55bd8-cefe-47a5-8d1c-10591cc9300b",
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2026-02-23T01:45:30.034Z",
+  "id": "W0OYzkAzk9EPo8MZ",
+  "isArchived": false,
+  "meta": null,
+  "name": "feedback",
+  "nodes": [
+    {
+      "parameters": {
+        "multipleMethods": true,
+        "httpMethod": [
+          "POST"
+        ],
+        "path": "pva-feedback",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "60bdb2d8-a99d-49ed-a15b-b631d1d63b1b",
+      "name": "Webhook",
+      "webhookId": "ad997299-8a3b-4978-a607-45fbaac6abbf"
+    },
+    {
+      "parameters": {
+        "sendTo": "hoang.nv1@phongvu-mna.vn",
+        "subject": "Phongvu - OpsHub Feedback",
+        "message": "=<br>\nNgười gửi: {{ $json.body.user_email }}\n<br>\nChức năng: {{ $json.body.function }}\n<br>\nMô tả: {{ $json.body.description }}\n<br>\nThời gian: {{ $json.body.timestamp }}",
+        "options": {
+          "attachmentsUi": {
+            "attachmentsBinary": [
+              {
+                "property": "=images{{$itemIndex}}"
+              }
+            ]
+          }
+        }
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        208,
+        0
+      ],
+      "id": "be476e80-6faa-4af5-904f-f58e6760cd5c",
+      "name": "Send a message",
+      "webhookId": "3310d833-d456-4968-8c35-8ea5d7d8860d",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "vOArwpSoe9d3FYtc",
+          "name": "hoanghochoi1618"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-02-23T01:45:30.034Z",
+      "createdAt": "2026-02-23T01:45:30.034Z",
+      "role": "workflow:owner",
+      "workflowId": "W0OYzkAzk9EPo8MZ",
+      "projectId": "GTQprNa3RcCSHh8s"
+    }
+  ],
+  "staticData": null,
+  "tags": [
+    {
+      "updatedAt": "2026-02-22T19:25:48.964Z",
+      "createdAt": "2026-02-22T19:25:48.964Z",
+      "id": "eafg8h8piujdlV6P",
+      "name": "pv-opshub-app"
+    }
+  ],
+  "triggerCount": 1,
+  "updatedAt": "2026-02-23T01:45:59.848Z",
+  "versionId": "90f55bd8-cefe-47a5-8d1c-10591cc9300b"
+}
