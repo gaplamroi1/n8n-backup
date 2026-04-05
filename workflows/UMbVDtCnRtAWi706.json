@@ -1,0 +1,69 @@
+{
+  "active": false,
+  "activeVersion": null,
+  "activeVersionId": null,
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-11-07T10:25:23.275Z",
+  "id": "UMbVDtCnRtAWi706",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "blackFridayGet",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -160,
+        -48
+      ],
+      "id": "ac83e800-9f12-4b5f-be97-898988b13aea",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Code node để test\nconst start = Date.now();\n\n// Simulate heavy processing\nfor(let i = 0; i < 1000000; i++) {\n  Math.sqrt(i);\n}\n\nconst duration = Date.now() - start;\n\nreturn [{\n  json: {\n    duration: duration + 'ms',\n    timestamp: new Date().toISOString()\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        48,
+        -48
+      ],
+      "id": "d32ff56c-4e92-4510-bbd7-7d8526732175",
+      "name": "Code in JavaScript"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-02-22T18:06:48.781Z",
+      "createdAt": "2026-02-22T18:06:48.781Z",
+      "role": "workflow:owner",
+      "workflowId": "UMbVDtCnRtAWi706",
+      "projectId": "GTQprNa3RcCSHh8s"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-11-25T02:38:48.006Z",
+  "versionId": "5cb892ad-3570-4949-972f-2deb4793572b"
+}
