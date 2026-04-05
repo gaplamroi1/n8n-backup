@@ -1,0 +1,79 @@
+{
+  "active": false,
+  "activeVersion": null,
+  "activeVersionId": null,
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-10-07T13:10:19.242Z",
+  "id": "r0yfmqm4i5hqB8c0",
+  "isArchived": false,
+  "meta": null,
+  "name": "sub - ticket forwarding",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "8fd6ebf2-f2f8-432d-9e51-0c94215b47bc",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "url": "https://cc.phongvu.vn/customer/list",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        208,
+        0
+      ],
+      "id": "15b33896-adb1-4bc5-8731-da0db554c050",
+      "name": "HTTP Request"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1",
+    "callerPolicy": "workflowsFromSameOwner",
+    "errorWorkflow": "80zc32Np6wJfRsoG",
+    "timezone": "Asia/Ho_Chi_Minh",
+    "availableInMCP": false
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-02-22T18:08:12.612Z",
+      "createdAt": "2026-02-22T18:08:12.612Z",
+      "role": "workflow:owner",
+      "workflowId": "r0yfmqm4i5hqB8c0",
+      "projectId": "GTQprNa3RcCSHh8s"
+    }
+  ],
+  "staticData": null,
+  "tags": [
+    {
+      "updatedAt": "2025-10-07T13:20:03.468Z",
+      "createdAt": "2025-10-07T13:20:03.468Z",
+      "id": "B0udxU6cGYBEciuM",
+      "name": "gmail"
+    }
+  ],
+  "triggerCount": 0,
+  "updatedAt": "2026-01-25T18:46:58.077Z",
+  "versionId": "575159a0-9a3e-4db5-8f3a-ef4d97454ce0"
+}
