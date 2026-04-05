@@ -1,0 +1,170 @@
+{
+  "active": false,
+  "activeVersion": null,
+  "activeVersionId": null,
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Get row(s) in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get row(s) in sheet": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Delete sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Delete sheet": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-11-07T17:00:13.274Z",
+  "id": "Gs9X8czjg55RTYVj",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "My workflow 13",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "d759b026-73be-44d5-9e8a-7074c8124fcf",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1wFzm6pfQToQQdSFeO48JOaLthdgwQ200u_a2PoZ7xJo",
+          "mode": "list",
+          "cachedResultName": "Check CTKM 2025",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1wFzm6pfQToQQdSFeO48JOaLthdgwQ200u_a2PoZ7xJo/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1184787655,
+          "mode": "list",
+          "cachedResultName": "Chia CTKM",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1wFzm6pfQToQQdSFeO48JOaLthdgwQ200u_a2PoZ7xJo/edit#gid=1184787655"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        208,
+        0
+      ],
+      "id": "04c7ecd0-5d34-4bb6-a895-8f5318d1287a",
+      "name": "Get row(s) in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "MTh9LghqaMKPTAzs",
+          "name": "zalo-chat-bot-hoang.nv1"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "remove",
+        "documentId": {
+          "__rl": true,
+          "value": "1wFzm6pfQToQQdSFeO48JOaLthdgwQ200u_a2PoZ7xJo",
+          "mode": "list",
+          "cachedResultName": "Check CTKM 2025",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1wFzm6pfQToQQdSFeO48JOaLthdgwQ200u_a2PoZ7xJo/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "={{ $json['Tên CTKM'] }}",
+          "mode": "name"
+        }
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        736,
+        32
+      ],
+      "id": "61c3cada-c9ff-45f4-9e57-693f94fba74a",
+      "name": "Delete sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "MTh9LghqaMKPTAzs",
+          "name": "zalo-chat-bot-hoang.nv1"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        480,
+        0
+      ],
+      "id": "c9f03407-797c-41e4-9957-4b2e14166dfd",
+      "name": "Loop Over Items",
+      "alwaysOutputData": false,
+      "onError": "continueRegularOutput"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-02-22T18:05:56.887Z",
+      "createdAt": "2026-02-22T18:05:56.887Z",
+      "role": "workflow:owner",
+      "workflowId": "Gs9X8czjg55RTYVj",
+      "projectId": "GTQprNa3RcCSHh8s"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-11-07T17:02:22.788Z",
+  "versionId": "a3b8ae57-4778-46e8-aa95-512a978dd4bc"
+}
