@@ -1,0 +1,252 @@
+{
+  "active": false,
+  "activeVersion": null,
+  "activeVersionId": null,
+  "connections": {
+    "1hours": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "set-app-info",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "set-app-info": {
+      "main": [
+        [
+          {
+            "node": "record-app-infomations",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2026-02-23T02:10:27.223Z",
+  "id": "GlRGstpPhk7DQBga",
+  "isArchived": false,
+  "meta": null,
+  "name": "reset-access-token-MTk5MzA1OTkxODcw",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        0,
+        0
+      ],
+      "id": "59fb30ca-929a-4de4-99f3-012f031be5aa",
+      "name": "1hours"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://openapi.seatalk.io/auth/app_access_token",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "app_id",
+              "value": "MTk5MzA1OTkxODcw"
+            },
+            {
+              "name": "app_secret",
+              "value": "-nSp-Wdhn2uOyBkJlw7d586xgaiELsvr"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        128,
+        0
+      ],
+      "id": "7dc2250a-7f61-4217-a105-207846be5673",
+      "name": "HTTP Request",
+      "retryOnFail": true
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "38018172-d917-4a6b-ba1a-c49f80f715e7",
+              "name": "app_name",
+              "value": "BOT CP62 - OPS HUB",
+              "type": "string"
+            },
+            {
+              "id": "a5cac941-5644-4351-98a0-0d2cd6b4cfab",
+              "name": "app_id",
+              "value": "MTk5MzA1OTkxODcw",
+              "type": "string"
+            },
+            {
+              "id": "c2137931-b8b6-403a-bb68-35dd15b88ca5",
+              "name": "app_access_token",
+              "value": "={{ $json.app_access_token }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        256,
+        0
+      ],
+      "id": "6c5190e6-d411-468d-b22f-4ac9492ea658",
+      "name": "set-app-info"
+    },
+    {
+      "parameters": {
+        "operation": "upsert",
+        "dataTableId": {
+          "__rl": true,
+          "value": "sc1dOTktntfbMUel",
+          "mode": "list",
+          "cachedResultName": "seatalk-app-access-token",
+          "cachedResultUrl": "/projects/GTQprNa3RcCSHh8s/datatables/sc1dOTktntfbMUel"
+        },
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "app_id",
+              "keyValue": "={{ $json.app_id }}"
+            }
+          ]
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "app_name": "={{ $json.app_name }}",
+            "app_id": "={{ $json.app_id }}",
+            "app_access_token": "={{ $json.app_access_token }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "app_name",
+              "displayName": "app_name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "app_id",
+              "displayName": "app_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "app_secret",
+              "displayName": "app_secret",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "app_access_token",
+              "displayName": "app_access_token",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        384,
+        0
+      ],
+      "id": "0397d8e1-6f8b-40c5-a246-18cf771552b9",
+      "name": "record-app-infomations"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-02-23T02:10:27.223Z",
+      "createdAt": "2026-02-23T02:10:27.223Z",
+      "role": "workflow:owner",
+      "workflowId": "GlRGstpPhk7DQBga",
+      "projectId": "GTQprNa3RcCSHh8s"
+    }
+  ],
+  "staticData": {
+    "node:1hours": {
+      "recurrenceRules": []
+    }
+  },
+  "tags": [
+    {
+      "updatedAt": "2025-12-17T02:41:50.389Z",
+      "createdAt": "2025-12-17T02:41:50.389Z",
+      "id": "tf48o2CcAcmF6X41",
+      "name": "Seatalk app"
+    }
+  ],
+  "triggerCount": 1,
+  "updatedAt": "2026-02-23T02:11:40.047Z",
+  "versionId": "0a403229-2c6e-48cc-bd89-fef0a68ee831"
+}
