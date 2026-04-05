@@ -1,0 +1,1019 @@
+{
+  "active": false,
+  "activeVersion": null,
+  "activeVersionId": null,
+  "connections": {
+    "On form submission": {
+      "main": [
+        [
+          {
+            "node": "Extract from File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract from File": {
+      "main": [
+        [
+          {
+            "node": "Limit",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Compare Datasets",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Limit": {
+      "main": [
+        [
+          {
+            "node": "Get row(s) in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Summarize": {
+      "main": [
+        [
+          {
+            "node": "getInv",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit1": {
+      "main": [
+        []
+      ]
+    },
+    "Send a text message": {
+      "main": [
+        []
+      ]
+    },
+    "restarted": {
+      "main": [
+        []
+      ]
+    },
+    "clear_inv_data": {
+      "main": [
+        [
+          {
+            "node": "Limit1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "append_inv_data": {
+      "main": [
+        []
+      ]
+    },
+    "update_company_inv": {
+      "main": [
+        [
+          {
+            "node": "Limit2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit2": {
+      "main": [
+        [
+          {
+            "node": "restarted",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "getInv": {
+      "main": [
+        [
+          {
+            "node": "update_company_inv",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get row(s) in sheet": {
+      "main": [
+        [
+          {
+            "node": "Compare Datasets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-10-21T09:34:29.874Z",
+  "id": "zU1rkPro5OJu9gYe",
+  "isArchived": true,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "auto-update-inv",
+  "nodes": [
+    {
+      "parameters": {
+        "formTitle": "FILE TỒN KHO TỪ ERP",
+        "formDescription": "GỬI FILE VÀO Ô BÊN DƯỚI",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "File",
+              "fieldType": "file"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.3,
+      "position": [
+        -160,
+        16
+      ],
+      "id": "f46f998e-8188-4368-a8e5-287bc3cd428a",
+      "name": "On form submission",
+      "webhookId": "4046a01c-4957-48fb-9a96-73191eae0767"
+    },
+    {
+      "parameters": {
+        "operation": "xlsx",
+        "binaryPropertyName": "File",
+        "options": {
+          "range": "2"
+        }
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1,
+      "position": [
+        0,
+        16
+      ],
+      "id": "b320ebc7-c2eb-4201-8fb8-27aa3cad2c08",
+      "name": "Extract from File"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        400,
+        -96
+      ],
+      "id": "db1716bd-b4e9-423d-92f2-cd09d07a7f49",
+      "name": "Limit"
+    },
+    {
+      "parameters": {
+        "fieldsToSummarize": {
+          "values": [
+            {
+              "field": "Số Serial"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.summarize",
+      "typeVersion": 1.1,
+      "position": [
+        1072,
+        -80
+      ],
+      "id": "421803fe-6a24-4844-884d-f38b3e24f1a8",
+      "name": "Summarize"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        752,
+        -448
+      ],
+      "id": "ca2549a7-b075-467d-948c-9e5358dad85c",
+      "name": "Limit1"
+    },
+    {
+      "parameters": {
+        "threadId": "4630714439315937185",
+        "message": "Tạm dừng để cập nhật tồn kho.",
+        "threadType": 1
+      },
+      "type": "n8n-nodes-social-zalo.zaloUserInteract",
+      "typeVersion": 1,
+      "position": [
+        896,
+        -336
+      ],
+      "id": "2937044c-8a80-4ef6-bad9-7ceb7da22d68",
+      "name": "pause",
+      "credentials": {
+        "zaloUserCredentialsApi": {
+          "id": "I9XYLmeAnDXTStGI",
+          "name": "Zalo Phong Vũ Bình Thạnh - 2025-11-11T02:53:13.517Z"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "threadId": "4630714439315937185",
+        "message": "Đã cập nhật tồn kho.",
+        "threadType": 1
+      },
+      "type": "n8n-nodes-social-zalo.zaloUserInteract",
+      "typeVersion": 1,
+      "position": [
+        1568,
+        -80
+      ],
+      "id": "ee267d9c-2fbe-4d64-8863-a1d7ec3d402e",
+      "name": "restarted",
+      "credentials": {
+        "zaloUserCredentialsApi": {
+          "id": "I9XYLmeAnDXTStGI",
+          "name": "Zalo Phong Vũ Bình Thạnh - 2025-11-11T02:53:13.517Z"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "5013029624",
+        "text": "=Đã cập nhật tồn kho mới. Tổng cộng: {{ $('Summarize').first().json['count_Số_Serial'] }} serial.",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1760,
+        -80
+      ],
+      "id": "84c406ed-0250-4bc6-ad2e-222d2df9900a",
+      "name": "Send a text message",
+      "webhookId": "e70930b6-72ff-4e90-a018-1e47a72e1e3a",
+      "credentials": {
+        "telegramApi": {
+          "id": "yOqJ91F4uxm9OoWc",
+          "name": "@culi001"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "clear",
+        "documentId": {
+          "__rl": true,
+          "value": "1f0Xycoy_GMeef9gVZnx-SSPtDQJdM9eN4Z92eZ8ZDEE",
+          "mode": "list",
+          "cachedResultName": "inventory_data",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1f0Xycoy_GMeef9gVZnx-SSPtDQJdM9eN4Z92eZ8ZDEE/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 34713994,
+          "mode": "list",
+          "cachedResultName": "Main",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1f0Xycoy_GMeef9gVZnx-SSPtDQJdM9eN4Z92eZ8ZDEE/edit#gid=34713994"
+        },
+        "clear": "specificRange",
+        "range": "A2:W"
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        624,
+        -448
+      ],
+      "id": "0b56dd1a-ffbb-4e75-b99d-4ba256f03f70",
+      "name": "clear_inv_data",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "MTh9LghqaMKPTAzs",
+          "name": "zalo-chat-bot-hoang.nv1"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "1f0Xycoy_GMeef9gVZnx-SSPtDQJdM9eN4Z92eZ8ZDEE"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 34713994,
+          "mode": "list",
+          "cachedResultName": "Main",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1f0Xycoy_GMeef9gVZnx-SSPtDQJdM9eN4Z92eZ8ZDEE/edit#gid=34713994"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "STT": "={{ $json.STT }}",
+            "Mã sản phẩm": "={{ $json['Mã sản phẩm'] }}",
+            "Tên sản phẩm": "={{ $json['Tên sản phẩm'] }}",
+            "Part number": "={{ $json['Part number'] }}",
+            "ĐVT": "={{ $json['ĐVT'] }}",
+            "Số lượng": "={{ $json['Số lượng'] }}",
+            "Số Serial": "={{ $json['Số Serial'] }}",
+            "Loại Serial": "={{ $json['Loại Serial'] }}",
+            "Ngày đánh dấu chuyển loại Serial": "={{ $json['Ngày đánh dấu chuyển loại Serial'] }}",
+            "Thương hiệu": "={{ $json['Thương hiệu'] }}",
+            "Mã ngành hàng": "={{ $json['Mã ngành hàng'] }}",
+            "Tên ngành hàng": "={{ $json['Tên ngành hàng'] }}",
+            "Mã nhóm sản phẩm": "={{ $json['Mã nhóm sản phẩm'] }}",
+            "Tên nhóm sản phẩm": "={{ $json['Tên nhóm sản phẩm'] }}",
+            "Ngày nhập kho": "={{ $json['Ngày nhập kho'] }}",
+            "Mã chi nhánh": "={{ $json['Mã chi nhánh'] }}",
+            "Tên chi nhánh": "={{ $json['Tên chi nhánh'] }}",
+            "Zone": "={{ $json.Zone }}",
+            "Mã Bin": "={{ $json['Mã Bin'] }}",
+            "Tên Bin": "={{ $json['Tên Bin'] }}",
+            "Loại hàng": "={{ $json['Loại hàng'] }}",
+            "Tổng thể tích sản phẩm": "={{ $json['Tổng thể tích sản phẩm'] }}",
+            "Thể tích Bin": "={{ $json['Thể tích Bin'] }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "STT",
+              "displayName": "STT",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Mã sản phẩm",
+              "displayName": "Mã sản phẩm",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Tên sản phẩm",
+              "displayName": "Tên sản phẩm",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Part number",
+              "displayName": "Part number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "ĐVT",
+              "displayName": "ĐVT",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Số lượng",
+              "displayName": "Số lượng",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Số Serial",
+              "displayName": "Số Serial",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Loại Serial",
+              "displayName": "Loại Serial",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Ngày đánh dấu chuyển loại Serial",
+              "displayName": "Ngày đánh dấu chuyển loại Serial",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Thương hiệu",
+              "displayName": "Thương hiệu",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Mã ngành hàng",
+              "displayName": "Mã ngành hàng",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Tên ngành hàng",
+              "displayName": "Tên ngành hàng",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Mã nhóm sản phẩm",
+              "displayName": "Mã nhóm sản phẩm",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Tên nhóm sản phẩm",
+              "displayName": "Tên nhóm sản phẩm",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Ngày nhập kho",
+              "displayName": "Ngày nhập kho",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Mã chi nhánh",
+              "displayName": "Mã chi nhánh",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Tên chi nhánh",
+              "displayName": "Tên chi nhánh",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Zone",
+              "displayName": "Zone",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Mã Bin",
+              "displayName": "Mã Bin",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Tên Bin",
+              "displayName": "Tên Bin",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Loại hàng",
+              "displayName": "Loại hàng",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Tổng thể tích sản phẩm",
+              "displayName": "Tổng thể tích sản phẩm",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Thể tích Bin",
+              "displayName": "Thể tích Bin",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        448,
+        608
+      ],
+      "id": "e60300bc-45f2-4e45-937c-004dd94fb5c4",
+      "name": "append_inv_data",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "MTh9LghqaMKPTAzs",
+          "name": "zalo-chat-bot-hoang.nv1"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1f0Xycoy_GMeef9gVZnx-SSPtDQJdM9eN4Z92eZ8ZDEE",
+          "mode": "list",
+          "cachedResultName": "inventory_data",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1f0Xycoy_GMeef9gVZnx-SSPtDQJdM9eN4Z92eZ8ZDEE/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 34713994,
+          "mode": "list",
+          "cachedResultName": "Main",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1f0Xycoy_GMeef9gVZnx-SSPtDQJdM9eN4Z92eZ8ZDEE/edit#gid=34713994"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Số Serial": "={{ $json.Serial }}",
+            "Ngày nhập kho": "={{ $json.Date_import_company }}"
+          },
+          "matchingColumns": [
+            "Số Serial"
+          ],
+          "schema": [
+            {
+              "id": "STT",
+              "displayName": "STT",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Mã sản phẩm",
+              "displayName": "Mã sản phẩm",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Tên sản phẩm",
+              "displayName": "Tên sản phẩm",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Part number",
+              "displayName": "Part number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "ĐVT",
+              "displayName": "ĐVT",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Số lượng",
+              "displayName": "Số lượng",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Số Serial",
+              "displayName": "Số Serial",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Loại Serial",
+              "displayName": "Loại Serial",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Ngày đánh dấu chuyển loại Serial",
+              "displayName": "Ngày đánh dấu chuyển loại Serial",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Thương hiệu",
+              "displayName": "Thương hiệu",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Mã ngành hàng",
+              "displayName": "Mã ngành hàng",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Tên ngành hàng",
+              "displayName": "Tên ngành hàng",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Mã nhóm sản phẩm",
+              "displayName": "Mã nhóm sản phẩm",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Tên nhóm sản phẩm",
+              "displayName": "Tên nhóm sản phẩm",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Ngày nhập kho",
+              "displayName": "Ngày nhập kho",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Mã chi nhánh",
+              "displayName": "Mã chi nhánh",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Tên chi nhánh",
+              "displayName": "Tên chi nhánh",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Zone",
+              "displayName": "Zone",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Mã Bin",
+              "displayName": "Mã Bin",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Tên Bin",
+              "displayName": "Tên Bin",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Loại hàng",
+              "displayName": "Loại hàng",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Tổng thể tích sản phẩm",
+              "displayName": "Tổng thể tích sản phẩm",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Thể tích Bin",
+              "displayName": "Thể tích Bin",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1312,
+        -80
+      ],
+      "id": "0c42f3e4-a23b-43b6-9c8e-da3129dc8402",
+      "name": "update_company_inv",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "MTh9LghqaMKPTAzs",
+          "name": "zalo-chat-bot-hoang.nv1"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        1440,
+        -80
+      ],
+      "id": "92c65ba5-90df-4ba0-bda5-b953c6522378",
+      "name": "Limit2"
+    },
+    {
+      "parameters": {
+        "authentication": "serviceAccount",
+        "projectId": {
+          "__rl": true,
+          "value": "nimble-volt-459313-b8",
+          "mode": "list",
+          "cachedResultName": "My First Project",
+          "cachedResultUrl": "https://console.cloud.google.com/bigquery?project=nimble-volt-459313-b8"
+        },
+        "sqlQuery": "SELECT *\nFROM `nimble-volt-459313-b8.Inventory.inv_seri_1`\nWHERE Branch_ID = 'CP62'",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleBigQuery",
+      "typeVersion": 2.1,
+      "position": [
+        1184,
+        -80
+      ],
+      "id": "9548ff32-132d-46a8-b671-7de182e5ce87",
+      "name": "getInv",
+      "credentials": {
+        "googleApi": {
+          "id": "MobroXPII5JrGVTH",
+          "name": "Google Service Account promocheck vu.nt1"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1f0Xycoy_GMeef9gVZnx-SSPtDQJdM9eN4Z92eZ8ZDEE",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 34713994,
+          "mode": "list",
+          "cachedResultName": "Main",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1f0Xycoy_GMeef9gVZnx-SSPtDQJdM9eN4Z92eZ8ZDEE/edit#gid=34713994"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        544,
+        -96
+      ],
+      "id": "a32a2fe6-8127-4dbc-9096-dab590f7f4c9",
+      "name": "Get row(s) in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "MTh9LghqaMKPTAzs",
+          "name": "zalo-chat-bot-hoang.nv1"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mergeByFields": {
+          "values": [
+            {
+              "field1": "Số Serial",
+              "field2": "Số Serial"
+            }
+          ]
+        },
+        "options": {
+          "skipFields": ""
+        }
+      },
+      "type": "n8n-nodes-base.compareDatasets",
+      "typeVersion": 2.3,
+      "position": [
+        768,
+        208
+      ],
+      "id": "d38d81c9-1464-47f3-8069-855e4fc6655e",
+      "name": "Compare Datasets"
+    }
+  ],
+  "pinData": {
+    "On form submission": [
+      {
+        "json": {
+          "File": [
+            {
+              "filename": "Bang_ke_ton_kho_theo_serial_den_ngay_hien_tai_2025_11_21_21112025210103.xlsx",
+              "mimetype": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+              "size": 883942
+            }
+          ],
+          "submittedAt": "2025-11-25T13:04:59.193+07:00",
+          "formMode": "production"
+        },
+        "binary": {
+          "File": {
+            "mimeType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            "fileExtension": "xlsx",
+            "data": "filesystem-v2",
+            "fileName": "Bang_ke_ton_kho_theo_serial_den_ngay_hien_tai_2025_11_21_21112025210103.xlsx",
+            "id": "filesystem-v2:workflows/zU1rkPro5OJu9gYe/executions/temp/binary_data/d98fa1ba-150f-43ee-9308-8a774115282c",
+            "fileSize": "884 kB"
+          }
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-02-22T18:08:53.129Z",
+      "createdAt": "2026-02-22T18:08:53.129Z",
+      "role": "workflow:owner",
+      "workflowId": "zU1rkPro5OJu9gYe",
+      "projectId": "GTQprNa3RcCSHh8s"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-11-25T06:43:06.659Z",
+  "versionId": "c768e5cf-fd7a-4895-9351-07fbf613f125"
+}
