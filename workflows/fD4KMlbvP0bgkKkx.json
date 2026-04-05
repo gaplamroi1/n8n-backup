@@ -1,0 +1,649 @@
+{
+  "active": false,
+  "activeVersion": null,
+  "activeVersionId": null,
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Search files and folders",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Search files and folders": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Download file": {
+      "main": [
+        [
+          {
+            "node": "Extract from File1",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Extract from File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract from File": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Extract from File1": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "Aggregate",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Filter",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate": {
+      "main": [
+        [
+          {
+            "node": "Append row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append row in sheet": {
+      "main": [
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript1": {
+      "main": [
+        [
+          {
+            "node": "Append row in sheet1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append row in sheet1": {
+      "main": [
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Loop Over Items1": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Download file",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge1": {
+      "main": [
+        [
+          {
+            "node": "Wait1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait1": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-10-20T02:37:13.538Z",
+  "id": "fD4KMlbvP0bgkKkx",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "inv_count_monthy",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        128,
+        -64
+      ],
+      "id": "65d3db3e-f5f5-451a-ad00-f904b4518616",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "resource": "fileFolder",
+        "queryString": "=ket_qua_kiem_ke",
+        "returnAll": true,
+        "filter": {
+          "whatToSearch": "all"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        320,
+        -64
+      ],
+      "id": "bf4f96b2-356c-48db-8892-486de571b6cf",
+      "name": "Search files and folders",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "GpJUmnoBmqg9ldSq",
+          "name": "Google Drive account hoang.nv1"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "download",
+        "fileId": {
+          "__rl": true,
+          "value": "={{ $json.id }}",
+          "mode": "id"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        624,
+        -64
+      ],
+      "id": "9a5a952a-9213-4a90-bd83-b7784f21f48f",
+      "name": "Download file",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "GpJUmnoBmqg9ldSq",
+          "name": "Google Drive account hoang.nv1"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "xlsx",
+        "options": {
+          "range": "A9:I1000",
+          "sheetName": "KetQuaTongHop"
+        }
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1,
+      "position": [
+        752,
+        240
+      ],
+      "id": "4c43d4fe-bc64-4a70-acaf-4c72337f37f3",
+      "name": "Extract from File"
+    },
+    {
+      "parameters": {
+        "operation": "xlsx",
+        "options": {
+          "range": "B0:C5",
+          "rawData": false
+        }
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1,
+      "position": [
+        784,
+        -64
+      ],
+      "id": "4bf755a3-0fa6-47a9-b93d-c9293d6df115",
+      "name": "Extract from File1"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Function — Run once for all items\n// Lấy: 1) \"phiên kiểm kê\" từ header dạng KK-xxxx-xxxx\n//      2) \"Ngày yêu cầu kiểm kê\"\n//      3) \"khu vực kiểm kê\"\n\nconst rows = $input.all().map(it => it.json);\nconst table = rows.map(r => Object.values(r).map(v => String(v ?? '').trim()));\n\nconst norm = s => String(s ?? '')\n  .normalize('NFD').replace(/[\\u0300-\\u036f]/g,'')\n  .toLowerCase().trim();\nconst raw = s => String(s ?? '').trim();\n\n// ===== 1) PHIÊN kiểm kê từ header (KK-xxxx-xxxx) =====\nlet phien = '';\nif (table.length) {\n  const upTo = Math.min(50, table.length);\n  const lines = [];\n  for (let i = 0; i < upTo; i++) lines.push(raw(table[i].join(' ')));\n  const headerText = lines.join('  ');\n\n  let m = headerText.match(/\\bkk[^0-9]*?(\\d{4})[^0-9]*?(\\d{4})\\b/i);\n  if (m) phien = `KK-${m[1]}-${m[2]}`;\n  if (!phien) {\n    const m2 = headerText.replace(/\\s+/g,'').match(/\\bkk(\\d{8})\\b/i);\n    if (m2) phien = `KK-${m2[1].slice(0,4)}-${m2[1].slice(4)}`;\n  }\n  if (!phien) {\n    outer:\n    for (let i = 0; i < upTo; i++) {\n      const row = table[i];\n      for (let j = 0; j < row.length; j++) {\n        const cell = row[j];\n        if (!/kk/i.test(cell)) continue;\n        let digits = (cell.match(/(\\d+)/g) || []).join('');\n        for (let k = j + 1; k < row.length && digits.length < 8; k++) {\n          const tok = row[k];\n          const nums = tok.match(/^\\D*(\\d+)/);\n          if (!nums) break;\n          digits += nums[1];\n        }\n        if (digits.length < 8 && i + 1 < table.length) {\n          for (let k = 0; k < table[i+1].length && digits.length < 8; k++) {\n            const tok = table[i+1][k];\n            const nums = tok.match(/^\\D*(\\d+)/);\n            if (!nums) continue;\n            digits += nums[1];\n          }\n        }\n        if (digits.length >= 8) {\n          digits = digits.slice(0,8);\n          phien = `KK-${digits.slice(0,4)}-${digits.slice(4)}`;\n          break outer;\n        }\n      }\n    }\n  }\n  if (!phien) {\n    const compact = headerText.replace(/[^A-Za-z0-9]+/g,'').toLowerCase();\n    const m3 = compact.match(/kk(\\d{8})/i);\n    if (m3) phien = `KK-${m3[1].slice(0,4)}-${m3[1].slice(4)}`;\n  }\n}\n\n// ===== 2) \"Ngày yêu cầu kiểm kê\" + 3) \"khu vực kiểm kê\" =====\nconst tokens = {\n  // đổi sang \"ngày yêu cầu kiểm kê\" thay vì \"ngày hoàn thành\"\n  ngayYC: [\n    'ngay yeu cau kiem ke',\n    'ngay yeu cau',\n    'ngay yc kiem ke',\n    'requested date',\n    'request date',\n    'date requested'\n  ],\n  khu: [\n    'khu vuc kiem ke',\n    'khu vuc',\n    'khu vuc kk',\n    'area'\n  ],\n};\nconst hasToken = (s, list) => list.some(t => norm(s).includes(t));\nconst pickAfterSep = s => {\n  const mm = String(s).match(/[:\\-–]\\s*(.+)$/);\n  return mm ? raw(mm[1]) : '';\n};\nconst rightCell = (vals, j) => {\n  for (let k = j + 1; k < vals.length; k++) { const v = raw(vals[k]); if (v) return v; }\n  return '';\n};\nconst nextRowFirst = (tbl, i) => {\n  if (i + 1 >= tbl.length) return '';\n  const vals = tbl[i + 1];\n  for (let k = 0; k < vals.length; k++) { const v = raw(vals[k]); if (v) return v; }\n  return '';\n};\n\nlet ngayYC = '';\nlet khu = '';\n\n// theo tiêu đề cột\nif (table.length) {\n  const header = table[0].map(raw);\n  const idxBy = lists => {\n    for (let j = 0; j < header.length; j++) if (hasToken(header[j], lists)) return j;\n    return -1;\n  };\n  const colNgayYC = idxBy(tokens.ngayYC);\n  const colKhu    = idxBy(tokens.khu);\n\n  const firstBelow = col => {\n    if (col < 0) return '';\n    for (let i = 1; i < table.length; i++) {\n      const v = raw(table[i][col]); if (v) return v;\n    }\n    return '';\n  };\n  if (!ngayYC) ngayYC = firstBelow(colNgayYC);\n  if (!khu)    khu    = firstBelow(colKhu);\n}\n\n// quét nhãn:giá trị\nif (!ngayYC || !khu) {\n  outer2:\n  for (let i = 0; i < table.length; i++) {\n    const row = table[i];\n    for (let j = 0; j < row.length; j++) {\n      const cell = raw(row[j]);\n      if (!cell) continue;\n      if (!ngayYC && hasToken(cell, tokens.ngayYC)) {\n        ngayYC = pickAfterSep(cell) || rightCell(row, j) || nextRowFirst(table, i);\n      }\n      if (!khu && hasToken(cell, tokens.khu)) {\n        khu = pickAfterSep(cell) || rightCell(row, j) || nextRowFirst(table, i);\n      }\n      if (ngayYC && khu) break outer2;\n    }\n  }\n}\n\n// ===== Output 3 item =====\nreturn [\n  { json: { key: 'ngày yêu cầu kiểm kê', value: ngayYC || '' } },\n  { json: { key: 'phiên kiểm kê', value: phien || '' } },\n  { json: { key: 'khu vực kiểm kê', value: khu || '' } },\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        912,
+        -64
+      ],
+      "id": "5b82723d-b176-4bc5-ad3b-4e5a443b8270",
+      "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1c3Lx0ZY9-ydNODC_scongiaAn_SuAYLMr3h7SGWi61g",
+          "mode": "list",
+          "cachedResultName": "CP62 - Bao cao kiem ke 10.2025",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1c3Lx0ZY9-ydNODC_scongiaAn_SuAYLMr3h7SGWi61g/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 302758941,
+          "mode": "list",
+          "cachedResultName": "DSACH Phiên - khu vực",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1c3Lx0ZY9-ydNODC_scongiaAn_SuAYLMr3h7SGWi61g/edit#gid=302758941"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Ngày tạo phiên kiểm kê": "={{ $json.value[0] }}",
+            "Mã phiên kiểm kê": "={{ $json.value[1] }}",
+            "Khu vực": "={{ $json.value[2] }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Ngày tạo phiên kiểm kê",
+              "displayName": "Ngày tạo phiên kiểm kê",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Mã phiên kiểm kê",
+              "displayName": "Mã phiên kiểm kê",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Khu vực",
+              "displayName": "Khu vực",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {
+          "locationDefine": {
+            "values": {
+              "headerRow": 3
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1376,
+        -64
+      ],
+      "id": "84f2fbcd-d7e6-41c0-8453-b3044c74d968",
+      "name": "Append row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "MTh9LghqaMKPTAzs",
+          "name": "zalo-chat-bot-hoang.nv1"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fieldsToAggregate": {
+          "fieldToAggregate": [
+            {
+              "fieldToAggregate": "value"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        1088,
+        -64
+      ],
+      "id": "aa7b0c24-5710-4caa-8e2f-e1a2daed5e27",
+      "name": "Aggregate"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "144dbe9e-fd59-496f-9602-5f98c559b108",
+              "leftValue": "={{ $json.value }}",
+              "rightValue": "KK",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.2,
+      "position": [
+        752,
+        96
+      ],
+      "id": "427e65d2-2f50-49b5-b492-acbb5ba07714",
+      "name": "Filter"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        944,
+        176
+      ],
+      "id": "0434aaea-43cc-4346-bafd-29ebd8329da3",
+      "name": "Merge"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Lấy phiên từ node Filter (input khác)\nconst phien = ($items('Filter')[0]?.json?.value || '').toString().trim();\n\n// Lấy toàn bộ dòng từ Extract from File\nconst rows = $items('Extract from File').map(it => it.json);\n\n// Chèn field sau \"Giải trình\" (không phụ thuộc thứ tự cột ban đầu)\nconst out = rows.map(r => {\n  const entries = Object.entries(r);\n  const idx = entries.findIndex(([k]) => k.trim().toLowerCase() === 'giải trình');\n  const insert = ['Phiên kiểm kê', phien];\n\n  if (idx >= 0) {\n    entries.splice(idx + 1, 0, insert);           // chèn ngay sau \"Giải trình\"\n  } else {\n    entries.push(insert);                          // không thấy thì thêm cuối\n  }\n\n  // Dựng object theo thứ tự mới\n  const obj = {};\n  for (const [k, v] of entries) obj[k] = v;\n  return { json: obj };\n});\n\nreturn out;\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1088,
+        176
+      ],
+      "id": "6034434e-4882-4027-9632-b3025e2e0aef",
+      "name": "Code in JavaScript1"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1c3Lx0ZY9-ydNODC_scongiaAn_SuAYLMr3h7SGWi61g",
+          "mode": "list",
+          "cachedResultName": "CP62 - Bao cao kiem ke 10.2025",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1c3Lx0ZY9-ydNODC_scongiaAn_SuAYLMr3h7SGWi61g/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1085994542,
+          "mode": "list",
+          "cachedResultName": "BBKK",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1c3Lx0ZY9-ydNODC_scongiaAn_SuAYLMr3h7SGWi61g/edit#gid=1085994542"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Mã vật tư": "={{ $json['Mã sản phẩm'] }}",
+            "Tên vật tư": "={{ $json['Tên sản phẩm'] }}",
+            "Kiểm kê\nthực tế": "={{ $json['Số lượng kiểm đếm'] }}",
+            "Tồn cuối\nphần mềm": "={{ $json['Số lượng tồn'] }}",
+            "Chênh lệch": "={{\n(() => {\n  const toNum = s => Number(String(s ?? '').replace(/[^\\d.-]/g,''));\n  const thucte = toNum($json['Số lượng kiểm đếm']);\n  const tonpm  = toNum($json['Số lượng tồn']);\n  const diff = thucte - tonpm;\n  return Number.isFinite(diff) ? diff : 0;\n})()\n}}",
+            "Phiên kiểm kê": "={{ $json['Phiên kiểm kê'] }}",
+            "STT": "={{ $itemIndex + 1 }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "STT",
+              "displayName": "STT",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Mã vật tư",
+              "displayName": "Mã vật tư",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Tên vật tư",
+              "displayName": "Tên vật tư",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Đvt",
+              "displayName": "Đvt",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Tồn cuối\nphần mềm",
+              "displayName": "Tồn cuối\nphần mềm",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Kiểm kê\nthực tế",
+              "displayName": "Kiểm kê\nthực tế",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Chênh lệch",
+              "displayName": "Chênh lệch",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Trình trạng hàng hóa",
+              "displayName": "Trình trạng hàng hóa",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Phiên kiểm kê",
+              "displayName": "Phiên kiểm kê",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1296,
+        176
+      ],
+      "id": "4c0055ec-ee4a-4ccf-a532-bf79d18dee41",
+      "name": "Append row in sheet1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "MTh9LghqaMKPTAzs",
+          "name": "zalo-chat-bot-hoang.nv1"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "chooseBranch",
+        "output": "empty"
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        1536,
+        176
+      ],
+      "id": "3a9b0448-ef18-4f03-887d-b893e315cebe",
+      "name": "Merge1"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        496,
+        -64
+      ],
+      "id": "2fc53954-b955-433d-994e-9a397a982502",
+      "name": "Loop Over Items1"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        1712,
+        176
+      ],
+      "id": "e9f43ad0-aec5-4a09-837a-b64cafe71ef7",
+      "name": "Wait1",
+      "webhookId": "0c01cdfb-1c3e-4b8b-a67a-00e76fc24cd7"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-02-22T18:07:49.423Z",
+      "createdAt": "2026-02-22T18:07:49.423Z",
+      "role": "workflow:owner",
+      "workflowId": "fD4KMlbvP0bgkKkx",
+      "projectId": "GTQprNa3RcCSHh8s"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-10-20T08:17:02.650Z",
+  "versionId": "099627ea-2405-4836-8391-57aa71e1a5ee"
+}
