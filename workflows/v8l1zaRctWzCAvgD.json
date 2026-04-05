@@ -1,0 +1,1139 @@
+{
+  "active": false,
+  "activeVersion": null,
+  "activeVersionId": null,
+  "connections": {
+    "When Executed by Another Workflow": {
+      "main": [
+        [
+          {
+            "node": "get_ideas",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "get_ideas": {
+      "main": [
+        [
+          {
+            "node": "if_new",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Replace Me",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Replace Me": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Map Script & Tokens & Cost": {
+      "main": [
+        [
+          {
+            "node": "Update tokens & cost LLM",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "prepare_tts",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "build_prompt": {
+      "main": [
+        [
+          {
+            "node": "gen_prompt",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update tokens & cost LLM": {
+      "main": [
+        []
+      ]
+    },
+    "prepare_tts": {
+      "main": [
+        [
+          {
+            "node": "gen_voice",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "if_new": {
+      "main": [
+        [
+          {
+            "node": "build_prompt",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "gen_prompt": {
+      "main": [
+        [
+          {
+            "node": "Map Script & Tokens & Cost",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "gen_voice": {
+      "main": [
+        [
+          {
+            "node": "Update_chars_tts_cost",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "build_pexels_query",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "build_pexels_query": {
+      "main": [
+        [
+          {
+            "node": "image_search",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "image_search": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "image_download",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "image_download": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript1": {
+      "main": [
+        [
+          {
+            "node": "Execute Command",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-09-30T13:43:10.394Z",
+  "id": "v8l1zaRctWzCAvgD",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "clip-generate-test",
+  "nodes": [
+    {
+      "parameters": {
+        "inputSource": "passthrough"
+      },
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -64,
+        32
+      ],
+      "id": "a7a7389e-370e-4dca-9d5b-e3024da0e065",
+      "name": "When Executed by Another Workflow"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1U-DfGz6VCFw5eHaelRdnnpU1acc9blSPqMFXWNxDC78",
+          "mode": "list",
+          "cachedResultName": "n8n_clip_ideas",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1U-DfGz6VCFw5eHaelRdnnpU1acc9blSPqMFXWNxDC78/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "ideas",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1U-DfGz6VCFw5eHaelRdnnpU1acc9blSPqMFXWNxDC78/edit#gid=0"
+        },
+        "options": {
+          "returnFirstMatch": true
+        }
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        64,
+        32
+      ],
+      "id": "1be28b91-6ca7-4415-a67f-c5f847c92412",
+      "name": "get_ideas",
+      "notesInFlow": false,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "aJxSTJ2wgzUVy9El",
+          "name": "Google Sheets account hoanghochoi1618"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        576,
+        -640
+      ],
+      "id": "79267d64-de13-4b4f-a074-5d8801c4d68a",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "name": "Replace Me",
+      "typeVersion": 1,
+      "position": [
+        784,
+        -640
+      ],
+      "id": "578a3d74-2ffa-4a7c-a28a-289a4571da9e"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "// Lấy response hiện tại\nconst resp = $json;\n\n// Script & usage\nconst content = resp.choices?.[0]?.message?.content || '';\nconst promptTokens = Number(resp.usage?.prompt_tokens || 0);\nconst completionTokens = Number(resp.usage?.completion_tokens || 0);\n\n// Đơn giá (USD / 1M tokens) — bạn có thể đổi sau\nconst PRICE_IN = 0.15;   // GPT-4o mini input\nconst PRICE_OUT = 0.60;  // GPT-4o mini output\nconst cost_llm = (promptTokens/1e6)*PRICE_IN + (completionTokens/1e6)*PRICE_OUT;\n\n// Lấy lại row gốc cùng index từ node build_prompt\nconst orig = $items(\"build_prompt\", 0, $itemIndex).json;\n\nreturn {\n  ...orig,\n  script_text: content,\n  tokens_in: promptTokens,\n  tokens_out: completionTokens,\n  cost_llm_usd: Number(cost_llm.toFixed(6)),\n};\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        624,
+        -64
+      ],
+      "id": "cd04d1fb-041f-4e36-878c-b48fcd4d175e",
+      "name": "Map Script & Tokens & Cost"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1U-DfGz6VCFw5eHaelRdnnpU1acc9blSPqMFXWNxDC78",
+          "mode": "list",
+          "cachedResultName": "n8n_clip_ideas",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1U-DfGz6VCFw5eHaelRdnnpU1acc9blSPqMFXWNxDC78/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "ideas",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1U-DfGz6VCFw5eHaelRdnnpU1acc9blSPqMFXWNxDC78/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "row_number": "={{ $('build_prompt').item.json.row_number }}",
+            "tokens_in": "={{$json.tokens_in}}",
+            "tokens_out": "={{$json.tokens_out}}",
+            "cost_llm_usd": "={{$json.cost_llm_usd}}",
+            "notes": "={{$json.notes ? $json.notes + ' | LLM OK' : 'LLM OK'}}"
+          },
+          "matchingColumns": [
+            "row_number"
+          ],
+          "schema": [
+            {
+              "id": "status",
+              "displayName": "status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "title",
+              "displayName": "title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "topic",
+              "displayName": "topic",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "keywords",
+              "displayName": "keywords",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "cta",
+              "displayName": "cta",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "lang",
+              "displayName": "lang",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "duration_sec",
+              "displayName": "duration_sec",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "platform",
+              "displayName": "platform",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "tags",
+              "displayName": "tags",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "broll_count",
+              "displayName": "broll_count",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "voice",
+              "displayName": "voice",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "music",
+              "displayName": "music",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "upload",
+              "displayName": "upload",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "schedule_at",
+              "displayName": "schedule_at",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "notes",
+              "displayName": "notes",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "tokens_in",
+              "displayName": "tokens_in",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "tokens_out",
+              "displayName": "tokens_out",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "tts_chars",
+              "displayName": "tts_chars",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "tts_model",
+              "displayName": "tts_model",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "cost_llm_usd",
+              "displayName": "cost_llm_usd",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "cost_tts_usd",
+              "displayName": "cost_tts_usd",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "cost_total_usd",
+              "displayName": "cost_total_usd",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        784,
+        -224
+      ],
+      "id": "b8f8e47a-36d8-4635-b0c6-6c6d742ac0d6",
+      "name": "Update tokens & cost LLM",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "aJxSTJ2wgzUVy9El",
+          "name": "Google Sheets account hoanghochoi1618"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Function Item: chạy trên từng item một\nconst row = $json;\n\nconst topic = (row.topic || '').toString().trim();\nconst keywords = (row.keywords || '').toString().trim();\nconst cta = (row.cta || '').toString().trim();\nconst lang = (row.lang || 'vi').toString().trim();\nconst duration = Number(row.duration_sec || 45);\n\nconst systemPrompt = `\nYou are a short-form scriptwriter. Write a concise, high-retention vertical video script in ${lang}.\nTarget duration ~${duration} seconds. Use Vietnamese if lang=vi.\nRules:\n- 1 hook sentence (max 12 words), punchy.\n- 3–6 micro-points, each 1–2 sentences, concrete & actionable.\n- Natural spoken tone, avoid “hàn lâm”.\n- End with CTA: ${cta}.\n- Return text only, no markdown, no numbering.\n`.trim();\n\nconst userPrompt = `\nTopic: ${topic}\nKeywords (for b-roll search): ${keywords}\nLanguage: ${lang}\nTarget duration: ${duration}s\nCTA: ${cta}\n`.trim();\n\nreturn {\n  ...row,\n  _llm: {\n    model: 'gpt-4o-mini',\n    temperature: 0.7,\n    system: systemPrompt,\n    user: userPrompt,\n  }\n};\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        368,
+        -64
+      ],
+      "id": "e2de6674-962a-4480-b2af-f48c444bc103",
+      "name": "build_prompt"
+    },
+    {
+      "parameters": {
+        "jsCode": "// LẤY DỮ LIỆU SAU NODE IF (nhánh true), fallback sang $json hiện tại\nconst fromIF = ($items(\"if_new\", 0, $itemIndex)?.json) || {};\nconst script = ($json.script_text || '').toString().trim();\n\n// Trường trên sheet\nconst voiceFromSheet  = (fromIF.voice || $json.voice || '').toString().trim();              // alloy / verse ...\nconst modelFromSheet  = (fromIF.voice_model || $json.voice_model || $json.tts_model || '')\n  .toString().trim();  // tts-1 / tts-1-hd (cột bạn đặt là voice_model)\n\n// Chuẩn hoá: nếu người dùng lỡ gõ 'tts-1-hd' vào cột voice, tự chỉnh lại\nconst MODEL_SET = new Set(['tts-1','tts-1-hd']);\nlet ttsModel = modelFromSheet || (MODEL_SET.has(voiceFromSheet) ? voiceFromSheet : 'tts-1');\nlet voice    = MODEL_SET.has(voiceFromSheet) ? 'alloy' : (voiceFromSheet || 'alloy');\n\n// Định dạng file xuất\nconst format = 'mp3';\n\n// Đếm ký tự & tính chi phí TTS\nconst chars = script.length;\nconst PRICE = { 'tts-1': 15, 'tts-1-hd': 30 }; // USD / 1M chars\nconst costTTS = (chars / 1e6) * (PRICE[ttsModel] ?? PRICE['tts-1']);\n\nreturn {\n  ...$json,                    // giữ rowNumber, tokens, cost_llm_usd, script_text...\n  _tts: { model: ttsModel, voice, format },\n  tts_chars: chars,\n  cost_tts_usd: Number(costTTS.toFixed(6)),\n};\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        960,
+        -64
+      ],
+      "id": "58b41e95-29cd-4ba4-8af8-c3704d1d2aca",
+      "name": "prepare_tts"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "daf453b4-ed61-4244-aa6a-9c7d1fc196bb",
+              "leftValue": "={{ $json.status }}",
+              "rightValue": "NEW",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        192,
+        32
+      ],
+      "id": "db985d49-5963-4f65-b523-1fc90025d35f",
+      "name": "if_new"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.openai.com/v1/chat/completions",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBearerAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ \n  {\n    model: $json._llm.model,\n    temperature: $json._llm.temperature,\n    messages: [\n      { role: 'system', content: $json._llm.system },\n      { role: 'user',   content: $json._llm.user }\n    ]\n  }\n}}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        496,
+        -64
+      ],
+      "id": "545b9a59-564b-4f5d-9f87-8a0a46295a56",
+      "name": "gen_prompt",
+      "alwaysOutputData": true,
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "5KuI3H33L1RWZ1Z5",
+          "name": "Header Auth pexel"
+        },
+        "httpBearerAuth": {
+          "id": "sCP43NO4nZUrva5G",
+          "name": "Bearer Auth OpenAI"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.openai.com/v1/audio/speech",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "httpBearerAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ \n  {\n    model: $json._tts.model,\n    voice: $json._tts.voice,\n    input: $json.script_text,\n    response_format: $json._tts.format\n  }\n}}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1104,
+        -64
+      ],
+      "id": "bf03ef37-1784-4109-be81-3c969398b6ee",
+      "name": "gen_voice",
+      "credentials": {
+        "httpBearerAuth": {
+          "id": "sCP43NO4nZUrva5G",
+          "name": "Bearer Auth OpenAI"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1U-DfGz6VCFw5eHaelRdnnpU1acc9blSPqMFXWNxDC78",
+          "mode": "list",
+          "cachedResultName": "n8n_clip_ideas",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1U-DfGz6VCFw5eHaelRdnnpU1acc9blSPqMFXWNxDC78/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "ideas",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1U-DfGz6VCFw5eHaelRdnnpU1acc9blSPqMFXWNxDC78/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "row_number": "={{ $('build_prompt').item.json.row_number }}",
+            "tts_model": "={{ $json._tts.model }}",
+            "cost_tts_usd": "={{ $json.cost_tts_usd }}",
+            "tts_chars": "={{ $json.tts_chars }}"
+          },
+          "matchingColumns": [
+            "row_number"
+          ],
+          "schema": [
+            {
+              "id": "status",
+              "displayName": "status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "title",
+              "displayName": "title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "topic",
+              "displayName": "topic",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "keywords",
+              "displayName": "keywords",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "cta",
+              "displayName": "cta",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "lang",
+              "displayName": "lang",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "duration_sec",
+              "displayName": "duration_sec",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "platform",
+              "displayName": "platform",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "tags",
+              "displayName": "tags",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "broll_count",
+              "displayName": "broll_count",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "voice_model",
+              "displayName": "voice_model",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "voice",
+              "displayName": "voice",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "music",
+              "displayName": "music",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "upload",
+              "displayName": "upload",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "schedule_at",
+              "displayName": "schedule_at",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "notes",
+              "displayName": "notes",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "tokens_in",
+              "displayName": "tokens_in",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "tokens_out",
+              "displayName": "tokens_out",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "tts_chars",
+              "displayName": "tts_chars",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "tts_model",
+              "displayName": "tts_model",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "cost_llm_usd",
+              "displayName": "cost_llm_usd",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "cost_tts_usd",
+              "displayName": "cost_tts_usd",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "cost_total_usd",
+              "displayName": "cost_total_usd",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1216,
+        -224
+      ],
+      "id": "83c3355e-2db1-45ea-a276-ba1f65a8fadf",
+      "name": "Update_chars_tts_cost",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "aJxSTJ2wgzUVy9El",
+          "name": "Google Sheets account hoanghochoi1618"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "// Lấy đúng dữ liệu ngay SAU node If (nhánh true)\n// -> nếu tên node If của bạn khác, thay \"If\" cho khớp\nconst fromIF = ($items(\"if_new\", 0, $itemIndex)?.json) || {};\n\n// Ưu tiên: keywords -> tags -> (fallback) topic/title\nconst candidates = [\n  fromIF.keywords,   $json.keywords,\n  fromIF.tags,       $json.tags,\n  fromIF.topic,      $json.topic,\n  fromIF.title,      $json.title,\n].filter(v => v && String(v).trim());\n\nlet raw = candidates.join(\" \").toString();\n\n// Làm sạch: bỏ #, phân tách bằng , ; | xuống dòng, chuẩn hoá space\nraw = raw.replace(/#/g, \" \")\n         .replace(/[\\n\\r]+/g, \" \")\n         .replace(/[;,|]+/g, \" \")\n         .replace(/\\s+/g, \" \")\n         .trim();\n\n// Tách từ, loại trùng, bỏ từ quá ngắn, ghép lại thành câu truy vấn\nconst seen = new Set();\nconst terms = raw.split(\" \")\n  .map(s => s.trim())\n  .filter(s => s.length >= 2 && !seen.has(s) && seen.add(s));\n\n// Nếu vẫn rỗng, dùng mặc định an toàn\nconst q = terms.length ? terms.join(\" \") : \"nature abstract\";\n\n// Số ảnh mong muốn (broll_count trong sheet), lấy từ If hoặc JSON hiện tại\nconst want = Number(fromIF.broll_count ?? $json.broll_count ?? 6);\n\n// Lấy dư để lọc dọc, nhưng không quá 50 theo API Pexels\nconst perPage = Math.min(Math.max(want * 3, 15), 50);\n\nreturn {\n  ...$json, // giữ rowNumber, script_text, v.v.\n  _pexels: {\n    q,\n    perPage,\n    page: 1,\n    orientation: \"portrait\",\n    size: \"large\"\n  },\n  // giữ lại truy vết tiện debug\n  _debug_pexels: { want, q_source: candidates }\n};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1328,
+        -64
+      ],
+      "id": "ec374495-1d68-4592-a536-c6ce88699d92",
+      "name": "build_pexels_query"
+    },
+    {
+      "parameters": {
+        "url": "https://api.pexels.com/v1/search",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "query",
+              "value": "={{ $json._pexels.q }}"
+            },
+            {
+              "name": "per_page",
+              "value": "={{ $json._pexels.perPage }}"
+            },
+            {
+              "name": "page",
+              "value": "={{ $json._pexels.page }}"
+            },
+            {
+              "name": "orientation",
+              "value": "={{ $json._pexels.orientation }}"
+            },
+            {
+              "name": "size",
+              "value": "={{ $json._pexels.size }}"
+            }
+          ]
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "K9vIFk6cqjfemikJPbCphLtzQNNT6W7sV5cHiQmZ36aESJtvzPoL8TAD"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1456,
+        -64
+      ],
+      "id": "02fb18c2-64f4-4e5a-be70-6abafe7262d8",
+      "name": "image_search"
+    },
+    {
+      "parameters": {
+        "jsCode": "const want = Number(items[0].json.broll_count || 6);\nconst photos = (items[0].json.photos || []);\n// Ưu tiên ảnh có 'src.portrait' hoặc 'src.large2x'\nconst picks = [];\nconst seen = new Set();\n\nfor (const p of photos) {\n  const url = p.src?.portrait || p.src?.large2x || p.src?.large;\n  if (!url) continue;\n  if (seen.has(url)) continue;\n  seen.add(url);\n  picks.push({\n    json: {\n      ...items[0].json,   // mang theo rowNumber, script_text, tts info...\n      _asset: {\n        url,\n        author: p.photographer,\n        id: p.id\n      }\n    }\n  });\n  if (picks.length >= want) break;\n}\n\n// Nếu không đủ, thôi cứ lấy được bao nhiêu thì lấy\nreturn picks.length ? picks : items.map(i => ({ json: { ...i.json, _warn: 'NO_PEXELS_RESULTS' } }));\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1584,
+        -64
+      ],
+      "id": "b23025d6-e9e7-4912-9b3e-09b58ffe8269",
+      "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {
+        "url": "={{$json._asset.url}}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "file",
+              "outputPropertyName": "={{ 'pexels_'+$json._asset.id+'.jpg' }}"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1712,
+        -64
+      ],
+      "id": "11f38f69-3acc-47c1-abac-c5cc21dfa113",
+      "name": "image_download"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Nhận N items (mỗi item là 1 ảnh đã tải).\n// Lấy voice_path & script_text từ các node trước (mỗi workflow chỉ có 1 TTS item).\nconst voiceItem = $items(\"gen_voice\", 0, 0); // đổi tên nếu node TTS của bạn khác\nconst voicePath = voiceItem?.binary?.voice?.filePath || '';\nconst base = items[0].json;\n\n// Danh sách file ảnh (đường dẫn thật trong container)\nconst files = items\n  .map(i => i.binary?.file?.filePath)\n  .filter(Boolean);\n\n// Lập list.txt (ffmpeg concat)\nconst listTxt = files.map(p => `file '${String(p).replace(/'/g, `'\\\\''`)}'`).join('\\n');\n\n// Phân bổ phụ đề đơn giản theo số câu / thời lượng mong muốn\nconst duration = Number(base.duration_sec || 45);\nconst text = (voiceItem?.json?.script_text || base.script_text || '').toString().trim() || ' ';\nconst sentences = text\n  .replace(/\\r/g,' ')\n  .split(/(?<=[\\.\\!\\?])\\s+/)\n  .filter(s => s.trim().length > 0);\n\nconst total = sentences.length || 1;\nconst slice = duration / total;\nconst toTime = (s) => {\n  const ms = Math.round(s*1000);\n  const hh = String(Math.floor(ms/3600000)).padStart(2,'0');\n  const mm = String(Math.floor((ms%3600000)/60000)).padStart(2,'0');\n  const ss = String(Math.floor((ms%60000)/1000)).padStart(2,'0');\n  const m  = String(ms%1000).padStart(3,'0');\n  return `${hh}:${mm}:${ss},${m}`;\n};\nlet t = 0, idx = 1, srt = '';\nfor (const s of sentences) {\n  const start = toTime(t);\n  const end = toTime(t + slice);\n  srt += `${idx}\\n${start} --> ${end}\\n${s.trim()}\\n\\n`;\n  t += slice; idx++;\n}\n\n// Chọn thư mục làm việc trong container\nconst ts = Math.floor(Date.now()/1000);\nconst cwork = `/data/media/work/${ts}`;\nconst workRel = `./media/work/${ts}`; // xem trên host\n\nreturn [{\n  json: {\n    rowNumber: base.rowNumber ?? base._row_number ?? base.row_number,\n    duration_sec: duration,\n    list_txt: listTxt,\n    srt_txt: srt,\n    voice_path: voicePath,\n    cwork,\n    work_rel: workRel,\n    title: base.title || 'clip'\n  }\n}];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1920,
+        -64
+      ],
+      "id": "ffca3230-384e-4f39-bc53-dc01bb8bcb04",
+      "name": "Code in JavaScript1"
+    },
+    {
+      "parameters": {
+        "command": "=set -e\n\nCWORK=\"{{$json.cwork}}\"\nmkdir -p \"$CWORK/assets\"\n\n# Ghi list.txt\ncat > \"$CWORK/list.txt\" <<'EOF_LIST'\n{{$json.list_txt}}\nEOF_LIST\n\n# Ghi subtitles.srt\ncat > \"$CWORK/subtitles.srt\" <<'EOF_SRT'\n{{$json.srt_txt}}\nEOF_SRT\n\n# Tạo nền 9:16 từ ảnh\nffmpeg -y -r 1/1 -f concat -safe 0 -i \"$CWORK/list.txt\" \\\n  -vf \"scale=1080:1920:force_original_aspect_ratio=decrease,pad=1080:1920:(ow-iw)/2:(oh-ih)/2\" \\\n  -t {{$json.duration_sec}} -an \"$CWORK/vid_bg.mp4\"\n\n# Ghép phụ đề + audio TTS\nffmpeg -y -i \"$CWORK/vid_bg.mp4\" -i \"{{$json.voice_path}}\" \\\n  -vf \"subtitles='$CWORK/subtitles.srt':force_style=Fontsize=28,Outline=2,Shadow=0,MarginV=40\" \\\n  -c:v libx264 -preset veryfast -crf 22 -r 30 -pix_fmt yuv420p -c:a aac -shortest \"$CWORK/output.mp4\"\n\n# In đường dẫn ra STDOUT\necho \"$CWORK/output.mp4\"\n"
+      },
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [
+        2128,
+        -64
+      ],
+      "id": "17374326-b6e8-4968-97fc-fa5f37858bf1",
+      "name": "Execute Command"
+    }
+  ],
+  "pinData": {
+    "When Executed by Another Workflow": [
+      {
+        "json": {}
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "Asia/Jakarta",
+    "callerPolicy": "workflowsFromSameOwner"
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-02-22T18:08:38.742Z",
+      "createdAt": "2026-02-22T18:08:38.742Z",
+      "role": "workflow:owner",
+      "workflowId": "v8l1zaRctWzCAvgD",
+      "projectId": "GTQprNa3RcCSHh8s"
+    }
+  ],
+  "staticData": {
+    "node:Gmail Trigger": {
+      "Gmail Trigger": {
+        "lastTimeChecked": 1759242108
+      }
+    }
+  },
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-10-17T10:50:38.392Z",
+  "versionId": "f6f3547e-6479-4523-a876-127053d863ea"
+}
