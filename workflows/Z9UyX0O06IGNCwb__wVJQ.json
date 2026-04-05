@@ -1,0 +1,80 @@
+{
+  "active": false,
+  "activeVersion": null,
+  "activeVersionId": null,
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2026-01-30T07:10:59.045Z",
+  "id": "Z9UyX0O06IGNCwb__wVJQ",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "My workflow 16",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "2d71456b-58c4-40e4-87f1-94fb25bc2e44",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "sendTo": "hoanghochoi1618@gmail.com",
+        "subject": "zzz",
+        "message": "=<!DOCTYPE html>\n<html lang=\"vi\">\n<head>\n  <meta charset=\"UTF-8\">\n</head>\n<body style=\"font-family: Arial, Helvetica, sans-serif; font-size: 14px;\">\n\n  <p style=\"font-size: 16px;\">Dear team CM,</p>\n\n  <p style=\"font-size: 14px;\">\n    Em gửi danh sách request range plan theo link bên dưới.<br>\n    Những sản phẩm này là hàng hóa có số bán trong 2 tuần gần nhất nhưng không có tồn kho của CP62.<br>\n    Nhờ team xem xét mở range giúp em ạ.\n  </p>\n\n  <p>\n    <a href=\"https://docs.google.com/spreadsheets/d/11skwW1voj8myS1PaEknzQuZ4SrDFP1E9jYARxVqDEWo/edit?gid=0#gid=0\"\n       style=\"font-size: 18px; font-weight: bold; color: #0066cc;\">\n      Range plan request - dd/MM/yyyy\n    </a>\n  </p>\n\n</body>\n<div class=\"signature-block\">\n  <p>Trân trọng.</p>\n  <p><strong>NGUYỄN VĂN HOÀNG</strong><br>\n     <em>CỬA HÀNG TRƯỞNG</em></p>\n  <p>\n    Mobile: <a href=\"tel:0906581906\">0906581906</a><br>\n    Email: <a href=\"mailto:hoang.nv1@phongvu-mna.vn\">hoang.nv1@phongvu-mna.vn</a><br>\n    Địa chỉ: Số 26 đường Phan Đăng Lưu, Phường Gia Định, Thành phố Hồ Chí Minh\n  </p>\n</div>\n</html>",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        208,
+        0
+      ],
+      "id": "5076d842-e399-4f5c-a7af-eb71b4eedd36",
+      "name": "Send a message",
+      "webhookId": "a752fcad-8d14-4bcd-9a99-dd204245b4ee",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "mdeJ5Cwz1YxLTzIG",
+          "name": "hoang.nv1"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1",
+    "availableInMCP": false
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-02-22T18:07:14.811Z",
+      "createdAt": "2026-02-22T18:07:14.811Z",
+      "role": "workflow:owner",
+      "workflowId": "Z9UyX0O06IGNCwb__wVJQ",
+      "projectId": "GTQprNa3RcCSHh8s"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2026-01-30T07:19:11.589Z",
+  "versionId": "9a3d6fe3-2645-44c8-a60b-c85617b8fc57"
+}
