@@ -1,0 +1,413 @@
+{
+  "active": false,
+  "activeVersion": null,
+  "activeVersionId": null,
+  "connections": {
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request1": {
+      "main": [
+        [
+          {
+            "node": "Wait1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request2",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait1": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request2": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields1": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-12-09T12:45:49.415Z",
+  "id": "nR2lxKjzCioNnUAG",
+  "isArchived": false,
+  "meta": null,
+  "name": "Auto Veo 3.1 text to video Final",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        464,
+        368
+      ],
+      "id": "1d646677-df95-4494-98ee-e9a2b574248d",
+      "name": "When clicking ‘Test workflow’"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "4d9bc35c-a09a-447b-937d-8e4f91b5f509",
+              "name": "sceneID",
+              "value": "={{ 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {\nvar r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);\nreturn v.toString(16);\n}) }}",
+              "type": "string"
+            },
+            {
+              "id": "e942d686-2027-46a4-9411-7d2de0054602",
+              "name": "Authorization",
+              "value": "<copy access_token>",
+              "type": "string"
+            },
+            {
+              "id": "523c28b0-a1b7-4acc-9901-336052b77976",
+              "name": "ProjectID",
+              "value": "<Copy Project ID>",
+              "type": "string"
+            },
+            {
+              "id": "5c6065da-ceb4-46b5-8eb6-45fd50af48c2",
+              "name": "Prompt",
+              "value": "Có bé đang lặng lẽ đi trong đêm tối, trên trời đầy sao",
+              "type": "string"
+            },
+            {
+              "id": "69cc99bf-b6fa-48ee-94ea-71fa40b06501",
+              "name": "aspectRatio",
+              "value": "VIDEO_ASPECT_RATIO_PORTRAIT",
+              "type": "string"
+            },
+            {
+              "id": "86fa5d95-3ac1-46b3-a602-cfbd686966d9",
+              "name": "videoModelKey",
+              "value": "veo_3_1_t2v_fast_portrait",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        704,
+        368
+      ],
+      "id": "870867cb-ffdc-4efa-a868-fe38d69d5e90",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://aisandbox-pa.googleapis.com/v1/video:batchAsyncGenerateVideoText",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "name": "Authorization",
+              "value": "={{ $json.Authorization }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n\"clientContext\": {\n\"sessionId\": \";{{ new Date().getTime() }}\",\n\"projectId\": \"{{ $json.ProjectID }}\",\n\"tool\": \"PINHOLE\",\n\"userPaygateTier\": \"PAYGATE_TIER_ONE\"\n},\n\"requests\": [\n{\n\"aspectRatio\": \"{{ $json.aspectRatio}}\",\n\"seed\": {{ Math.floor(Math.random() * 10000) }},\n\"textInput\": {\n\"prompt\": \"{{ $json.Prompt }}\"\n},\n\"videoModelKey\": \"{{ $json.videoModelKey }}\",\n\"metadata\": {\n\"sceneId\": \"{{ $json.sceneID }}\"\n}\n}\n]\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        960,
+        368
+      ],
+      "id": "854e8895-3424-442f-a19f-0227913447c2",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "amount": 30
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        1264,
+        368
+      ],
+      "id": "140b03f5-4dde-4ce2-b1ec-262a78c60ec1",
+      "name": "Wait",
+      "webhookId": "38737779-775b-4f73-8fbb-5fe2b1ebf418"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://aisandbox-pa.googleapis.com/v1/video:batchCheckAsyncVideoGenerationStatus",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "name": "Authorization",
+              "value": "={{ $('Edit Fields').item.json.Authorization }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n\"operations\": [\n{\n\"operation\": {\n\"name\": \"{{ $json.operations[0].operation.name }}\"\n},\n\"sceneId\": \"{{ $json.operations[0].sceneId }}\",\n\"status\": \"{{ $json.operations[0].status }}\"\n}\n]\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        464,
+        720
+      ],
+      "id": "2a55c1ae-6ce4-42fd-9add-49ac8fbf8dd4",
+      "name": "HTTP Request1"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "30804517-bb5a-44bc-9e86-c4d5de97acb4",
+              "leftValue": "={{ $json.operations[0].status }}",
+              "rightValue": "MEDIA_GENERATION_STATUS_SUCCESSFUL",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        960,
+        720
+      ],
+      "id": "e2f3016a-0c4c-4934-bebe-54e4f495bb5d",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "amount": 30
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        704,
+        720
+      ],
+      "id": "219ed989-a58d-40f1-a79d-9f2933a92fdc",
+      "name": "Wait1",
+      "webhookId": "1487046c-4967-4d31-9692-a106cc5f0ecd"
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.operations[0].operation.metadata.video.fifeUrl }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1264,
+        592
+      ],
+      "id": "5cb9fc30-41bc-4d78-a1de-1d1bd7659804",
+      "name": "HTTP Request2"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "cade58cf-3622-4bdd-a031-99c2f4eb84df",
+              "name": "remainingCredits",
+              "value": "={{ $json.remainingCredits }}",
+              "type": "number"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1264,
+        800
+      ],
+      "id": "9c24cc4c-3eab-4e27-ae2f-f3929eaa320a",
+      "name": "Edit Fields1"
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineAll",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.1,
+      "position": [
+        1520,
+        704
+      ],
+      "id": "8d2fe685-36d3-4c15-a58b-57bc24ceccc6",
+      "name": "Merge"
+    },
+    {
+      "parameters": {
+        "content": "## Text to video\n\n### Portrait\nModel:\nveo_3_1_t2v_fast_portrait\nAspect Ratio: \nVIDEO_ASPECT_RATIO_PORTRAIT\n\n### Landscape\nModel:\nveo_3_1_t2v_fast\nAspect Ratio: \nVIDEO_ASPECT_RATIO_LANDSCAPE",
+        "height": 568,
+        "width": 304
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        608,
+        0
+      ],
+      "typeVersion": 1,
+      "id": "00a5821b-4bea-44c6-bee5-9a53eaa6aeff",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "## Lưu ý\nHướng dẫn lấy Project ID và Authorization bạn có thể tham khảo tại đây.\nNếu muốn thay Từ khung 9:16 (Portrait) sang 6-19 (Landscape) sửa đồng thời giá trị Model và Aspect Ratio trong node Edit Fields đầu tiên như hướng dẫn.\n\nWorkflow được chia sẻ trên trên website: [workflowfree.com](http://workflowfree.com)\n- Chia sẻ các quy trình tự động hoá N8N\n\n![Guide](https://workflowfree.com/wp-content/uploads/2025/04/Dang-video-len-fanapage-n8n-9.jpg)\n\n## Theo dõi mình qua:\nFacebook: [fb.com/mr.linh.dinh](http://fb.com/mr.linh.dinh)\nThreads: [@linh.dinhxuan](https://www.threads.net/@linh.dinhxuan)\nInstagram: [IG/linh.dinhxuan](https://www.instagram.com/linh.dinhxuan/)",
+        "height": 940,
+        "width": 400
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        0,
+        0
+      ],
+      "typeVersion": 1,
+      "id": "7241c7b3-a9f3-4cda-9034-ab06acee8535",
+      "name": "Sticky Note6"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-02-22T18:08:09.684Z",
+      "createdAt": "2026-02-22T18:08:09.684Z",
+      "role": "workflow:owner",
+      "workflowId": "nR2lxKjzCioNnUAG",
+      "projectId": "GTQprNa3RcCSHh8s"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-12-09T12:45:49.415Z",
+  "versionId": "b2ae9127-512f-4429-840d-1d50e713a258"
+}
