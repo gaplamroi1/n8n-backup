@@ -1,0 +1,313 @@
+{
+  "active": false,
+  "activeVersion": null,
+  "activeVersionId": null,
+  "connections": {
+    "Switch": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Call 'sub - visitor update'",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [],
+        [
+          {
+            "node": "Gửi tin nhắn",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Call 'fifo-bot'",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Zalo Event Trigger": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-09-25T13:19:12.072Z",
+  "id": "uygo5acpNQbY4Gv0",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "get-zalo-message-old",
+  "nodes": [
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.threadId }}",
+                    "rightValue": "5499905341129345969",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "815cf181-2832-4aa4-82c7-76e032cd5b04"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "warranty"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "a3037259-1661-4c22-bcce-e16f64ac1a6e",
+                    "leftValue": "={{ $json.threadId }}",
+                    "rightValue": "8530406733201064064",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "visitors"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "9ffa34e8-54aa-431b-a776-474d7980db43",
+                    "leftValue": "={{ $json.threadId }}",
+                    "rightValue": "2976416810845647788",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "admin"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "ae7d978a-a145-4d58-a1a9-1cf323ad69a6",
+                    "leftValue": "={{ $json.type }}",
+                    "rightValue": 0,
+                    "operator": {
+                      "type": "number",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "orther"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "e71339f6-59bb-474a-b63b-f9e380c9990e",
+                    "leftValue": "={{ $json.threadId }}",
+                    "rightValue": "4630714439315937185",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "fifo"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.3,
+      "position": [
+        160,
+        -16
+      ],
+      "id": "efe9b64c-c2a7-41d4-9d87-e08fb17a4cb3",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "N9ZKcrT5ZWEel6Q0",
+          "mode": "list",
+          "cachedResultUrl": "/workflow/N9ZKcrT5ZWEel6Q0",
+          "cachedResultName": "sub - visitor update"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {}
+        },
+        "mode": "each",
+        "options": {
+          "waitForSubWorkflow": true
+        }
+      },
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.3,
+      "position": [
+        448,
+        -144
+      ],
+      "id": "14c993b6-0594-4fe4-8ca2-6cdbc1549061",
+      "name": "Call 'sub - visitor update'"
+    },
+    {
+      "parameters": {
+        "threadId": "2976416810845647788",
+        "message": "=Bạn có tin nhắn từ {{ $json.data.dName }}\nNội dung: {{ $json.data.content }}",
+        "attachmentsUrls": "="
+      },
+      "type": "n8n-nodes-social-zalo.zaloUserInteract",
+      "typeVersion": 1,
+      "position": [
+        448,
+        16
+      ],
+      "id": "d295cffb-57c8-49a9-a632-73e44fe66978",
+      "name": "Gửi tin nhắn",
+      "credentials": {
+        "zaloUserCredentialsApi": {
+          "id": "I9XYLmeAnDXTStGI",
+          "name": "Zalo Phong Vũ Bình Thạnh - 2025-11-11T02:53:13.517Z"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "GLDCdQSXDBIdTnZS",
+          "mode": "list",
+          "cachedResultUrl": "/workflow/GLDCdQSXDBIdTnZS",
+          "cachedResultName": "fifo-bot"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {}
+        },
+        "mode": "each",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.3,
+      "position": [
+        448,
+        208
+      ],
+      "id": "4aec033e-a599-4ce6-ab12-fff4af094912",
+      "name": "Call 'fifo-bot'",
+      "retryOnFail": true
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-social-zalo.zaloUser",
+      "typeVersion": 1,
+      "position": [
+        -32,
+        32
+      ],
+      "id": "94611623-852c-4d75-b94c-e0243fc78626",
+      "name": "Zalo Event Trigger",
+      "credentials": {
+        "zaloUserCredentialsApi": {
+          "id": "I9XYLmeAnDXTStGI",
+          "name": "Zalo Phong Vũ Bình Thạnh - 2025-11-11T02:53:13.517Z"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false,
+    "errorWorkflow": "80zc32Np6wJfRsoG"
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-02-22T18:08:32.810Z",
+      "createdAt": "2026-02-22T18:08:32.810Z",
+      "role": "workflow:owner",
+      "workflowId": "uygo5acpNQbY4Gv0",
+      "projectId": "GTQprNa3RcCSHh8s"
+    }
+  ],
+  "staticData": null,
+  "tags": [
+    {
+      "updatedAt": "2025-10-07T13:20:09.465Z",
+      "createdAt": "2025-10-07T13:20:09.465Z",
+      "id": "R8JsFVZgS7NoVrt3",
+      "name": "zalo"
+    }
+  ],
+  "triggerCount": 1,
+  "updatedAt": "2025-11-25T11:34:27.596Z",
+  "versionId": "5fd0be9d-86e8-44c0-aa2b-d960e8fdd8f4"
+}
