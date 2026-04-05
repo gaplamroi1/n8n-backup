@@ -1,0 +1,2355 @@
+{
+  "active": true,
+  "activeVersion": {
+    "updatedAt": "2026-02-23T09:32:16.796Z",
+    "createdAt": "2026-02-23T09:32:13.122Z",
+    "versionId": "d5897bd5-98e6-4ab3-a582-2e0d821b1854",
+    "workflowId": "GkOK5IXtVQ5pEALO",
+    "nodes": [
+      {
+        "parameters": {
+          "rule": {
+            "interval": [
+              {
+                "triggerAtHour": 8,
+                "triggerAtMinute": 30
+              }
+            ]
+          }
+        },
+        "type": "n8n-nodes-base.scheduleTrigger",
+        "typeVersion": 1.2,
+        "position": [
+          -928,
+          64
+        ],
+        "id": "97830d88-fb32-43fa-b6c3-aefa7a8c6afc",
+        "name": "Schedule Trigger"
+      },
+      {
+        "parameters": {
+          "operation": "clear",
+          "documentId": {
+            "__rl": true,
+            "value": "1w4RNYIRug28cCSq8l8dN8XaKq7nx3Xdom_nB1RREQQI",
+            "mode": "list",
+            "cachedResultName": "Cảnh báo hàng cũ ở BIN Trưng bày hàng bán mới template",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1w4RNYIRug28cCSq8l8dN8XaKq7nx3Xdom_nB1RREQQI/edit?usp=drivesdk"
+          },
+          "sheetName": {
+            "__rl": true,
+            "value": "gid=0",
+            "mode": "list",
+            "cachedResultName": "Sheet1",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1w4RNYIRug28cCSq8l8dN8XaKq7nx3Xdom_nB1RREQQI/edit#gid=0"
+          },
+          "keepFirstRow": true
+        },
+        "type": "n8n-nodes-base.googleSheets",
+        "typeVersion": 4.7,
+        "position": [
+          400,
+          288
+        ],
+        "id": "966905af-8c7a-4efe-936f-86981f13780a",
+        "name": "Clear sheet",
+        "credentials": {
+          "googleSheetsOAuth2Api": {
+            "id": "MTh9LghqaMKPTAzs",
+            "name": "zalo-chat-bot-hoang.nv1"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "operation": "append",
+          "documentId": {
+            "__rl": true,
+            "mode": "id",
+            "value": "1w4RNYIRug28cCSq8l8dN8XaKq7nx3Xdom_nB1RREQQI"
+          },
+          "sheetName": {
+            "__rl": true,
+            "value": "gid=0",
+            "mode": "list",
+            "cachedResultName": "Sheet1",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1w4RNYIRug28cCSq8l8dN8XaKq7nx3Xdom_nB1RREQQI/edit#gid=0"
+          },
+          "columns": {
+            "mappingMode": "defineBelow",
+            "value": {
+              "STT": "={{ $itemIndex + 1 }}",
+              "SKU": "={{ $json.SKU }}",
+              "Tên sản phẩm": "={{ $json.Name }}",
+              "BIN trưng bày": "={{ $json.SerialDisplayBin }}",
+              "Serial trưng bày bán mới không đảm bảo FIFO": "={{ $json.SerialDisplay }}",
+              "Serial thay thế": "={{ $json.StorageSerial }}",
+              "BIN chứa sản phẩm thay thế": "={{ $json.StorageSerialBin }}",
+              "Số ngày chênh lệch": "={{ $json.DiffDays }}",
+              "Tên nhóm ngành hàng": "={{ $json.CategoryName }}",
+              "Ghi chú": "={{ $json.Message }}",
+              "Ngày nhập của sản phẩm trưng bày (Cty)": "={{ $json.DisplayImportDate }}",
+              "Số ngày tồn của sản phẩm trưng bày (Cty)": "={{ $json.DisplayAgeDays }}",
+              "Ngày nhập của sản phẩm thay thế (Cty)": "={{ $json.StorageImportDate }}",
+              "Số ngày tồn của sản phẩm thay thế (Cty)": "={{ $json.StorageAgeDays }}"
+            },
+            "matchingColumns": [],
+            "schema": [
+              {
+                "id": "STT",
+                "displayName": "STT",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Tên nhóm ngành hàng",
+                "displayName": "Tên nhóm ngành hàng",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "SKU",
+                "displayName": "SKU",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Tên sản phẩm",
+                "displayName": "Tên sản phẩm",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Serial trưng bày bán mới không đảm bảo FIFO",
+                "displayName": "Serial trưng bày bán mới không đảm bảo FIFO",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "BIN trưng bày",
+                "displayName": "BIN trưng bày",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Ngày nhập của sản phẩm trưng bày (Cty)",
+                "displayName": "Ngày nhập của sản phẩm trưng bày (Cty)",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "Số ngày tồn của sản phẩm trưng bày (Cty)",
+                "displayName": "Số ngày tồn của sản phẩm trưng bày (Cty)",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "Serial thay thế",
+                "displayName": "Serial thay thế",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "BIN chứa sản phẩm thay thế",
+                "displayName": "BIN chứa sản phẩm thay thế",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "Ngày nhập của sản phẩm thay thế (Cty)",
+                "displayName": "Ngày nhập của sản phẩm thay thế (Cty)",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "Số ngày tồn của sản phẩm thay thế (Cty)",
+                "displayName": "Số ngày tồn của sản phẩm thay thế (Cty)",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "Số ngày chênh lệch",
+                "displayName": "Số ngày chênh lệch",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "Ghi chú",
+                "displayName": "Ghi chú",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              }
+            ],
+            "attemptToConvertTypes": false,
+            "convertFieldsToString": false
+          },
+          "options": {
+            "cellFormat": "USER_ENTERED"
+          }
+        },
+        "type": "n8n-nodes-base.googleSheets",
+        "typeVersion": 4.7,
+        "position": [
+          -272,
+          288
+        ],
+        "id": "af69cab7-e7ae-4283-a8ca-97bb01ea7720",
+        "name": "record",
+        "notesInFlow": true,
+        "credentials": {
+          "googleSheetsOAuth2Api": {
+            "id": "MTh9LghqaMKPTAzs",
+            "name": "zalo-chat-bot-hoang.nv1"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "documentId": {
+            "__rl": true,
+            "value": "1skwrYs7-GqCQQWOxSzuwRohl_b8lX8zJK3H3VtNdNP0",
+            "mode": "id"
+          },
+          "sheetName": {
+            "__rl": true,
+            "value": "gid=0",
+            "mode": "list",
+            "cachedResultName": "Sheet1",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1skwrYs7-GqCQQWOxSzuwRohl_b8lX8zJK3H3VtNdNP0/edit#gid=0"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.googleSheets",
+        "typeVersion": 4.7,
+        "position": [
+          -416,
+          64
+        ],
+        "id": "7b2c8b85-1e19-4bce-8f76-6ed0a44be15e",
+        "name": "getStoreInfo",
+        "credentials": {
+          "googleSheetsOAuth2Api": {
+            "id": "MTh9LghqaMKPTAzs",
+            "name": "zalo-chat-bot-hoang.nv1"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "options": {}
+        },
+        "type": "n8n-nodes-base.splitInBatches",
+        "typeVersion": 3,
+        "position": [
+          288,
+          64
+        ],
+        "id": "70de7155-72c4-4f11-b7c5-905ed5dc72e3",
+        "name": "Loop Over Items",
+        "onError": "continueRegularOutput"
+      },
+      {
+        "parameters": {
+          "workflowId": {
+            "__rl": true,
+            "value": "GkOK5IXtVQ5pEALO",
+            "mode": "list",
+            "cachedResultUrl": "/workflow/GkOK5IXtVQ5pEALO",
+            "cachedResultName": "check-cover-demo"
+          },
+          "workflowInputs": {
+            "mappingMode": "defineBelow",
+            "value": {},
+            "matchingColumns": [],
+            "schema": [],
+            "attemptToConvertTypes": false,
+            "convertFieldsToString": true
+          },
+          "mode": "each",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.executeWorkflow",
+        "typeVersion": 1.3,
+        "position": [
+          480,
+          64
+        ],
+        "id": "5f865ffa-1fe5-4274-b6ee-39305478184f",
+        "name": "Call 'check-cover-demo'",
+        "retryOnFail": false,
+        "onError": "continueRegularOutput"
+      },
+      {
+        "parameters": {
+          "inputSource": "passthrough"
+        },
+        "type": "n8n-nodes-base.executeWorkflowTrigger",
+        "typeVersion": 1.1,
+        "position": [
+          -928,
+          288
+        ],
+        "id": "13c450da-b0b7-437b-b280-7c67c25b44ca",
+        "name": "When Executed by Another Workflow"
+      },
+      {
+        "parameters": {
+          "sortFieldsUi": {
+            "sortField": [
+              {
+                "fieldName": "CategoryId"
+              },
+              {
+                "fieldName": "DiffDays",
+                "order": "descending"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.sort",
+        "typeVersion": 1,
+        "position": [
+          -400,
+          288
+        ],
+        "id": "8e7b03a6-fd4c-4789-95cf-1ba442d1f43e",
+        "name": "Sort"
+      },
+      {
+        "parameters": {
+          "operation": "download",
+          "fileId": {
+            "__rl": true,
+            "value": "1w4RNYIRug28cCSq8l8dN8XaKq7nx3Xdom_nB1RREQQI",
+            "mode": "id"
+          },
+          "options": {
+            "binaryPropertyName": "data",
+            "googleFileConversion": {
+              "conversion": {
+                "docsToFormat": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                "sheetsToFormat": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+              }
+            },
+            "fileName": "={{ $('When Executed by Another Workflow').first().json.store }} hàng cũ tồn ở BIN trưng bày - {{ DateTime.now().setZone('Asia/Ho_Chi_Minh').toFormat('dd-MM-yyyy') }}.xlsx"
+          }
+        },
+        "type": "n8n-nodes-base.googleDrive",
+        "typeVersion": 3,
+        "position": [
+          0,
+          288
+        ],
+        "id": "0bf7c3e2-cf73-48ec-83cd-37f0b2aa774a",
+        "name": "Download file",
+        "credentials": {
+          "googleDriveOAuth2Api": {
+            "id": "GpJUmnoBmqg9ldSq",
+            "name": "Google Drive account hoang.nv1"
+          }
+        }
+      },
+      {
+        "parameters": {},
+        "type": "n8n-nodes-base.limit",
+        "typeVersion": 1,
+        "position": [
+          -144,
+          288
+        ],
+        "id": "cddd23ba-c775-4f51-93bd-cb74225f1572",
+        "name": "Limit"
+      },
+      {
+        "parameters": {
+          "sendTo": "={{ $('When Executed by Another Workflow').first().json.emailGroup }}",
+          "subject": "={{ $('When Executed by Another Workflow').first().json.store }} hàng cũ tồn ở BIN trưng bày - {{ DateTime.now().setZone('Asia/Ho_Chi_Minh').toFormat('dd/MM/yyyy') }}\n",
+          "emailType": "text",
+          "message": "=Dear team {{ $('When Executed by Another Workflow').first().json.store }},\n\nEm gửi anh chị file hàng cũ cover demo có khả năng không đảm bảo FIFO (file đính kèm).\nMình kiểm tra và trưng bày lại nếu cần nhé ạ.\n",
+          "options": {
+            "appendAttribution": false,
+            "attachmentsUi": {
+              "attachmentsBinary": [
+                {}
+              ]
+            },
+            "senderName": "Hoàng Nguyễn"
+          }
+        },
+        "type": "n8n-nodes-base.gmail",
+        "typeVersion": 2.1,
+        "position": [
+          144,
+          288
+        ],
+        "id": "40bceed8-1b9e-4156-bcd6-a556badc0f4c",
+        "name": "mailToManager",
+        "webhookId": "3043111e-add6-4c21-a269-1e6f204c4b9f",
+        "credentials": {
+          "gmailOAuth2": {
+            "id": "mdeJ5Cwz1YxLTzIG",
+            "name": "hoang.nv1"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "b86be3ee-fdaa-40a8-970e-9872232063a7",
+                "name": "store",
+                "value": "={{ $json['Mã SR'] }}",
+                "type": "string"
+              },
+              {
+                "id": "76fce93b-0dc7-4209-8bae-5ac341308728",
+                "name": "emailGroup",
+                "value": "=linh.th@phongvu.vn,vu.nt1@phongvu-mna.vn,linh.dn@phongvu-mna.vn,vu.nt1@phongvu-mna.vn,thu.hm@phongvu-mna.vn,{{ $json.Email }}",
+                "type": "string"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          0,
+          0
+        ],
+        "id": "01e322aa-e196-4df3-8548-3feed09e31ec",
+        "name": "setInfoCP62"
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "b86be3ee-fdaa-40a8-970e-9872232063a7",
+                "name": "store",
+                "value": "={{ $json['Mã SR'] }}",
+                "type": "string"
+              },
+              {
+                "id": "76fce93b-0dc7-4209-8bae-5ac341308728",
+                "name": "emailGroup",
+                "value": "=linh.th@phongvu.vn,vu.nt1@phongvu-mna.vn,linh.dn@phongvu-mna.vn\n,tuyen.ndt@phongvu-mna.vn,nhi.pty@phongvu-mna.vn,{{ $json.Email }}",
+                "type": "string"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          0,
+          128
+        ],
+        "id": "3f296d14-4e39-4843-83ec-7b8ee72799b2",
+        "name": "setInfoOther"
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 2
+            },
+            "conditions": [
+              {
+                "id": "28192078-dc04-4420-9277-c98e50a64434",
+                "leftValue": "={{ $json['Mã SR'] }}",
+                "rightValue": "CP62",
+                "operator": {
+                  "type": "string",
+                  "operation": "equals",
+                  "name": "filter.operator.equals"
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.2,
+        "position": [
+          -144,
+          64
+        ],
+        "id": "332e46e9-f13e-4ab9-9a13-01e3a4b5f460",
+        "name": "checkStoreAndMail"
+      },
+      {
+        "parameters": {
+          "jsCode": "// Lấy dữ liệu đầu vào\nconst items = $input.all();\n\n// Tạo object để nhóm theo Mã SR\nconst grouped = {};\n\n// Duyệt qua từng item\nitems.forEach(item => {\n  const maSR = item.json['Mã SR'];\n  const email = item.json['Email'];\n  \n  // Nếu chưa có Mã SR này trong grouped\n  if (!grouped[maSR]) {\n    grouped[maSR] = {\n      'Mã SR': maSR,\n      'Email_List': []\n    };\n  }\n  \n  // Thêm email vào list\n  grouped[maSR]['Email_List'].push(email);\n});\n\n// Chuyển đổi thành array và nối Email bằng dấu phẩy\nconst result = Object.values(grouped).map(group => ({\n  'Mã SR': group['Mã SR'],\n  'Email': group['Email_List'].join(',')\n}));\n\nreturn result.map(item => ({json: item}));"
+        },
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          -288,
+          64
+        ],
+        "id": "751adf84-fd05-4022-b537-65362f163091",
+        "name": "createMailList"
+      },
+      {
+        "parameters": {
+          "authentication": "serviceAccount",
+          "projectId": {
+            "__rl": true,
+            "value": "nimble-volt-459313-b8",
+            "mode": "list",
+            "cachedResultName": "My First Project",
+            "cachedResultUrl": "https://console.cloud.google.com/bigquery?project=nimble-volt-459313-b8"
+          },
+          "sqlQuery": "SELECT *\nFROM `nimble-volt-459313-b8.Inventory.inv_seri_1`\nWHERE SubCategory_name IN ('Laptop - Máy tính xách tay','Máy tính bộ Phong Vũ văn phòng','Máy tính bộ Phong Vũ gaming','Máy tính bộ Hãng văn phòng','Máy tính bộ Hãng gaming','Máy in','Máy scan')\n  AND Branch_ID = '{{ $json.store }}'\n  AND (SubCategory_name IS NULL OR NOT REGEXP_CONTAINS(SubCategory_name, r'(?i)quà tặng'));",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.googleBigQuery",
+        "typeVersion": 2.1,
+        "position": [
+          -800,
+          288
+        ],
+        "id": "3f51d79d-c339-4547-b0b6-de18731856fd",
+        "name": "getInvCover",
+        "credentials": {
+          "googleApi": {
+            "id": "MobroXPII5JrGVTH",
+            "name": "Google Service Account promocheck vu.nt1"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "jsCode": "// Lấy tất cả items từ input\nconst items = $input.all();\n\n// Nhóm items theo SKU\nconst itemsBySKU = {};\nitems.forEach(item => {\n  const sku = item.json.SKU;\n  if (!itemsBySKU[sku]) {\n    itemsBySKU[sku] = [];\n  }\n  itemsBySKU[sku].push(item.json);\n});\n\n// Kiểm tra từng SKU\nconst results = [];\nlet issueNumber = 1;\n\n// Ngày hiện tại\nconst today = new Date();\n\nObject.keys(itemsBySKU).forEach(sku => {\n  const skuItems = itemsBySKU[sku];\n  \n  // Lọc items ở zone \"Trưng bày hàng bán mới\"\n  const displayZoneItems = skuItems.filter(item => \n    item.BIN_zone === \"Trưng bày hàng bán mới\"\n  );\n  \n  // Lọc items ở zone \"Lưu kho hàng bán mới\"\n  const storageZoneItems = skuItems.filter(item => \n    item.BIN_zone === \"Lưu kho hàng bán mới\"\n  );\n  \n  // Chỉ xử lý nếu SKU có sản phẩm ở CẢ 2 zone\n  if (displayZoneItems.length === 0 || storageZoneItems.length === 0) {\n    return;\n  }\n  \n  // Sắp xếp serial trưng bày theo ngày (cũ nhất lên đầu)\n  const sortedDisplayItems = displayZoneItems.sort((a, b) => {\n    return new Date(a.Date_import_company) - new Date(b.Date_import_company);\n  });\n  \n  // Sắp xếp serial lưu kho theo ngày (mới nhất lên đầu)\n  const sortedStorageItems = storageZoneItems.sort((a, b) => {\n    return new Date(b.Date_import_company) - new Date(a.Date_import_company);\n  });\n  \n  // Lọc serial trưng bày cũ hơn serial lưu kho mới nhất\n  const newestStorageDate = new Date(sortedStorageItems[0].Date_import_company);\n  const olderDisplayItems = sortedDisplayItems.filter(item => {\n    return new Date(item.Date_import_company) < newestStorageDate;\n  });\n  \n  // Ghép cặp: Serial trưng bày cũ nhất với serial lưu kho mới nhất\n  const pairCount = Math.min(olderDisplayItems.length, sortedStorageItems.length);\n  \n  for (let i = 0; i < pairCount; i++) {\n    const displayItem = olderDisplayItems[i];\n    const storageItem = sortedStorageItems[i];\n    \n    // Tính số ngày chênh lệch giữa 2 serial\n    const displayDate = new Date(displayItem.Date_import_company);\n    const storageDate = new Date(storageItem.Date_import_company);\n    const diffMs = storageDate - displayDate;\n    const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));\n    \n    // Tính số ngày tồn kho tính đến hiện tại\n    const displayAgeMs = today - displayDate;\n    const displayAgeDays = Math.floor(displayAgeMs / (1000 * 60 * 60 * 24));\n    \n    const storageAgeMs = today - storageDate;\n    const storageAgeDays = Math.floor(storageAgeMs / (1000 * 60 * 60 * 24));\n    \n    results.push({\n      'No.': issueNumber++,\n      SKU: sku,\n      Name: displayItem.SKU_name,\n      SerialDisplay: displayItem.Serial,\n      DisplayImportDate: displayItem.Date_import_company,\n      DisplayAgeDays: displayAgeDays,\n      SerialDisplayBin: displayItem.Location || 'N/A',\n      StorageSerial: storageItem.Serial,\n      StorageImportDate: storageItem.Date_import_company,\n      StorageAgeDays: storageAgeDays,\n      StorageSerialBin: storageItem.Location || 'N/A',\n      DiffDays: diffDays,\n      TotalInDisplay: displayZoneItems.length,\n      TotalInStorage: storageZoneItems.length,\n      TotalOlderDisplay: olderDisplayItems.length,\n      TotalItems: skuItems.length,\n      CategoryId: displayItem.Category_ID || 'N/A',\n      CategoryName: displayItem.Category_name || 'N/A',\n      Message: `Serial trưng bày ${displayItem.Serial} (tồn ${displayAgeDays} ngày) cần thay thế bằng serial lưu kho ${storageItem.Serial} (tồn ${storageAgeDays} ngày)`\n    });\n  }\n});\n\n// Trả về array of items\nreturn results;"
+        },
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          -672,
+          288
+        ],
+        "id": "a63cfe18-0a55-468a-8490-446e443f2cbe",
+        "name": "compareDate",
+        "notesInFlow": true,
+        "notes": "So sánh serial cũ - mới"
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 2
+            },
+            "conditions": [
+              {
+                "id": "e82d3c9e-8006-4f4e-bfa8-eb9a14077ce6",
+                "leftValue": "={{ $json.StorageSerialBin }}",
+                "rightValue": "TL",
+                "operator": {
+                  "type": "string",
+                  "operation": "notContains"
+                }
+              },
+              {
+                "id": "2efac906-c7a0-4eb3-8e56-444897269def",
+                "leftValue": "={{ $json.StorageSerialBin }}",
+                "rightValue": "XL",
+                "operator": {
+                  "type": "string",
+                  "operation": "notContains"
+                }
+              },
+              {
+                "id": "30757e3a-62aa-4dba-aa06-2ffcf272076e",
+                "leftValue": "={{ $json.StorageSerialBin }}",
+                "rightValue": "NH",
+                "operator": {
+                  "type": "string",
+                  "operation": "notContains"
+                }
+              },
+              {
+                "id": "0947616a-b6b2-47c7-91d5-a0852794826f",
+                "leftValue": "={{ $json.DiffDays }}",
+                "rightValue": 25,
+                "operator": {
+                  "type": "number",
+                  "operation": "gte"
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.2,
+        "position": [
+          -544,
+          288
+        ],
+        "id": "21570e5f-fb27-447f-9e1e-e6d7903af2bb",
+        "name": "checkLocation"
+      },
+      {
+        "parameters": {},
+        "type": "n8n-nodes-base.merge",
+        "typeVersion": 3.2,
+        "position": [
+          144,
+          64
+        ],
+        "id": "c3d92325-b83b-4f59-9d47-3c5093ac4ea3",
+        "name": "Merge"
+      },
+      {
+        "parameters": {},
+        "type": "n8n-nodes-base.noOp",
+        "typeVersion": 1,
+        "position": [
+          -400,
+          416
+        ],
+        "id": "15243ffb-45e8-4b29-8f49-9fa4809c3b14",
+        "name": "No Operation, do nothing"
+      },
+      {
+        "parameters": {
+          "operation": "upsert",
+          "dataTableId": {
+            "__rl": true,
+            "value": "3vXQf01uoNqPKdju",
+            "mode": "list",
+            "cachedResultName": "mailList",
+            "cachedResultUrl": "/projects/GTQprNa3RcCSHh8s/datatables/3vXQf01uoNqPKdju"
+          },
+          "filters": {
+            "conditions": [
+              {
+                "keyName": "threadId",
+                "keyValue": "={{ $json.threadId }}"
+              }
+            ]
+          },
+          "columns": {
+            "mappingMode": "defineBelow",
+            "value": {
+              "threadId": "={{ $json.threadId }}",
+              "title": "={{ $('When Executed by Another Workflow').first().json.store }} hàng cũ tồn ở BIN trưng bày - {{ DateTime.now().setZone('Asia/Ho_Chi_Minh').toFormat('dd/MM/yyyy') }}",
+              "sent": "x"
+            },
+            "matchingColumns": [],
+            "schema": [
+              {
+                "id": "threadId",
+                "displayName": "threadId",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": false
+              },
+              {
+                "id": "title",
+                "displayName": "title",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": false
+              },
+              {
+                "id": "sent",
+                "displayName": "sent",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": false
+              },
+              {
+                "id": "delete",
+                "displayName": "delete",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": true
+              }
+            ],
+            "attemptToConvertTypes": false,
+            "convertFieldsToString": false
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.dataTable",
+        "typeVersion": 1,
+        "position": [
+          272,
+          288
+        ],
+        "id": "5431f0be-3697-46f4-a9fd-b3eaa613aa89",
+        "name": "recordList"
+      },
+      {
+        "parameters": {
+          "operation": "get",
+          "dataTableId": {
+            "__rl": true,
+            "value": "3vXQf01uoNqPKdju",
+            "mode": "list",
+            "cachedResultName": "mailList",
+            "cachedResultUrl": "/projects/GTQprNa3RcCSHh8s/datatables/3vXQf01uoNqPKdju"
+          },
+          "filters": {
+            "conditions": [
+              {
+                "keyName": "createdAt",
+                "keyValue": "={{ new Date(Date.now() - 86500000) }}"
+              }
+            ]
+          }
+        },
+        "type": "n8n-nodes-base.dataTable",
+        "typeVersion": 1,
+        "position": [
+          -800,
+          64
+        ],
+        "id": "5a5e37d6-e9ea-435d-8e71-23707c9de560",
+        "name": "getList",
+        "alwaysOutputData": true,
+        "onError": "continueRegularOutput"
+      },
+      {
+        "parameters": {
+          "resource": "thread",
+          "operation": "trash",
+          "threadId": "={{ $json.threadId }}"
+        },
+        "type": "n8n-nodes-base.gmail",
+        "typeVersion": 2.1,
+        "position": [
+          -672,
+          64
+        ],
+        "id": "e37ac650-d1d0-41cd-be66-30e466ca0ebe",
+        "name": "trashOldMail",
+        "webhookId": "0046a0ad-7b57-4e35-aa77-6f8a47d534ad",
+        "alwaysOutputData": true,
+        "credentials": {
+          "gmailOAuth2": {
+            "id": "mdeJ5Cwz1YxLTzIG",
+            "name": "hoang.nv1"
+          }
+        },
+        "onError": "continueRegularOutput"
+      },
+      {
+        "parameters": {
+          "operation": "update",
+          "dataTableId": {
+            "__rl": true,
+            "value": "3vXQf01uoNqPKdju",
+            "mode": "list",
+            "cachedResultName": "mailList",
+            "cachedResultUrl": "/projects/GTQprNa3RcCSHh8s/datatables/3vXQf01uoNqPKdju"
+          },
+          "filters": {
+            "conditions": [
+              {
+                "keyName": "threadId",
+                "keyValue": "={{ $('getList').first().json.threadId }}"
+              }
+            ]
+          },
+          "columns": {
+            "mappingMode": "defineBelow",
+            "value": {
+              "delete": "x"
+            },
+            "matchingColumns": [],
+            "schema": [
+              {
+                "id": "threadId",
+                "displayName": "threadId",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": true
+              },
+              {
+                "id": "title",
+                "displayName": "title",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": true
+              },
+              {
+                "id": "sent",
+                "displayName": "sent",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": true
+              },
+              {
+                "id": "delete",
+                "displayName": "delete",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": false
+              }
+            ],
+            "attemptToConvertTypes": false,
+            "convertFieldsToString": false
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.dataTable",
+        "typeVersion": 1,
+        "position": [
+          -544,
+          64
+        ],
+        "id": "97da1c6c-8ac9-42d3-8de5-9c510aab0aeb",
+        "name": "updateMailStatus",
+        "alwaysOutputData": true,
+        "onError": "continueRegularOutput"
+      }
+    ],
+    "connections": {
+      "Schedule Trigger": {
+        "main": [
+          [
+            {
+              "node": "getList",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "record": {
+        "main": [
+          [
+            {
+              "node": "Limit",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Loop Over Items": {
+        "main": [
+          [],
+          [
+            {
+              "node": "Call 'check-cover-demo'",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "getStoreInfo": {
+        "main": [
+          [
+            {
+              "node": "createMailList",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Call 'check-cover-demo'": {
+        "main": [
+          [
+            {
+              "node": "Loop Over Items",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "When Executed by Another Workflow": {
+        "main": [
+          [
+            {
+              "node": "getInvCover",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Sort": {
+        "main": [
+          [
+            {
+              "node": "record",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Download file": {
+        "main": [
+          [
+            {
+              "node": "mailToManager",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Limit": {
+        "main": [
+          [
+            {
+              "node": "Download file",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "mailToManager": {
+        "main": [
+          [
+            {
+              "node": "recordList",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "setInfoCP62": {
+        "main": [
+          [
+            {
+              "node": "Merge",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "setInfoOther": {
+        "main": [
+          [
+            {
+              "node": "Merge",
+              "type": "main",
+              "index": 1
+            }
+          ]
+        ]
+      },
+      "checkStoreAndMail": {
+        "main": [
+          [
+            {
+              "node": "setInfoCP62",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "setInfoOther",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "createMailList": {
+        "main": [
+          [
+            {
+              "node": "checkStoreAndMail",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "getInvCover": {
+        "main": [
+          [
+            {
+              "node": "compareDate",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "compareDate": {
+        "main": [
+          [
+            {
+              "node": "checkLocation",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "checkLocation": {
+        "main": [
+          [
+            {
+              "node": "Sort",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "No Operation, do nothing",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Merge": {
+        "main": [
+          [
+            {
+              "node": "Loop Over Items",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "recordList": {
+        "main": [
+          [
+            {
+              "node": "Clear sheet",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "getList": {
+        "main": [
+          [
+            {
+              "node": "trashOldMail",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "trashOldMail": {
+        "main": [
+          [
+            {
+              "node": "updateMailStatus",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "updateMailStatus": {
+        "main": [
+          [
+            {
+              "node": "getStoreInfo",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "authors": "Hoang Nguyen",
+    "name": "Version d5897bd5",
+    "description": "",
+    "autosaved": true
+  },
+  "activeVersionId": "d5897bd5-98e6-4ab3-a582-2e0d821b1854",
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "getList",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "record": {
+      "main": [
+        [
+          {
+            "node": "Limit",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Call 'check-cover-demo'",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "getStoreInfo": {
+      "main": [
+        [
+          {
+            "node": "createMailList",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Call 'check-cover-demo'": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When Executed by Another Workflow": {
+      "main": [
+        [
+          {
+            "node": "getInvCover",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Sort": {
+      "main": [
+        [
+          {
+            "node": "record",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Download file": {
+      "main": [
+        [
+          {
+            "node": "mailToManager",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit": {
+      "main": [
+        [
+          {
+            "node": "Download file",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "mailToManager": {
+      "main": [
+        [
+          {
+            "node": "recordList",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "setInfoCP62": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "setInfoOther": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "checkStoreAndMail": {
+      "main": [
+        [
+          {
+            "node": "setInfoCP62",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "setInfoOther",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "createMailList": {
+      "main": [
+        [
+          {
+            "node": "checkStoreAndMail",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "getInvCover": {
+      "main": [
+        [
+          {
+            "node": "compareDate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "compareDate": {
+      "main": [
+        [
+          {
+            "node": "checkLocation",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "checkLocation": {
+      "main": [
+        [
+          {
+            "node": "Sort",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "No Operation, do nothing",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "recordList": {
+      "main": [
+        [
+          {
+            "node": "Clear sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "getList": {
+      "main": [
+        [
+          {
+            "node": "trashOldMail",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "trashOldMail": {
+      "main": [
+        [
+          {
+            "node": "updateMailStatus",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "updateMailStatus": {
+      "main": [
+        [
+          {
+            "node": "getStoreInfo",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2026-02-22T19:38:29.063Z",
+  "id": "GkOK5IXtVQ5pEALO",
+  "isArchived": false,
+  "meta": null,
+  "name": "check-cover-demo",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 8,
+              "triggerAtMinute": 30
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -928,
+        64
+      ],
+      "id": "97830d88-fb32-43fa-b6c3-aefa7a8c6afc",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "operation": "clear",
+        "documentId": {
+          "__rl": true,
+          "value": "1w4RNYIRug28cCSq8l8dN8XaKq7nx3Xdom_nB1RREQQI",
+          "mode": "list",
+          "cachedResultName": "Cảnh báo hàng cũ ở BIN Trưng bày hàng bán mới template",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1w4RNYIRug28cCSq8l8dN8XaKq7nx3Xdom_nB1RREQQI/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1w4RNYIRug28cCSq8l8dN8XaKq7nx3Xdom_nB1RREQQI/edit#gid=0"
+        },
+        "keepFirstRow": true
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        400,
+        288
+      ],
+      "id": "966905af-8c7a-4efe-936f-86981f13780a",
+      "name": "Clear sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "MTh9LghqaMKPTAzs",
+          "name": "zalo-chat-bot-hoang.nv1"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "1w4RNYIRug28cCSq8l8dN8XaKq7nx3Xdom_nB1RREQQI"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1w4RNYIRug28cCSq8l8dN8XaKq7nx3Xdom_nB1RREQQI/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "STT": "={{ $itemIndex + 1 }}",
+            "SKU": "={{ $json.SKU }}",
+            "Tên sản phẩm": "={{ $json.Name }}",
+            "BIN trưng bày": "={{ $json.SerialDisplayBin }}",
+            "Serial trưng bày bán mới không đảm bảo FIFO": "={{ $json.SerialDisplay }}",
+            "Serial thay thế": "={{ $json.StorageSerial }}",
+            "BIN chứa sản phẩm thay thế": "={{ $json.StorageSerialBin }}",
+            "Số ngày chênh lệch": "={{ $json.DiffDays }}",
+            "Tên nhóm ngành hàng": "={{ $json.CategoryName }}",
+            "Ghi chú": "={{ $json.Message }}",
+            "Ngày nhập của sản phẩm trưng bày (Cty)": "={{ $json.DisplayImportDate }}",
+            "Số ngày tồn của sản phẩm trưng bày (Cty)": "={{ $json.DisplayAgeDays }}",
+            "Ngày nhập của sản phẩm thay thế (Cty)": "={{ $json.StorageImportDate }}",
+            "Số ngày tồn của sản phẩm thay thế (Cty)": "={{ $json.StorageAgeDays }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "STT",
+              "displayName": "STT",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Tên nhóm ngành hàng",
+              "displayName": "Tên nhóm ngành hàng",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "SKU",
+              "displayName": "SKU",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Tên sản phẩm",
+              "displayName": "Tên sản phẩm",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Serial trưng bày bán mới không đảm bảo FIFO",
+              "displayName": "Serial trưng bày bán mới không đảm bảo FIFO",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "BIN trưng bày",
+              "displayName": "BIN trưng bày",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Ngày nhập của sản phẩm trưng bày (Cty)",
+              "displayName": "Ngày nhập của sản phẩm trưng bày (Cty)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Số ngày tồn của sản phẩm trưng bày (Cty)",
+              "displayName": "Số ngày tồn của sản phẩm trưng bày (Cty)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Serial thay thế",
+              "displayName": "Serial thay thế",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "BIN chứa sản phẩm thay thế",
+              "displayName": "BIN chứa sản phẩm thay thế",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Ngày nhập của sản phẩm thay thế (Cty)",
+              "displayName": "Ngày nhập của sản phẩm thay thế (Cty)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Số ngày tồn của sản phẩm thay thế (Cty)",
+              "displayName": "Số ngày tồn của sản phẩm thay thế (Cty)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Số ngày chênh lệch",
+              "displayName": "Số ngày chênh lệch",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Ghi chú",
+              "displayName": "Ghi chú",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {
+          "cellFormat": "USER_ENTERED"
+        }
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -272,
+        288
+      ],
+      "id": "af69cab7-e7ae-4283-a8ca-97bb01ea7720",
+      "name": "record",
+      "notesInFlow": true,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "MTh9LghqaMKPTAzs",
+          "name": "zalo-chat-bot-hoang.nv1"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1skwrYs7-GqCQQWOxSzuwRohl_b8lX8zJK3H3VtNdNP0",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1skwrYs7-GqCQQWOxSzuwRohl_b8lX8zJK3H3VtNdNP0/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -416,
+        64
+      ],
+      "id": "7b2c8b85-1e19-4bce-8f76-6ed0a44be15e",
+      "name": "getStoreInfo",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "MTh9LghqaMKPTAzs",
+          "name": "zalo-chat-bot-hoang.nv1"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        288,
+        64
+      ],
+      "id": "70de7155-72c4-4f11-b7c5-905ed5dc72e3",
+      "name": "Loop Over Items",
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "GkOK5IXtVQ5pEALO",
+          "mode": "list",
+          "cachedResultUrl": "/workflow/GkOK5IXtVQ5pEALO",
+          "cachedResultName": "check-cover-demo"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "mode": "each",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.3,
+      "position": [
+        480,
+        64
+      ],
+      "id": "5f865ffa-1fe5-4274-b6ee-39305478184f",
+      "name": "Call 'check-cover-demo'",
+      "retryOnFail": false,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "inputSource": "passthrough"
+      },
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -928,
+        288
+      ],
+      "id": "13c450da-b0b7-437b-b280-7c67c25b44ca",
+      "name": "When Executed by Another Workflow"
+    },
+    {
+      "parameters": {
+        "sortFieldsUi": {
+          "sortField": [
+            {
+              "fieldName": "CategoryId"
+            },
+            {
+              "fieldName": "DiffDays",
+              "order": "descending"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.sort",
+      "typeVersion": 1,
+      "position": [
+        -400,
+        288
+      ],
+      "id": "8e7b03a6-fd4c-4789-95cf-1ba442d1f43e",
+      "name": "Sort"
+    },
+    {
+      "parameters": {
+        "operation": "download",
+        "fileId": {
+          "__rl": true,
+          "value": "1w4RNYIRug28cCSq8l8dN8XaKq7nx3Xdom_nB1RREQQI",
+          "mode": "id"
+        },
+        "options": {
+          "binaryPropertyName": "data",
+          "googleFileConversion": {
+            "conversion": {
+              "docsToFormat": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+              "sheetsToFormat": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+            }
+          },
+          "fileName": "={{ $('When Executed by Another Workflow').first().json.store }} hàng cũ tồn ở BIN trưng bày - {{ DateTime.now().setZone('Asia/Ho_Chi_Minh').toFormat('dd-MM-yyyy') }}.xlsx"
+        }
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        0,
+        288
+      ],
+      "id": "0bf7c3e2-cf73-48ec-83cd-37f0b2aa774a",
+      "name": "Download file",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "GpJUmnoBmqg9ldSq",
+          "name": "Google Drive account hoang.nv1"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        -144,
+        288
+      ],
+      "id": "cddd23ba-c775-4f51-93bd-cb74225f1572",
+      "name": "Limit"
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $('When Executed by Another Workflow').first().json.emailGroup }}",
+        "subject": "={{ $('When Executed by Another Workflow').first().json.store }} hàng cũ tồn ở BIN trưng bày - {{ DateTime.now().setZone('Asia/Ho_Chi_Minh').toFormat('dd/MM/yyyy') }}\n",
+        "emailType": "text",
+        "message": "=Dear team {{ $('When Executed by Another Workflow').first().json.store }},\n\nEm gửi anh chị file hàng cũ cover demo có khả năng không đảm bảo FIFO (file đính kèm).\nMình kiểm tra và trưng bày lại nếu cần nhé ạ.\n",
+        "options": {
+          "appendAttribution": false,
+          "attachmentsUi": {
+            "attachmentsBinary": [
+              {}
+            ]
+          },
+          "senderName": "Hoàng Nguyễn"
+        }
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        144,
+        288
+      ],
+      "id": "40bceed8-1b9e-4156-bcd6-a556badc0f4c",
+      "name": "mailToManager",
+      "webhookId": "3043111e-add6-4c21-a269-1e6f204c4b9f",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "mdeJ5Cwz1YxLTzIG",
+          "name": "hoang.nv1"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "b86be3ee-fdaa-40a8-970e-9872232063a7",
+              "name": "store",
+              "value": "={{ $json['Mã SR'] }}",
+              "type": "string"
+            },
+            {
+              "id": "76fce93b-0dc7-4209-8bae-5ac341308728",
+              "name": "emailGroup",
+              "value": "=linh.th@phongvu.vn,vu.nt1@phongvu-mna.vn,linh.dn@phongvu-mna.vn,vu.nt1@phongvu-mna.vn,thu.hm@phongvu-mna.vn,{{ $json.Email }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        0,
+        0
+      ],
+      "id": "01e322aa-e196-4df3-8548-3feed09e31ec",
+      "name": "setInfoCP62"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "b86be3ee-fdaa-40a8-970e-9872232063a7",
+              "name": "store",
+              "value": "={{ $json['Mã SR'] }}",
+              "type": "string"
+            },
+            {
+              "id": "76fce93b-0dc7-4209-8bae-5ac341308728",
+              "name": "emailGroup",
+              "value": "=linh.th@phongvu.vn,vu.nt1@phongvu-mna.vn,linh.dn@phongvu-mna.vn\n,tuyen.ndt@phongvu-mna.vn,nhi.pty@phongvu-mna.vn,{{ $json.Email }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        0,
+        128
+      ],
+      "id": "3f296d14-4e39-4843-83ec-7b8ee72799b2",
+      "name": "setInfoOther"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "28192078-dc04-4420-9277-c98e50a64434",
+              "leftValue": "={{ $json['Mã SR'] }}",
+              "rightValue": "CP62",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -144,
+        64
+      ],
+      "id": "332e46e9-f13e-4ab9-9a13-01e3a4b5f460",
+      "name": "checkStoreAndMail"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Lấy dữ liệu đầu vào\nconst items = $input.all();\n\n// Tạo object để nhóm theo Mã SR\nconst grouped = {};\n\n// Duyệt qua từng item\nitems.forEach(item => {\n  const maSR = item.json['Mã SR'];\n  const email = item.json['Email'];\n  \n  // Nếu chưa có Mã SR này trong grouped\n  if (!grouped[maSR]) {\n    grouped[maSR] = {\n      'Mã SR': maSR,\n      'Email_List': []\n    };\n  }\n  \n  // Thêm email vào list\n  grouped[maSR]['Email_List'].push(email);\n});\n\n// Chuyển đổi thành array và nối Email bằng dấu phẩy\nconst result = Object.values(grouped).map(group => ({\n  'Mã SR': group['Mã SR'],\n  'Email': group['Email_List'].join(',')\n}));\n\nreturn result.map(item => ({json: item}));"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -288,
+        64
+      ],
+      "id": "751adf84-fd05-4022-b537-65362f163091",
+      "name": "createMailList"
+    },
+    {
+      "parameters": {
+        "authentication": "serviceAccount",
+        "projectId": {
+          "__rl": true,
+          "value": "nimble-volt-459313-b8",
+          "mode": "list",
+          "cachedResultName": "My First Project",
+          "cachedResultUrl": "https://console.cloud.google.com/bigquery?project=nimble-volt-459313-b8"
+        },
+        "sqlQuery": "SELECT *\nFROM `nimble-volt-459313-b8.Inventory.inv_seri_1`\nWHERE SubCategory_name IN ('Laptop - Máy tính xách tay','Máy tính bộ Phong Vũ văn phòng','Máy tính bộ Phong Vũ gaming','Máy tính bộ Hãng văn phòng','Máy tính bộ Hãng gaming','Máy in','Máy scan')\n  AND Branch_ID = '{{ $json.store }}'\n  AND (SubCategory_name IS NULL OR NOT REGEXP_CONTAINS(SubCategory_name, r'(?i)quà tặng'));",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleBigQuery",
+      "typeVersion": 2.1,
+      "position": [
+        -800,
+        288
+      ],
+      "id": "3f51d79d-c339-4547-b0b6-de18731856fd",
+      "name": "getInvCover",
+      "credentials": {
+        "googleApi": {
+          "id": "MobroXPII5JrGVTH",
+          "name": "Google Service Account promocheck vu.nt1"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Lấy tất cả items từ input\nconst items = $input.all();\n\n// Nhóm items theo SKU\nconst itemsBySKU = {};\nitems.forEach(item => {\n  const sku = item.json.SKU;\n  if (!itemsBySKU[sku]) {\n    itemsBySKU[sku] = [];\n  }\n  itemsBySKU[sku].push(item.json);\n});\n\n// Kiểm tra từng SKU\nconst results = [];\nlet issueNumber = 1;\n\n// Ngày hiện tại\nconst today = new Date();\n\nObject.keys(itemsBySKU).forEach(sku => {\n  const skuItems = itemsBySKU[sku];\n  \n  // Lọc items ở zone \"Trưng bày hàng bán mới\"\n  const displayZoneItems = skuItems.filter(item => \n    item.BIN_zone === \"Trưng bày hàng bán mới\"\n  );\n  \n  // Lọc items ở zone \"Lưu kho hàng bán mới\"\n  const storageZoneItems = skuItems.filter(item => \n    item.BIN_zone === \"Lưu kho hàng bán mới\"\n  );\n  \n  // Chỉ xử lý nếu SKU có sản phẩm ở CẢ 2 zone\n  if (displayZoneItems.length === 0 || storageZoneItems.length === 0) {\n    return;\n  }\n  \n  // Sắp xếp serial trưng bày theo ngày (cũ nhất lên đầu)\n  const sortedDisplayItems = displayZoneItems.sort((a, b) => {\n    return new Date(a.Date_import_company) - new Date(b.Date_import_company);\n  });\n  \n  // Sắp xếp serial lưu kho theo ngày (mới nhất lên đầu)\n  const sortedStorageItems = storageZoneItems.sort((a, b) => {\n    return new Date(b.Date_import_company) - new Date(a.Date_import_company);\n  });\n  \n  // Lọc serial trưng bày cũ hơn serial lưu kho mới nhất\n  const newestStorageDate = new Date(sortedStorageItems[0].Date_import_company);\n  const olderDisplayItems = sortedDisplayItems.filter(item => {\n    return new Date(item.Date_import_company) < newestStorageDate;\n  });\n  \n  // Ghép cặp: Serial trưng bày cũ nhất với serial lưu kho mới nhất\n  const pairCount = Math.min(olderDisplayItems.length, sortedStorageItems.length);\n  \n  for (let i = 0; i < pairCount; i++) {\n    const displayItem = olderDisplayItems[i];\n    const storageItem = sortedStorageItems[i];\n    \n    // Tính số ngày chênh lệch giữa 2 serial\n    const displayDate = new Date(displayItem.Date_import_company);\n    const storageDate = new Date(storageItem.Date_import_company);\n    const diffMs = storageDate - displayDate;\n    const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));\n    \n    // Tính số ngày tồn kho tính đến hiện tại\n    const displayAgeMs = today - displayDate;\n    const displayAgeDays = Math.floor(displayAgeMs / (1000 * 60 * 60 * 24));\n    \n    const storageAgeMs = today - storageDate;\n    const storageAgeDays = Math.floor(storageAgeMs / (1000 * 60 * 60 * 24));\n    \n    results.push({\n      'No.': issueNumber++,\n      SKU: sku,\n      Name: displayItem.SKU_name,\n      SerialDisplay: displayItem.Serial,\n      DisplayImportDate: displayItem.Date_import_company,\n      DisplayAgeDays: displayAgeDays,\n      SerialDisplayBin: displayItem.Location || 'N/A',\n      StorageSerial: storageItem.Serial,\n      StorageImportDate: storageItem.Date_import_company,\n      StorageAgeDays: storageAgeDays,\n      StorageSerialBin: storageItem.Location || 'N/A',\n      DiffDays: diffDays,\n      TotalInDisplay: displayZoneItems.length,\n      TotalInStorage: storageZoneItems.length,\n      TotalOlderDisplay: olderDisplayItems.length,\n      TotalItems: skuItems.length,\n      CategoryId: displayItem.Category_ID || 'N/A',\n      CategoryName: displayItem.Category_name || 'N/A',\n      Message: `Serial trưng bày ${displayItem.Serial} (tồn ${displayAgeDays} ngày) cần thay thế bằng serial lưu kho ${storageItem.Serial} (tồn ${storageAgeDays} ngày)`\n    });\n  }\n});\n\n// Trả về array of items\nreturn results;"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -672,
+        288
+      ],
+      "id": "a63cfe18-0a55-468a-8490-446e443f2cbe",
+      "name": "compareDate",
+      "notesInFlow": true,
+      "notes": "So sánh serial cũ - mới"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "e82d3c9e-8006-4f4e-bfa8-eb9a14077ce6",
+              "leftValue": "={{ $json.StorageSerialBin }}",
+              "rightValue": "TL",
+              "operator": {
+                "type": "string",
+                "operation": "notContains"
+              }
+            },
+            {
+              "id": "2efac906-c7a0-4eb3-8e56-444897269def",
+              "leftValue": "={{ $json.StorageSerialBin }}",
+              "rightValue": "XL",
+              "operator": {
+                "type": "string",
+                "operation": "notContains"
+              }
+            },
+            {
+              "id": "30757e3a-62aa-4dba-aa06-2ffcf272076e",
+              "leftValue": "={{ $json.StorageSerialBin }}",
+              "rightValue": "NH",
+              "operator": {
+                "type": "string",
+                "operation": "notContains"
+              }
+            },
+            {
+              "id": "0947616a-b6b2-47c7-91d5-a0852794826f",
+              "leftValue": "={{ $json.DiffDays }}",
+              "rightValue": 25,
+              "operator": {
+                "type": "number",
+                "operation": "gte"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -544,
+        288
+      ],
+      "id": "21570e5f-fb27-447f-9e1e-e6d7903af2bb",
+      "name": "checkLocation"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        144,
+        64
+      ],
+      "id": "c3d92325-b83b-4f59-9d47-3c5093ac4ea3",
+      "name": "Merge"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        -400,
+        416
+      ],
+      "id": "15243ffb-45e8-4b29-8f49-9fa4809c3b14",
+      "name": "No Operation, do nothing"
+    },
+    {
+      "parameters": {
+        "operation": "upsert",
+        "dataTableId": {
+          "__rl": true,
+          "value": "3vXQf01uoNqPKdju",
+          "mode": "list",
+          "cachedResultName": "mailList",
+          "cachedResultUrl": "/projects/GTQprNa3RcCSHh8s/datatables/3vXQf01uoNqPKdju"
+        },
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "threadId",
+              "keyValue": "={{ $json.threadId }}"
+            }
+          ]
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "threadId": "={{ $json.threadId }}",
+            "title": "={{ $('When Executed by Another Workflow').first().json.store }} hàng cũ tồn ở BIN trưng bày - {{ DateTime.now().setZone('Asia/Ho_Chi_Minh').toFormat('dd/MM/yyyy') }}",
+            "sent": "x"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "threadId",
+              "displayName": "threadId",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "title",
+              "displayName": "title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "sent",
+              "displayName": "sent",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "delete",
+              "displayName": "delete",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        272,
+        288
+      ],
+      "id": "5431f0be-3697-46f4-a9fd-b3eaa613aa89",
+      "name": "recordList"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "dataTableId": {
+          "__rl": true,
+          "value": "3vXQf01uoNqPKdju",
+          "mode": "list",
+          "cachedResultName": "mailList",
+          "cachedResultUrl": "/projects/GTQprNa3RcCSHh8s/datatables/3vXQf01uoNqPKdju"
+        },
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "createdAt",
+              "keyValue": "={{ new Date(Date.now() - 86500000) }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        -800,
+        64
+      ],
+      "id": "5a5e37d6-e9ea-435d-8e71-23707c9de560",
+      "name": "getList",
+      "alwaysOutputData": true,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "resource": "thread",
+        "operation": "trash",
+        "threadId": "={{ $json.threadId }}"
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        -672,
+        64
+      ],
+      "id": "e37ac650-d1d0-41cd-be66-30e466ca0ebe",
+      "name": "trashOldMail",
+      "webhookId": "0046a0ad-7b57-4e35-aa77-6f8a47d534ad",
+      "alwaysOutputData": true,
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "mdeJ5Cwz1YxLTzIG",
+          "name": "hoang.nv1"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "dataTableId": {
+          "__rl": true,
+          "value": "3vXQf01uoNqPKdju",
+          "mode": "list",
+          "cachedResultName": "mailList",
+          "cachedResultUrl": "/projects/GTQprNa3RcCSHh8s/datatables/3vXQf01uoNqPKdju"
+        },
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "threadId",
+              "keyValue": "={{ $('getList').first().json.threadId }}"
+            }
+          ]
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "delete": "x"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "threadId",
+              "displayName": "threadId",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "title",
+              "displayName": "title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "sent",
+              "displayName": "sent",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "delete",
+              "displayName": "delete",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        -544,
+        64
+      ],
+      "id": "97da1c6c-8ac9-42d3-8de5-9c510aab0aeb",
+      "name": "updateMailStatus",
+      "alwaysOutputData": true,
+      "onError": "continueRegularOutput"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false,
+    "timeSavedMode": "fixed",
+    "errorWorkflow": "tUGf8pqhOC0yFiUP",
+    "callerPolicy": "workflowsFromSameOwner"
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-02-22T19:38:29.063Z",
+      "createdAt": "2026-02-22T19:38:29.063Z",
+      "role": "workflow:owner",
+      "workflowId": "GkOK5IXtVQ5pEALO",
+      "projectId": "GTQprNa3RcCSHh8s"
+    }
+  ],
+  "staticData": {
+    "node:Schedule Trigger": {
+      "recurrenceRules": []
+    }
+  },
+  "tags": [
+    {
+      "updatedAt": "2025-10-07T13:20:03.468Z",
+      "createdAt": "2025-10-07T13:20:03.468Z",
+      "id": "B0udxU6cGYBEciuM",
+      "name": "gmail"
+    },
+    {
+      "updatedAt": "2025-11-08T12:09:40.816Z",
+      "createdAt": "2025-11-08T12:08:49.207Z",
+      "id": "aJR3FZVXiQEfDzcy",
+      "name": "pv.vn"
+    }
+  ],
+  "triggerCount": 1,
+  "updatedAt": "2026-02-24T14:27:22.106Z",
+  "versionId": "d5897bd5-98e6-4ab3-a582-2e0d821b1854"
+}
