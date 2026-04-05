@@ -1,0 +1,135 @@
+{
+  "active": true,
+  "activeVersion": {
+    "updatedAt": "2026-02-22T19:19:21.572Z",
+    "createdAt": "2026-02-22T19:19:07.485Z",
+    "versionId": "b99f3568-708e-4706-9046-8a41214d40c4",
+    "workflowId": "tUGf8pqhOC0yFiUP",
+    "nodes": [
+      {
+        "parameters": {},
+        "type": "n8n-nodes-base.errorTrigger",
+        "typeVersion": 1,
+        "position": [
+          0,
+          0
+        ],
+        "id": "8a0e35bf-608d-472d-a991-f3fa58a26c0c",
+        "name": "Error Trigger"
+      },
+      {
+        "parameters": {
+          "chatId": "5013029624",
+          "text": "={{ $json.workflow.name }} have has bug: {{ $json.execution.error.message }}, debug ASAP. Excution id: {{ $json.execution.id }} Link: {{ $json.execution.url }}",
+          "additionalFields": {}
+        },
+        "type": "n8n-nodes-base.telegram",
+        "typeVersion": 1.2,
+        "position": [
+          128,
+          0
+        ],
+        "id": "ab5f9e56-4661-4d9b-89fd-5e2b7d638585",
+        "name": "Send a text message",
+        "webhookId": "44f7bda3-2e42-4ba8-985e-b3ca611100cb",
+        "credentials": {
+          "telegramApi": {
+            "id": "yOqJ91F4uxm9OoWc",
+            "name": "@culi001"
+          }
+        }
+      }
+    ],
+    "connections": {
+      "Error Trigger": {
+        "main": [
+          [
+            {
+              "node": "Send a text message",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "authors": "Hoang Nguyen",
+    "name": "Version b99f3568",
+    "description": "",
+    "autosaved": true
+  },
+  "activeVersionId": "b99f3568-708e-4706-9046-8a41214d40c4",
+  "connections": {
+    "Error Trigger": {
+      "main": [
+        [
+          {
+            "node": "Send a text message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2026-02-22T19:19:07.485Z",
+  "id": "tUGf8pqhOC0yFiUP",
+  "isArchived": false,
+  "meta": null,
+  "name": "error-message",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.errorTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "8a0e35bf-608d-472d-a991-f3fa58a26c0c",
+      "name": "Error Trigger"
+    },
+    {
+      "parameters": {
+        "chatId": "5013029624",
+        "text": "={{ $json.workflow.name }} have has bug: {{ $json.execution.error.message }}, debug ASAP. Excution id: {{ $json.execution.id }} Link: {{ $json.execution.url }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        128,
+        0
+      ],
+      "id": "ab5f9e56-4661-4d9b-89fd-5e2b7d638585",
+      "name": "Send a text message",
+      "webhookId": "44f7bda3-2e42-4ba8-985e-b3ca611100cb",
+      "credentials": {
+        "telegramApi": {
+          "id": "yOqJ91F4uxm9OoWc",
+          "name": "@culi001"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-02-22T19:19:07.485Z",
+      "createdAt": "2026-02-22T19:19:07.485Z",
+      "role": "workflow:owner",
+      "workflowId": "tUGf8pqhOC0yFiUP",
+      "projectId": "GTQprNa3RcCSHh8s"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2026-02-22T19:19:07.485Z",
+  "versionId": "b99f3568-708e-4706-9046-8a41214d40c4"
+}
