@@ -1,0 +1,192 @@
+{
+  "active": true,
+  "activeVersion": {
+    "updatedAt": "2026-02-25T08:33:22.379Z",
+    "createdAt": "2026-02-25T03:32:09.562Z",
+    "versionId": "38169c96-fcc6-4eb1-9661-33082c968677",
+    "workflowId": "0UNe9iUbzRocfNWk",
+    "nodes": [
+      {
+        "parameters": {
+          "updates": [
+            "*"
+          ],
+          "additionalFields": {}
+        },
+        "type": "n8n-nodes-base.telegramTrigger",
+        "typeVersion": 1.2,
+        "position": [
+          0,
+          0
+        ],
+        "id": "fd0fbed9-3f77-4e27-9f95-3a2434853292",
+        "name": "Telegram Trigger",
+        "webhookId": "fda6fdd1-3ee1-4736-921c-1ac1a8bd3f8c",
+        "credentials": {
+          "telegramApi": {
+            "id": "yOqJ91F4uxm9OoWc",
+            "name": "n8n reports"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "operation": "sendDocument",
+          "chatId": "-1002735167249",
+          "binaryData": true,
+          "additionalFields": {}
+        },
+        "type": "n8n-nodes-base.telegram",
+        "typeVersion": 1.2,
+        "position": [
+          416,
+          240
+        ],
+        "id": "c164d01c-eb92-44bf-bb42-e562eb8aef9a",
+        "name": "Send a document",
+        "webhookId": "73da087c-5da5-412a-8e29-f78c55997fd7",
+        "credentials": {
+          "telegramApi": {
+            "id": "yOqJ91F4uxm9OoWc",
+            "name": "n8n reports"
+          }
+        }
+      },
+      {
+        "parameters": {},
+        "type": "n8n-nodes-base.manualTrigger",
+        "typeVersion": 1,
+        "position": [
+          -176,
+          272
+        ],
+        "id": "3f835422-3c80-47ce-96a2-ff92f9383e38",
+        "name": "When clicking ‘Execute workflow’"
+      },
+      {
+        "parameters": {
+          "resource": "chat",
+          "chatId": "-1002735167249"
+        },
+        "type": "n8n-nodes-base.telegram",
+        "typeVersion": 1.2,
+        "position": [
+          144,
+          272
+        ],
+        "id": "afc3e9e1-7460-48b6-88b3-3de41e281bcb",
+        "name": "Get a chat",
+        "webhookId": "a8faa0d3-11d5-4012-8da8-034ff4b06d0b",
+        "credentials": {
+          "telegramApi": {
+            "id": "yOqJ91F4uxm9OoWc",
+            "name": "n8n reports"
+          }
+        }
+      }
+    ],
+    "connections": {
+      "Telegram Trigger": {
+        "main": [
+          []
+        ]
+      },
+      "When clicking ‘Execute workflow’": {
+        "main": [
+          [
+            {
+              "node": "Get a chat",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "authors": "Hoang Nguyen",
+    "name": "Version 38169c96",
+    "description": "",
+    "autosaved": true
+  },
+  "activeVersionId": "38169c96-fcc6-4eb1-9661-33082c968677",
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-10-12T08:14:24.193Z",
+  "id": "0UNe9iUbzRocfNWk",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Nháp",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "bf776b6a-3be1-4d52-ac39-41ac235fc838",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://bot-api.zaloplatforms.com/bot1679833938550845221:aClDUELizguNHsusDVlCJVNvyIYJlvsXJHVvPgtIRrdwKmsyCrfZLrMzKBUfwlEy/getWebhookInfo",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "url",
+              "value": "https://n8n.hoanghochoi.com/webhook/zalo_qr_gen"
+            },
+            {
+              "name": "secret_token",
+              "value": "637zRFFEE87aFDaB7iyck67QvduyJhvmUHG7KJga2UwgnaFcAVtrnoA48LN4VuJP"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        208,
+        0
+      ],
+      "id": "df3c3c93-4568-471b-b745-e0f7cd3838d3",
+      "name": "HTTP Request"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-02-22T18:05:15.503Z",
+      "createdAt": "2026-02-22T18:05:15.503Z",
+      "role": "workflow:owner",
+      "workflowId": "0UNe9iUbzRocfNWk",
+      "projectId": "GTQprNa3RcCSHh8s"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2026-03-25T03:50:59.459Z",
+  "versionId": "ee33f57b-5f13-49e1-bd3c-21e9261644a5"
+}
