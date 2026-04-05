@@ -1,0 +1,598 @@
+{
+  "active": true,
+  "activeVersion": {
+    "updatedAt": "2026-04-03T09:10:40.976Z",
+    "createdAt": "2026-04-03T08:31:28.488Z",
+    "versionId": "011f0b75-e2e7-4eb3-b348-d9a08752f77c",
+    "workflowId": "42yWza0e0XcUXkLu",
+    "nodes": [
+      {
+        "parameters": {
+          "pollTimes": {
+            "item": [
+              {
+                "mode": "everyMinute"
+              }
+            ]
+          },
+          "documentId": {
+            "__rl": true,
+            "mode": "id",
+            "value": "1kH30kUGYJMXj9QiFPVQjPyg55h4bFyoZkGuP1EHjoXA"
+          },
+          "sheetName": {
+            "__rl": true,
+            "value": 120212297,
+            "mode": "list",
+            "cachedResultName": "Kết quả - GG form",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1kH30kUGYJMXj9QiFPVQjPyg55h4bFyoZkGuP1EHjoXA/edit#gid=120212297"
+          },
+          "event": "rowAdded",
+          "options": {
+            "dataLocationOnSheet": {
+              "values": {
+                "rangeDefinition": "specifyRangeA1",
+                "range": "A2:R"
+              }
+            }
+          }
+        },
+        "type": "n8n-nodes-base.googleSheetsTrigger",
+        "typeVersion": 1,
+        "position": [
+          -16,
+          0
+        ],
+        "id": "4ca25313-0586-40f0-9ae4-ad1d8ddc5d7a",
+        "name": "Google Sheets Trigger",
+        "credentials": {
+          "googleSheetsTriggerOAuth2Api": {
+            "id": "D9OdQTNBWpGt5m0U",
+            "name": "zalo-chat-bot-hoang.nv1-trigger"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "dataTableId": {
+            "__rl": true,
+            "value": "ZViwdzSgsisLSXZH",
+            "mode": "list",
+            "cachedResultName": "sale_report_10",
+            "cachedResultUrl": "/projects/GTQprNa3RcCSHh8s/datatables/ZViwdzSgsisLSXZH"
+          },
+          "columns": {
+            "mappingMode": "defineBelow",
+            "value": {
+              "email": "={{ $json['Email Address'] }}",
+              "employee_code": "={{ $json.MSNV }}",
+              "customer_name": "={{ $json['Họ và tên'] }}",
+              "customer_phone": "={{ $json['Số điện thoại'] }}",
+              "category": "={{ $json['Ngành hàng'] }}",
+              "product": "={{ $json['Khách hàng tìm sản phẩm gì (loại SP và thương hiệu)?'] }}",
+              "success": "={{ $json['Chốt đơn thành công?'] }}",
+              "date": "={{ (() => { const [m,d,y] = $json.Timestamp.split(' ')[0].split('/'); return `${d.padStart(2,'0')}/${m.padStart(2,'0')}/${y}` })() }}"
+            },
+            "matchingColumns": [],
+            "schema": [
+              {
+                "id": "email",
+                "displayName": "email",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": false
+              },
+              {
+                "id": "employee_code",
+                "displayName": "employee_code",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": false
+              },
+              {
+                "id": "customer_name",
+                "displayName": "customer_name",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": false
+              },
+              {
+                "id": "customer_phone",
+                "displayName": "customer_phone",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": false
+              },
+              {
+                "id": "category",
+                "displayName": "category",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": false
+              },
+              {
+                "id": "product",
+                "displayName": "product",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": false
+              },
+              {
+                "id": "success",
+                "displayName": "success",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": false
+              },
+              {
+                "id": "date",
+                "displayName": "date",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": false
+              }
+            ],
+            "attemptToConvertTypes": false,
+            "convertFieldsToString": false
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.dataTable",
+        "typeVersion": 1,
+        "position": [
+          288,
+          0
+        ],
+        "id": "dd87df51-be8f-4222-9ec1-40346cfbdfd3",
+        "name": "Insert row",
+        "onError": "continueRegularOutput"
+      },
+      {
+        "parameters": {
+          "documentId": {
+            "__rl": true,
+            "value": "1kH30kUGYJMXj9QiFPVQjPyg55h4bFyoZkGuP1EHjoXA",
+            "mode": "id"
+          },
+          "sheetName": {
+            "__rl": true,
+            "value": 873611416,
+            "mode": "list",
+            "cachedResultName": "Kết quả - GG form 3",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1kH30kUGYJMXj9QiFPVQjPyg55h4bFyoZkGuP1EHjoXA/edit#gid=873611416"
+          },
+          "options": {
+            "dataLocationOnSheet": {
+              "values": {
+                "rangeDefinition": "specifyRange",
+                "headerRow": 2,
+                "firstDataRow": 3
+              }
+            }
+          }
+        },
+        "type": "n8n-nodes-base.googleSheets",
+        "typeVersion": 4.7,
+        "position": [
+          0,
+          224
+        ],
+        "id": "4e67e2d4-4a64-45d4-a4c2-6b2f5480d015",
+        "name": "Get row(s) in sheet",
+        "credentials": {
+          "googleSheetsOAuth2Api": {
+            "id": "MTh9LghqaMKPTAzs",
+            "name": "zalo-chat-bot-hoang.nv1"
+          }
+        },
+        "disabled": true
+      },
+      {
+        "parameters": {},
+        "type": "n8n-nodes-base.manualTrigger",
+        "typeVersion": 1,
+        "position": [
+          -208,
+          224
+        ],
+        "id": "a8622429-fd14-4e99-b5be-3315d8388b81",
+        "name": "When clicking ‘Execute workflow’",
+        "disabled": true
+      },
+      {
+        "parameters": {
+          "operation": "deleteRows",
+          "dataTableId": {
+            "__rl": true,
+            "value": "9k6VKPnXkFXc5ajX",
+            "mode": "list",
+            "cachedResultName": "sale_report_10",
+            "cachedResultUrl": "/projects/WAqDK79b9owhbfuS/datatables/9k6VKPnXkFXc5ajX"
+          },
+          "filters": {
+            "conditions": [
+              {
+                "keyName": "email",
+                "condition": "isNotEmpty"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.dataTable",
+        "typeVersion": 1,
+        "position": [
+          0,
+          384
+        ],
+        "id": "058739f4-af5c-4c19-b41a-fefd475859ad",
+        "name": "Delete row(s)",
+        "disabled": true
+      }
+    ],
+    "connections": {
+      "Google Sheets Trigger": {
+        "main": [
+          [
+            {
+              "node": "Insert row",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "When clicking ‘Execute workflow’": {
+        "main": [
+          [
+            {
+              "node": "Get row(s) in sheet",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "authors": "Hoang Nguyen",
+    "name": "Version 011f0b75",
+    "description": "",
+    "autosaved": true
+  },
+  "activeVersionId": "011f0b75-e2e7-4eb3-b348-d9a08752f77c",
+  "connections": {
+    "Google Sheets Trigger": {
+      "main": [
+        [
+          {
+            "node": "Insert row",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Get row(s) in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2026-02-23T01:46:29.919Z",
+  "id": "42yWza0e0XcUXkLu",
+  "isArchived": false,
+  "meta": null,
+  "name": "sheet - get_sale_report",
+  "nodes": [
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "documentId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "1kH30kUGYJMXj9QiFPVQjPyg55h4bFyoZkGuP1EHjoXA"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 120212297,
+          "mode": "list",
+          "cachedResultName": "Kết quả - GG form",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1kH30kUGYJMXj9QiFPVQjPyg55h4bFyoZkGuP1EHjoXA/edit#gid=120212297"
+        },
+        "event": "rowAdded",
+        "options": {
+          "dataLocationOnSheet": {
+            "values": {
+              "rangeDefinition": "specifyRangeA1",
+              "range": "A2:R"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.googleSheetsTrigger",
+      "typeVersion": 1,
+      "position": [
+        -16,
+        0
+      ],
+      "id": "4ca25313-0586-40f0-9ae4-ad1d8ddc5d7a",
+      "name": "Google Sheets Trigger",
+      "credentials": {
+        "googleSheetsTriggerOAuth2Api": {
+          "id": "D9OdQTNBWpGt5m0U",
+          "name": "zalo-chat-bot-hoang.nv1-trigger"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "dataTableId": {
+          "__rl": true,
+          "value": "ZViwdzSgsisLSXZH",
+          "mode": "list",
+          "cachedResultName": "sale_report_10",
+          "cachedResultUrl": "/projects/GTQprNa3RcCSHh8s/datatables/ZViwdzSgsisLSXZH"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "email": "={{ $json['Email Address'] }}",
+            "employee_code": "={{ $json.MSNV }}",
+            "customer_name": "={{ $json['Họ và tên'] }}",
+            "customer_phone": "={{ $json['Số điện thoại'] }}",
+            "category": "={{ $json['Ngành hàng'] }}",
+            "product": "={{ $json['Khách hàng tìm sản phẩm gì (loại SP và thương hiệu)?'] }}",
+            "success": "={{ $json['Chốt đơn thành công?'] }}",
+            "date": "={{ (() => { const [m,d,y] = $json.Timestamp.split(' ')[0].split('/'); return `${d.padStart(2,'0')}/${m.padStart(2,'0')}/${y}` })() }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "email",
+              "displayName": "email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "employee_code",
+              "displayName": "employee_code",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "customer_name",
+              "displayName": "customer_name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "customer_phone",
+              "displayName": "customer_phone",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "category",
+              "displayName": "category",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "product",
+              "displayName": "product",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "success",
+              "displayName": "success",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "date",
+              "displayName": "date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        288,
+        0
+      ],
+      "id": "dd87df51-be8f-4222-9ec1-40346cfbdfd3",
+      "name": "Insert row",
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1kH30kUGYJMXj9QiFPVQjPyg55h4bFyoZkGuP1EHjoXA",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 873611416,
+          "mode": "list",
+          "cachedResultName": "Kết quả - GG form 3",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1kH30kUGYJMXj9QiFPVQjPyg55h4bFyoZkGuP1EHjoXA/edit#gid=873611416"
+        },
+        "options": {
+          "dataLocationOnSheet": {
+            "values": {
+              "rangeDefinition": "specifyRange",
+              "headerRow": 2,
+              "firstDataRow": 3
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        0,
+        224
+      ],
+      "id": "4e67e2d4-4a64-45d4-a4c2-6b2f5480d015",
+      "name": "Get row(s) in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "MTh9LghqaMKPTAzs",
+          "name": "zalo-chat-bot-hoang.nv1"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -208,
+        224
+      ],
+      "id": "a8622429-fd14-4e99-b5be-3315d8388b81",
+      "name": "When clicking ‘Execute workflow’",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "operation": "deleteRows",
+        "dataTableId": {
+          "__rl": true,
+          "value": "9k6VKPnXkFXc5ajX",
+          "mode": "list",
+          "cachedResultName": "sale_report_10",
+          "cachedResultUrl": "/projects/WAqDK79b9owhbfuS/datatables/9k6VKPnXkFXc5ajX"
+        },
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "email",
+              "condition": "isNotEmpty"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        0,
+        384
+      ],
+      "id": "058739f4-af5c-4c19-b41a-fefd475859ad",
+      "name": "Delete row(s)",
+      "disabled": true
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-02-23T01:46:29.919Z",
+      "createdAt": "2026-02-23T01:46:29.919Z",
+      "role": "workflow:owner",
+      "workflowId": "42yWza0e0XcUXkLu",
+      "projectId": "GTQprNa3RcCSHh8s"
+    }
+  ],
+  "staticData": {
+    "node:Google Sheets Trigger": {
+      "documentId": "1kH30kUGYJMXj9QiFPVQjPyg55h4bFyoZkGuP1EHjoXA",
+      "sheetId": 120212297,
+      "lastIndexChecked": 3136
+    }
+  },
+  "tags": [
+    {
+      "updatedAt": "2025-11-08T12:09:40.816Z",
+      "createdAt": "2025-11-08T12:08:49.207Z",
+      "id": "aJR3FZVXiQEfDzcy",
+      "name": "pv.vn"
+    }
+  ],
+  "triggerCount": 1,
+  "updatedAt": "2026-04-03T09:10:37.934Z",
+  "versionId": "011f0b75-e2e7-4eb3-b348-d9a08752f77c"
+}
