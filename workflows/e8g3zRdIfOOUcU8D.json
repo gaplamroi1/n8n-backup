@@ -1,0 +1,899 @@
+{
+  "active": false,
+  "activeVersion": null,
+  "activeVersionId": null,
+  "connections": {
+    "instock_or_not": {
+      "main": [
+        [
+          {
+            "node": "isSerial",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "oosMessage",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "get_oldest_sku": {
+      "main": [
+        [
+          {
+            "node": "Limit1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "isSerial": {
+      "main": [
+        [
+          {
+            "node": "instock_or_not1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Limit",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit": {
+      "main": [
+        [
+          {
+            "node": "notSerial",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook input": {
+      "main": [
+        [
+          {
+            "node": "extract_message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit1": {
+      "main": [
+        []
+      ]
+    },
+    "notSerial": {
+      "main": [
+        []
+      ]
+    },
+    "cdOnlyMess": {
+      "main": [
+        []
+      ]
+    },
+    "instock_or_not1": {
+      "main": [
+        [
+          {
+            "node": "get_oldest_sku",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "cdOnlyMess",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "getInv": {
+      "main": [
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "extract_message": {
+      "main": [
+        [
+          {
+            "node": "getInv",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "instock_or_not",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "getInv1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "getInv1": {
+      "main": [
+        [
+          {
+            "node": "If2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "getInv2": {
+      "main": [
+        [
+          {
+            "node": "get_oldest_sku1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "get_oldest_sku1": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "fifo_yes",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "fifo_no",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If2": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          },
+          {
+            "node": "getInv2",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "oosMessage1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-12-17T03:45:42.355Z",
+  "id": "e8g3zRdIfOOUcU8D",
+  "isArchived": false,
+  "meta": null,
+  "name": "sub - seatalk-fifo-flow - stop",
+  "nodes": [
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "f2ff05d5-8fc3-456a-821d-3a106fb32b85",
+              "leftValue": "={{ $json.sku }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {
+          "ignoreCase": false
+        }
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -64,
+        -16
+      ],
+      "id": "1be5b8bb-9171-4794-8571-a7efa43fdfb5",
+      "name": "instock_or_not"
+    },
+    {
+      "parameters": {
+        "jsCode": "// ===== LẤY TOÀN BỘ ITEM INPUT =====\nconst data = $input.all();\n\n// ✅ count = tổng số item input\nconst count = data.length;\n\n// ===== PARSE NGÀY NHẬP =====\nconst parsedItems = data.map(item => {\n  const json = item.json;\n\n  let ngayNhapKho = json['import_date'] || json['Ngày_nhập_kho'];\n  if (!ngayNhapKho) return null;\n\n  let nhapKhoDate;\n\n  if (typeof ngayNhapKho === 'string') {\n    const trimmed = ngayNhapKho.trim();\n\n    // YYYY-MM-DD\n    if (/^\\d{4}-\\d{1,2}-\\d{1,2}$/.test(trimmed)) {\n      const [y, m, d] = trimmed.split('-');\n      nhapKhoDate = new Date(+y, +m - 1, +d);\n    }\n    // DD/MM/YYYY hoặc DD/MM/YYYY HH:mm:ss\n    else if (trimmed.includes('/')) {\n      const [d, m, y] = trimmed.split(' ')[0].split('/');\n      nhapKhoDate = new Date(+y, +m - 1, +d);\n    } else {\n      return null;\n    }\n  } else {\n    nhapKhoDate = new Date(ngayNhapKho);\n  }\n\n  nhapKhoDate.setHours(0, 0, 0, 0);\n\n  return {\n    ...json,\n    nhapKhoDate,\n    serial: json['serial_number'] || json['So_Serial'] || json['Loại Serial'],\n  };\n}).filter(Boolean);\n\n// ===== BƯỚC QUAN TRỌNG: TÌM NGÀY NHẬP MỚI NHẤT =====\nconst latestDate = parsedItems.reduce(\n  (max, item) => item.nhapKhoDate > max ? item.nhapKhoDate : max,\n  parsedItems[0].nhapKhoDate\n);\n\n// ===== TÍNH DIFFDAYS THEO NGÀY MỚI NHẤT =====\nconst processedData = parsedItems.map(item => {\n  const diffMs = latestDate - item.nhapKhoDate;\n  const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));\n\n  return {\n    ...item,\n    diffMs,\n    diffDays, // ✅ mới nhất = 0\n    count,\n    ngayNhapKhoFormatted: item.nhapKhoDate.toISOString().split('T')[0],\n  };\n});\n\n// ===== SORT FIFO (cũ nhất trước) =====\nprocessedData.sort((a, b) => b.diffDays - a.diffDays);\n\n// ===== RETURN =====\nreturn processedData.map(item => ({\n  json: item\n}));\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        416,
+        -144
+      ],
+      "id": "7297733f-7c75-4af6-ab23-95a14cff4119",
+      "name": "get_oldest_sku"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "eba1c8a0-3872-4bcb-afbe-51e4443341dc",
+              "leftValue": "={{ $json.serial_number }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {
+          "ignoreCase": false
+        }
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        128,
+        48
+      ],
+      "id": "e7f9221e-a955-44bc-80aa-f348a1a30319",
+      "name": "isSerial"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        288,
+        144
+      ],
+      "id": "bf85fbb8-8d84-4dd1-9de4-a83d3e8e63a9",
+      "name": "Limit"
+    },
+    {
+      "parameters": {
+        "inputSource": "passthrough"
+      },
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -768,
+        128
+      ],
+      "id": "15341083-3854-4e0c-9f85-79abbae20400",
+      "name": "Webhook input"
+    },
+    {
+      "parameters": {
+        "maxItems": "={{ $items(\"extract_message\")[0].json.qty + 1 }}"
+      },
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        560,
+        -144
+      ],
+      "id": "322d08c1-53e7-487e-b3b1-499a9a05b03a",
+      "name": "Limit1"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "07ab35ae-d140-4181-9827-ca21285fc6ad",
+              "name": "=message",
+              "value": "=Sản phẩm bạn tìm không có tồn kho, kiểm tra lại nhé.",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        128,
+        -96
+      ],
+      "id": "6d786c62-fd63-412d-9c35-d75c93d27d4b",
+      "name": "oosMessage"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "8ba21f34-6f13-4224-9f89-268a8172c6b4",
+              "name": "message",
+              "value": "=Sản phẩm {{ $('Webhook input').first().json.body.sku }} {{ $json.sku_name }} không quản lý bằng serial.\\n\nBIN: {{ $json.bin }}\\n\nZone: {{ $json.zone }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        416,
+        144
+      ],
+      "id": "eb373d5b-7c56-43fc-ab67-50a9a8e1a364",
+      "name": "notSerial"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "fe0c45e4-737e-4526-abd7-6ec8a4b07236",
+              "name": "message",
+              "value": "=Sản phẩm {{ $json.sku }} {{ $json.sku_name }} chỉ có hàng demo, không có hàng bán.",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        416,
+        0
+      ],
+      "id": "3a69f78f-b181-4b42-9f95-a75e465a911b",
+      "name": "cdOnlyMess"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "f2ff05d5-8fc3-456a-821d-3a106fb32b85",
+              "leftValue": "={{ $json.sku }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "f818e79d-956e-4806-9021-68f5ecd2da0c",
+              "leftValue": "={{ $json.bin }}",
+              "rightValue": "cd.",
+              "operator": {
+                "type": "string",
+                "operation": "notContains"
+              }
+            },
+            {
+              "id": "122678d5-667d-4c80-b599-befe3190f00f",
+              "leftValue": "={{ $json.bin }}",
+              "rightValue": "XL",
+              "operator": {
+                "type": "string",
+                "operation": "notContains"
+              }
+            },
+            {
+              "id": "f479b29c-bb00-4ba5-b533-205e5198b9d3",
+              "leftValue": "={{ $json.bin }}",
+              "rightValue": "LD",
+              "operator": {
+                "type": "string",
+                "operation": "notContains"
+              }
+            },
+            {
+              "id": "018adec0-1dbd-4d39-95db-00b701d227d0",
+              "leftValue": "={{ $json.bin }}",
+              "rightValue": "BG",
+              "operator": {
+                "type": "string",
+                "operation": "notContains"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {
+          "ignoreCase": false
+        }
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        288,
+        -80
+      ],
+      "id": "69e999d5-ecf5-4e45-ae9d-575337162eea",
+      "name": "instock_or_not1"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "dataTableId": {
+          "__rl": true,
+          "value": "8Ug6ouDoHOhz1vLW",
+          "mode": "list",
+          "cachedResultName": "inv-app",
+          "cachedResultUrl": "/projects/WAqDK79b9owhbfuS/datatables/8Ug6ouDoHOhz1vLW"
+        },
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "sku",
+              "keyValue": "={{ $json.sku }}"
+            }
+          ]
+        },
+        "returnAll": true
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        -496,
+        128
+      ],
+      "id": "41f5c582-f9b3-412b-9101-c4c3ebfde704",
+      "name": "getInv",
+      "alwaysOutputData": true,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Lấy content từ input\nconst content = $json.body.event.message.text.content || '';\nconst input = content.trim();\n\n// Nếu content rỗng thì dừng\nif (!input) {\n  throw new Error('Content is empty');\n}\n\n// Tách theo khoảng trắng\nconst parts = input.split(/\\s+/);\n\n// sku luôn là phần đầu\nconst sku = parts[0];\n\n// qty mặc định = 1\nlet qty = 1;\n\n// Nếu user gửi kèm qty\nif (parts.length > 1) {\n  const parsedQty = parseInt(parts[1], 10);\n  if (!isNaN(parsedQty) && parsedQty > 0) {\n    qty = parsedQty;\n  }\n}\n\n// Trả ra 2 item riêng\nreturn [\n  {\n    json: {\n      sku,\n      qty,\n    },\n  },\n];\n\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -624,
+        128
+      ],
+      "id": "84c0d051-adc8-41e5-a0fc-3e34b684c67b",
+      "name": "extract_message"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "02510929-1a04-45d9-941e-efe4f64d4dfe",
+              "leftValue": "={{ $json.id }}",
+              "rightValue": "",
+              "operator": {
+                "type": "number",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        -336,
+        128
+      ],
+      "id": "23232483-7c08-4536-921d-667b343643b9",
+      "name": "If1"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "dataTableId": {
+          "__rl": true,
+          "value": "8Ug6ouDoHOhz1vLW",
+          "mode": "list",
+          "cachedResultName": "inv-app",
+          "cachedResultUrl": "/projects/WAqDK79b9owhbfuS/datatables/8Ug6ouDoHOhz1vLW"
+        },
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "serial_number",
+              "keyValue": "={{ $('extract_message').item.json.sku }}"
+            }
+          ]
+        },
+        "returnAll": true
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        -64,
+        368
+      ],
+      "id": "41ef7b5e-d6be-4aab-b299-9042d4958f5e",
+      "name": "getInv1",
+      "alwaysOutputData": true,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "dataTableId": {
+          "__rl": true,
+          "value": "8Ug6ouDoHOhz1vLW",
+          "mode": "list",
+          "cachedResultName": "inv-app",
+          "cachedResultUrl": "/projects/WAqDK79b9owhbfuS/datatables/8Ug6ouDoHOhz1vLW"
+        },
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "sku",
+              "keyValue": "={{ $json.sku }}"
+            }
+          ]
+        },
+        "returnAll": true
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        288,
+        272
+      ],
+      "id": "3d2568f8-df6e-4746-ac75-4d3e4e1ca09c",
+      "name": "getInv2",
+      "alwaysOutputData": true,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "fieldsToMatchString": "serial_number",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        560,
+        336
+      ],
+      "id": "e59a7a5b-2b76-4114-8069-2ce674b71770",
+      "name": "Merge"
+    },
+    {
+      "parameters": {
+        "jsCode": "// ===== LẤY TOÀN BỘ ITEM INPUT =====\nconst data = $input.all();\n\n// ===== CHỈ GIỮ ITEM BIN KHÔNG CHỨA \"cd.\" (case-sensitive) =====\nconst filteredData = data.filter(item => {\n  const bin = item.json?.bin;\n  return typeof bin === 'string' && !bin.includes('cd.');\n});\n\n// ✅ count = tổng số item sau khi lọc\nconst count = filteredData.length;\n\n// ===== PARSE NGÀY NHẬP =====\nconst parsedItems = filteredData.map(item => {\n  const json = item.json;\n\n  let ngayNhapKho = json['import_date'] || json['Ngày_nhập_kho'];\n  if (!ngayNhapKho) return null;\n\n  let nhapKhoDate;\n\n  if (typeof ngayNhapKho === 'string') {\n    const trimmed = ngayNhapKho.trim();\n\n    // YYYY-MM-DD\n    if (/^\\d{4}-\\d{1,2}-\\d{1,2}$/.test(trimmed)) {\n      const [y, m, d] = trimmed.split('-');\n      nhapKhoDate = new Date(+y, +m - 1, +d);\n    }\n    // DD/MM/YYYY hoặc DD/MM/YYYY HH:mm:ss\n    else if (trimmed.includes('/')) {\n      const [d, m, y] = trimmed.split(' ')[0].split('/');\n      nhapKhoDate = new Date(+y, +m - 1, +d);\n    } else {\n      return null;\n    }\n  } else {\n    nhapKhoDate = new Date(ngayNhapKho);\n  }\n\n  nhapKhoDate.setHours(0, 0, 0, 0);\n\n  return {\n    ...json,\n    nhapKhoDate,\n    serial: json['serial_number'] || json['So_Serial'] || json['Loại Serial'],\n  };\n}).filter(Boolean);\n\n// ===== TÌM NGÀY NHẬP CŨ NHẤT =====\nconst oldestDate = parsedItems.reduce(\n  (min, item) => item.nhapKhoDate < min ? item.nhapKhoDate : min,\n  parsedItems[0].nhapKhoDate\n);\n\n// ===== TÍNH DIFFDAYS THEO NGÀY CŨ NHẤT =====\nconst processedData = parsedItems.map(item => {\n  const diffMs = item.nhapKhoDate - oldestDate;\n  const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));\n\n  return {\n    ...item,\n    diffMs,\n    diffDays,\n    count,\n    ngayNhapKhoFormatted: item.nhapKhoDate.toISOString().split('T')[0],\n  };\n});\n\n// ===== SORT FIFO (cũ nhất trước) =====\nprocessedData.sort((a, b) => a.diffDays - b.diffDays);\n\n// ===== RETURN =====\nreturn processedData.map(item => ({\n  json: item\n}));\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        416,
+        272
+      ],
+      "id": "5c0d6047-7630-461e-bd88-172074b62e8b",
+      "name": "get_oldest_sku1"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": false,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "3ce0fe2d-4ae7-40a1-8769-72b8d006035b",
+              "leftValue": "={{ $json.diffDays }}",
+              "rightValue": 30,
+              "operator": {
+                "type": "number",
+                "operation": "lt"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {
+          "ignoreCase": true
+        }
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        704,
+        320
+      ],
+      "id": "81e3f8a0-ad59-4540-9aa0-6706f9d755cd",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "b9edb8b8-53e6-40fb-9135-04aec534492b",
+              "name": "fifo",
+              "value": "yes",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        864,
+        240
+      ],
+      "id": "e62838ad-4136-4e6a-a94f-224b820f0b65",
+      "name": "fifo_yes"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "b9edb8b8-53e6-40fb-9135-04aec534492b",
+              "name": "fifo",
+              "value": "no",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        864,
+        384
+      ],
+      "id": "fd984ddd-e6ea-49c0-98bc-3d6a649445c9",
+      "name": "fifo_no"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": false,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "600c8e69-dbc6-4aa6-83e6-53da93012715",
+              "leftValue": "={{ $json.sku }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {
+          "ignoreCase": true
+        }
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        64,
+        368
+      ],
+      "id": "c5625093-c158-461a-8243-8c4766f2d235",
+      "name": "If2"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "07ab35ae-d140-4181-9827-ca21285fc6ad",
+              "name": "=message",
+              "value": "=Sản phẩm bạn tìm không có tồn kho, kiểm tra lại nhé.",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        288,
+        432
+      ],
+      "id": "d31a0d84-6009-44d0-892e-2db93737962b",
+      "name": "oosMessage1"
+    }
+  ],
+  "pinData": {
+    "Webhook input": [
+      {
+        "json": {
+          "headers": {
+            "host": "n8n.hoanghochoi.com",
+            "user-agent": "Go-http-client/1.1",
+            "content-length": "402",
+            "accept-encoding": "gzip, br",
+            "cdn-loop": "cloudflare; loops=1",
+            "cf-connecting-ip": "143.92.74.132",
+            "cf-ipcountry": "SG",
+            "cf-ray": "9b687dbeebd5d4a0-SIN",
+            "cf-visitor": "{\"scheme\":\"https\"}",
+            "cf-warp-tag-id": "1a2a7b9c-d672-40a3-98bd-f1c1f70f21c7",
+            "connection": "keep-alive",
+            "content-type": "application/json",
+            "signature": "e70e1d80a6d70fc730e1f54385ddf4faf63ec89cde559fe0fda83210f79e2cef",
+            "x-event-user-jwt": "eyJhbGciOiJFZERTQSIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjp7ImVtYWlsIjoiaG9hbmcubnYxQHBob25ndnUtbW5hLnZuIn0sImlzcyI6IlNlYXRhbGsgU09QIiwiZXhwIjoxNzY3MTcwNjg2LCJuYmYiOjE3NjcxNzA2MjYsImlhdCI6MTc2NzE3MDYyNiwianRpIjoiNDg1ZDE1OTAtNzU2NS00NzRkLWI1MWUtMDI3M2M3ODY5YjZhIn0.seR-wmdGFD6NoZWaH4wZQlC8armeLU70DDL24HZPnzaFNQF8zGWMVNKgxiM7ZL9w3UOTbL8FhAPweohoDL0UAw",
+            "x-forwarded-for": "143.92.74.132",
+            "x-forwarded-proto": "https"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "event_id": "99eb5516-88a1-41e9-beb0-a27df1814eff",
+            "event_type": "message_from_bot_subscriber",
+            "timestamp": 1767170626,
+            "app_id": "NzA0MTM4NzgzMTE5",
+            "event": {
+              "seatalk_id": "9214333551",
+              "employee_code": "e_6mv57e5u",
+              "email": "hoang.nv1@phongvu-mna.vn",
+              "message": {
+                "message_id": "u7YirumAclDhkEjP41NhyrIevXNAhNTu2uCYmM3HpeXdVDUTDqeZ-O72",
+                "quoted_message_id": "",
+                "tag": "text",
+                "text": {
+                  "content": "45223M3081A4395"
+                }
+              }
+            }
+          },
+          "webhookUrl": "https://n8n.hoanghochoi.com/webhook/fifo-cp62",
+          "executionMode": "production"
+        },
+        "pairedItem": {
+          "item": 0
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false,
+    "errorWorkflow": "80zc32Np6wJfRsoG"
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-02-22T18:07:40.748Z",
+      "createdAt": "2026-02-22T18:07:40.748Z",
+      "role": "workflow:owner",
+      "workflowId": "e8g3zRdIfOOUcU8D",
+      "projectId": "GTQprNa3RcCSHh8s"
+    }
+  ],
+  "staticData": null,
+  "tags": [
+    {
+      "updatedAt": "2025-12-17T02:41:50.389Z",
+      "createdAt": "2025-12-17T02:41:50.389Z",
+      "id": "tf48o2CcAcmF6X41",
+      "name": "Seatalk app"
+    }
+  ],
+  "triggerCount": 0,
+  "updatedAt": "2026-01-01T08:31:11.178Z",
+  "versionId": "3d61f444-aeda-4c78-9e48-064340670c3d"
+}
