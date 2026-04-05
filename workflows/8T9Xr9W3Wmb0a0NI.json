@@ -1,0 +1,1839 @@
+{
+  "active": true,
+  "activeVersion": {
+    "updatedAt": "2026-02-23T06:29:41.307Z",
+    "createdAt": "2026-02-23T06:29:39.353Z",
+    "versionId": "8ed2b8ca-60e8-4da6-ae23-92cffdecfa4b",
+    "workflowId": "8T9Xr9W3Wmb0a0NI",
+    "nodes": [
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "loose",
+              "version": 2
+            },
+            "conditions": [
+              {
+                "id": "f2ff05d5-8fc3-456a-821d-3a106fb32b85",
+                "leftValue": "={{ $json.sku }}",
+                "rightValue": "",
+                "operator": {
+                  "type": "string",
+                  "operation": "exists",
+                  "singleValue": true
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "looseTypeValidation": true,
+          "options": {
+            "ignoreCase": false
+          }
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.2,
+        "position": [
+          720,
+          288
+        ],
+        "id": "3b013983-5146-4c12-a832-c0ac96feb38a",
+        "name": "instock_or_not"
+      },
+      {
+        "parameters": {
+          "jsCode": "// ===== LẤY TOÀN BỘ ITEM INPUT =====\nconst data = $input.all();\n\n// ✅ count = tổng số item input\nconst count = data.length;\n\n// Thời gian hiện tại (chỉ lấy ngày)\nconst now = new Date();\nnow.setHours(0, 0, 0, 0);\n\n// ===== XỬ LÝ FIFO =====\nconst processedData = data.map(item => {\n  const json = item.json;\n\n  let ngayNhapKho = json['import_date'] || json['Ngày_nhập_kho'];\n  if (!ngayNhapKho) return null;\n\n  let nhapKhoDate;\n\n  if (typeof ngayNhapKho === 'string') {\n    const trimmed = ngayNhapKho.trim();\n\n    // YYYY-MM-DD\n    if (/^\\d{4}-\\d{1,2}-\\d{1,2}$/.test(trimmed)) {\n      const [y, m, d] = trimmed.split('-');\n      nhapKhoDate = new Date(+y, +m - 1, +d);\n    }\n    // DD/MM/YYYY hoặc DD/MM/YYYY HH:mm:ss\n    else if (trimmed.includes('/')) {\n      const [d, m, y] = trimmed.split(' ')[0].split('/');\n      nhapKhoDate = new Date(+y, +m - 1, +d);\n    } else {\n      return null;\n    }\n  } else {\n    nhapKhoDate = new Date(ngayNhapKho);\n  }\n\n  nhapKhoDate.setHours(0, 0, 0, 0);\n\n  const diffMs = now - nhapKhoDate;\n  const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));\n\n  return {\n    ...json,\n    diffMs,\n    diffDays,\n    count, // ✅ tổng số item input\n    ngayNhapKhoFormatted: nhapKhoDate.toISOString().split('T')[0],\n    serial: json['serial_number'] || json['So_Serial'] || json['Loại Serial'],\n  };\n}).filter(item => item && !isNaN(item.diffMs));\n\n// ===== SORT FIFO (lâu nhất trước) =====\nprocessedData.sort((a, b) => b.diffMs - a.diffMs);\n\n// ===== RETURN =====\nreturn processedData.map(item => ({\n  json: item\n}));\n"
+        },
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          1104,
+          144
+        ],
+        "id": "56eb2d02-afb4-42e6-b1fd-628cb04fb8a5",
+        "name": "get_oldest_sku"
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "284df640-cdc6-4429-ba47-dd2f1ce01881",
+                "name": "=sku_{{ $itemIndex }}",
+                "value": "=SKU: {{ $json.sku }} - Tổng tồn: {{ $json.count }}\nTên: {{ $json.sku_name }}\nSerial: {{ $json.serial_number }}\nMã BIN: {{ $json.bin }}\nZone: {{ $json.zone }}\nNgày nhập: {{ DateTime.fromJSDate(new Date($json['import_date'])).toFormat(\"dd-MM-yyyy\") }}",
+                "type": "string"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          0,
+          0
+        ],
+        "id": "3882fee4-23da-4751-a6a6-5c88b5791d25",
+        "name": "get_needed_fields"
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "loose",
+              "version": 2
+            },
+            "conditions": [
+              {
+                "id": "eba1c8a0-3872-4bcb-afbe-51e4443341dc",
+                "leftValue": "={{ $json.serial_number }}",
+                "rightValue": "",
+                "operator": {
+                  "type": "string",
+                  "operation": "notEmpty",
+                  "singleValue": true
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "looseTypeValidation": true,
+          "options": {
+            "ignoreCase": false
+          }
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.2,
+        "position": [
+          848,
+          176
+        ],
+        "id": "824fc4e7-6ae8-4d51-a8f2-fbeb85deb237",
+        "name": "isSerial"
+      },
+      {
+        "parameters": {},
+        "type": "n8n-nodes-base.limit",
+        "typeVersion": 1,
+        "position": [
+          976,
+          272
+        ],
+        "id": "f616bf92-c904-4722-b2e2-f29efca42a11",
+        "name": "Limit"
+      },
+      {
+        "parameters": {
+          "inputSource": "passthrough"
+        },
+        "type": "n8n-nodes-base.executeWorkflowTrigger",
+        "typeVersion": 1.1,
+        "position": [
+          256,
+          480
+        ],
+        "id": "4eb4fb81-2b79-42e5-af76-bec57195616c",
+        "name": "Webhook input"
+      },
+      {
+        "parameters": {
+          "maxItems": "={{ Number($('Webhook input').first().json.body.qty || 1) + 1 }}"
+        },
+        "type": "n8n-nodes-base.limit",
+        "typeVersion": 1,
+        "position": [
+          1232,
+          144
+        ],
+        "id": "e1e393ca-77a5-4fde-bbf6-1fdd1fa6f223",
+        "name": "Limit1"
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "07ab35ae-d140-4181-9827-ca21285fc6ad",
+                "name": "oos_message",
+                "value": "=Sản phẩm {{ $('Webhook input').item.json.body.sku }} không có tồn kho, kiểm tra lại nhé.",
+                "type": "string"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          848,
+          384
+        ],
+        "id": "d54c5cbc-1ff0-478e-b57a-8d3cc1185c7d",
+        "name": "oosMessage"
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "8ba21f34-6f13-4224-9f89-268a8172c6b4",
+                "name": "message",
+                "value": "=Sản phẩm {{ $('Webhook input').item.json.body.sku }} {{ $json.sku_name }} không quản lý bằng serial.\nBIN: {{ $json.bin }}\nZone: {{ $json.zone }}",
+                "type": "string"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          1104,
+          272
+        ],
+        "id": "fb39641c-a960-4daf-9ea6-e1650506212d",
+        "name": "notSerial"
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "fe0c45e4-737e-4526-abd7-6ec8a4b07236",
+                "name": "message",
+                "value": "=Sản phẩm {{ $json.sku }} {{ $json.sku_name }} chỉ có hàng demo, không có hàng bán.",
+                "type": "string"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          1104,
+          0
+        ],
+        "id": "44cb7fb1-ab58-47d0-9ebd-60ddfde9094c",
+        "name": "cdOnlyMess"
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "loose",
+              "version": 2
+            },
+            "conditions": [
+              {
+                "id": "f2ff05d5-8fc3-456a-821d-3a106fb32b85",
+                "leftValue": "={{ $json.sku }}",
+                "rightValue": "",
+                "operator": {
+                  "type": "string",
+                  "operation": "exists",
+                  "singleValue": true
+                }
+              },
+              {
+                "id": "f818e79d-956e-4806-9021-68f5ecd2da0c",
+                "leftValue": "={{ $json.bin }}",
+                "rightValue": "cd.",
+                "operator": {
+                  "type": "string",
+                  "operation": "notContains"
+                }
+              },
+              {
+                "id": "122678d5-667d-4c80-b599-befe3190f00f",
+                "leftValue": "={{ $json.bin }}",
+                "rightValue": "XL",
+                "operator": {
+                  "type": "string",
+                  "operation": "notContains"
+                }
+              },
+              {
+                "id": "f479b29c-bb00-4ba5-b533-205e5198b9d3",
+                "leftValue": "={{ $json.bin }}",
+                "rightValue": "LD",
+                "operator": {
+                  "type": "string",
+                  "operation": "notContains"
+                }
+              },
+              {
+                "id": "018adec0-1dbd-4d39-95db-00b701d227d0",
+                "leftValue": "={{ $json.bin }}",
+                "rightValue": "BG",
+                "operator": {
+                  "type": "string",
+                  "operation": "notContains"
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "looseTypeValidation": true,
+          "options": {
+            "ignoreCase": false
+          }
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.2,
+        "position": [
+          976,
+          80
+        ],
+        "id": "a0446a51-3f12-4123-8c0e-fc8148cd411f",
+        "name": "instock_or_not1"
+      },
+      {
+        "parameters": {
+          "operation": "get",
+          "dataTableId": {
+            "__rl": true,
+            "value": "ZKa8qDXvli4HN1HC",
+            "mode": "list",
+            "cachedResultName": "inv-app",
+            "cachedResultUrl": "/projects/GTQprNa3RcCSHh8s/datatables/ZKa8qDXvli4HN1HC"
+          },
+          "filters": {
+            "conditions": [
+              {
+                "keyName": "sku",
+                "keyValue": "={{ $json.sku || $json.body.sku }}"
+              }
+            ]
+          },
+          "returnAll": true
+        },
+        "type": "n8n-nodes-base.dataTable",
+        "typeVersion": 1,
+        "position": [
+          448,
+          480
+        ],
+        "id": "92a6936c-f0e9-4761-bc4a-fee26cedd93a",
+        "name": "getInv",
+        "alwaysOutputData": true,
+        "onError": "continueRegularOutput"
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "loose",
+              "version": 3
+            },
+            "conditions": [
+              {
+                "id": "02510929-1a04-45d9-941e-efe4f64d4dfe",
+                "leftValue": "={{ $json.id }}",
+                "rightValue": "",
+                "operator": {
+                  "type": "number",
+                  "operation": "exists",
+                  "singleValue": true
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "looseTypeValidation": true,
+          "options": {}
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.3,
+        "position": [
+          576,
+          480
+        ],
+        "id": "9bad702b-50e8-4f3b-be2f-9459436feb1b",
+        "name": "If1"
+      },
+      {
+        "parameters": {
+          "operation": "get",
+          "dataTableId": {
+            "__rl": true,
+            "value": "ZKa8qDXvli4HN1HC",
+            "mode": "list",
+            "cachedResultName": "inv-app",
+            "cachedResultUrl": "/projects/GTQprNa3RcCSHh8s/datatables/ZKa8qDXvli4HN1HC"
+          },
+          "filters": {
+            "conditions": [
+              {
+                "keyName": "serial_number",
+                "keyValue": "={{ $('Webhook input').item.json.body.sku}}"
+              },
+              {
+                "keyName": "serial_number",
+                "keyValue": "={{ $('Webhook input').item.json.sku }}"
+              }
+            ]
+          },
+          "returnAll": true
+        },
+        "type": "n8n-nodes-base.dataTable",
+        "typeVersion": 1,
+        "position": [
+          720,
+          656
+        ],
+        "id": "b2f04e1b-e527-494e-8bfe-1a79329b7ede",
+        "name": "getInv1",
+        "alwaysOutputData": true,
+        "onError": "continueRegularOutput"
+      },
+      {
+        "parameters": {
+          "operation": "get",
+          "dataTableId": {
+            "__rl": true,
+            "value": "ZKa8qDXvli4HN1HC",
+            "mode": "list",
+            "cachedResultName": "inv-app",
+            "cachedResultUrl": "/projects/GTQprNa3RcCSHh8s/datatables/ZKa8qDXvli4HN1HC"
+          },
+          "matchType": "allConditions",
+          "filters": {
+            "conditions": [
+              {
+                "keyName": "sku",
+                "keyValue": "={{ $json.sku }}"
+              }
+            ]
+          },
+          "returnAll": true
+        },
+        "type": "n8n-nodes-base.dataTable",
+        "typeVersion": 1,
+        "position": [
+          976,
+          560
+        ],
+        "id": "3de9ddaf-8b6e-4900-b83f-b39697825f62",
+        "name": "getInv2",
+        "alwaysOutputData": true,
+        "onError": "continueRegularOutput"
+      },
+      {
+        "parameters": {
+          "mode": "combine",
+          "fieldsToMatchString": "serial_number",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.merge",
+        "typeVersion": 3.2,
+        "position": [
+          1360,
+          624
+        ],
+        "id": "633a921b-5f39-492a-878d-17fbd4a72d7e",
+        "name": "Merge"
+      },
+      {
+        "parameters": {
+          "jsCode": "// ===== LẤY TOÀN BỘ ITEM INPUT =====\nconst data = $input.all();\n\n// ===== LỌC ITEM BIN KHÔNG CHỨA \"cd.\" (case-sensitive) =====\nconst filteredData = data.filter(item => {\n  const bin = item.json?.bin;\n  return typeof bin === 'string' && !bin.includes('cd.');\n});\n\n// ===== NẾU TOÀN BỘ INPUT ĐỀU CHỨA \"cd.\" =====\nif (data.length > 0 && filteredData.length === 0) {\n  return [\n    {\n      json: {\n        message: 'cd only',\n        count: data.length,\n      },\n    },\n  ];\n}\n\n// ✅ count = tổng số item sau khi lọc\nconst count = filteredData.length;\n\n// ===== PARSE NGÀY NHẬP =====\nconst parsedItems = filteredData.map(item => {\n  const json = item.json;\n\n  let ngayNhapKho = json['import_date'] || json['Ngày_nhập_kho'];\n  if (!ngayNhapKho) return null;\n\n  let nhapKhoDate;\n\n  if (typeof ngayNhapKho === 'string') {\n    const trimmed = ngayNhapKho.trim();\n\n    // YYYY-MM-DD\n    if (/^\\d{4}-\\d{1,2}-\\d{1,2}$/.test(trimmed)) {\n      const [y, m, d] = trimmed.split('-');\n      nhapKhoDate = new Date(+y, +m - 1, +d);\n    }\n    // DD/MM/YYYY hoặc DD/MM/YYYY HH:mm:ss\n    else if (trimmed.includes('/')) {\n      const [d, m, y] = trimmed.split(' ')[0].split('/');\n      nhapKhoDate = new Date(+y, +m - 1, +d);\n    } else {\n      return null;\n    }\n  } else {\n    nhapKhoDate = new Date(ngayNhapKho);\n  }\n\n  nhapKhoDate.setHours(0, 0, 0, 0);\n\n  return {\n    ...json,\n    nhapKhoDate,\n    serial: json['serial_number'] || json['So_Serial'] || json['Loại Serial'],\n  };\n}).filter(Boolean);\n\n// ===== TÌM NGÀY NHẬP CŨ NHẤT =====\nconst oldestDate = parsedItems.reduce(\n  (min, item) => (item.nhapKhoDate < min ? item.nhapKhoDate : min),\n  parsedItems[0].nhapKhoDate\n);\n\n// ===== TÍNH DIFFDAYS =====\nconst processedData = parsedItems.map(item => {\n  const diffMs = item.nhapKhoDate - oldestDate;\n  const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));\n\n  return {\n    ...item,\n    diffMs,\n    diffDays,\n    count,\n    ngayNhapKhoFormatted: item.nhapKhoDate.toISOString().split('T')[0],\n  };\n});\n\n// ===== SORT FIFO =====\nprocessedData.sort((a, b) => a.diffDays - b.diffDays);\n\n// ===== RETURN =====\nreturn processedData.map(item => ({\n  json: item,\n}));\n"
+        },
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          1104,
+          560
+        ],
+        "id": "9487bded-b353-411e-8e89-9ba8eb6bdee8",
+        "name": "get_oldest_sku1"
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": false,
+              "leftValue": "",
+              "typeValidation": "loose",
+              "version": 3
+            },
+            "conditions": [
+              {
+                "id": "600c8e69-dbc6-4aa6-83e6-53da93012715",
+                "leftValue": "={{ $json.sku }}",
+                "rightValue": "",
+                "operator": {
+                  "type": "string",
+                  "operation": "exists",
+                  "singleValue": true
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "looseTypeValidation": true,
+          "options": {
+            "ignoreCase": true
+          }
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.3,
+        "position": [
+          848,
+          656
+        ],
+        "id": "4577fcec-380d-4c50-b8e3-90bc6b6e4bec",
+        "name": "If2"
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "07ab35ae-d140-4181-9827-ca21285fc6ad",
+                "name": "=message",
+                "value": "=Sản phẩm bạn tìm không có tồn kho, kiểm tra lại nhé.",
+                "type": "string"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          976,
+          720
+        ],
+        "id": "4dce2230-e028-4e01-b01d-06f00fe32462",
+        "name": "oosMessage1"
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": false,
+              "leftValue": "",
+              "typeValidation": "loose",
+              "version": 3
+            },
+            "conditions": [
+              {
+                "id": "3ce0fe2d-4ae7-40a1-8769-72b8d006035b",
+                "leftValue": "={{ $json.diffDays }}",
+                "rightValue": 30,
+                "operator": {
+                  "type": "number",
+                  "operation": "lt"
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "looseTypeValidation": true,
+          "options": {
+            "ignoreCase": true
+          }
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.3,
+        "position": [
+          1488,
+          624
+        ],
+        "id": "a5bef37c-770c-4cf3-8ac3-5ae0b8a2da68",
+        "name": "If3"
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "260cf7c9-95a8-42aa-92cf-aef9fd53c43d",
+                "name": "fifo",
+                "value": "yes",
+                "type": "string"
+              }
+            ]
+          },
+          "includeOtherFields": true,
+          "options": {}
+        },
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          1616,
+          544
+        ],
+        "id": "3ad3bb23-8642-4e35-a196-64e709b2d1b8",
+        "name": "fifo_yes"
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "7448f198-fe5d-437d-be36-d03d0aac966b",
+                "name": "fifo",
+                "value": "no",
+                "type": "string"
+              }
+            ]
+          },
+          "includeOtherFields": true,
+          "options": {}
+        },
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          1616,
+          704
+        ],
+        "id": "86b72236-5f75-49df-a694-f8b285d12db8",
+        "name": "fifo_no"
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 3
+            },
+            "conditions": [
+              {
+                "id": "32b2914b-b3d8-4803-acf4-06c672decea1",
+                "leftValue": "={{ $json.message }}",
+                "rightValue": "",
+                "operator": {
+                  "type": "string",
+                  "operation": "exists",
+                  "singleValue": true
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.3,
+        "position": [
+          1232,
+          560
+        ],
+        "id": "14b14ab4-07f4-4995-9266-8ad34914ced4",
+        "name": "If"
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "fe0c45e4-737e-4526-abd7-6ec8a4b07236",
+                "name": "message",
+                "value": "=Sản phẩm {{ $('getInv2').first().json.sku }} {{ $('getInv2').first().json.sku_name }} chỉ có hàng demo, không có hàng bán.",
+                "type": "string"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          1360,
+          480
+        ],
+        "id": "756f1f64-42aa-4d40-82d3-7eb5cdfe1aab",
+        "name": "cdOnlyMess1"
+      }
+    ],
+    "connections": {
+      "instock_or_not": {
+        "main": [
+          [
+            {
+              "node": "isSerial",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "oosMessage",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "get_oldest_sku": {
+        "main": [
+          [
+            {
+              "node": "Limit1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "isSerial": {
+        "main": [
+          [
+            {
+              "node": "instock_or_not1",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "Limit",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Limit": {
+        "main": [
+          [
+            {
+              "node": "notSerial",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Webhook input": {
+        "main": [
+          [
+            {
+              "node": "getInv",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "instock_or_not1": {
+        "main": [
+          [
+            {
+              "node": "get_oldest_sku",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "cdOnlyMess",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "getInv": {
+        "main": [
+          [
+            {
+              "node": "If1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "If1": {
+        "main": [
+          [
+            {
+              "node": "instock_or_not",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "getInv1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "getInv1": {
+        "main": [
+          [
+            {
+              "node": "If2",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "getInv2": {
+        "main": [
+          [
+            {
+              "node": "get_oldest_sku1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Merge": {
+        "main": [
+          [
+            {
+              "node": "If3",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "get_oldest_sku1": {
+        "main": [
+          [
+            {
+              "node": "If",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "If2": {
+        "main": [
+          [
+            {
+              "node": "Merge",
+              "type": "main",
+              "index": 1
+            },
+            {
+              "node": "getInv2",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "oosMessage1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "If3": {
+        "main": [
+          [
+            {
+              "node": "fifo_yes",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "fifo_no",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "If": {
+        "main": [
+          [
+            {
+              "node": "cdOnlyMess1",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "Merge",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "authors": "Hoang Nguyen",
+    "name": "Version 8ed2b8ca",
+    "description": "",
+    "autosaved": true
+  },
+  "activeVersionId": "8ed2b8ca-60e8-4da6-ae23-92cffdecfa4b",
+  "connections": {
+    "instock_or_not": {
+      "main": [
+        [
+          {
+            "node": "isSerial",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "oosMessage",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "get_oldest_sku": {
+      "main": [
+        [
+          {
+            "node": "Limit1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "isSerial": {
+      "main": [
+        [
+          {
+            "node": "instock_or_not1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Limit",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit": {
+      "main": [
+        [
+          {
+            "node": "notSerial",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook input": {
+      "main": [
+        [
+          {
+            "node": "getInv",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "instock_or_not1": {
+      "main": [
+        [
+          {
+            "node": "get_oldest_sku",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "cdOnlyMess",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "getInv": {
+      "main": [
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "instock_or_not",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "getInv1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "getInv1": {
+      "main": [
+        [
+          {
+            "node": "If2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "getInv2": {
+      "main": [
+        [
+          {
+            "node": "get_oldest_sku1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "If3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "get_oldest_sku1": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If2": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          },
+          {
+            "node": "getInv2",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "oosMessage1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If3": {
+      "main": [
+        [
+          {
+            "node": "fifo_yes",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "fifo_no",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "cdOnlyMess1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2026-02-23T02:22:05.567Z",
+  "id": "8T9Xr9W3Wmb0a0NI",
+  "isArchived": false,
+  "meta": null,
+  "name": "sub - app/seatalk-fifo-flow",
+  "nodes": [
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "f2ff05d5-8fc3-456a-821d-3a106fb32b85",
+              "leftValue": "={{ $json.sku }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {
+          "ignoreCase": false
+        }
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        720,
+        288
+      ],
+      "id": "3b013983-5146-4c12-a832-c0ac96feb38a",
+      "name": "instock_or_not"
+    },
+    {
+      "parameters": {
+        "jsCode": "// ===== LẤY TOÀN BỘ ITEM INPUT =====\nconst data = $input.all();\n\n// ✅ count = tổng số item input\nconst count = data.length;\n\n// Thời gian hiện tại (chỉ lấy ngày)\nconst now = new Date();\nnow.setHours(0, 0, 0, 0);\n\n// ===== XỬ LÝ FIFO =====\nconst processedData = data.map(item => {\n  const json = item.json;\n\n  let ngayNhapKho = json['import_date'] || json['Ngày_nhập_kho'];\n  if (!ngayNhapKho) return null;\n\n  let nhapKhoDate;\n\n  if (typeof ngayNhapKho === 'string') {\n    const trimmed = ngayNhapKho.trim();\n\n    // YYYY-MM-DD\n    if (/^\\d{4}-\\d{1,2}-\\d{1,2}$/.test(trimmed)) {\n      const [y, m, d] = trimmed.split('-');\n      nhapKhoDate = new Date(+y, +m - 1, +d);\n    }\n    // DD/MM/YYYY hoặc DD/MM/YYYY HH:mm:ss\n    else if (trimmed.includes('/')) {\n      const [d, m, y] = trimmed.split(' ')[0].split('/');\n      nhapKhoDate = new Date(+y, +m - 1, +d);\n    } else {\n      return null;\n    }\n  } else {\n    nhapKhoDate = new Date(ngayNhapKho);\n  }\n\n  nhapKhoDate.setHours(0, 0, 0, 0);\n\n  const diffMs = now - nhapKhoDate;\n  const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));\n\n  return {\n    ...json,\n    diffMs,\n    diffDays,\n    count, // ✅ tổng số item input\n    ngayNhapKhoFormatted: nhapKhoDate.toISOString().split('T')[0],\n    serial: json['serial_number'] || json['So_Serial'] || json['Loại Serial'],\n  };\n}).filter(item => item && !isNaN(item.diffMs));\n\n// ===== SORT FIFO (lâu nhất trước) =====\nprocessedData.sort((a, b) => b.diffMs - a.diffMs);\n\n// ===== RETURN =====\nreturn processedData.map(item => ({\n  json: item\n}));\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1104,
+        144
+      ],
+      "id": "56eb2d02-afb4-42e6-b1fd-628cb04fb8a5",
+      "name": "get_oldest_sku"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "284df640-cdc6-4429-ba47-dd2f1ce01881",
+              "name": "=sku_{{ $itemIndex }}",
+              "value": "=SKU: {{ $json.sku }} - Tổng tồn: {{ $json.count }}\nTên: {{ $json.sku_name }}\nSerial: {{ $json.serial_number }}\nMã BIN: {{ $json.bin }}\nZone: {{ $json.zone }}\nNgày nhập: {{ DateTime.fromJSDate(new Date($json['import_date'])).toFormat(\"dd-MM-yyyy\") }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        0,
+        0
+      ],
+      "id": "3882fee4-23da-4751-a6a6-5c88b5791d25",
+      "name": "get_needed_fields"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "eba1c8a0-3872-4bcb-afbe-51e4443341dc",
+              "leftValue": "={{ $json.serial_number }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {
+          "ignoreCase": false
+        }
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        848,
+        176
+      ],
+      "id": "824fc4e7-6ae8-4d51-a8f2-fbeb85deb237",
+      "name": "isSerial"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        976,
+        272
+      ],
+      "id": "f616bf92-c904-4722-b2e2-f29efca42a11",
+      "name": "Limit"
+    },
+    {
+      "parameters": {
+        "inputSource": "passthrough"
+      },
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        256,
+        480
+      ],
+      "id": "4eb4fb81-2b79-42e5-af76-bec57195616c",
+      "name": "Webhook input"
+    },
+    {
+      "parameters": {
+        "maxItems": "={{ Number($('Webhook input').first().json.body.qty || 1) + 1 }}"
+      },
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        1232,
+        144
+      ],
+      "id": "e1e393ca-77a5-4fde-bbf6-1fdd1fa6f223",
+      "name": "Limit1"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "07ab35ae-d140-4181-9827-ca21285fc6ad",
+              "name": "oos_message",
+              "value": "=Sản phẩm {{ $('Webhook input').item.json.body.sku }} không có tồn kho, kiểm tra lại nhé.",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        848,
+        384
+      ],
+      "id": "d54c5cbc-1ff0-478e-b57a-8d3cc1185c7d",
+      "name": "oosMessage"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "8ba21f34-6f13-4224-9f89-268a8172c6b4",
+              "name": "message",
+              "value": "=Sản phẩm {{ $('Webhook input').item.json.body.sku }} {{ $json.sku_name }} không quản lý bằng serial.\nBIN: {{ $json.bin }}\nZone: {{ $json.zone }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1104,
+        272
+      ],
+      "id": "fb39641c-a960-4daf-9ea6-e1650506212d",
+      "name": "notSerial"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "fe0c45e4-737e-4526-abd7-6ec8a4b07236",
+              "name": "message",
+              "value": "=Sản phẩm {{ $json.sku }} {{ $json.sku_name }} chỉ có hàng demo, không có hàng bán.",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1104,
+        0
+      ],
+      "id": "44cb7fb1-ab58-47d0-9ebd-60ddfde9094c",
+      "name": "cdOnlyMess"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "f2ff05d5-8fc3-456a-821d-3a106fb32b85",
+              "leftValue": "={{ $json.sku }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "f818e79d-956e-4806-9021-68f5ecd2da0c",
+              "leftValue": "={{ $json.bin }}",
+              "rightValue": "cd.",
+              "operator": {
+                "type": "string",
+                "operation": "notContains"
+              }
+            },
+            {
+              "id": "122678d5-667d-4c80-b599-befe3190f00f",
+              "leftValue": "={{ $json.bin }}",
+              "rightValue": "XL",
+              "operator": {
+                "type": "string",
+                "operation": "notContains"
+              }
+            },
+            {
+              "id": "f479b29c-bb00-4ba5-b533-205e5198b9d3",
+              "leftValue": "={{ $json.bin }}",
+              "rightValue": "LD",
+              "operator": {
+                "type": "string",
+                "operation": "notContains"
+              }
+            },
+            {
+              "id": "018adec0-1dbd-4d39-95db-00b701d227d0",
+              "leftValue": "={{ $json.bin }}",
+              "rightValue": "BG",
+              "operator": {
+                "type": "string",
+                "operation": "notContains"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {
+          "ignoreCase": false
+        }
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        976,
+        80
+      ],
+      "id": "a0446a51-3f12-4123-8c0e-fc8148cd411f",
+      "name": "instock_or_not1"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "dataTableId": {
+          "__rl": true,
+          "value": "ZKa8qDXvli4HN1HC",
+          "mode": "list",
+          "cachedResultName": "inv-app",
+          "cachedResultUrl": "/projects/GTQprNa3RcCSHh8s/datatables/ZKa8qDXvli4HN1HC"
+        },
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "sku",
+              "keyValue": "={{ $json.sku || $json.body.sku }}"
+            }
+          ]
+        },
+        "returnAll": true
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        448,
+        480
+      ],
+      "id": "92a6936c-f0e9-4761-bc4a-fee26cedd93a",
+      "name": "getInv",
+      "alwaysOutputData": true,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "02510929-1a04-45d9-941e-efe4f64d4dfe",
+              "leftValue": "={{ $json.id }}",
+              "rightValue": "",
+              "operator": {
+                "type": "number",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        576,
+        480
+      ],
+      "id": "9bad702b-50e8-4f3b-be2f-9459436feb1b",
+      "name": "If1"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "dataTableId": {
+          "__rl": true,
+          "value": "ZKa8qDXvli4HN1HC",
+          "mode": "list",
+          "cachedResultName": "inv-app",
+          "cachedResultUrl": "/projects/GTQprNa3RcCSHh8s/datatables/ZKa8qDXvli4HN1HC"
+        },
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "serial_number",
+              "keyValue": "={{ $('Webhook input').item.json.body.sku}}"
+            },
+            {
+              "keyName": "serial_number",
+              "keyValue": "={{ $('Webhook input').item.json.sku }}"
+            }
+          ]
+        },
+        "returnAll": true
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        720,
+        656
+      ],
+      "id": "b2f04e1b-e527-494e-8bfe-1a79329b7ede",
+      "name": "getInv1",
+      "alwaysOutputData": true,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "dataTableId": {
+          "__rl": true,
+          "value": "ZKa8qDXvli4HN1HC",
+          "mode": "list",
+          "cachedResultName": "inv-app",
+          "cachedResultUrl": "/projects/GTQprNa3RcCSHh8s/datatables/ZKa8qDXvli4HN1HC"
+        },
+        "matchType": "allConditions",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "sku",
+              "keyValue": "={{ $json.sku }}"
+            }
+          ]
+        },
+        "returnAll": true
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        976,
+        560
+      ],
+      "id": "3de9ddaf-8b6e-4900-b83f-b39697825f62",
+      "name": "getInv2",
+      "alwaysOutputData": true,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "fieldsToMatchString": "serial_number",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        1360,
+        624
+      ],
+      "id": "633a921b-5f39-492a-878d-17fbd4a72d7e",
+      "name": "Merge"
+    },
+    {
+      "parameters": {
+        "jsCode": "// ===== LẤY TOÀN BỘ ITEM INPUT =====\nconst data = $input.all();\n\n// ===== LỌC ITEM BIN KHÔNG CHỨA \"cd.\" (case-sensitive) =====\nconst filteredData = data.filter(item => {\n  const bin = item.json?.bin;\n  return typeof bin === 'string' && !bin.includes('cd.');\n});\n\n// ===== NẾU TOÀN BỘ INPUT ĐỀU CHỨA \"cd.\" =====\nif (data.length > 0 && filteredData.length === 0) {\n  return [\n    {\n      json: {\n        message: 'cd only',\n        count: data.length,\n      },\n    },\n  ];\n}\n\n// ✅ count = tổng số item sau khi lọc\nconst count = filteredData.length;\n\n// ===== PARSE NGÀY NHẬP =====\nconst parsedItems = filteredData.map(item => {\n  const json = item.json;\n\n  let ngayNhapKho = json['import_date'] || json['Ngày_nhập_kho'];\n  if (!ngayNhapKho) return null;\n\n  let nhapKhoDate;\n\n  if (typeof ngayNhapKho === 'string') {\n    const trimmed = ngayNhapKho.trim();\n\n    // YYYY-MM-DD\n    if (/^\\d{4}-\\d{1,2}-\\d{1,2}$/.test(trimmed)) {\n      const [y, m, d] = trimmed.split('-');\n      nhapKhoDate = new Date(+y, +m - 1, +d);\n    }\n    // DD/MM/YYYY hoặc DD/MM/YYYY HH:mm:ss\n    else if (trimmed.includes('/')) {\n      const [d, m, y] = trimmed.split(' ')[0].split('/');\n      nhapKhoDate = new Date(+y, +m - 1, +d);\n    } else {\n      return null;\n    }\n  } else {\n    nhapKhoDate = new Date(ngayNhapKho);\n  }\n\n  nhapKhoDate.setHours(0, 0, 0, 0);\n\n  return {\n    ...json,\n    nhapKhoDate,\n    serial: json['serial_number'] || json['So_Serial'] || json['Loại Serial'],\n  };\n}).filter(Boolean);\n\n// ===== TÌM NGÀY NHẬP CŨ NHẤT =====\nconst oldestDate = parsedItems.reduce(\n  (min, item) => (item.nhapKhoDate < min ? item.nhapKhoDate : min),\n  parsedItems[0].nhapKhoDate\n);\n\n// ===== TÍNH DIFFDAYS =====\nconst processedData = parsedItems.map(item => {\n  const diffMs = item.nhapKhoDate - oldestDate;\n  const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));\n\n  return {\n    ...item,\n    diffMs,\n    diffDays,\n    count,\n    ngayNhapKhoFormatted: item.nhapKhoDate.toISOString().split('T')[0],\n  };\n});\n\n// ===== SORT FIFO =====\nprocessedData.sort((a, b) => a.diffDays - b.diffDays);\n\n// ===== RETURN =====\nreturn processedData.map(item => ({\n  json: item,\n}));\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1104,
+        560
+      ],
+      "id": "9487bded-b353-411e-8e89-9ba8eb6bdee8",
+      "name": "get_oldest_sku1"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": false,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "600c8e69-dbc6-4aa6-83e6-53da93012715",
+              "leftValue": "={{ $json.sku }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {
+          "ignoreCase": true
+        }
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        848,
+        656
+      ],
+      "id": "4577fcec-380d-4c50-b8e3-90bc6b6e4bec",
+      "name": "If2"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "07ab35ae-d140-4181-9827-ca21285fc6ad",
+              "name": "=message",
+              "value": "=Sản phẩm bạn tìm không có tồn kho, kiểm tra lại nhé.",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        976,
+        720
+      ],
+      "id": "4dce2230-e028-4e01-b01d-06f00fe32462",
+      "name": "oosMessage1"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": false,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "3ce0fe2d-4ae7-40a1-8769-72b8d006035b",
+              "leftValue": "={{ $json.diffDays }}",
+              "rightValue": 30,
+              "operator": {
+                "type": "number",
+                "operation": "lt"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {
+          "ignoreCase": true
+        }
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        1488,
+        624
+      ],
+      "id": "a5bef37c-770c-4cf3-8ac3-5ae0b8a2da68",
+      "name": "If3"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "260cf7c9-95a8-42aa-92cf-aef9fd53c43d",
+              "name": "fifo",
+              "value": "yes",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1616,
+        544
+      ],
+      "id": "3ad3bb23-8642-4e35-a196-64e709b2d1b8",
+      "name": "fifo_yes"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "7448f198-fe5d-437d-be36-d03d0aac966b",
+              "name": "fifo",
+              "value": "no",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1616,
+        704
+      ],
+      "id": "86b72236-5f75-49df-a694-f8b285d12db8",
+      "name": "fifo_no"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "32b2914b-b3d8-4803-acf4-06c672decea1",
+              "leftValue": "={{ $json.message }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        1232,
+        560
+      ],
+      "id": "14b14ab4-07f4-4995-9266-8ad34914ced4",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "fe0c45e4-737e-4526-abd7-6ec8a4b07236",
+              "name": "message",
+              "value": "=Sản phẩm {{ $('getInv2').first().json.sku }} {{ $('getInv2').first().json.sku_name }} chỉ có hàng demo, không có hàng bán.",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1360,
+        480
+      ],
+      "id": "756f1f64-42aa-4d40-82d3-7eb5cdfe1aab",
+      "name": "cdOnlyMess1"
+    }
+  ],
+  "pinData": {
+    "Webhook input": [
+      {
+        "json": {
+          "headers": {
+            "host": "n8n.hoanghochoi.com",
+            "user-agent": "Dart/3.10 (dart:io)",
+            "content-length": "110",
+            "accept-encoding": "gzip, br",
+            "cdn-loop": "cloudflare; loops=1",
+            "cf-connecting-ip": "115.77.190.147",
+            "cf-ipcountry": "VN",
+            "cf-ray": "9d24ac432d38fde3-SIN",
+            "cf-visitor": "{\"scheme\":\"https\"}",
+            "cf-warp-tag-id": "41ae2a3a-7aaa-4fea-b4cd-cae9ed852a3f",
+            "connection": "keep-alive",
+            "content-type": "application/json",
+            "x-forwarded-for": "115.77.190.147",
+            "x-forwarded-proto": "https"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "user_email": "hoang.nv1@phongvu-mna.vn",
+            "sku": "200801366",
+            "qty": "5",
+            "timestamp": "2026-02-23T13:30:08.146359"
+          },
+          "webhookUrl": "https://n8n.hoanghochoi.com/webhook/pva-chat",
+          "executionMode": "production"
+        },
+        "pairedItem": {
+          "item": 0
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false,
+    "timeSavedMode": "fixed",
+    "errorWorkflow": "tUGf8pqhOC0yFiUP",
+    "callerPolicy": "workflowsFromSameOwner"
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-02-23T02:22:05.567Z",
+      "createdAt": "2026-02-23T02:22:05.567Z",
+      "role": "workflow:owner",
+      "workflowId": "8T9Xr9W3Wmb0a0NI",
+      "projectId": "GTQprNa3RcCSHh8s"
+    }
+  ],
+  "staticData": null,
+  "tags": [
+    {
+      "updatedAt": "2025-12-17T02:41:50.389Z",
+      "createdAt": "2025-12-17T02:41:50.389Z",
+      "id": "tf48o2CcAcmF6X41",
+      "name": "Seatalk app"
+    },
+    {
+      "updatedAt": "2026-02-22T19:25:48.964Z",
+      "createdAt": "2026-02-22T19:25:48.964Z",
+      "id": "eafg8h8piujdlV6P",
+      "name": "pv-opshub-app"
+    }
+  ],
+  "triggerCount": 0,
+  "updatedAt": "2026-02-23T07:47:24.234Z",
+  "versionId": "8ed2b8ca-60e8-4da6-ae23-92cffdecfa4b"
+}
