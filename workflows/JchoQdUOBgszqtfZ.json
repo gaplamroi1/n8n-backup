@@ -1,0 +1,1490 @@
+{
+  "active": false,
+  "activeVersion": null,
+  "activeVersionId": null,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "app_id",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "get_app_info": {
+      "main": [
+        []
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "get_name",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        []
+      ]
+    },
+    "get_name": {
+      "main": [
+        [
+          {
+            "node": "check_log",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "group_with_button": {
+      "main": [
+        [
+          {
+            "node": "get_employee",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "get_employee": {
+      "main": [
+        [
+          {
+            "node": "insert_log",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "check_log": {
+      "main": [
+        [
+          {
+            "node": "check_done_test",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "report_to_group": {
+      "main": [
+        [
+          {
+            "node": "save_self_report",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "check_log_not_done": {
+      "main": [
+        [
+          {
+            "node": "all_done",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "app_id": {
+      "main": [
+        [
+          {
+            "node": "get_app_info",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "join_name": {
+      "main": [
+        [
+          {
+            "node": "msg_not_done",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "remind_hourly": {
+      "main": [
+        [
+          {
+            "node": "app_id",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "get_daily_log",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "all_done": {
+      "main": [
+        [
+          {
+            "node": "join_name",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "msg_all_done",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "msg_not_done": {
+      "main": [
+        [
+          {
+            "node": "send_msgs",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "msg_all_done": {
+      "main": [
+        [
+          {
+            "node": "insert_log_all",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "send_msgs",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "check_done_test": {
+      "main": [
+        [
+          {
+            "node": "report_to_group",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "get_daily_log": {
+      "main": [
+        [
+          {
+            "node": "all_done_or_not",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "all_done_or_not": {
+      "main": [
+        [
+          {
+            "node": "check_log_not_done",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "send_msgs": {
+      "main": [
+        []
+      ]
+    },
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "group_with_button",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "app_id",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2026-01-05T05:46:09.899Z",
+  "id": "JchoQdUOBgszqtfZ",
+  "isArchived": true,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "cp62-opshub-main",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "cp62-ops-hub",
+        "responseMode": "lastNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -1072,
+        -432
+      ],
+      "id": "ea5bc0b6-f434-4d55-ab62-fef62bb8c43b",
+      "name": "Webhook",
+      "webhookId": "8fc5db22-9896-45dd-aaee-d79932c40ec3"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "dataTableId": {
+          "__rl": true,
+          "value": "UqshnBVWLtUb8wYq",
+          "mode": "list",
+          "cachedResultName": "seatalk-app-access-token",
+          "cachedResultUrl": "/projects/WAqDK79b9owhbfuS/datatables/UqshnBVWLtUb8wYq"
+        },
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "app_id",
+              "keyValue": "={{ $json.app_id }}"
+            }
+          ]
+        },
+        "returnAll": true
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        -592,
+        -688
+      ],
+      "id": "83d642ed-3b33-40c7-adcf-88ac08a96d27",
+      "name": "get_app_info"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.body.event.value }}",
+                    "rightValue": "done_test",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "781b21d1-cdd8-4a7e-ae00-250000752587"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "test_report"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "e4511799-8669-469f-b895-f6854c0c03d5",
+                    "leftValue": "",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.4,
+      "position": [
+        -1072,
+        -112
+      ],
+      "id": "2789b917-1f9b-421a-a4bc-614b4613b201",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://openapi.seatalk.io/messaging/v2/single_chat",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $('get_app_info').first().json.app_access_token }}"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"employee_code\": \"{{ $('Webhook').item.json.body.event.employee_code }}\",\n  \"message\": {\n    \"tag\": \"interactive_message\",\n    \"interactive_message\": {\n      \"elements\": [\n        {\n          \"element_type\": \"title\",\n          \"title\": {\n            \"text\": \"SKU: {{ $json.sku }}\"\n          }\n        },\n        {\n          \"element_type\": \"description\",\n          \"description\": {\n            \"format\": 1,\n            \"text\": \"**Tên:** {{ $json.sku_name }}\\n**Serial cần lấy:** {{ $json.serial_number }}\\n**Vị trí:** {{ $json.bin }}\\n**Loại BIN:** {{ $json.zone }}\\n**Ngày nhập kho:** {{ DateTime.fromJSDate(new Date($json['import_date'])).toFormat(\"dd-MM-yyyy\") }}\"\n          }\n        },\n        {\n          \"element_type\": \"button\",\n          \"button\": {\n            \"button_type\": \"callback\",\n            \"text\": \"Xuất kho\",\n            \"value\": \"exported\"\n         }\n        },\n        {\n          \"element_type\": \"button\",\n          \"button\": {\n            \"button_type\": \"callback\",\n            \"text\": \"Sắp xếp\",\n            \"value\": \"sorted\"\n         }\n        }\n      ]\n    }\n  },\n  \"usable_platform\": \"all\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        -96,
+        -688
+      ],
+      "id": "25bf1887-a8bd-479c-96e7-7cb79cb66042",
+      "name": "with_button"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\n    \"seatalk_challenge\": \"{{ $json.body.event.seatalk_challenge }}\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        -336,
+        -688
+      ],
+      "id": "600682d1-880e-47aa-a8e0-74450dab7e07",
+      "name": "Set callback url"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://openapi.seatalk.io/messaging/v2/group_chat",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $('get_app_info').first().json.app_access_token }}"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"group_id\":\"NjExMDk1NTM4NDYy\",\n    \"message\":{\n        \"tag\":\"interactive_message\",\n        \"interactive_message\":{\n            \"elements\":[\n                {\n                    \"element_type\":\"title\",\n                    \"title\":{\n                        \"text\":\"LÀM BÀI TEST NGÀY {{ DateTime.fromISO($json.timestamp).toFormat('dd/MM/yyyy') }}\"\n                    }\n                },\n                {\n                    \"element_type\":\"description\",\n                    \"description\":{\n                        \"format\": 1,\n                        \"text\":\"Bấm Làm Bài để truy cập link làm bài. Sau khi làm xong bấm Hoàn Thành để ghi nhận báo cáo\"\n                    }\n                },\n                {\n                    \"element_type\": \"button\",\n                    \"button\": {\n                        \"button_type\": \"redirect\",\n                        \"text\": \"Làm Bài\",\n                        \"desktop_link\": {\n                            \"type\": \"web\",\n                            \"path\": \"https://daotao.phongvu.vn/my-examination\"\n                        },\n                        \"mobile_link\": {\n                            \"type\": \"web\",\n                            \"path\": \"https://daotao.phongvu.vn/my-examination\"\n                        }\n                    }\n                },\n                {\n                    \"element_type\":\"button\",\n                    \"button\":{\n                        \"button_type\":\"callback\",\n                        \"text\":\"Hoàn Thành\",\n                        \"value\":\"done_test\"\n                    }\n                }\n            ]\n        }\n    }\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        -464,
+        -432
+      ],
+      "id": "217d5f19-7145-435d-b0ff-99062ed6c0da",
+      "name": "group_with_button"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "dataTableId": {
+          "__rl": true,
+          "value": "CnPQNqKpl2R1Jota",
+          "mode": "list",
+          "cachedResultName": "cp62_employee",
+          "cachedResultUrl": "/projects/WAqDK79b9owhbfuS/datatables/CnPQNqKpl2R1Jota"
+        },
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "email",
+              "keyValue": "={{ $json.body.event.email }}"
+            }
+          ]
+        },
+        "returnAll": true
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        -768,
+        -112
+      ],
+      "id": "1bd82036-1c64-4ffd-be74-c92ae53df958",
+      "name": "get_name"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "dataTableId": {
+          "__rl": true,
+          "value": "CnPQNqKpl2R1Jota",
+          "mode": "list",
+          "cachedResultName": "cp62_employee",
+          "cachedResultUrl": "/projects/WAqDK79b9owhbfuS/datatables/CnPQNqKpl2R1Jota"
+        }
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        -320,
+        -432
+      ],
+      "id": "0451598e-7c7e-4e5c-81da-908eb40fe679",
+      "name": "get_employee"
+    },
+    {
+      "parameters": {
+        "operation": "upsert",
+        "dataTableId": {
+          "__rl": true,
+          "value": "lPZJ31Yt1bAAIUGQ",
+          "mode": "list",
+          "cachedResultName": "training-logs-daily",
+          "cachedResultUrl": "/projects/WAqDK79b9owhbfuS/datatables/lPZJ31Yt1bAAIUGQ"
+        },
+        "matchType": "allConditions",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "date",
+              "keyValue": "={{ DateTime.fromISO($('Schedule Trigger').item.json.timestamp).toFormat('dd/MM/yyyy') }}"
+            },
+            {
+              "keyName": "email",
+              "keyValue": "={{ $json.email }}"
+            }
+          ]
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "email": "={{ $json.email }}",
+            "fullName": "={{ $json.name }}",
+            "date": "={{ DateTime.fromISO($('Schedule Trigger').item.json.timestamp).toFormat('dd/MM/yyyy') }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "date",
+              "displayName": "date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "email",
+              "displayName": "email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "fullName",
+              "displayName": "fullName",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "selfReport",
+              "displayName": "selfReport",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "trainingTeamReport",
+              "displayName": "trainingTeamReport",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        -160,
+        -432
+      ],
+      "id": "00a1986d-a564-4670-855b-7efa42cd156e",
+      "name": "insert_log"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "dataTableId": {
+          "__rl": true,
+          "value": "lPZJ31Yt1bAAIUGQ",
+          "mode": "list",
+          "cachedResultName": "training-logs-daily",
+          "cachedResultUrl": "/projects/WAqDK79b9owhbfuS/datatables/lPZJ31Yt1bAAIUGQ"
+        },
+        "matchType": "allConditions",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "date",
+              "keyValue": "={{ \n  DateTime\n    .fromSeconds($('Webhook').item.json.body.timestamp, { zone: 'Asia/Ho_Chi_Minh' })\n    .toFormat('dd/MM/yyyy') \n}}"
+            },
+            {
+              "keyName": "email",
+              "keyValue": "={{ $json.email }}"
+            }
+          ]
+        },
+        "returnAll": true
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        -608,
+        -112
+      ],
+      "id": "ae522985-6282-4d91-a392-acc2f69ac9bc",
+      "name": "check_log"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "dataTableId": {
+          "__rl": true,
+          "value": "lPZJ31Yt1bAAIUGQ",
+          "mode": "list",
+          "cachedResultName": "training-logs-daily",
+          "cachedResultUrl": "/projects/WAqDK79b9owhbfuS/datatables/lPZJ31Yt1bAAIUGQ"
+        },
+        "matchType": "allConditions",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "date",
+              "keyValue": "={{ DateTime.fromISO($('remind_hourly').item.json.timestamp).format('dd/MM/yyyy') }}"
+            },
+            {
+              "keyName": "selfReport",
+              "condition": "neq",
+              "keyValue": "done_test"
+            }
+          ]
+        },
+        "returnAll": true
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        528,
+        -432
+      ],
+      "id": "35eb0d02-93c6-4db5-ae4b-2da35900084b",
+      "name": "check_log_not_done",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://openapi.seatalk.io/messaging/v2/group_chat",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $('get_app_info').first().json.app_access_token }}"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"group_id\":\"{{ $('Webhook').item.json.body.event.group_id }}\",\n    \"message\":{\n        \"tag\":\"text\",\n        \"text\":{\n            \"format\":1,\n            \"content\":\"{{ $json.fullName }} đã hoàn thành bài test ngày {{ DateTime.fromSeconds(Number($('Webhook').item.json.body.timestamp)).toFormat('dd/MM/yyyy') }}.\"\n        }\n    }\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        -320,
+        -112
+      ],
+      "id": "d1d88393-a025-4ff9-9448-0354754f1d3a",
+      "name": "report_to_group"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "3de90b61-c36c-47c7-bfa1-ee1d3bc9eaf7",
+              "name": "app_id",
+              "value": "MTk5MzA1OTkxODcw",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -768,
+        -688
+      ],
+      "id": "4cd54f99-58e6-4c5a-8eac-49a0a7300f16",
+      "name": "app_id"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Lấy toàn bộ item input\nconst items = $input.all();\n\n// Tạo object kết quả\nconst result = {};\n\n// Gán name0, name1, name2,...\nitems.forEach((item, index) => {\n  if (item.json.fullName) {\n    result[`name${index}`] = item.json.fullName;\n  }\n});\n\n// Trả ra 1 item duy nhất\nreturn [\n  {\n    json: result\n  }\n];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        816,
+        -512
+      ],
+      "id": "c14ad7f2-b293-4813-b014-746a8db874d4",
+      "name": "join_name"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "=0 14-17 * * *"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        96,
+        -432
+      ],
+      "id": "5c691cbb-16e2-40f1-9ca5-49cba1f00538",
+      "name": "remind_hourly"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1waW1SoxqlJObMQljdV2JzJPFUgckeBrLLsZOYMNo0Ow",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1517902832,
+          "mode": "list",
+          "cachedResultName": "CẦN CÂU DEAL CÁ NHÂN",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1waW1SoxqlJObMQljdV2JzJPFUgckeBrLLsZOYMNo0Ow/edit#gid=1517902832"
+        },
+        "options": {
+          "dataLocationOnSheet": {
+            "values": {
+              "rangeDefinition": "specifyRange",
+              "headerRow": 2,
+              "firstDataRow": 3
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        240,
+        -32
+      ],
+      "id": "087a67af-6f54-45ea-a4b6-10142f428ec5",
+      "name": "get_cancaudeal",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "MTh9LghqaMKPTAzs",
+          "name": "zalo-chat-bot-hoang.nv1"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": false,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "bd4d044e-a8c6-445e-894d-c6a9e2357d09",
+              "leftValue": "={{ $json.email }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {
+          "ignoreCase": true
+        }
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        672,
+        -432
+      ],
+      "id": "e384aeae-c498-4fdb-869e-cc7faa132b67",
+      "name": "all_done"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "7e83f358-42e7-4782-91d7-bf06418225a3",
+              "name": "msg",
+              "value": "=Danh sách nhân sự chưa làm bài test ngày hôm nay:\\n{{ \n  Object.values($json)\n    .filter(v => typeof v === 'string')\n    .join('\\n')\n}}\\nVui lòng hoàn thành trước 17h!",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        960,
+        -512
+      ],
+      "id": "7ce000ba-6846-4b3e-9c23-20903c1cb23b",
+      "name": "msg_not_done"
+    },
+    {
+      "parameters": {
+        "content": "## Báo có bài test mới 10h mỗi ngày",
+        "height": 320,
+        "width": 848
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -832,
+        -528
+      ],
+      "typeVersion": 1,
+      "id": "af38655a-98be-4a4f-a1ec-81f3be0a0060",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "## Lấy access token",
+        "height": 192,
+        "width": 416,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -832,
+        -736
+      ],
+      "typeVersion": 1,
+      "id": "8409496c-c241-492f-8afe-3a6e15ad6dba",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "content": "## Kiểm tra mỗi 1h ai chưa làm test",
+        "height": 320,
+        "width": 1088,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        32,
+        -528
+      ],
+      "typeVersion": 1,
+      "id": "6ccfb1de-4b24-44fb-971b-9008c69d172b",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "content": "## Ghi nhận nhân sự báo cáo hoàn thành bài test & logging",
+        "height": 256,
+        "width": 848,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -832,
+        -176
+      ],
+      "typeVersion": 1,
+      "id": "6c9bfdc0-ca27-472a-9015-4c64a998a497",
+      "name": "Sticky Note3"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "dataTableId": {
+          "__rl": true,
+          "value": "lPZJ31Yt1bAAIUGQ",
+          "mode": "list",
+          "cachedResultName": "training-logs-daily",
+          "cachedResultUrl": "/projects/WAqDK79b9owhbfuS/datatables/lPZJ31Yt1bAAIUGQ"
+        },
+        "matchType": "allConditions",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "date",
+              "keyValue": "={{ DateTime.fromSeconds(Number($('Webhook').item.json.body.timestamp)).toFormat('dd/MM/yyyy') }}"
+            },
+            {
+              "keyName": "email",
+              "keyValue": "={{ $('Switch').first().json.body.event.email }}"
+            }
+          ]
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "selfReport": "={{ $('Switch').item.json.body.event.value }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "date",
+              "displayName": "date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "email",
+              "displayName": "email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "fullName",
+              "displayName": "fullName",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "selfReport",
+              "displayName": "selfReport",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "trainingTeamReport",
+              "displayName": "trainingTeamReport",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        -160,
+        -112
+      ],
+      "id": "c66f7c2f-77cc-4a48-b809-9d9b1704f8c5",
+      "name": "save_self_report"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "3329560d-59cc-4be4-a320-d4331b72ae7c",
+              "name": "msg",
+              "value": "=Toàn bộ nhân sự đã báo cáo hoàn thành bài test ngày {{ DateTime.fromISO($('remind_hourly').item.json.timestamp).format('dd/MM/yyyy')}}",
+              "type": "string"
+            },
+            {
+              "id": "c602698c-5386-41af-80db-c83e8c890c84",
+              "name": "email",
+              "value": "@all",
+              "type": "string"
+            },
+            {
+              "id": "ffd89648-3fbf-4173-b4d2-30739be094d3",
+              "name": "date",
+              "value": "={{ DateTime.fromISO($('remind_hourly').item.json.timestamp).format('dd/MM/yyyy')}}",
+              "type": "string"
+            },
+            {
+              "id": "24aaa4e8-61ef-4601-b3f0-aa410959c68b",
+              "name": "fullname",
+              "value": "All",
+              "type": "string"
+            },
+            {
+              "id": "535e3dab-ec77-4a7d-a8a9-341e827f4cc6",
+              "name": "selfReport",
+              "value": "done_test",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        816,
+        -352
+      ],
+      "id": "907a6d62-7c22-4794-be88-bae2ea5cf936",
+      "name": "msg_all_done"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "87285c52-b4e0-4a37-bf50-ba29dab9df2a",
+              "leftValue": "={{ $json.selfReport }}",
+              "rightValue": "done_test",
+              "operator": {
+                "type": "string",
+                "operation": "notEquals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        -464,
+        -112
+      ],
+      "id": "a25a1417-6429-44f8-b014-3f05535e1060",
+      "name": "check_done_test"
+    },
+    {
+      "parameters": {
+        "operation": "upsert",
+        "dataTableId": {
+          "__rl": true,
+          "value": "lPZJ31Yt1bAAIUGQ",
+          "mode": "list",
+          "cachedResultName": "training-logs-daily",
+          "cachedResultUrl": "/projects/WAqDK79b9owhbfuS/datatables/lPZJ31Yt1bAAIUGQ"
+        },
+        "matchType": "allConditions",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "email",
+              "keyValue": "={{ $json.email }}"
+            },
+            {
+              "keyName": "date",
+              "keyValue": "={{ DateTime.fromISO($('remind_hourly').item.json.timestamp).format('dd/MM/yyyy')}}"
+            }
+          ]
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "email": "={{ $json.email }}",
+            "fullName": "={{ $json.fullname }}",
+            "date": "={{ $json.date }}",
+            "selfReport": "={{ $json.selfReport }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "date",
+              "displayName": "date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "email",
+              "displayName": "email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "fullName",
+              "displayName": "fullName",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "selfReport",
+              "displayName": "selfReport",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "trainingTeamReport",
+              "displayName": "trainingTeamReport",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        960,
+        -352
+      ],
+      "id": "57314f9d-6fba-4713-a7b9-7eb03384164f",
+      "name": "insert_log_all"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "dataTableId": {
+          "__rl": true,
+          "value": "lPZJ31Yt1bAAIUGQ",
+          "mode": "list",
+          "cachedResultName": "training-logs-daily",
+          "cachedResultUrl": "/projects/WAqDK79b9owhbfuS/datatables/lPZJ31Yt1bAAIUGQ"
+        },
+        "matchType": "allConditions",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "date",
+              "keyValue": "={{ DateTime.fromISO($('remind_hourly').item.json.timestamp).format('dd/MM/yyyy')}}"
+            },
+            {
+              "keyName": "email",
+              "keyValue": "@all"
+            }
+          ]
+        },
+        "returnAll": true
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        240,
+        -432
+      ],
+      "id": "eedab868-b80c-47c3-b634-6babd3d2752a",
+      "name": "get_daily_log",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "1d32eec3-4b81-461f-93a8-66225335f8a6",
+              "leftValue": "={{ $json.email }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notExists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        384,
+        -432
+      ],
+      "id": "86760105-e856-4dd2-b832-4063183b04db",
+      "name": "all_done_or_not"
+    },
+    {
+      "parameters": {
+        "content": "## Nhận tin nhắn",
+        "height": 320,
+        "width": 336
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -1184,
+        -528
+      ],
+      "typeVersion": 1,
+      "id": "969720a2-09d9-4b07-9961-e79d486b6328",
+      "name": "Sticky Note4"
+    },
+    {
+      "parameters": {
+        "content": "## Phân loại tin nhắn",
+        "height": 528,
+        "width": 336
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -1184,
+        -176
+      ],
+      "typeVersion": 1,
+      "id": "cacf9915-a95b-492e-93f1-a9b43f65c3d3",
+      "name": "Sticky Note5"
+    },
+    {
+      "parameters": {
+        "content": "## Gửi tin nhắn",
+        "height": 480
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1136,
+        -528
+      ],
+      "typeVersion": 1,
+      "id": "4c7e80d1-4050-4eae-a0f1-6691031ebad9",
+      "name": "Sticky Note6"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://openapi.seatalk.io/messaging/v2/group_chat",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $('get_app_info').first().json.app_access_token }}"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"group_id\":\"NjExMDk1NTM4NDYy\",\n    \"message\":{\n        \"tag\":\"text\",\n        \"text\":{\n            \"format\":1,\n            \"content\":\"{{ $json.msg }}\"\n        }\n    }\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        1216,
+        -352
+      ],
+      "id": "854e1482-8f70-42a4-8050-7e35da98ccb0",
+      "name": "send_msgs"
+    },
+    {
+      "parameters": {
+        "content": "## Kiểm tra kết quả test ngày hôm qua, so sánh với báo cáo của nhân sự",
+        "height": 560,
+        "width": 1088,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        32,
+        -176
+      ],
+      "typeVersion": 1,
+      "id": "1932aa5a-e6f4-4ec9-8ceb-81f634fe1433",
+      "name": "Sticky Note7"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 9,
+              "triggerAtMinute": 59
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        -768,
+        -432
+      ],
+      "id": "ca3a7ac7-130f-479b-b47f-e03353da5151",
+      "name": "Schedule Trigger"
+    }
+  ],
+  "pinData": {
+    "Schedule Trigger": [
+      {
+        "json": {
+          "timestamp": "2026-01-10T09:59:25.011+07:00",
+          "Readable date": "January 10th 2026, 9:59:25 am",
+          "Readable time": "9:59:25 am",
+          "Day of week": "Saturday",
+          "Year": "2026",
+          "Month": "January",
+          "Day of month": "10",
+          "Hour": "09",
+          "Minute": "59",
+          "Second": "25",
+          "Timezone": "Asia/Ho_Chi_Minh (UTC+07:00)"
+        },
+        "pairedItem": {
+          "item": 0
+        }
+      }
+    ],
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "host": "n8n.hoanghochoi.com",
+            "user-agent": "Go-http-client/1.1",
+            "content-length": "380",
+            "accept-encoding": "gzip, br",
+            "cdn-loop": "cloudflare; loops=1",
+            "cf-connecting-ip": "143.92.74.161",
+            "cf-ipcountry": "SG",
+            "cf-ray": "9bb95551593afdfd-SIN",
+            "cf-visitor": "{\"scheme\":\"https\"}",
+            "cf-warp-tag-id": "1a2a7b9c-d672-40a3-98bd-f1c1f70f21c7",
+            "connection": "keep-alive",
+            "content-type": "application/json",
+            "signature": "1cd2eb8517a63ddd4e8babb8fb206987d45e705403cbdaa728fc1616d7820fd7",
+            "x-event-user-jwt": "eyJhbGciOiJFZERTQSIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjp7ImVtYWlsIjoiaG9hbmcubnYxQHBob25ndnUtbW5hLnZuIn0sImlzcyI6IlNlYXRhbGsgU09QIiwiZXhwIjoxNzY4MDE4Mzc2LCJuYmYiOjE3NjgwMTgzMTYsImlhdCI6MTc2ODAxODMxNiwianRpIjoiN2QxYTIwZWEtMzNhOS00MDY1LWIyNmItNGQ3YmEwNWI5Y2IwIn0.6SY74tyjkS3ekP-vzg_Sq9x1iZDeDsx9FoPwNfP7xmlpfijLgrl91k_yNigDnTNq_5DuGS4gQBYLDdz-ddGVDA",
+            "x-forwarded-for": "143.92.74.161",
+            "x-forwarded-proto": "https"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "event_id": "956a65af-19bf-452e-b05c-8e39f0c71047",
+            "event_type": "interactive_message_click",
+            "timestamp": 1768018316,
+            "app_id": "MTk5MzA1OTkxODcw",
+            "event": {
+              "message_id": "u7oirumAclDgcBQB-RB2KuAZvXNAhNTXFf2zpIc41RJmWJ-UvM_KIC9X",
+              "group_id": "NjExMDk1NTM4NDYy",
+              "thread_id": "",
+              "value": "done_test",
+              "employee_code": "e_6mv57e5u",
+              "seatalk_id": "9214333551",
+              "email": "hoang.nv1@phongvu-mna.vn"
+            }
+          },
+          "webhookUrl": "https://n8n.hoanghochoi.com/webhook/cp62-ops-hub",
+          "executionMode": "production"
+        },
+        "pairedItem": {
+          "item": 0
+        }
+      }
+    ],
+    "remind_hourly": [
+      {
+        "json": {
+          "timestamp": "2026-01-10T14:00:00.011+07:00",
+          "Readable date": "January 10th 2026, 2:00:00 pm",
+          "Readable time": "2:00:00 pm",
+          "Day of week": "Saturday",
+          "Year": "2026",
+          "Month": "January",
+          "Day of month": "10",
+          "Hour": "14",
+          "Minute": "00",
+          "Second": "00",
+          "Timezone": "Asia/Ho_Chi_Minh (UTC+07:00)"
+        },
+        "pairedItem": {
+          "item": 0
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-02-22T18:06:11.380Z",
+      "createdAt": "2026-02-22T18:06:11.380Z",
+      "role": "workflow:owner",
+      "workflowId": "JchoQdUOBgszqtfZ",
+      "projectId": "GTQprNa3RcCSHh8s"
+    }
+  ],
+  "staticData": {
+    "node:Schedule Trigger": {
+      "recurrenceRules": []
+    },
+    "node:Gmail Trigger": {
+      "Gmail Trigger": {
+        "lastTimeChecked": 1767944786,
+        "possibleDuplicates": [
+          "19ba1b896ade9443"
+        ]
+      }
+    },
+    "node:remind_hourly": {
+      "recurrenceRules": []
+    },
+    "node:get_test": {
+      "get_test": {
+        "lastTimeChecked": 1767950164
+      }
+    }
+  },
+  "tags": [
+    {
+      "updatedAt": "2025-12-17T02:41:50.389Z",
+      "createdAt": "2025-12-17T02:41:50.389Z",
+      "id": "tf48o2CcAcmF6X41",
+      "name": "Seatalk app"
+    }
+  ],
+  "triggerCount": 3,
+  "updatedAt": "2026-01-20T14:07:52.972Z",
+  "versionId": "68ed2b4e-7f76-446f-af83-85732673e2eb"
+}
