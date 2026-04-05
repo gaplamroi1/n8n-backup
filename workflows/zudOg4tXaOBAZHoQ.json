@@ -1,0 +1,212 @@
+{
+  "active": false,
+  "activeVersion": null,
+  "activeVersionId": null,
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Get row(s) in sheet1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get row(s) in sheet": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "createdAt": "2026-01-20T12:26:56.712Z",
+  "id": "zudOg4tXaOBAZHoQ",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "get-tech-reports",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -144,
+        256
+      ],
+      "id": "b1c4352a-398d-4e81-a6d6-279691aa3c52",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1TaotzXpi6Vk0oCUDS4CkCGe4l3v9guk9c800w3vUuOo",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1TaotzXpi6Vk0oCUDS4CkCGe4l3v9guk9c800w3vUuOo/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        64,
+        256
+      ],
+      "id": "781f1492-29f1-474f-a9c3-d7f18cc143d1",
+      "name": "Get row(s) in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "MTh9LghqaMKPTAzs",
+          "name": "zalo-chat-bot-hoang.nv1"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "dataTableId": {
+          "__rl": true,
+          "value": "a9CWSNmuUhfHp10r",
+          "mode": "list",
+          "cachedResultName": "tech-report",
+          "cachedResultUrl": "/projects/WAqDK79b9owhbfuS/datatables/a9CWSNmuUhfHp10r"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "date": "={{ (() => { const [m,d,y] = $json['Dấu thời gian'].split(' ')[0].split('/'); return `${d.padStart(2,'0')}/${m.padStart(2,'0')}/${y}` })() }}",
+            "email": "={{ $json['Địa chỉ email'] }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "date",
+              "displayName": "date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "email",
+              "displayName": "email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        352,
+        0
+      ],
+      "id": "8b88820f-eded-4a8f-87b3-5ecc370bcb1b",
+      "name": "Insert row"
+    },
+    {
+      "parameters": {
+        "operation": "deleteRows",
+        "dataTableId": {
+          "__rl": true,
+          "value": "a9CWSNmuUhfHp10r",
+          "mode": "list",
+          "cachedResultName": "tech-report",
+          "cachedResultUrl": "/projects/WAqDK79b9owhbfuS/datatables/a9CWSNmuUhfHp10r"
+        },
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "date",
+              "condition": "isNotEmpty"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        288,
+        176
+      ],
+      "id": "513200e5-471b-4acf-9d6c-931829593688",
+      "name": "Delete row(s)",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1TaotzXpi6Vk0oCUDS4CkCGe4l3v9guk9c800w3vUuOo",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1TaotzXpi6Vk0oCUDS4CkCGe4l3v9guk9c800w3vUuOo/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        64,
+        48
+      ],
+      "id": "6cfb95d3-9966-4d98-9dad-59f71597d172",
+      "name": "Get row(s) in sheet1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "MTh9LghqaMKPTAzs",
+          "name": "zalo-chat-bot-hoang.nv1"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-02-22T18:08:58.785Z",
+      "createdAt": "2026-02-22T18:08:58.785Z",
+      "role": "workflow:owner",
+      "workflowId": "zudOg4tXaOBAZHoQ",
+      "projectId": "GTQprNa3RcCSHh8s"
+    }
+  ],
+  "staticData": {
+    "node:Google Sheets Trigger": {
+      "documentId": "1TaotzXpi6Vk0oCUDS4CkCGe4l3v9guk9c800w3vUuOo",
+      "sheetId": 0,
+      "lastIndexChecked": 4530
+    }
+  },
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2026-01-21T06:52:38.718Z",
+  "versionId": "7f663dcc-4de9-45f0-8f42-413df519e6e5"
+}
