@@ -1,0 +1,1833 @@
+{
+  "active": true,
+  "activeVersion": {
+    "updatedAt": "2026-03-28T09:45:30.478Z",
+    "createdAt": "2026-03-28T09:45:29.050Z",
+    "versionId": "be48749b-ea46-4d30-a05b-22ce4bc1e5f4",
+    "workflowId": "Y5jmoIkXJxlfHeCq",
+    "nodes": [
+      {
+        "parameters": {
+          "operation": "markAsRead",
+          "messageId": "={{ $('get-gmail-messages-hoang.nv1').item.json.id }}"
+        },
+        "type": "n8n-nodes-base.gmail",
+        "typeVersion": 2.1,
+        "position": [
+          832,
+          320
+        ],
+        "id": "21f152a1-5c52-4742-86c8-7f96b139ce52",
+        "name": "Mark tele orders as read",
+        "webhookId": "80a8088e-9aae-4004-bfc9-ea9b0ff16233",
+        "credentials": {
+          "gmailOAuth2": {
+            "id": "mdeJ5Cwz1YxLTzIG",
+            "name": "hoang.nv1"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "loose",
+              "version": 2
+            },
+            "conditions": [
+              {
+                "id": "4f990e65-c1cf-435e-8ab2-7e9667eae1a6",
+                "leftValue": "={{ $('get-gmail-messages-hoang.nv1').item.json.from_value[0].address }}",
+                "rightValue": "={{ $json.email }}",
+                "operator": {
+                  "type": "string",
+                  "operation": "equals",
+                  "name": "filter.operator.equals"
+                }
+              },
+              {
+                "id": "1fd9bb5a-eba9-47a7-a351-4fb24e17b572",
+                "leftValue": "={{ $('get-gmail-messages-hoang.nv1').item.json.subject }}",
+                "rightValue": "nhập lại",
+                "operator": {
+                  "type": "string",
+                  "operation": "notContains"
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "looseTypeValidation": true,
+          "options": {}
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.2,
+        "position": [
+          384,
+          400
+        ],
+        "id": "87f23282-2ca1-40b4-bf4b-cecb51ba2ea7",
+        "name": "check"
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 2
+            },
+            "conditions": [
+              {
+                "id": "8ae24c76-e263-4162-81a3-c3f68b9f9818",
+                "leftValue": "={{ $json.threadId }}",
+                "rightValue": "",
+                "operator": {
+                  "type": "string",
+                  "operation": "notExists",
+                  "singleValue": true
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.2,
+        "position": [
+          640,
+          320
+        ],
+        "id": "3028d858-0fd8-472e-ad08-682433410802",
+        "name": "exitance"
+      },
+      {
+        "parameters": {
+          "options": {}
+        },
+        "type": "n8n-nodes-base.splitInBatches",
+        "typeVersion": 3,
+        "position": [
+          128,
+          400
+        ],
+        "id": "591854ce-9341-4297-ab4b-e224a6841f15",
+        "name": "Loop Over Items"
+      },
+      {
+        "parameters": {
+          "dataTableId": {
+            "__rl": true,
+            "value": "PuSymiK7sPU98zON",
+            "mode": "list",
+            "cachedResultName": "tele-emloyees",
+            "cachedResultUrl": "/projects/WAqDK79b9owhbfuS/datatables/PuSymiK7sPU98zON"
+          },
+          "columns": {
+            "mappingMode": "defineBelow",
+            "value": {
+              "email": "={{ $json.email }}"
+            },
+            "matchingColumns": [
+              "email"
+            ],
+            "schema": [
+              {
+                "id": "email",
+                "displayName": "email",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": false
+              }
+            ],
+            "attemptToConvertTypes": false,
+            "convertFieldsToString": false
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.dataTable",
+        "typeVersion": 1,
+        "position": [
+          -640,
+          304
+        ],
+        "id": "99f6da3b-6f7c-4f59-8fd3-e604de0444ab",
+        "name": "Insert row"
+      },
+      {
+        "parameters": {
+          "pollTimes": {
+            "item": [
+              {
+                "mode": "everyMinute"
+              }
+            ]
+          },
+          "documentId": {
+            "__rl": true,
+            "value": "1dyLacA4ww2F20SV8aiKZIEKBOoBREQSmXZd32VnK73Q",
+            "mode": "id"
+          },
+          "sheetName": {
+            "__rl": true,
+            "value": "gid=0",
+            "mode": "list",
+            "cachedResultName": "Sheet1",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1dyLacA4ww2F20SV8aiKZIEKBOoBREQSmXZd32VnK73Q/edit#gid=0"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.googleSheetsTrigger",
+        "typeVersion": 1,
+        "position": [
+          -800,
+          304
+        ],
+        "id": "e2a5c80c-b79a-4a33-b83a-81a1b26018a8",
+        "name": "onChange",
+        "credentials": {
+          "googleSheetsTriggerOAuth2Api": {
+            "id": "D9OdQTNBWpGt5m0U",
+            "name": "zalo-chat-bot-hoang.nv1-trigger"
+          }
+        },
+        "disabled": true
+      },
+      {
+        "parameters": {},
+        "type": "n8n-nodes-base.limit",
+        "typeVersion": 1,
+        "position": [
+          -640,
+          176
+        ],
+        "id": "bbb59fa5-7888-4fd1-8b84-3efc4473d6fe",
+        "name": "Limit"
+      },
+      {
+        "parameters": {
+          "operation": "deleteRows",
+          "dataTableId": {
+            "__rl": true,
+            "value": "PuSymiK7sPU98zON",
+            "mode": "list",
+            "cachedResultName": "tele-emloyees",
+            "cachedResultUrl": "/projects/WAqDK79b9owhbfuS/datatables/PuSymiK7sPU98zON"
+          },
+          "matchType": "allConditions",
+          "filters": {
+            "conditions": [
+              {
+                "keyName": "email",
+                "condition": "isNotEmpty"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.dataTable",
+        "typeVersion": 1,
+        "position": [
+          -496,
+          176
+        ],
+        "id": "9beb29b5-721d-4606-8475-9c8c752144e5",
+        "name": "Delete row(s)"
+      },
+      {
+        "parameters": {
+          "operation": "get",
+          "dataTableId": {
+            "__rl": true,
+            "value": "MQq8yKGNmt5ulAZe",
+            "mode": "list",
+            "cachedResultName": "tele-emloyees",
+            "cachedResultUrl": "/projects/GTQprNa3RcCSHh8s/datatables/MQq8yKGNmt5ulAZe"
+          }
+        },
+        "type": "n8n-nodes-base.dataTable",
+        "typeVersion": 1,
+        "position": [
+          256,
+          400
+        ],
+        "id": "a85af24f-0a97-4ff4-8b45-7f71291fbfae",
+        "name": "getEmployees"
+      },
+      {
+        "parameters": {},
+        "type": "n8n-nodes-base.limit",
+        "typeVersion": 1,
+        "position": [
+          512,
+          480
+        ],
+        "id": "db5e1676-1e8e-4855-8a1b-258fe24a3b14",
+        "name": "Limit1"
+      },
+      {
+        "parameters": {
+          "operation": "get",
+          "dataTableId": {
+            "__rl": true,
+            "value": "J7OET5kmemj6RnfY",
+            "mode": "list",
+            "cachedResultName": "online-tele-order-log",
+            "cachedResultUrl": "/projects/GTQprNa3RcCSHh8s/datatables/J7OET5kmemj6RnfY"
+          },
+          "filters": {
+            "conditions": [
+              {
+                "keyName": "threadId",
+                "keyValue": "={{ $('Loop Over Items').item.json.id }}"
+              }
+            ]
+          },
+          "returnAll": true
+        },
+        "type": "n8n-nodes-base.dataTable",
+        "typeVersion": 1,
+        "position": [
+          512,
+          320
+        ],
+        "id": "0a44d51a-57e6-44ef-8c33-1447fb509dc6",
+        "name": "check_histories",
+        "retryOnFail": true,
+        "alwaysOutputData": true
+      },
+      {
+        "parameters": {
+          "operation": "upsert",
+          "dataTableId": {
+            "__rl": true,
+            "value": "J7OET5kmemj6RnfY",
+            "mode": "list",
+            "cachedResultName": "online-tele-order-log",
+            "cachedResultUrl": "/projects/GTQprNa3RcCSHh8s/datatables/J7OET5kmemj6RnfY"
+          },
+          "matchType": "allConditions",
+          "filters": {
+            "conditions": [
+              {
+                "keyName": "threadId",
+                "keyValue": "={{ $json.threadId }}"
+              }
+            ]
+          },
+          "columns": {
+            "mappingMode": "defineBelow",
+            "value": {
+              "threadId": "={{ $('get-gmail-messages-hoang.nv1').item.json.id }}"
+            },
+            "matchingColumns": [
+              "threadId"
+            ],
+            "schema": [
+              {
+                "id": "threadId",
+                "displayName": "threadId",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": false
+              }
+            ],
+            "attemptToConvertTypes": false,
+            "convertFieldsToString": false
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.dataTable",
+        "typeVersion": 1,
+        "position": [
+          960,
+          320
+        ],
+        "id": "e307434d-8328-4c3c-ba89-04d00966bdae",
+        "name": "record_log"
+      },
+      {
+        "parameters": {
+          "operation": "get",
+          "dataTableId": {
+            "__rl": true,
+            "value": "sc1dOTktntfbMUel",
+            "mode": "list",
+            "cachedResultName": "seatalk-app-access-token",
+            "cachedResultUrl": "/projects/GTQprNa3RcCSHh8s/datatables/sc1dOTktntfbMUel"
+          },
+          "filters": {
+            "conditions": [
+              {
+                "keyName": "app_id",
+                "keyValue": "={{ $json.app_id }}"
+              }
+            ]
+          },
+          "returnAll": true
+        },
+        "type": "n8n-nodes-base.dataTable",
+        "typeVersion": 1,
+        "position": [
+          128,
+          0
+        ],
+        "id": "5abc9a7b-196c-49c8-a011-c73aeeb604d7",
+        "name": "get_app_info"
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "3de90b61-c36c-47c7-bfa1-ee1d3bc9eaf7",
+                "name": "app_id",
+                "value": "MTk5MzA1OTkxODcw",
+                "type": "string"
+              }
+            ]
+          },
+          "includeOtherFields": true,
+          "options": {}
+        },
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          0,
+          0
+        ],
+        "id": "1ee8daea-1b39-4d07-a205-cb3d95c07188",
+        "name": "app_id"
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "b50cdc3f-5dd9-41a6-92ce-aad306d861f2",
+                "name": "group_test",
+                "value": "MjA3NjEwOTc5MzQw",
+                "type": "string"
+              },
+              {
+                "id": "a5e0df55-a03f-4acd-a58e-b9594233476e",
+                "name": "group_training",
+                "value": "NjExMDk1NTM4NDYy",
+                "type": "string"
+              },
+              {
+                "id": "d4001f57-227e-47b2-b1ac-b8b1cc474ebb",
+                "name": "group_all",
+                "value": "NTkyODcxNzE2MDUx",
+                "type": "string"
+              },
+              {
+                "id": "2bba58cf-f7af-420c-ac25-234191f65afd",
+                "name": "group_sale",
+                "value": "MDM2NzE5ODk4MDc3",
+                "type": "string"
+              },
+              {
+                "id": "04424065-3c5a-4dc3-a0e3-ed4f6f9eaa8e",
+                "name": "group_kho",
+                "value": "NjgwNzg4ODA3NzMy",
+                "type": "string"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          0,
+          160
+        ],
+        "id": "76c7defe-0c1c-4188-be72-f86c2f5fc50b",
+        "name": "set_group_info"
+      },
+      {
+        "parameters": {
+          "operation": "get",
+          "dataTableId": {
+            "__rl": true,
+            "value": "QpxIohOBxfgdnxrO",
+            "mode": "list",
+            "cachedResultName": "cp62_employee",
+            "cachedResultUrl": "/projects/GTQprNa3RcCSHh8s/datatables/QpxIohOBxfgdnxrO"
+          },
+          "filters": {
+            "conditions": [
+              {
+                "keyName": "title",
+                "keyValue": "Warehouse"
+              }
+            ]
+          },
+          "returnAll": true
+        },
+        "type": "n8n-nodes-base.dataTable",
+        "typeVersion": 1,
+        "position": [
+          1088,
+          320
+        ],
+        "id": "b05ff85a-ea6a-4d58-9d77-7e913d83d0ac",
+        "name": "get_seatalk_id"
+      },
+      {
+        "parameters": {
+          "workflowInputs": {
+            "values": [
+              {
+                "name": "subject",
+                "type": "any"
+              },
+              {
+                "name": "from_value",
+                "type": "any"
+              },
+              {
+                "name": "text",
+                "type": "any"
+              },
+              {
+                "name": "id",
+                "type": "any"
+              }
+            ]
+          }
+        },
+        "id": "6a6fc11b-8a83-4e37-9e25-ed405fc03106",
+        "typeVersion": 1.1,
+        "name": "get-gmail-messages-hoang.nv1",
+        "type": "n8n-nodes-base.executeWorkflowTrigger",
+        "position": [
+          0,
+          400
+        ]
+      },
+      {
+        "parameters": {
+          "jsCode": "// Lấy toàn bộ item input\nconst items = $input.all();\n\n// Gom các mention-tag\nconst mentions = items\n  .map(item => item.json.seatalk_id)\n  .filter(id => id)\n  .map(\n    id => `<mention-tag target=\\\\\\\"seatalk://user?id=${id}\\\\\\\"/>`\n  );\n\n// Ghép thành 1 chuỗi xuống dòng (SeaTalk parse tốt nhất)\nconst content = mentions.join(' ');\n\n// Trả ra 1 item\nreturn [\n  {\n    json: {\n      content,\n    },\n  },\n];"
+        },
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          1216,
+          320
+        ],
+        "id": "8a453e31-dfdd-468a-aa51-59a1189c9c45",
+        "name": "make_mention"
+      },
+      {
+        "parameters": {
+          "modelId": {
+            "__rl": true,
+            "value": "models/gemini-3-flash-preview",
+            "mode": "list",
+            "cachedResultName": "models/gemini-3-flash-preview"
+          },
+          "messages": {
+            "values": [
+              {
+                "content": "=Tóm tắt email.\nCHỈ tóm tắt lại những phần có liên quan đến CP62 hoặc kho hoặc phan đăng lưu hoặc chi nhánh hoặc showroom hoặc SR.\nBỎ QUA nội dung liên quan đến LO, Logistic.\nNgắn gọn nhất có thể nhưng vẫn phải đầy đủ ý.\nDùng ngôn ngữ nhờ vả nhẹ nhàng, KHÔNG DÙNG NGÔN NGỮ RA LỆNH nhưng cũng KHÔNG KÍNH CẨN.\nLuôn trả ra 1 item JSON chứa 2 trường Đơn hàng và Chi tiết.",
+                "role": "model"
+              },
+              {
+                "content": "={{ $('get-gmail-messages-hoang.nv1').item.json.subject }} {{ $('get-gmail-messages-hoang.nv1').item.json.text }}"
+              }
+            ]
+          },
+          "simplify": false,
+          "jsonOutput": true,
+          "options": {}
+        },
+        "type": "@n8n/n8n-nodes-langchain.googleGemini",
+        "typeVersion": 1,
+        "position": [
+          768,
+          160
+        ],
+        "id": "35bda4c6-84ea-4df2-ad64-dad9a28f3e46",
+        "name": "tom_tat_mail",
+        "retryOnFail": true,
+        "waitBetweenTries": 5000,
+        "credentials": {
+          "googlePalmApi": {
+            "id": "riWNvuDzFZGkHqwD",
+            "name": "Gemini hoanghoccoi1618"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "jsCode": "// Lấy text gốc (đúng path theo ảnh)\nconst rawText = $json.candidates[0].content.parts[0].text;\n\n// 1. Trích phần JSON {...} từ trong text\nconst match = rawText.match(/\\{[\\s\\S]*?\\}/);\n\nif (!match) {\n  throw new Error('Không tìm thấy JSON trong text');\n}\n\n// 2. Parse JSON\nlet data;\ntry {\n  data = JSON.parse(match[0]);\n} catch (e) {\n  throw new Error('Parse JSON thất bại');\n}\n\n// 3. Map field (key tiếng Việt)\nconst orderId = data['Đơn hàng'] || null;\nconst details = data['Chi tiết'] || null;\n\n// 4. Trả output\nreturn [\n  {\n    json: {\n      order_id: orderId,\n      details: details\n    }\n  }\n];\n"
+        },
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          1024,
+          160
+        ],
+        "id": "bfe3d306-cb00-4075-98d2-3402ca4e1951",
+        "name": "tao_yeu_cau"
+      },
+      {
+        "parameters": {
+          "method": "POST",
+          "url": "https://openapi.seatalk.io/messaging/v2/group_chat",
+          "sendHeaders": true,
+          "headerParameters": {
+            "parameters": [
+              {
+                "name": "Authorization",
+                "value": "=Bearer {{ $('get_app_info').first().json.app_access_token }}"
+              },
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          },
+          "sendBody": true,
+          "specifyBody": "json",
+          "jsonBody": "={\n    \"group_id\":\"{{ $('set_group_info').first().json.group_all }}\",\n    \"message\":{\n        \"tag\":\"text\",\n        \"text\":{\n            \"format\":1,\n            \"content\":\"{{ $json.content }} check nha anh em\\nĐơn hàng: {{ $('tao_yeu_cau').first().json.order_id}}\\nHỗ trợ: {{$('tao_yeu_cau').first().json.details }}\\n<mention-tag target=\\\"seatalk://user?id=0\\\"/>\"\n        }\n    }\n}",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.3,
+        "position": [
+          1360,
+          320
+        ],
+        "id": "dd10532a-cd06-4b24-b5cd-ca939211d8b4",
+        "name": "send_tele_order"
+      },
+      {
+        "parameters": {
+          "modelId": {
+            "__rl": true,
+            "value": "te/gpt-5.2",
+            "mode": "id"
+          },
+          "responses": {
+            "values": [
+              {
+                "role": "system",
+                "content": "bạn là assistant của tôi"
+              },
+              {
+                "content": "=hello"
+              }
+            ]
+          },
+          "builtInTools": {},
+          "options": {}
+        },
+        "type": "@n8n/n8n-nodes-langchain.openAi",
+        "typeVersion": 2.1,
+        "position": [
+          416,
+          -176
+        ],
+        "id": "b9c62fe5-ddce-4407-8221-b7916a4a0486",
+        "name": "Message a model",
+        "credentials": {
+          "openAiApi": {
+            "id": "THsMsFfcQVRArFz5",
+            "name": "tokeneco"
+          }
+        }
+      }
+    ],
+    "connections": {
+      "Mark tele orders as read": {
+        "main": [
+          [
+            {
+              "node": "record_log",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "check": {
+        "main": [
+          [
+            {
+              "node": "check_histories",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "Limit1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "exitance": {
+        "main": [
+          [
+            {
+              "node": "tom_tat_mail",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "Mark tele orders as read",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Loop Over Items": {
+        "main": [
+          [],
+          [
+            {
+              "node": "getEmployees",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "onChange": {
+        "main": [
+          [
+            {
+              "node": "Limit",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "Insert row",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Limit": {
+        "main": [
+          [
+            {
+              "node": "Delete row(s)",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "getEmployees": {
+        "main": [
+          [
+            {
+              "node": "check",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Limit1": {
+        "main": [
+          [
+            {
+              "node": "Loop Over Items",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "check_histories": {
+        "main": [
+          [
+            {
+              "node": "exitance",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "record_log": {
+        "main": [
+          [
+            {
+              "node": "get_seatalk_id",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "app_id": {
+        "main": [
+          [
+            {
+              "node": "get_app_info",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "get_seatalk_id": {
+        "main": [
+          [
+            {
+              "node": "make_mention",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "get-gmail-messages-hoang.nv1": {
+        "main": [
+          [
+            {
+              "node": "Loop Over Items",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "set_group_info",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "app_id",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "make_mention": {
+        "main": [
+          [
+            {
+              "node": "send_tele_order",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "tom_tat_mail": {
+        "main": [
+          [
+            {
+              "node": "tao_yeu_cau",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "send_tele_order": {
+        "main": [
+          [
+            {
+              "node": "Loop Over Items",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "authors": "Hoang Nguyen",
+    "name": "Version be48749b",
+    "description": "",
+    "autosaved": false
+  },
+  "activeVersionId": "be48749b-ea46-4d30-a05b-22ce4bc1e5f4",
+  "connections": {
+    "Mark tele orders as read": {
+      "main": [
+        [
+          {
+            "node": "record_log",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "check": {
+      "main": [
+        [
+          {
+            "node": "check_histories",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Limit1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "exitance": {
+      "main": [
+        [
+          {
+            "node": "tom_tat_mail",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Mark tele orders as read",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "getEmployees",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "onChange": {
+      "main": [
+        [
+          {
+            "node": "Limit",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Insert row",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit": {
+      "main": [
+        [
+          {
+            "node": "Delete row(s)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "getEmployees": {
+      "main": [
+        [
+          {
+            "node": "check",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit1": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "check_histories": {
+      "main": [
+        [
+          {
+            "node": "exitance",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "record_log": {
+      "main": [
+        [
+          {
+            "node": "get_seatalk_id",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "app_id": {
+      "main": [
+        [
+          {
+            "node": "get_app_info",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "get_seatalk_id": {
+      "main": [
+        [
+          {
+            "node": "make_mention",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "get-gmail-messages-hoang.nv1": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "set_group_info",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "app_id",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "make_mention": {
+      "main": [
+        [
+          {
+            "node": "send_tele_order",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "tom_tat_mail": {
+      "main": [
+        [
+          {
+            "node": "tao_yeu_cau",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "send_tele_order": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2026-02-22T19:42:59.956Z",
+  "id": "Y5jmoIkXJxlfHeCq",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "sub-send-tele-onl-orders-seatalk",
+  "nodes": [
+    {
+      "parameters": {
+        "operation": "markAsRead",
+        "messageId": "={{ $('get-gmail-messages-hoang.nv1').item.json.id }}"
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        832,
+        320
+      ],
+      "id": "21f152a1-5c52-4742-86c8-7f96b139ce52",
+      "name": "Mark tele orders as read",
+      "webhookId": "80a8088e-9aae-4004-bfc9-ea9b0ff16233",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "mdeJ5Cwz1YxLTzIG",
+          "name": "hoang.nv1"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "4f990e65-c1cf-435e-8ab2-7e9667eae1a6",
+              "leftValue": "={{ $('get-gmail-messages-hoang.nv1').item.json.from_value[0].address }}",
+              "rightValue": "={{ $json.email }}",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            },
+            {
+              "id": "1fd9bb5a-eba9-47a7-a351-4fb24e17b572",
+              "leftValue": "={{ $('get-gmail-messages-hoang.nv1').item.json.subject }}",
+              "rightValue": "nhập lại",
+              "operator": {
+                "type": "string",
+                "operation": "notContains"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        384,
+        400
+      ],
+      "id": "87f23282-2ca1-40b4-bf4b-cecb51ba2ea7",
+      "name": "check"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "8ae24c76-e263-4162-81a3-c3f68b9f9818",
+              "leftValue": "={{ $json.threadId }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notExists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        640,
+        320
+      ],
+      "id": "3028d858-0fd8-472e-ad08-682433410802",
+      "name": "exitance"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        128,
+        400
+      ],
+      "id": "591854ce-9341-4297-ab4b-e224a6841f15",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {
+        "dataTableId": {
+          "__rl": true,
+          "value": "PuSymiK7sPU98zON",
+          "mode": "list",
+          "cachedResultName": "tele-emloyees",
+          "cachedResultUrl": "/projects/WAqDK79b9owhbfuS/datatables/PuSymiK7sPU98zON"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "email": "={{ $json.email }}"
+          },
+          "matchingColumns": [
+            "email"
+          ],
+          "schema": [
+            {
+              "id": "email",
+              "displayName": "email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        -640,
+        304
+      ],
+      "id": "99f6da3b-6f7c-4f59-8fd3-e604de0444ab",
+      "name": "Insert row"
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "documentId": {
+          "__rl": true,
+          "value": "1dyLacA4ww2F20SV8aiKZIEKBOoBREQSmXZd32VnK73Q",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1dyLacA4ww2F20SV8aiKZIEKBOoBREQSmXZd32VnK73Q/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTrigger",
+      "typeVersion": 1,
+      "position": [
+        -800,
+        304
+      ],
+      "id": "e2a5c80c-b79a-4a33-b83a-81a1b26018a8",
+      "name": "onChange",
+      "credentials": {
+        "googleSheetsTriggerOAuth2Api": {
+          "id": "D9OdQTNBWpGt5m0U",
+          "name": "zalo-chat-bot-hoang.nv1-trigger"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        -640,
+        176
+      ],
+      "id": "bbb59fa5-7888-4fd1-8b84-3efc4473d6fe",
+      "name": "Limit"
+    },
+    {
+      "parameters": {
+        "operation": "deleteRows",
+        "dataTableId": {
+          "__rl": true,
+          "value": "PuSymiK7sPU98zON",
+          "mode": "list",
+          "cachedResultName": "tele-emloyees",
+          "cachedResultUrl": "/projects/WAqDK79b9owhbfuS/datatables/PuSymiK7sPU98zON"
+        },
+        "matchType": "allConditions",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "email",
+              "condition": "isNotEmpty"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        -496,
+        176
+      ],
+      "id": "9beb29b5-721d-4606-8475-9c8c752144e5",
+      "name": "Delete row(s)"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "dataTableId": {
+          "__rl": true,
+          "value": "MQq8yKGNmt5ulAZe",
+          "mode": "list",
+          "cachedResultName": "tele-emloyees",
+          "cachedResultUrl": "/projects/GTQprNa3RcCSHh8s/datatables/MQq8yKGNmt5ulAZe"
+        }
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        256,
+        400
+      ],
+      "id": "a85af24f-0a97-4ff4-8b45-7f71291fbfae",
+      "name": "getEmployees"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        512,
+        480
+      ],
+      "id": "db5e1676-1e8e-4855-8a1b-258fe24a3b14",
+      "name": "Limit1"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "dataTableId": {
+          "__rl": true,
+          "value": "J7OET5kmemj6RnfY",
+          "mode": "list",
+          "cachedResultName": "online-tele-order-log",
+          "cachedResultUrl": "/projects/GTQprNa3RcCSHh8s/datatables/J7OET5kmemj6RnfY"
+        },
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "threadId",
+              "keyValue": "={{ $('Loop Over Items').item.json.id }}"
+            }
+          ]
+        },
+        "returnAll": true
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        512,
+        320
+      ],
+      "id": "0a44d51a-57e6-44ef-8c33-1447fb509dc6",
+      "name": "check_histories",
+      "retryOnFail": true,
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "operation": "upsert",
+        "dataTableId": {
+          "__rl": true,
+          "value": "J7OET5kmemj6RnfY",
+          "mode": "list",
+          "cachedResultName": "online-tele-order-log",
+          "cachedResultUrl": "/projects/GTQprNa3RcCSHh8s/datatables/J7OET5kmemj6RnfY"
+        },
+        "matchType": "allConditions",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "threadId",
+              "keyValue": "={{ $json.threadId }}"
+            }
+          ]
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "threadId": "={{ $('get-gmail-messages-hoang.nv1').item.json.id }}"
+          },
+          "matchingColumns": [
+            "threadId"
+          ],
+          "schema": [
+            {
+              "id": "threadId",
+              "displayName": "threadId",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        960,
+        320
+      ],
+      "id": "e307434d-8328-4c3c-ba89-04d00966bdae",
+      "name": "record_log"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "dataTableId": {
+          "__rl": true,
+          "value": "sc1dOTktntfbMUel",
+          "mode": "list",
+          "cachedResultName": "seatalk-app-access-token",
+          "cachedResultUrl": "/projects/GTQprNa3RcCSHh8s/datatables/sc1dOTktntfbMUel"
+        },
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "app_id",
+              "keyValue": "={{ $json.app_id }}"
+            }
+          ]
+        },
+        "returnAll": true
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        128,
+        0
+      ],
+      "id": "5abc9a7b-196c-49c8-a011-c73aeeb604d7",
+      "name": "get_app_info"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "3de90b61-c36c-47c7-bfa1-ee1d3bc9eaf7",
+              "name": "app_id",
+              "value": "MTk5MzA1OTkxODcw",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        0,
+        0
+      ],
+      "id": "1ee8daea-1b39-4d07-a205-cb3d95c07188",
+      "name": "app_id"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "b50cdc3f-5dd9-41a6-92ce-aad306d861f2",
+              "name": "group_test",
+              "value": "MjA3NjEwOTc5MzQw",
+              "type": "string"
+            },
+            {
+              "id": "a5e0df55-a03f-4acd-a58e-b9594233476e",
+              "name": "group_training",
+              "value": "NjExMDk1NTM4NDYy",
+              "type": "string"
+            },
+            {
+              "id": "d4001f57-227e-47b2-b1ac-b8b1cc474ebb",
+              "name": "group_all",
+              "value": "NTkyODcxNzE2MDUx",
+              "type": "string"
+            },
+            {
+              "id": "2bba58cf-f7af-420c-ac25-234191f65afd",
+              "name": "group_sale",
+              "value": "MDM2NzE5ODk4MDc3",
+              "type": "string"
+            },
+            {
+              "id": "04424065-3c5a-4dc3-a0e3-ed4f6f9eaa8e",
+              "name": "group_kho",
+              "value": "NjgwNzg4ODA3NzMy",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        0,
+        160
+      ],
+      "id": "76c7defe-0c1c-4188-be72-f86c2f5fc50b",
+      "name": "set_group_info"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "dataTableId": {
+          "__rl": true,
+          "value": "QpxIohOBxfgdnxrO",
+          "mode": "list",
+          "cachedResultName": "cp62_employee",
+          "cachedResultUrl": "/projects/GTQprNa3RcCSHh8s/datatables/QpxIohOBxfgdnxrO"
+        },
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "title",
+              "keyValue": "Warehouse"
+            }
+          ]
+        },
+        "returnAll": true
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        1088,
+        320
+      ],
+      "id": "b05ff85a-ea6a-4d58-9d77-7e913d83d0ac",
+      "name": "get_seatalk_id"
+    },
+    {
+      "parameters": {
+        "workflowInputs": {
+          "values": [
+            {
+              "name": "subject",
+              "type": "any"
+            },
+            {
+              "name": "from_value",
+              "type": "any"
+            },
+            {
+              "name": "text",
+              "type": "any"
+            },
+            {
+              "name": "id",
+              "type": "any"
+            }
+          ]
+        }
+      },
+      "id": "6a6fc11b-8a83-4e37-9e25-ed405fc03106",
+      "typeVersion": 1.1,
+      "name": "get-gmail-messages-hoang.nv1",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "position": [
+        0,
+        400
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Lấy toàn bộ item input\nconst items = $input.all();\n\n// Gom các mention-tag\nconst mentions = items\n  .map(item => item.json.seatalk_id)\n  .filter(id => id)\n  .map(\n    id => `<mention-tag target=\\\\\\\"seatalk://user?id=${id}\\\\\\\"/>`\n  );\n\n// Ghép thành 1 chuỗi xuống dòng (SeaTalk parse tốt nhất)\nconst content = mentions.join(' ');\n\n// Trả ra 1 item\nreturn [\n  {\n    json: {\n      content,\n    },\n  },\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1216,
+        320
+      ],
+      "id": "8a453e31-dfdd-468a-aa51-59a1189c9c45",
+      "name": "make_mention"
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "models/gemini-3-flash-preview",
+          "mode": "list",
+          "cachedResultName": "models/gemini-3-flash-preview"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "=Tóm tắt email.\nCHỈ tóm tắt lại những phần có liên quan đến CP62 hoặc kho hoặc phan đăng lưu hoặc chi nhánh hoặc showroom hoặc SR.\nBỎ QUA nội dung liên quan đến LO, Logistic.\nNgắn gọn nhất có thể nhưng vẫn phải đầy đủ ý.\nDùng ngôn ngữ nhờ vả nhẹ nhàng, KHÔNG DÙNG NGÔN NGỮ RA LỆNH nhưng cũng KHÔNG KÍNH CẨN.\nLuôn trả ra 1 item JSON chứa 2 trường Đơn hàng và Chi tiết.",
+              "role": "model"
+            },
+            {
+              "content": "={{ $('get-gmail-messages-hoang.nv1').item.json.subject }} {{ $('get-gmail-messages-hoang.nv1').item.json.text }}"
+            }
+          ]
+        },
+        "simplify": false,
+        "jsonOutput": true,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.googleGemini",
+      "typeVersion": 1,
+      "position": [
+        768,
+        160
+      ],
+      "id": "35bda4c6-84ea-4df2-ad64-dad9a28f3e46",
+      "name": "tom_tat_mail",
+      "retryOnFail": true,
+      "waitBetweenTries": 5000,
+      "credentials": {
+        "googlePalmApi": {
+          "id": "riWNvuDzFZGkHqwD",
+          "name": "Gemini hoanghoccoi1618"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Lấy text gốc (đúng path theo ảnh)\nconst rawText = $json.candidates[0].content.parts[0].text;\n\n// 1. Trích phần JSON {...} từ trong text\nconst match = rawText.match(/\\{[\\s\\S]*?\\}/);\n\nif (!match) {\n  throw new Error('Không tìm thấy JSON trong text');\n}\n\n// 2. Parse JSON\nlet data;\ntry {\n  data = JSON.parse(match[0]);\n} catch (e) {\n  throw new Error('Parse JSON thất bại');\n}\n\n// 3. Map field (key tiếng Việt)\nconst orderId = data['Đơn hàng'] || null;\nconst details = data['Chi tiết'] || null;\n\n// 4. Trả output\nreturn [\n  {\n    json: {\n      order_id: orderId,\n      details: details\n    }\n  }\n];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1024,
+        160
+      ],
+      "id": "bfe3d306-cb00-4075-98d2-3402ca4e1951",
+      "name": "tao_yeu_cau"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://openapi.seatalk.io/messaging/v2/group_chat",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $('get_app_info').first().json.app_access_token }}"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"group_id\":\"{{ $('set_group_info').first().json.group_all }}\",\n    \"message\":{\n        \"tag\":\"text\",\n        \"text\":{\n            \"format\":1,\n            \"content\":\"{{ $json.content }} check nha anh em\\nĐơn hàng: {{ $('tao_yeu_cau').first().json.order_id}}\\nHỗ trợ: {{$('tao_yeu_cau').first().json.details }}\\n<mention-tag target=\\\"seatalk://user?id=0\\\"/>\"\n        }\n    }\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        1360,
+        320
+      ],
+      "id": "dd10532a-cd06-4b24-b5cd-ca939211d8b4",
+      "name": "send_tele_order"
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "te/gpt-5.2",
+          "mode": "id"
+        },
+        "responses": {
+          "values": [
+            {
+              "role": "system",
+              "content": "bạn là assistant của tôi"
+            },
+            {
+              "content": "=hello"
+            }
+          ]
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 2.1,
+      "position": [
+        416,
+        -176
+      ],
+      "id": "b9c62fe5-ddce-4407-8221-b7916a4a0486",
+      "name": "Message a model",
+      "credentials": {
+        "openAiApi": {
+          "id": "THsMsFfcQVRArFz5",
+          "name": "tokeneco"
+        }
+      }
+    }
+  ],
+  "pinData": {
+    "Mark tele orders as read": [
+      {
+        "json": {
+          "id": "19d334c725b670a7",
+          "threadId": "19d334c725b670a7",
+          "labelIds": [
+            "IMPORTANT",
+            "CATEGORY_PERSONAL",
+            "INBOX"
+          ]
+        },
+        "pairedItem": {
+          "item": 0
+        }
+      }
+    ],
+    "get-gmail-messages-hoang.nv1": [
+      {
+        "json": {
+          "subject": "PHONGVU- Hỗ trợ soạn hàng sớm đơn 26032836662130",
+          "from_value": [
+            {
+              "address": "viet.nq01@phongvu.vn",
+              "name": "Nguyễn Quang Việt"
+            }
+          ],
+          "text": "Dear anh/chị chi nhánh Phan Đăng Lưu\n\nHiện em có đơn hàng 26032836662130-01, khách đặt hàng iphone có cọc trước\n10%. Khách cần nhận sớm vào sáng mai 29/3. em xin phép nhờ anh.chị hỗ trợ\nsoạn hàng và bàn giao team @Quản lý Logistics <quanly.log@phongvu.vn>  sắp\nxếp giao khách giúp em ạ\n\nEm xin cám ơn ạ\n\n\n*28/03/2026 14:05:41 2,449,000 2026087019949 LE PHUONG ANH 0906886985\n18PV6YE Văn phòng đại diện 2 - Công Ty Cổ Phần Thương Mại - Dịch Vụ Phong\nVũ CHAT SALE QR cố định CT DEN:904T2631AWMBMH8S LE PHUONG ANH 0906886985*\n\n[image: image.png]\n<http://phongvu.vn/>\n\nnGUYEN QUANG VIET\n\nONLINE SALES\n\n*Chuyên viên kinh doanh trực tuyến*\n\nEmail viet.nq01@phongvu.vn\n\nAddress 47 Thai Ha,Ward Trung Liet, District Dong Da, Ha Noi\n",
+          "id": "19d334c725b670a7"
+        },
+        "binary": {
+          "attachment_0": {
+            "mimeType": "image/png",
+            "fileType": "image",
+            "fileExtension": "png",
+            "data": "filesystem-v2",
+            "fileName": "image.png",
+            "id": "filesystem-v2:workflows/IQh9tw7230QbXPq9/executions/temp/binary_data/6a04c896-1cda-478f-a6c6-1ee6edf0923e",
+            "fileSize": "87.8 kB",
+            "bytes": 87762
+          }
+        },
+        "pairedItem": {
+          "item": 0
+        }
+      }
+    ],
+    "tom_tat_mail": [
+      {
+        "json": {
+          "candidates": [
+            {
+              "content": {
+                "parts": [
+                  {
+                    "text": "{\n  \"Đơn hàng\": \"26032836662130\",\n  \"Chi tiết\": \"Nhờ anh chị chi nhánh Phan Đăng Lưu hỗ trợ soạn sớm giúp em đơn hàng iPhone (khách đã cọc 10%) để kịp giao khách vào sáng mai 29/3 ạ.\"\n}",
+                    "thoughtSignature": "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"
+                  }
+                ],
+                "role": "model"
+              },
+              "finishReason": "STOP",
+              "index": 0
+            }
+          ],
+          "usageMetadata": {
+            "promptTokenCount": 467,
+            "candidatesTokenCount": 76,
+            "totalTokenCount": 1155,
+            "promptTokensDetails": [
+              {
+                "modality": "TEXT",
+                "tokenCount": 467
+              }
+            ],
+            "thoughtsTokenCount": 612
+          },
+          "modelVersion": "gemini-3-flash-preview",
+          "responseId": "P4DHacPoLYnVqfkPq6WIiQ8"
+        },
+        "pairedItem": {
+          "item": 0
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false,
+    "timeSavedMode": "fixed",
+    "errorWorkflow": "tUGf8pqhOC0yFiUP",
+    "callerPolicy": "workflowsFromSameOwner"
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-02-22T19:42:59.956Z",
+      "createdAt": "2026-02-22T19:42:59.956Z",
+      "role": "workflow:owner",
+      "workflowId": "Y5jmoIkXJxlfHeCq",
+      "projectId": "GTQprNa3RcCSHh8s"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2026-03-28T09:45:29.048Z",
+  "versionId": "be48749b-ea46-4d30-a05b-22ce4bc1e5f4"
+}
