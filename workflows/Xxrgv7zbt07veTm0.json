@@ -1,0 +1,282 @@
+{
+  "active": false,
+  "activeVersion": null,
+  "activeVersionId": null,
+  "connections": {
+    "get date and visits count": {
+      "main": [
+        [
+          {
+            "node": "update visits count to sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "is report?": {
+      "main": [
+        [
+          {
+            "node": "get date and visits count",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When Executed by Another Workflow": {
+      "main": [
+        [
+          {
+            "node": "is report?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "update visits count to sheet": {
+      "main": [
+        [
+          {
+            "node": "Send a text message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "is report?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2026-02-22T19:37:08.598Z",
+  "id": "Xxrgv7zbt07veTm0",
+  "isArchived": false,
+  "meta": null,
+  "name": "sub - visitor update",
+  "nodes": [
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "// Lấy text từ trường 'content'\nconst text = String($json.data.content ?? '');\n\n// Bắt 2 số đầu tiên trong chuỗi\nconst nums = text.match(/\\d+/g) || [];\nconst day  = nums[0] ? parseInt(nums[0], 10) : null;\nconst luot = nums[1] ? parseInt(nums[1], 10) : null;\n\n// Lấy tháng/năm của NGÀY HÔM QUA (local time)\nconst yesterday = new Date();\nyesterday.setHours(12, 0, 0, 0);      // chống lệch DST\nyesterday.setDate(yesterday.getDate() - 1);\n\nconst year  = yesterday.getFullYear();\nconst month = yesterday.getMonth() + 1; // 1-12\n\n// Số ngày tối đa của tháng (của ngày hôm qua)\nconst daysInMonth = new Date(year, month, 0).getDate();\n\n// Validate ngày\nconst safeDay = (day && day >= 1 && day <= daysInMonth) ? day : null;\n\n// Format DD/MM/YYYY (zero-pad)\nconst z = n => String(n).padStart(2,'0');\nconst dateStr = safeDay ? `${z(safeDay)}/${z(month)}/${year}` : null;\n\nreturn {\n  json: {\n    content_raw: text,\n    day: safeDay,\n    month,\n    year,\n    date: dateStr,          // ví dụ: 24/09/2025\n    luot_xe: Number.isFinite(luot) ? luot : null\n  }\n};\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        272,
+        0
+      ],
+      "id": "3096d9d6-2088-40f8-93f3-596603d8cb24",
+      "name": "get date and visits count"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1QIf4-_gKG2VA8QPR7PJIqHOxiFC1hKP3FmqGtWeqMww",
+          "mode": "list",
+          "cachedResultName": "CP62 - Visitors",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1QIf4-_gKG2VA8QPR7PJIqHOxiFC1hKP3FmqGtWeqMww/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1QIf4-_gKG2VA8QPR7PJIqHOxiFC1hKP3FmqGtWeqMww/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "date": "={{ $json.date }}",
+            "Xe": "={{ $json.luot_xe }}"
+          },
+          "matchingColumns": [
+            "date"
+          ],
+          "schema": [
+            {
+              "id": "date",
+              "displayName": "date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Xe",
+              "displayName": "Xe",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "CCTV",
+              "displayName": "CCTV",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        416,
+        0
+      ],
+      "id": "e8cf1152-3f13-458a-bb65-bc113d2713f5",
+      "name": "update visits count to sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "MTh9LghqaMKPTAzs",
+          "name": "zalo-chat-bot-hoang.nv1"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "1092a78f-76a6-4c53-a64b-f9a741c6846d",
+              "leftValue": "={{ $json.data.content }}",
+              "rightValue": "Lượt xe",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        128,
+        0
+      ],
+      "id": "3dd41df4-d8dd-4180-9a4f-b0b35454ac1e",
+      "name": "is report?"
+    },
+    {
+      "parameters": {
+        "inputSource": "passthrough"
+      },
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "76e8b8f2-da21-4272-97de-971b19f40a91",
+      "name": "When Executed by Another Workflow"
+    },
+    {
+      "parameters": {
+        "chatId": "5013029624",
+        "text": "=Đã cập nhật lượt xe vào doc.",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        544,
+        0
+      ],
+      "id": "e560c0ec-fbaa-4fed-bafc-0f50f70c89cc",
+      "name": "Send a text message",
+      "webhookId": "44f7bda3-2e42-4ba8-985e-b3ca611100cb",
+      "credentials": {
+        "telegramApi": {
+          "id": "yOqJ91F4uxm9OoWc",
+          "name": "@culi001"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "path": "06abc955-69f1-44c0-9d0b-941922474527",
+        "responseMode": "lastNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        176
+      ],
+      "id": "3eaef001-1eb8-4a35-811b-08f2414de322",
+      "name": "Webhook",
+      "webhookId": "06abc955-69f1-44c0-9d0b-941922474527"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-02-22T19:37:08.598Z",
+      "createdAt": "2026-02-22T19:37:08.598Z",
+      "role": "workflow:owner",
+      "workflowId": "Xxrgv7zbt07veTm0",
+      "projectId": "GTQprNa3RcCSHh8s"
+    }
+  ],
+  "staticData": null,
+  "tags": [
+    {
+      "updatedAt": "2025-10-07T13:20:09.465Z",
+      "createdAt": "2025-10-07T13:20:09.465Z",
+      "id": "R8JsFVZgS7NoVrt3",
+      "name": "zalo"
+    }
+  ],
+  "triggerCount": 0,
+  "updatedAt": "2026-02-22T19:37:56.855Z",
+  "versionId": "8b75f92a-e5b8-493a-a88f-501b952601e4"
+}
