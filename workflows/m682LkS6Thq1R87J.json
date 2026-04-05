@@ -1,0 +1,224 @@
+{
+  "active": true,
+  "activeVersion": {
+    "updatedAt": "2026-02-23T07:43:17.951Z",
+    "createdAt": "2026-02-22T19:16:37.439Z",
+    "versionId": "76113c65-4b0b-4b4d-8492-60fbc927a766",
+    "workflowId": "m682LkS6Thq1R87J",
+    "nodes": [
+      {
+        "parameters": {
+          "mode": "runOnceForEachItem",
+          "jsCode": "// Lấy text thuần; nếu không có thì chuyển HTML -> text dòng\nlet text = $json.text || $json.textPlain || '';\nif (!text) {\n  const html = $json.html || $json.textHtml || '';\n  if (html) {\n    text = String(html)\n      .replace(/<br\\s*\\/?>/gi, '\\n')\n      .replace(/<\\/(p|div|tr|td|li|h\\d|table|tbody|th)>/gi, '\\n')\n      .replace(/<[^>]+>/g, ' ');\n  }\n}\n\n// Chuẩn hoá khoảng trắng\ntext = String(text)\n  .replace(/\\r/g, '\\n')\n  .replace(/\\u00A0/g, ' ')\n  .replace(/[ \\t]+/g, ' ')\n  .replace(/ *\\n+ */g, '\\n')\n  .trim();\n\n// Lấy block từ \"Ticket:\" tới trước footer/link\nconst start = text.toLowerCase().indexOf('ticket:');\nlet block = start >= 0 ? text.slice(start) : text;\n\n// Cắt phần footer/link (giả định)\nconst footer =\n  block.match(/\\n?\\[\\s*https?:\\/\\/[^\\]]+\\]/i) || // [https://...]\n  block.match(/\\n?to unsubscribe/i);\nif (footer) block = block.slice(0, footer.index).trim();\n\n// Helper: escape regex\nconst esc = (s) => s.replace(/[.*+?^${}()|[\\]\\\\]/g, '\\\\$&');\n\n// Cắt giữa nhãn A và nhãn kế tiếp (nếu có)\nfunction capture(label, nextLabels) {\n  const next = nextLabels.length ? `(?=(?:${nextLabels.map(esc).join('|')}))` : '$';\n  const re = new RegExp(esc(label) + '\\\\s*:?\\\\s*([\\\\s\\\\S]*?)' + next, 'i');\n  const m = block.match(re);\n  if (!m) return null;\n  return m[1]\n    .replace(/\\s*\\n\\s*/g, ' ')   // gộp xuống dòng trong giá trị\n    .replace(/[ \\t]{2,}/g, ' ')\n    .trim();\n}\n\n// 1) Ticket (chỉ lấy số dài)\nconst mTicket = block.match(/Ticket\\s*:\\s*(\\d{5,})/i);\nconst ticket = mTicket ? mTicket[1].trim() : null;\n\n// 2) Loại phiếu\nconst loaiPhieu =\n  capture('Loại phiếu', ['Phòng ban xử lý', 'Noi dung phan anh', 'Nội dung phản ánh']) ||\n  capture('Loai phieu', ['Phòng ban xử lý', 'Noi dung phan anh', 'Nội dung phản ánh']);\n\n// 3) Phòng ban xử lý\nconst phongBan =\n  capture('Phòng ban xử lý', ['Nội dung phản ánh', 'Noi dung phan anh', 'Ticket', 'Loại phiếu', 'Loai phieu']) ||\n  capture('Phong ban xu ly', ['Nội dung phản ánh', 'Noi dung phan anh', 'Ticket', 'Loại phiếu', 'Loai phieu']);\n\n// 4) Nội dung phản ánh (đến hết block)\nlet noiDung =\n  capture('Nội dung phản ánh', []) ||\n  capture('Noi dung phan anh', []);\nif (noiDung) {\n  // loại dấu [https://...] nếu còn sót\n  noiDung = noiDung.replace(/\\[\\s*https?:\\/\\/[^\\]]+\\]/ig, ' ').replace(/[ \\t]{2,}/g, ' ').trim();\n}\n\n// Chuỗi đã xuống dòng theo ý bạn\nconst formatted =\n  `Ticket: ${ticket ?? ''}\\n` +\n  `Loại phiếu: ${loaiPhieu ?? ''}\\n` +\n  `Phòng ban xử lý: ${phongBan ?? ''}\\n` +\n  `Nội dung phản ánh: ${noiDung ?? ''}`;\n\nreturn {\n  json: { ticket, loaiPhieu, phongBan, noiDung, formatted }\n};\n"
+        },
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          144,
+          0
+        ],
+        "id": "ddf79494-a318-49fc-86cc-6cf8370bfd16",
+        "name": "parse_mail",
+        "alwaysOutputData": true
+      },
+      {
+        "parameters": {
+          "inputSource": "passthrough"
+        },
+        "type": "n8n-nodes-base.executeWorkflowTrigger",
+        "typeVersion": 1.1,
+        "position": [
+          0,
+          0
+        ],
+        "id": "12be7e6f-f53b-4129-8451-a6838df2ec91",
+        "name": "call by cp62-opshub-main-v1"
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "f122afee-9e32-48b8-991c-1d5391a28906",
+                "name": "ticket",
+                "value": "={{ $('parse_mail').first().json.ticket }}",
+                "type": "string"
+              },
+              {
+                "id": "a61fbf05-7418-4313-aa4e-08b2e0c120e2",
+                "name": "loai_phieu",
+                "value": "={{ $('parse_mail').first().json.loaiPhieu }}",
+                "type": "string"
+              },
+              {
+                "id": "05c20e81-c0e3-4cc5-b5ff-13734d89955e",
+                "name": "noi_dung",
+                "value": "={{ $('parse_mail').first().json.noiDung }}",
+                "type": "string"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          272,
+          0
+        ],
+        "id": "f9294ae2-3f0d-4c20-897a-a6fc95eac773",
+        "name": "set_prameters"
+      }
+    ],
+    "connections": {
+      "parse_mail": {
+        "main": [
+          [
+            {
+              "node": "set_prameters",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "call by cp62-opshub-main-v1": {
+        "main": [
+          [
+            {
+              "node": "parse_mail",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "authors": "Hoang Nguyen",
+    "name": "Version 76113c65",
+    "description": "",
+    "autosaved": true
+  },
+  "activeVersionId": "76113c65-4b0b-4b4d-8492-60fbc927a766",
+  "connections": {
+    "parse_mail": {
+      "main": [
+        [
+          {
+            "node": "set_prameters",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "call by cp62-opshub-main-v1": {
+      "main": [
+        [
+          {
+            "node": "parse_mail",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2026-02-22T19:16:37.439Z",
+  "id": "m682LkS6Thq1R87J",
+  "isArchived": false,
+  "meta": null,
+  "name": "sub-ops hub-ticket gen",
+  "nodes": [
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "// Lấy text thuần; nếu không có thì chuyển HTML -> text dòng\nlet text = $json.text || $json.textPlain || '';\nif (!text) {\n  const html = $json.html || $json.textHtml || '';\n  if (html) {\n    text = String(html)\n      .replace(/<br\\s*\\/?>/gi, '\\n')\n      .replace(/<\\/(p|div|tr|td|li|h\\d|table|tbody|th)>/gi, '\\n')\n      .replace(/<[^>]+>/g, ' ');\n  }\n}\n\n// Chuẩn hoá khoảng trắng\ntext = String(text)\n  .replace(/\\r/g, '\\n')\n  .replace(/\\u00A0/g, ' ')\n  .replace(/[ \\t]+/g, ' ')\n  .replace(/ *\\n+ */g, '\\n')\n  .trim();\n\n// Lấy block từ \"Ticket:\" tới trước footer/link\nconst start = text.toLowerCase().indexOf('ticket:');\nlet block = start >= 0 ? text.slice(start) : text;\n\n// Cắt phần footer/link (giả định)\nconst footer =\n  block.match(/\\n?\\[\\s*https?:\\/\\/[^\\]]+\\]/i) || // [https://...]\n  block.match(/\\n?to unsubscribe/i);\nif (footer) block = block.slice(0, footer.index).trim();\n\n// Helper: escape regex\nconst esc = (s) => s.replace(/[.*+?^${}()|[\\]\\\\]/g, '\\\\$&');\n\n// Cắt giữa nhãn A và nhãn kế tiếp (nếu có)\nfunction capture(label, nextLabels) {\n  const next = nextLabels.length ? `(?=(?:${nextLabels.map(esc).join('|')}))` : '$';\n  const re = new RegExp(esc(label) + '\\\\s*:?\\\\s*([\\\\s\\\\S]*?)' + next, 'i');\n  const m = block.match(re);\n  if (!m) return null;\n  return m[1]\n    .replace(/\\s*\\n\\s*/g, ' ')   // gộp xuống dòng trong giá trị\n    .replace(/[ \\t]{2,}/g, ' ')\n    .trim();\n}\n\n// 1) Ticket (chỉ lấy số dài)\nconst mTicket = block.match(/Ticket\\s*:\\s*(\\d{5,})/i);\nconst ticket = mTicket ? mTicket[1].trim() : null;\n\n// 2) Loại phiếu\nconst loaiPhieu =\n  capture('Loại phiếu', ['Phòng ban xử lý', 'Noi dung phan anh', 'Nội dung phản ánh']) ||\n  capture('Loai phieu', ['Phòng ban xử lý', 'Noi dung phan anh', 'Nội dung phản ánh']);\n\n// 3) Phòng ban xử lý\nconst phongBan =\n  capture('Phòng ban xử lý', ['Nội dung phản ánh', 'Noi dung phan anh', 'Ticket', 'Loại phiếu', 'Loai phieu']) ||\n  capture('Phong ban xu ly', ['Nội dung phản ánh', 'Noi dung phan anh', 'Ticket', 'Loại phiếu', 'Loai phieu']);\n\n// 4) Nội dung phản ánh (đến hết block)\nlet noiDung =\n  capture('Nội dung phản ánh', []) ||\n  capture('Noi dung phan anh', []);\nif (noiDung) {\n  // loại dấu [https://...] nếu còn sót\n  noiDung = noiDung.replace(/\\[\\s*https?:\\/\\/[^\\]]+\\]/ig, ' ').replace(/[ \\t]{2,}/g, ' ').trim();\n}\n\n// Chuỗi đã xuống dòng theo ý bạn\nconst formatted =\n  `Ticket: ${ticket ?? ''}\\n` +\n  `Loại phiếu: ${loaiPhieu ?? ''}\\n` +\n  `Phòng ban xử lý: ${phongBan ?? ''}\\n` +\n  `Nội dung phản ánh: ${noiDung ?? ''}`;\n\nreturn {\n  json: { ticket, loaiPhieu, phongBan, noiDung, formatted }\n};\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        144,
+        0
+      ],
+      "id": "ddf79494-a318-49fc-86cc-6cf8370bfd16",
+      "name": "parse_mail",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "inputSource": "passthrough"
+      },
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "12be7e6f-f53b-4129-8451-a6838df2ec91",
+      "name": "call by cp62-opshub-main-v1"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "f122afee-9e32-48b8-991c-1d5391a28906",
+              "name": "ticket",
+              "value": "={{ $('parse_mail').first().json.ticket }}",
+              "type": "string"
+            },
+            {
+              "id": "a61fbf05-7418-4313-aa4e-08b2e0c120e2",
+              "name": "loai_phieu",
+              "value": "={{ $('parse_mail').first().json.loaiPhieu }}",
+              "type": "string"
+            },
+            {
+              "id": "05c20e81-c0e3-4cc5-b5ff-13734d89955e",
+              "name": "noi_dung",
+              "value": "={{ $('parse_mail').first().json.noiDung }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        272,
+        0
+      ],
+      "id": "f9294ae2-3f0d-4c20-897a-a6fc95eac773",
+      "name": "set_prameters"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-02-22T19:16:37.439Z",
+      "createdAt": "2026-02-22T19:16:37.439Z",
+      "role": "workflow:owner",
+      "workflowId": "m682LkS6Thq1R87J",
+      "projectId": "GTQprNa3RcCSHh8s"
+    }
+  ],
+  "staticData": null,
+  "tags": [
+    {
+      "updatedAt": "2025-12-17T02:41:50.389Z",
+      "createdAt": "2025-12-17T02:41:50.389Z",
+      "id": "tf48o2CcAcmF6X41",
+      "name": "Seatalk app"
+    }
+  ],
+  "triggerCount": 0,
+  "updatedAt": "2026-02-22T19:17:11.196Z",
+  "versionId": "76113c65-4b0b-4b4d-8492-60fbc927a766"
+}
