@@ -1,0 +1,2053 @@
+{
+  "active": false,
+  "activeVersion": null,
+  "activeVersionId": null,
+  "connections": {
+    "Webhook": {
+      "main": [
+        []
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "record_text_msg",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [],
+        [
+          {
+            "node": "checkWarranty",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "set_global": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "get_state": {
+      "main": [
+        [
+          {
+            "node": "get_tokens",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "get_tokens": {
+      "main": [
+        [
+          {
+            "node": "set_global",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "record_text_msg": {
+      "main": [
+        [
+          {
+            "node": "checkWarranty",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "event": {
+      "main": [
+        [
+          {
+            "node": "get_state",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "get_state1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "upperAll": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "getReceiptHistories",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "wrongReceipt",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "getReceiptHistories": {
+      "main": [
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "checkWarranty": {
+      "main": [
+        [
+          {
+            "node": "upperAll",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "check",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "sentOrNot": {
+      "main": [
+        [
+          {
+            "node": "parseLinks",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Sort",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "parseLinks": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Limit",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit": {
+      "main": [
+        [
+          {
+            "node": "recieptSent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "recieptSent": {
+      "main": [
+        [
+          {
+            "node": "updateOaId",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Sort": {
+      "main": [
+        [
+          {
+            "node": "Limit1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit1": {
+      "main": [
+        [
+          {
+            "node": "Switch1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch1": {
+      "main": [
+        [
+          {
+            "node": "5s_1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "5s_2",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Date & Time",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "sentOrNot",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "waitingImg",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "waitingImg": {
+      "main": [
+        [
+          {
+            "node": "addWaitingReceipt",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "check": {
+      "main": [
+        [
+          {
+            "node": "getChatHistories",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "getChatHistories": {
+      "main": [
+        [
+          {
+            "node": "Sort1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Sort1": {
+      "main": [
+        [
+          {
+            "node": "checkChatHistories",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "checkChatHistories": {
+      "main": [
+        [
+          {
+            "node": "error",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "error": {
+      "main": [
+        [
+          {
+            "node": "5s_0",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "getReceiptHistories",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "call by check waiting img": {
+      "main": [
+        [
+          {
+            "node": "get_state",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "updateOaId": {
+      "main": [
+        [
+          {
+            "node": "clearWaitingImg",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "5s_0": {
+      "main": [
+        [
+          {
+            "node": "receiptNotFound",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "5s_1": {
+      "main": [
+        [
+          {
+            "node": "recieptSent1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "5s_2": {
+      "main": [
+        [
+          {
+            "node": "recieptSent2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Date & Time": {
+      "main": [
+        [
+          {
+            "node": "5s_3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "5s_3": {
+      "main": [
+        [
+          {
+            "node": "recieptSent3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "recieptSent1": {
+      "main": [
+        []
+      ]
+    },
+    "getShowroomInfo": {
+      "main": [
+        [
+          {
+            "node": "report",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "clearWaitingImg": {
+      "main": [
+        [
+          {
+            "node": "getShowroomInfo",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "setTokenBotPhongvu",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-09-23T14:24:38.344Z",
+  "id": "c4BuSN5WHHGvvTRy",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "zalo-oa-chat-bot-https",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "zalo-oa",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -496,
+        0
+      ],
+      "id": "1c042269-17cb-4746-a7c2-6e5ed4509cbe",
+      "name": "Webhook",
+      "webhookId": "e6b9313d-3992-4824-92fc-51702d8801ec"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "35a31418-fb63-4ba8-9ad1-8c5d0c89161b",
+                    "leftValue": "={{ $json.event_name }}",
+                    "rightValue": "user_send_text",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "tinNhanVanBan"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "859d74e5-275c-4317-ab61-fee6df5e7f7f",
+                    "leftValue": "={{ $json.event_name }}",
+                    "rightValue": "user_send_sticker",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "tinNhanSticker"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "70052405-a7b9-4b8e-b1d9-620d92792ea5",
+                    "leftValue": "={{ $json.event_name }}",
+                    "rightValue": "waiting_img",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "waitingImg"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.3,
+      "position": [
+        272,
+        -64
+      ],
+      "id": "4325f2c5-ee8d-47f9-9fac-2f64ffd094b8",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "e1824f81-d387-4c5d-a33b-8d838d9f17cb",
+              "name": "oa_id",
+              "value": "={{ $('get_state').item.json.oa_id }}",
+              "type": "string"
+            },
+            {
+              "id": "b32525bb-1bf3-4647-a490-f3821e31b13f",
+              "name": "oa_name",
+              "value": "={{ $('get_state').item.json.oa_name }}",
+              "type": "string"
+            },
+            {
+              "id": "464ad3f5-dd7e-4551-8891-ce5bc46eae17",
+              "name": "access_token",
+              "value": "={{ $json.access_token }}",
+              "type": "string"
+            },
+            {
+              "id": "8efe50a8-c9d3-4d5b-b532-f596d3b80237",
+              "name": "event_name",
+              "value": "={{\n  (() => {\n    // Kiểm tra node Webhook có chạy không\n    try {\n      const webhookData = $('Webhook').item.json.body.event_name;\n      if (webhookData) return webhookData;\n    } catch (e) {}\n    \n    // Nếu không, lấy từ node còn lại\n    try {\n      return $('call by check waiting img').item.json.event_name;\n    } catch (e) {\n      return null;\n    }\n  })()\n}}",
+              "type": "string"
+            },
+            {
+              "id": "74f634ac-50af-4076-9a25-3d76643c8c58",
+              "name": "senderId",
+              "value": "={{\n  (() => {\n    // Kiểm tra node Webhook có chạy không\n    try {\n      const webhookData = $('Webhook').item.json.body.sender.id;\n      if (webhookData) return webhookData;\n    } catch (e) {}\n    \n    // Nếu không, lấy từ node còn lại\n    try {\n      return $('call by check waiting img').item.json.senderId;\n    } catch (e) {\n      return null;\n    }\n  })()\n}}",
+              "type": "string"
+            },
+            {
+              "id": "b28b9bb9-dfdd-48cb-8b5d-372f057f9375",
+              "name": "msg_text",
+              "value": "={{\n  (() => {\n    // Kiểm tra node Webhook có chạy không\n    try {\n      const webhookData = $('Webhook').item.json.body.message.text;\n      if (webhookData) return webhookData;\n    } catch (e) {}\n    \n    // Nếu không, lấy từ node còn lại\n    try {\n      return $('call by check waiting img').item.json.msg_text;\n    } catch (e) {\n      return null;\n    }\n  })()\n}}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        160,
+        -48
+      ],
+      "id": "9a7b73f6-37c7-4e46-b213-06104e085f37",
+      "name": "set_global"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "dataTableId": {
+          "__rl": true,
+          "value": "FrgmZD1mcv9xYWkU",
+          "mode": "list",
+          "cachedResultName": "zalo_oa_id",
+          "cachedResultUrl": "/projects/WAqDK79b9owhbfuS/datatables/FrgmZD1mcv9xYWkU"
+        },
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "oa_id",
+              "keyValue": "={{ $json.body.recipient.id }}"
+            },
+            {
+              "keyName": "oa_id",
+              "keyValue": "={{ $json.body.oa_id }}"
+            },
+            {
+              "keyName": "oa_id",
+              "keyValue": "={{ $json.oaId }}"
+            }
+          ]
+        },
+        "returnAll": true
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        -64,
+        -48
+      ],
+      "id": "2864f1ef-878d-4c24-9172-2a902643153e",
+      "name": "get_state"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "dataTableId": {
+          "__rl": true,
+          "value": "vpspADlABkNFyCnh",
+          "mode": "list",
+          "cachedResultName": "zalo_oa_tokens",
+          "cachedResultUrl": "/projects/WAqDK79b9owhbfuS/datatables/vpspADlABkNFyCnh"
+        },
+        "matchType": "allConditions",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "state",
+              "keyValue": "={{ $json.state }}"
+            }
+          ]
+        },
+        "returnAll": true
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        48,
+        -48
+      ],
+      "id": "c67ee7d4-c122-4d80-be16-7233dcbc9431",
+      "name": "get_tokens"
+    },
+    {
+      "parameters": {
+        "dataTableId": {
+          "__rl": true,
+          "value": "SezFamr4zZFHkJYX",
+          "mode": "list",
+          "cachedResultName": "zalo-oa-messages",
+          "cachedResultUrl": "/projects/WAqDK79b9owhbfuS/datatables/SezFamr4zZFHkJYX"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "sender_id": "={{ $('set_global').item.json.senderId }}",
+            "msg_text": "={{ $('set_global').item.json.msg_text }}",
+            "msg_id": "={{ $('Webhook').item.json.body.message.msg_id }}",
+            "oa_id": "={{ $json.oa_id }}",
+            "oaName": "={{ $('set_global').item.json.oa_name }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "sender_id",
+              "displayName": "sender_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "oa_id",
+              "displayName": "oa_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "msg_text",
+              "displayName": "msg_text",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "msg_id",
+              "displayName": "msg_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "oaName",
+              "displayName": "oaName",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        416,
+        -176
+      ],
+      "id": "6e95d2d0-f858-458f-b635-cfbb5b261832",
+      "name": "record_text_msg"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "423f5072-99b0-4b7a-b714-07363f24c15a",
+                    "leftValue": "={{ $json.body.event_name }}",
+                    "rightValue": "user",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "userMsg"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.body.event_name }}",
+                    "rightValue": "oa",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    },
+                    "id": "1d483f6c-441e-45ad-8e0e-574906732b11"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "selfMsg"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.3,
+      "position": [
+        -224,
+        32
+      ],
+      "id": "ee25dbed-feb7-4b6e-96c5-a14353880e87",
+      "name": "event"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "dataTableId": {
+          "__rl": true,
+          "value": "FrgmZD1mcv9xYWkU",
+          "mode": "list",
+          "cachedResultName": "zalo_oa_id",
+          "cachedResultUrl": "/projects/WAqDK79b9owhbfuS/datatables/FrgmZD1mcv9xYWkU"
+        },
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "oa_id",
+              "keyValue": "={{ $json.body.recipient.id }}"
+            },
+            {
+              "keyName": "oa_id",
+              "keyValue": "={{ $json.body.sender.id }}"
+            }
+          ]
+        },
+        "returnAll": true
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        -64,
+        80
+      ],
+      "id": "b3bcb1d7-0d61-44d0-961d-9d44a4f9470c",
+      "name": "get_state1"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Mode: Run once for each item\n// Input text in $json.text (fallback: message/content)\n// Accepts \"/get CPxx-Jxxxxxxxx\" in any case; output always UPPERCASE.\nconst s = String($input.first().json.msg_text).trim();\n// regex: CP + 2 digits, hyphen, J + 8 digits (case-insensitive)\nconst m = s.match(/\\bcp\\d{2}-j\\d{8}\\b/i);\nreturn [{\n  json: {\n    receipt: m ? m[0].replace(/\\s+/g, '').toUpperCase() : ''\n  }\n}];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        704,
+        -256
+      ],
+      "id": "c7d16820-a89f-4499-a4c3-0ede0fab496a",
+      "name": "upperAll"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": false,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "76ba767b-9464-42da-b646-3ae4bb19f4e4",
+              "leftValue": "={{ $json.receipt }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {
+          "ignoreCase": true
+        }
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        816,
+        -256
+      ],
+      "id": "473e8d1e-8c36-4317-ad97-7ff5e1c25af8",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://openapi.zalo.me/v3.0/oa/message/cs",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "access_token",
+              "value": "={{ $('set_global').item.json.access_token }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"recipient\": {\n    \"user_id\": \"{{ $('set_global').item.json.senderId }}\"\n  },\n  \"message\": {\n    \"text\": \"Biên nhận {{ $('set_global').item.json.msg_text }} chưa đúng, vui lòng kiểm tra lại.\"\n  }\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        976,
+        -192
+      ],
+      "id": "0c7c427c-ed60-4e90-8259-9beee8670192",
+      "name": "wrongReceipt"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "dataTableId": {
+          "__rl": true,
+          "value": "K93S4yr9Qd3h27pc",
+          "mode": "list",
+          "cachedResultName": "zalo-bot-phongvu-waranty-logs",
+          "cachedResultUrl": "/projects/WAqDK79b9owhbfuS/datatables/K93S4yr9Qd3h27pc"
+        },
+        "matchType": "allConditions",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "receipt",
+              "keyValue": "={{ $json.receipt }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        976,
+        -320
+      ],
+      "id": "460893ba-9c72-42cb-95f9-c5e4d902a7ae",
+      "name": "getReceiptHistories",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": false,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "c6ce33ce-9d45-4d38-8e7e-a4a2e55bf9d6",
+              "leftValue": "={{\n  (() => {\n    // Kiểm tra node record_text_msg có chạy không\n    try {\n      const msg_text = $('record_text_msg').item.json.msg_text;\n      if (msg_text) return msg_text;\n    } catch (e) {}\n    \n    // Nếu không, lấy từ node còn lại\n    try {\n      return $('call by check waiting img').item.json.msg_text;\n    } catch (e) {\n      return null;\n    }\n  })()\n}}",
+              "rightValue": "cp",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {
+          "ignoreCase": true
+        }
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        576,
+        -112
+      ],
+      "id": "132857be-ed64-448e-a3a8-bd94b0c61b0c",
+      "name": "checkWarranty"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": false,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "0b57a3a1-639f-4523-b4a5-fab63c05aa9c",
+              "leftValue": "={{ $json.sendOA }}",
+              "rightValue": "Not yet",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            },
+            {
+              "id": "33411b23-805c-4459-95d9-3d9bd105d2e8",
+              "leftValue": "={{ $json.type }}",
+              "rightValue": "create",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {
+          "ignoreCase": true
+        }
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1248,
+        -512
+      ],
+      "id": "cd3c7dff-d02b-4840-a078-6189f01034c3",
+      "name": "sentOrNot"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://openapi.zalo.me/v3.0/oa/message/cs",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "access_token",
+              "value": "={{ $('set_global').item.json.access_token }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"recipient\": {\n    \"user_id\": \"{{ $('set_global').item.json.senderId }}\"\n  },\n  \"message\": {\n    \"text\": \"\",\n    \"attachment\": {\n      \"type\": \"template\",\n      \"payload\": {\n        \"template_type\": \"media\",\n        \"elements\": [\n          {\n            \"media_type\": \"image\",\n            \"url\": \"{{ $('parseLinks').item.json.url }}\"\n          }\n        ]\n      }\n    }\n  }\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        1568,
+        -624
+      ],
+      "id": "16cf1a02-10f6-4586-ab39-3426e488dd35",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Input: { links_line: \"https://a.jpg, https://b.png, ...\"}\nconst raw = $input.first().json.links || '';\nconst split = raw\n  .split(/[,\\s]+/)           // phẩy, xuống dòng, khoảng trắng\n  .map(s => s.trim())\n  .filter(Boolean);\n\n// Loại trùng, giữ thứ tự\nconst urls = [...new Set(split)];\n\n// Trả về mỗi item 1 URL\nreturn urls.map((u, i) => ({ json: { url: u, idx: i }}));"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1440,
+        -624
+      ],
+      "id": "ce96de0a-ec9a-49da-acfa-de6c3fb29b93",
+      "name": "parseLinks"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        1696,
+        -624
+      ],
+      "id": "6e6e0cec-5fe3-4df7-ad67-14eccb34dc9f",
+      "name": "Limit"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://openapi.zalo.me/v3.0/oa/message/cs",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "access_token",
+              "value": "={{ $('set_global').item.json.access_token }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"recipient\": {\n    \"user_id\": \"{{ $('set_global').item.json.senderId }}\"\n  },\n  \"message\": {\n    \"text\": \"{{ $('set_global').item.json.oa_name }} kính gửi quý khách hình ảnh sản phẩm của biên nhận số {{ $('getReceiptHistories').item.json.receipt }}.\\n Nếu cần hỗ trợ, quý khách vui lòng nhắn tin cho cửa hàng nhé ạ!\"\n  }\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        1824,
+        -624
+      ],
+      "id": "c0cb8265-d7b8-43c3-95f0-1facd6a88b6e",
+      "name": "recieptSent"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "dataTableId": {
+          "__rl": true,
+          "value": "K93S4yr9Qd3h27pc",
+          "mode": "list",
+          "cachedResultName": "zalo-bot-phongvu-waranty-logs",
+          "cachedResultUrl": "/projects/WAqDK79b9owhbfuS/datatables/K93S4yr9Qd3h27pc"
+        },
+        "matchType": "allConditions",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "receipt",
+              "keyValue": "={{ $('getReceiptHistories').item.json.receipt }}"
+            },
+            {
+              "keyName": "type",
+              "keyValue": "create"
+            }
+          ]
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "sendOA": "={{ $json.data.user_id }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "type",
+              "displayName": "type",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "receipt",
+              "displayName": "receipt",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "links",
+              "displayName": "links",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "linkCount",
+              "displayName": "linkCount",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "fromID",
+              "displayName": "fromID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "name",
+              "displayName": "name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "receiptStatus",
+              "displayName": "receiptStatus",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "linkFolder",
+              "displayName": "linkFolder",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "sendOA",
+              "displayName": "sendOA",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        1952,
+        -624
+      ],
+      "id": "e6cbba87-50eb-4242-8b8f-d92ee9300b47",
+      "name": "updateOaId"
+    },
+    {
+      "parameters": {
+        "sortFieldsUi": {
+          "sortField": [
+            {
+              "fieldName": "createdAt",
+              "order": "descending"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.sort",
+      "typeVersion": 1,
+      "position": [
+        1504,
+        -288
+      ],
+      "id": "8ca5315b-8891-40a4-8091-8a1d9cb3a255",
+      "name": "Sort"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        1632,
+        -288
+      ],
+      "id": "632f3ca8-3b46-47ef-8017-737fedd01069",
+      "name": "Limit1"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://openapi.zalo.me/v3.0/oa/message/cs",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "access_token",
+              "value": "={{ $('set_global').first().json.access_token }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"recipient\": {\n    \"user_id\": \"{{ $('set_global').first().json.senderId }}\"\n  },\n  \"message\": {\n    \"text\": \"Dạ biên nhận số {{ $('Switch1').item.json.receipt }} của mình vẫn đang được sửa chữa. Bên em sẽ báo cho mình ngay khi máy xong nhé. Cảm ơn anh chị\"\n  }\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        2064,
+        -432
+      ],
+      "id": "ae4bd8f9-87d1-49bf-9883-d42fe917e09d",
+      "name": "recieptSent1"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": false,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "998988ee-80a6-4519-b79a-beaf806cedb1",
+              "leftValue": "={{ $('record_text_msg').item.json.msg_text }}",
+              "rightValue": "kiểm tra bảo hành/sửa chữa",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {
+          "ignoreCase": true
+        }
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        704,
+        0
+      ],
+      "id": "15a2fbd3-af2a-4b3b-a3b1-5f8c182f9d72",
+      "name": "check"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.receiptStatus }}",
+                    "rightValue": "đang xử lý",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "77add226-d344-4601-8b62-e957171f09d7"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "pending"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "e94b96f7-69e0-4310-ba54-af93226698f5",
+                    "leftValue": "={{ $json.receiptStatus }}",
+                    "rightValue": "đã xong",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "waiting"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "43ef89da-ea10-413b-a62f-d460d32b07d9",
+                    "leftValue": "={{ $json.receiptStatus }}",
+                    "rightValue": "hoàn thành",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "done"
+            }
+          ]
+        },
+        "options": {
+          "ignoreCase": true
+        }
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.3,
+      "position": [
+        1760,
+        -304
+      ],
+      "id": "4eb393b4-ab00-4fba-b144-f999c8b01211",
+      "name": "Switch1"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://openapi.zalo.me/v3.0/oa/message/cs",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "access_token",
+              "value": "={{ $('set_global').first().json.access_token }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"recipient\": {\n    \"user_id\": \"{{ $('set_global').first().json.senderId }}\"\n  },\n  \"message\": {\n    \"text\": \"Biên nhận số {{ $('Switch1').item.json.receipt }} của quý khách đã xong, mình mang biên nhận tới {{ $('set_global').first().json.oa_name }} nhận giúp em nhé.\"\n  }\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        2064,
+        -288
+      ],
+      "id": "87a1f998-0288-4bd3-b448-3ac5e11c0549",
+      "name": "recieptSent2"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "13e300ec-8608-4f44-b11b-7a09f881ae6d",
+              "leftValue": "={{ $json.createdAt }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1104,
+        -320
+      ],
+      "id": "1e87ea18-557c-4b78-a563-a8172c4ee9fc",
+      "name": "If1"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://openapi.zalo.me/v3.0/oa/message/cs",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "access_token",
+              "value": "={{ $('set_global').first().json.access_token }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"recipient\": {\n    \"user_id\": \"{{ $('set_global').item.json.senderId }}\"\n  },\n  \"message\": {\n    \"text\": \"Cảm ơn quý khách, em sẽ gửi hình ảnh sản phẩm của biên nhận {{ $('If').item.json.receipt }} cho mình ngay khi có ạ.\"\n  }\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        1248,
+        -208
+      ],
+      "id": "c94d0796-7d82-4c51-aaff-ca1331ce0be9",
+      "name": "waitingImg"
+    },
+    {
+      "parameters": {
+        "dataTableId": {
+          "__rl": true,
+          "value": "gSq7vKzR0YPBNf41",
+          "mode": "list",
+          "cachedResultName": "zalo-oa-waiting-img",
+          "cachedResultUrl": "/projects/WAqDK79b9owhbfuS/datatables/gSq7vKzR0YPBNf41"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "senderId": "={{ $json.data.user_id }}",
+            "receipt": "={{ $('If').item.json.receipt }}",
+            "oaId": "={{ $('set_global').first().json.oa_id }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "senderId",
+              "displayName": "senderId",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "receipt",
+              "displayName": "receipt",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "oaId",
+              "displayName": "oaId",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        1376,
+        -208
+      ],
+      "id": "78695785-6a28-4a5e-99a3-444a3960f2a0",
+      "name": "addWaitingReceipt"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "dataTableId": {
+          "__rl": true,
+          "value": "SezFamr4zZFHkJYX",
+          "mode": "list",
+          "cachedResultName": "zalo_oa_user_msg",
+          "cachedResultUrl": "/projects/WAqDK79b9owhbfuS/datatables/SezFamr4zZFHkJYX"
+        },
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "sender_id",
+              "keyValue": "={{ $('set_global').item.json.senderId }}"
+            },
+            {
+              "keyName": "createdAt",
+              "keyValue": "={{ new Date(Date.now() - 1296000000) }}"
+            }
+          ]
+        },
+        "returnAll": true
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        960,
+        -48
+      ],
+      "id": "b2993bc4-fab0-424f-a07b-ef32162700f3",
+      "name": "getChatHistories"
+    },
+    {
+      "parameters": {
+        "sortFieldsUi": {
+          "sortField": [
+            {
+              "fieldName": "createdAt",
+              "order": "descending"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.sort",
+      "typeVersion": 1,
+      "position": [
+        1088,
+        -48
+      ],
+      "id": "128d47b2-53cf-4df2-a59d-5d47704949c6",
+      "name": "Sort1"
+    },
+    {
+      "parameters": {
+        "jsCode": "const items = $input.all();\n\n// Debug: Log số lượng messages\nconsole.log(`Total messages: ${items.length}`);\n\nif (!items || items.length === 0) {\n  return [{\n    json: {\n      error: 'No message history found',\n      receipt: null\n    }\n  }];\n}\n\nlet receipt = null;\n\n// Duyệt từ tin nhắn mới nhất (index 0) đến cũ nhất\nfor (let i = 0; i < items.length; i++) {\n  const text = items[i].json.msg_text?.trim();\n  \n  if (!text) continue;\n  \n  // Chuẩn hóa về uppercase\n  const normalizedText = text.toUpperCase();\n  \n  // Kiểm tra pattern CPxx-Jxxxxxxxx\n  const match = normalizedText.match(/^CP\\d+-J\\w+$/);\n  \n  if (match) {\n    receipt = match[0];\n    console.log(`Found receipt: ${receipt} at index ${i}`);\n    break; // Dừng ngay khi tìm thấy\n  }\n}\n\n// Validation và trả kết quả\nif (receipt === null) {\n  return [{\n    json: {\n      error: 'No receipt (CPxx-Jxxxxxxxx) found in recent messages',\n      receipt: null,\n      messagesChecked: items.length\n    }\n  }];\n}\n\n// Success\nconsole.log(`Success: receipt=${receipt}`);\nreturn [{\n  json: {\n    error: null,\n    receipt: receipt,\n    messagesChecked: items.length,\n    processedAt: new Date().toISOString()\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1216,
+        -48
+      ],
+      "id": "da78c143-a37b-43df-8f4f-9f9035dc22a5",
+      "name": "checkChatHistories"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "aa180c48-0b88-4a57-8e1f-abcde6778e7e",
+              "leftValue": "={{ $json.error }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1344,
+        -48
+      ],
+      "id": "1bd00af7-3335-4791-aaf7-34b47a67ca19",
+      "name": "error"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://openapi.zalo.me/v3.0/oa/message/cs",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "access_token",
+              "value": "={{ $('set_global').first().json.access_token }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"recipient\": {\n    \"user_id\": \"{{ $('set_global').first().json.senderId }}\"\n  },\n  \"message\": {\n    \"text\": \"Em không tìm thấy biên nhận trong lịch sử chat của mình, nhờ anh chị gửi lại biên nhận giúp em nhé ạ\"\n  }\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        1632,
+        -48
+      ],
+      "id": "6e2f0ee3-e6b2-4722-8395-f91aed4d3ce9",
+      "name": "receiptNotFound"
+    },
+    {
+      "parameters": {
+        "inputSource": "passthrough"
+      },
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -224,
+        -192
+      ],
+      "id": "e56d1283-ae4b-45d0-bc45-937418db9210",
+      "name": "call by check waiting img"
+    },
+    {
+      "parameters": {
+        "operation": "deleteRows",
+        "dataTableId": {
+          "__rl": true,
+          "value": "gSq7vKzR0YPBNf41",
+          "mode": "list",
+          "cachedResultName": "zalo-oa-waiting-img",
+          "cachedResultUrl": "/projects/WAqDK79b9owhbfuS/datatables/gSq7vKzR0YPBNf41"
+        },
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "receipt",
+              "keyValue": "={{ $json.receipt }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        2080,
+        -624
+      ],
+      "id": "aae89bc9-7b49-403c-b6c3-743e73e9babc",
+      "name": "clearWaitingImg"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        1504,
+        -48
+      ],
+      "id": "8bed543e-d65f-4b23-af77-81b870cbd816",
+      "name": "5s_0",
+      "webhookId": "52c7575f-9583-43bf-8587-ccc0078b88ec"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        1936,
+        -432
+      ],
+      "id": "de82cc40-60f6-4648-be8f-5e87aca1a816",
+      "name": "5s_1",
+      "webhookId": "039fdaf9-18e6-4dfa-a139-ee1987515f42"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        1936,
+        -288
+      ],
+      "id": "314eb0fe-c874-437a-88fc-e3732c75ed49",
+      "name": "5s_2",
+      "webhookId": "59201553-9807-43f1-9920-88571968eb9f"
+    },
+    {
+      "parameters": {
+        "operation": "formatDate",
+        "date": "={{ $json.createdAt}}",
+        "format": "custom",
+        "customFormat": "dd/MM/yyyy",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dateTime",
+      "typeVersion": 2,
+      "position": [
+        1936,
+        -144
+      ],
+      "id": "7695c42f-44ce-4a3f-9d9c-083e7fd2d71e",
+      "name": "Date & Time"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://openapi.zalo.me/v3.0/oa/message/cs",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "access_token",
+              "value": "={{ $('set_global').first().json.access_token }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"recipient\": {\n    \"user_id\": \"{{ $('set_global').first().json.senderId }}\"\n  },\n  \"message\": {\n    \"text\": \"Biên nhận số {{ $('Switch1').item.json.receipt }} của quý khách đã được bàn giao hoàn tất vào ngày {{ $('Date & Time').item.json.formattedDate }}. Mình kiểm tra lại giúp em nha\"\n  }\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        2192,
+        -144
+      ],
+      "id": "23f6e260-05b6-4a5a-bd79-9e8bd72408a3",
+      "name": "recieptSent3"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        2064,
+        -144
+      ],
+      "id": "5e7bcdfb-1b8d-45c0-b122-99b0723e161c",
+      "name": "5s_3",
+      "webhookId": "92be49f7-f51e-405c-9ef6-8a01ba77e5b7"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "dataTableId": {
+          "__rl": true,
+          "value": "wUQEmH4M6A6sYbU4",
+          "mode": "list",
+          "cachedResultName": "zalo-bot-phongvu-credentials",
+          "cachedResultUrl": "/projects/WAqDK79b9owhbfuS/datatables/wUQEmH4M6A6sYbU4"
+        },
+        "matchType": "allConditions",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "storeCode",
+              "keyValue": "={{ $('updateOaId').first().json.state }}"
+            },
+            {
+              "keyName": "userGroup",
+              "keyValue": "manager"
+            },
+            {
+              "keyName": "credential",
+              "condition": "isNotEmpty"
+            }
+          ]
+        },
+        "returnAll": true
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        2272,
+        -624
+      ],
+      "id": "7ede1032-a826-4887-84e4-f1811bd41a62",
+      "name": "getShowroomInfo"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://bot-api.zapps.me/bot{{ $('setTokenBotPhongvu').first().json.api_token }}/sendMessage",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "chat_id",
+              "value": "={{ $json.credential }}"
+            },
+            {
+              "name": "text",
+              "value": "=Hình ảnh sản phẩm của biên nhận số {{ $('updateOaId').item.json.receipt }} đã được gửi đến khách hàng thành công."
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2432,
+        -624
+      ],
+      "id": "be8276a1-0798-4f56-984f-400a6922ccec",
+      "name": "report"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "3f0bae0c-a86e-48f0-988b-2de79190c0fb",
+              "name": "api_token",
+              "value": "3887717245246063361:hRVzWLSxxRWYxXVOmZbFBfETafkiQVZFPbypQuHNGyszbKxANonPzzlDCzGMzUPN",
+              "type": "string"
+            },
+            {
+              "id": "1c7197bc-d6f5-48e4-95e1-9a2c432e9ee2",
+              "name": "url",
+              "value": "https://n8n.hoanghochoi.com/webhook/bot-zalo-phongvu",
+              "type": "string"
+            },
+            {
+              "id": "7419f1d4-f082-4b85-8a09-642fa0687534",
+              "name": "secret_token",
+              "value": "zg8mYU7VaDm1Xd7QUyWaOxYxGaSijq",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2272,
+        -768
+      ],
+      "id": "425f6f97-50df-4232-aa0b-2784b5aa8817",
+      "name": "setTokenBotPhongvu"
+    }
+  ],
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "host": "n8n.hoanghochoi.com",
+            "user-agent": "ZaloWebhook",
+            "content-length": "276",
+            "accept-encoding": "gzip, br",
+            "cdn-loop": "cloudflare; loops=1",
+            "cf-connecting-ip": "49.213.78.2",
+            "cf-ipcountry": "VN",
+            "cf-ray": "9b2728caddd6601d-SIN",
+            "cf-visitor": "{\"scheme\":\"https\"}",
+            "cf-warp-tag-id": "1a2a7b9c-d672-40a3-98bd-f1c1f70f21c7",
+            "connection": "keep-alive",
+            "content-type": "application/json",
+            "x-forwarded-for": "49.213.78.2",
+            "x-forwarded-proto": "https",
+            "x-zevent-server": "OA OpenAPI",
+            "x-zevent-signature": "mac=e35dac280c651b0eb9212df02b3d31b81d7e8fc5985d250464bb117163186004"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "event_name": "user_send_text",
+            "app_id": "2347457985316425334",
+            "sender": {
+              "id": "4571339128415896065"
+            },
+            "recipient": {
+              "id": "1915665259726723858"
+            },
+            "message": {
+              "text": "Ktra dùm anh. Khoảng 20p nữa ku nó học online",
+              "msg_id": "b145b5a5b41bed43b40c"
+            },
+            "timestamp": "1766485572201"
+          },
+          "webhookUrl": "https://n8n.hoanghochoi.com/webhook/zalo-oa",
+          "executionMode": "production"
+        },
+        "pairedItem": {
+          "item": 0
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "Asia/Ho_Chi_Minh",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false,
+    "errorWorkflow": "80zc32Np6wJfRsoG"
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-02-22T18:07:32.048Z",
+      "createdAt": "2026-02-22T18:07:32.048Z",
+      "role": "workflow:owner",
+      "workflowId": "c4BuSN5WHHGvvTRy",
+      "projectId": "GTQprNa3RcCSHh8s"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-12-29T03:04:11.806Z",
+  "versionId": "ddffcbaa-c566-43fb-a3f3-c69eb673e72e"
+}
