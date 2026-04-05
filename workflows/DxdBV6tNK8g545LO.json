@@ -1,0 +1,1920 @@
+{
+  "active": true,
+  "activeVersion": {
+    "updatedAt": "2026-03-28T08:03:47.477Z",
+    "createdAt": "2026-03-25T10:23:14.463Z",
+    "versionId": "f28779ae-5e85-4a21-8482-a6177ef3aa71",
+    "workflowId": "DxdBV6tNK8g545LO",
+    "nodes": [
+      {
+        "parameters": {
+          "operation": "getAll",
+          "limit": 30,
+          "simple": false,
+          "filters": {
+            "readStatus": "unread"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.gmail",
+        "typeVersion": 2.1,
+        "position": [
+          992,
+          256
+        ],
+        "id": "7f938cd1-e127-468d-83d0-b3a2134205cd",
+        "name": "Get many messages",
+        "webhookId": "55095519-7b3a-4145-bef3-10e6915e24b1",
+        "credentials": {
+          "gmailOAuth2": {
+            "id": "ffOqNpYKMyS4cfS8",
+            "name": "Gmail tuyen.ndt"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "rules": {
+            "values": [
+              {
+                "conditions": {
+                  "options": {
+                    "caseSensitive": false,
+                    "leftValue": "",
+                    "typeValidation": "loose",
+                    "version": 2
+                  },
+                  "conditions": [
+                    {
+                      "leftValue": "={{ $json.subject }}",
+                      "rightValue": "[HD",
+                      "operator": {
+                        "type": "string",
+                        "operation": "contains"
+                      },
+                      "id": "95ac2771-8871-4607-b95d-5e81ca74a903"
+                    }
+                  ],
+                  "combinator": "and"
+                }
+              },
+              {
+                "conditions": {
+                  "options": {
+                    "caseSensitive": false,
+                    "leftValue": "",
+                    "typeValidation": "loose",
+                    "version": 2
+                  },
+                  "conditions": [
+                    {
+                      "id": "1d469c7c-816e-4255-b6b2-12dc1cf952d5",
+                      "leftValue": "={{ $json.subject }}",
+                      "rightValue": "[HĐ",
+                      "operator": {
+                        "type": "string",
+                        "operation": "contains"
+                      }
+                    }
+                  ],
+                  "combinator": "and"
+                }
+              },
+              {
+                "conditions": {
+                  "options": {
+                    "caseSensitive": false,
+                    "leftValue": "",
+                    "typeValidation": "loose",
+                    "version": 2
+                  },
+                  "conditions": [
+                    {
+                      "id": "7f4fb762-cedf-4d10-b11b-e97c0ce4b37d",
+                      "leftValue": "={{ $json.subject }}",
+                      "rightValue": "[ HD",
+                      "operator": {
+                        "type": "string",
+                        "operation": "contains"
+                      }
+                    }
+                  ],
+                  "combinator": "and"
+                }
+              },
+              {
+                "conditions": {
+                  "options": {
+                    "caseSensitive": false,
+                    "leftValue": "",
+                    "typeValidation": "loose",
+                    "version": 2
+                  },
+                  "conditions": [
+                    {
+                      "id": "dc4a26e3-c8e6-4ab4-936b-a256b05dfd9c",
+                      "leftValue": "={{ $json.subject }}",
+                      "rightValue": "[ HĐ",
+                      "operator": {
+                        "type": "string",
+                        "operation": "equals",
+                        "name": "filter.operator.equals"
+                      }
+                    }
+                  ],
+                  "combinator": "and"
+                }
+              },
+              {
+                "conditions": {
+                  "options": {
+                    "caseSensitive": false,
+                    "leftValue": "",
+                    "typeValidation": "loose",
+                    "version": 2
+                  },
+                  "conditions": [
+                    {
+                      "id": "f27808e7-8484-42e2-ad6a-8d689e517f41",
+                      "leftValue": "={{ $json.subject }}",
+                      "rightValue": "ticket",
+                      "operator": {
+                        "type": "string",
+                        "operation": "contains"
+                      }
+                    }
+                  ],
+                  "combinator": "and"
+                },
+                "renameOutput": true,
+                "outputKey": "ticket"
+              },
+              {
+                "conditions": {
+                  "options": {
+                    "caseSensitive": false,
+                    "leftValue": "",
+                    "typeValidation": "loose",
+                    "version": 2
+                  },
+                  "conditions": [
+                    {
+                      "id": "10b677cb-da0f-40e5-89d7-b3dfeaf81fd1",
+                      "leftValue": "={{ $json.subject }}",
+                      "rightValue": "thẩm định",
+                      "operator": {
+                        "type": "string",
+                        "operation": "equals",
+                        "name": "filter.operator.equals"
+                      }
+                    }
+                  ],
+                  "combinator": "and"
+                },
+                "renameOutput": true,
+                "outputKey": "tham dinh"
+              },
+              {
+                "conditions": {
+                  "options": {
+                    "caseSensitive": false,
+                    "leftValue": "",
+                    "typeValidation": "loose",
+                    "version": 2
+                  },
+                  "conditions": [
+                    {
+                      "id": "6ed26b6c-dd94-4e09-9781-75f843c3ebf9",
+                      "leftValue": "",
+                      "rightValue": "",
+                      "operator": {
+                        "type": "string",
+                        "operation": "equals",
+                        "name": "filter.operator.equals"
+                      }
+                    }
+                  ],
+                  "combinator": "and"
+                }
+              }
+            ]
+          },
+          "looseTypeValidation": true,
+          "options": {
+            "ignoreCase": true
+          }
+        },
+        "type": "n8n-nodes-base.switch",
+        "typeVersion": 3.3,
+        "position": [
+          1152,
+          192
+        ],
+        "id": "84c00d24-b306-4def-b00f-63c4ddecc07b",
+        "name": "Switch"
+      },
+      {
+        "parameters": {
+          "operation": "markAsRead",
+          "messageId": "={{ $json.id }}"
+        },
+        "type": "n8n-nodes-base.gmail",
+        "typeVersion": 2.1,
+        "position": [
+          1328,
+          384
+        ],
+        "id": "babcab68-2895-4355-9c8b-84e456717a9c",
+        "name": "read_ticket",
+        "webhookId": "1873e1d9-bd20-4074-8b53-98ffb4016872",
+        "credentials": {
+          "gmailOAuth2": {
+            "id": "ffOqNpYKMyS4cfS8",
+            "name": "Gmail tuyen.ndt"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "operation": "markAsRead",
+          "messageId": "={{ $('Loop Over Items').item.json.id }}"
+        },
+        "type": "n8n-nodes-base.gmail",
+        "typeVersion": 2.1,
+        "position": [
+          2400,
+          224
+        ],
+        "id": "bdc71f7c-d42f-4098-927b-0434fedfba21",
+        "name": "Mark a message as read",
+        "webhookId": "9568971a-debc-46d7-b56e-bdab37b57990",
+        "credentials": {
+          "gmailOAuth2": {
+            "id": "ffOqNpYKMyS4cfS8",
+            "name": "Gmail tuyen.ndt"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "options": {}
+        },
+        "type": "n8n-nodes-base.splitInBatches",
+        "typeVersion": 3,
+        "position": [
+          1376,
+          224
+        ],
+        "id": "a7c2e786-ddfc-4899-a350-4a11b2d3303e",
+        "name": "Loop Over Items"
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "loose",
+              "version": 2
+            },
+            "conditions": [
+              {
+                "id": "e632f79e-5fcf-44dc-a286-6b641a5fa7c6",
+                "leftValue": "={{ $('Loop Over Items').item.json.threadId }}",
+                "rightValue": "={{ $json.threadId }}",
+                "operator": {
+                  "type": "string",
+                  "operation": "notEquals"
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "looseTypeValidation": true,
+          "options": {}
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.2,
+        "position": [
+          1760,
+          224
+        ],
+        "id": "c72a9b94-bf6a-4097-860b-d8cd6e56513c",
+        "name": "If"
+      },
+      {
+        "parameters": {
+          "operation": "get",
+          "dataTableId": {
+            "__rl": true,
+            "value": "BpxAp7cwNamW19xd",
+            "mode": "list",
+            "cachedResultName": "mail-beiu",
+            "cachedResultUrl": "/projects/GTQprNa3RcCSHh8s/datatables/BpxAp7cwNamW19xd"
+          },
+          "filters": {
+            "conditions": [
+              {
+                "keyName": "threadId",
+                "condition": "isNotEmpty"
+              }
+            ]
+          }
+        },
+        "type": "n8n-nodes-base.dataTable",
+        "typeVersion": 1,
+        "position": [
+          1632,
+          224
+        ],
+        "id": "6146f250-0188-4c67-973a-6449be3c661c",
+        "name": "Get row(s)",
+        "alwaysOutputData": true
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": false,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 2
+            },
+            "conditions": [
+              {
+                "id": "3fdcb706-d9e5-4790-9444-56e40d3a2f20",
+                "leftValue": "={{ $json.subject }}",
+                "rightValue": "nhân viên",
+                "operator": {
+                  "type": "string",
+                  "operation": "notContains"
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {
+            "ignoreCase": true
+          }
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.2,
+        "position": [
+          1504,
+          224
+        ],
+        "id": "f88829b0-fa9a-4e02-99ab-df39394a82b6",
+        "name": "If1"
+      },
+      {
+        "parameters": {
+          "operation": "upsert",
+          "dataTableId": {
+            "__rl": true,
+            "value": "BpxAp7cwNamW19xd",
+            "mode": "list",
+            "cachedResultName": "mail-beiu",
+            "cachedResultUrl": "/projects/GTQprNa3RcCSHh8s/datatables/BpxAp7cwNamW19xd"
+          },
+          "filters": {
+            "conditions": [
+              {
+                "keyName": "threadId",
+                "keyValue": "={{ $json.threadId }}"
+              }
+            ]
+          },
+          "columns": {
+            "mappingMode": "defineBelow",
+            "value": {
+              "threadId": "={{ $json.threadId }}"
+            },
+            "matchingColumns": [],
+            "schema": [
+              {
+                "id": "threadId",
+                "displayName": "threadId",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": false
+              },
+              {
+                "id": "timeSentToZalo",
+                "displayName": "timeSentToZalo",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": true
+              }
+            ],
+            "attemptToConvertTypes": false,
+            "convertFieldsToString": false
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.dataTable",
+        "typeVersion": 1,
+        "position": [
+          2560,
+          224
+        ],
+        "id": "0bf836e1-535d-4dba-9f66-aa88096f1a0f",
+        "name": "Upsert row(s)"
+      },
+      {
+        "parameters": {},
+        "type": "n8n-nodes-base.limit",
+        "typeVersion": 1,
+        "position": [
+          1888,
+          224
+        ],
+        "id": "439dd0dd-6610-4576-a07f-e9b27ca5119f",
+        "name": "Limit"
+      },
+      {
+        "parameters": {
+          "operation": "get",
+          "dataTableId": {
+            "__rl": true,
+            "value": "sc1dOTktntfbMUel",
+            "mode": "list",
+            "cachedResultName": "seatalk-app-access-token",
+            "cachedResultUrl": "/projects/GTQprNa3RcCSHh8s/datatables/sc1dOTktntfbMUel"
+          },
+          "filters": {
+            "conditions": [
+              {
+                "keyName": "app_id",
+                "keyValue": "={{ $json.app_id }}"
+              }
+            ]
+          },
+          "returnAll": true
+        },
+        "type": "n8n-nodes-base.dataTable",
+        "typeVersion": 1,
+        "position": [
+          1504,
+          0
+        ],
+        "id": "2ca8552d-e377-426e-8540-924a4da38955",
+        "name": "get_app_info"
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "3de90b61-c36c-47c7-bfa1-ee1d3bc9eaf7",
+                "name": "app_id",
+                "value": "MTk5MzA1OTkxODcw",
+                "type": "string"
+              }
+            ]
+          },
+          "includeOtherFields": true,
+          "options": {}
+        },
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          1376,
+          0
+        ],
+        "id": "ccf4a298-3a6c-4f0d-94d1-7c195aafd07d",
+        "name": "app_id"
+      },
+      {
+        "parameters": {
+          "method": "POST",
+          "url": "https://openapi.seatalk.io/messaging/v2/single_chat",
+          "sendHeaders": true,
+          "headerParameters": {
+            "parameters": [
+              {
+                "name": "Authorization",
+                "value": "=Bearer {{ $('get_app_info').first().json.app_access_token }}"
+              },
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          },
+          "sendBody": true,
+          "specifyBody": "json",
+          "jsonBody": "={\n    \"employee_code\": \"e_w2c6h5px\",\n    \"message\": {\n        \"tag\": \"text\",\n        \"text\": {\n            \"format\": 1,\n            \"content\": \"{{ $('random_text').first().json.phrase }}\\n{{ ($('Loop Over Items').first().json.subject || '').replace(/\"/g, '') }}\\nĐơn hàng: {{ $('check_order').first().json.result }}\"\n        }\n    },\n    \"usable_platform\": \"all\"\n}",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.3,
+        "position": [
+          2272,
+          224
+        ],
+        "id": "6a9aed51-7d1d-4062-9108-48d7f49fbb5c",
+        "name": "chat"
+      },
+      {
+        "parameters": {
+          "jsCode": "const phrases = [\n  \"Xin chào người đẹp, có hợp đồng nè\",\n  \"Hú hú, hợp đồng tới đây\",\n  \"Hợp đồng cái qq gì nhiều dãy\",\n  \"Tới giờ nữa rồi đó, hợp đồng tới rồi đó\",\n  \"Hợp đồng nữa, vỡn hẻ\",\n  \"Uống nước, uống nước rồi làm hợp đồng nè\",\n  \"Làm hợp đồng rồi nghĩ cách tiêu hết xiền nè người đẹp\",\n  \"Ẻn Ẻn, hợp đồng tới đây\"\n];\n\nconst randomIndex = Math.floor(Math.random() * phrases.length);\n\nreturn [\n  {\n    json: {\n      phrase: phrases[randomIndex]\n    }\n  }\n];\n"
+        },
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          2016,
+          224
+        ],
+        "id": "76176f3a-8eba-4877-b7e3-97efe17e99e5",
+        "name": "random_text"
+      },
+      {
+        "parameters": {
+          "resource": "thread",
+          "operation": "trash",
+          "threadId": "={{ $json.threadId }}"
+        },
+        "type": "n8n-nodes-base.gmail",
+        "typeVersion": 2.2,
+        "position": [
+          1472,
+          384
+        ],
+        "id": "83868d8b-fdfd-4f6f-95f3-8522ebb2e849",
+        "name": "Trash a thread",
+        "webhookId": "59aa89c5-cdc0-4f25-8ca2-73b9fa2e5e4c",
+        "credentials": {
+          "gmailOAuth2": {
+            "id": "ffOqNpYKMyS4cfS8",
+            "name": "Gmail tuyen.ndt"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "jsCode": "// Lấy text từ node \"Loop Over Items\"\nconst text = $('Loop Over Items').first().json.text || '';\n\n// Tìm chuỗi 14 chữ số liên tiếp\nconst match = text.match(/\\d{14}/);\n\n// Trả kết quả\nreturn [\n  {\n    json: {\n      result: match ? match[0] : \"Không có mã đơn hàng\"\n    }\n  }\n];"
+        },
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          2144,
+          224
+        ],
+        "id": "ce3c29a9-37a3-4a01-89dc-62fba4e0eba2",
+        "name": "check_order"
+      },
+      {
+        "parameters": {
+          "pollTimes": {
+            "item": [
+              {
+                "mode": "everyMinute"
+              }
+            ]
+          },
+          "filters": {}
+        },
+        "type": "n8n-nodes-base.gmailTrigger",
+        "typeVersion": 1.3,
+        "position": [
+          704,
+          256
+        ],
+        "id": "33892663-8069-4746-8895-bc863d31e393",
+        "name": "Gmail Trigger",
+        "credentials": {
+          "gmailOAuth2": {
+            "id": "ffOqNpYKMyS4cfS8",
+            "name": "Gmail tuyen.ndt"
+          }
+        }
+      },
+      {
+        "parameters": {},
+        "type": "n8n-nodes-base.manualTrigger",
+        "typeVersion": 1,
+        "position": [
+          0,
+          0
+        ],
+        "id": "23f135cd-549a-4a15-93b3-be703e027af4",
+        "name": "When clicking ‘Execute workflow’",
+        "disabled": true
+      },
+      {
+        "parameters": {
+          "operation": "get",
+          "messageId": "19c1d7595178fb2a",
+          "simple": false,
+          "options": {}
+        },
+        "type": "n8n-nodes-base.gmail",
+        "typeVersion": 2.2,
+        "position": [
+          224,
+          0
+        ],
+        "id": "e044a128-f9bd-4467-8103-b7bb3b97de77",
+        "name": "Get a message",
+        "webhookId": "7203ec53-a821-4914-8fac-a4841d29eacc",
+        "credentials": {
+          "gmailOAuth2": {
+            "id": "ffOqNpYKMyS4cfS8",
+            "name": "Gmail tuyen.ndt"
+          }
+        },
+        "disabled": true
+      },
+      {
+        "parameters": {},
+        "type": "n8n-nodes-base.limit",
+        "typeVersion": 1,
+        "position": [
+          848,
+          256
+        ],
+        "id": "aa7ccdbb-2c4f-442a-9b84-98d7941fc5fc",
+        "name": "Limit1"
+      },
+      {
+        "parameters": {
+          "operation": "markAsRead",
+          "messageId": "={{ $('Switch').item.json.id }}"
+        },
+        "type": "n8n-nodes-base.gmail",
+        "typeVersion": 2.1,
+        "position": [
+          1840,
+          432
+        ],
+        "id": "ff79785f-6b5b-451c-ad4e-4640f235cc38",
+        "name": "Mark a message as read1",
+        "webhookId": "9568971a-debc-46d7-b56e-bdab37b57990",
+        "credentials": {
+          "gmailOAuth2": {
+            "id": "ffOqNpYKMyS4cfS8",
+            "name": "Gmail tuyen.ndt"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "method": "POST",
+          "url": "https://openapi.seatalk.io/messaging/v2/single_chat",
+          "sendHeaders": true,
+          "headerParameters": {
+            "parameters": [
+              {
+                "name": "Authorization",
+                "value": "=Bearer {{ $('get_app_info').first().json.app_access_token }}"
+              },
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          },
+          "sendBody": true,
+          "specifyBody": "json",
+          "jsonBody": "={\n    \"employee_code\": \"e_w2c6h5px\",\n    \"message\": {\n        \"tag\": \"text\",\n        \"text\": {\n            \"format\": 1,\n            \"content\": \"{{ ($('Switch').first().json.subject || '').replace(/\"/g, '') }}\"\n        }\n    },\n    \"usable_platform\": \"all\"\n}",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.3,
+        "position": [
+          1712,
+          432
+        ],
+        "id": "97d047b9-851f-4e81-bd98-9d768c12df4b",
+        "name": "chat1"
+      }
+    ],
+    "connections": {
+      "Get many messages": {
+        "main": [
+          [
+            {
+              "node": "Switch",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Switch": {
+        "main": [
+          [
+            {
+              "node": "Loop Over Items",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "Loop Over Items",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "Loop Over Items",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "Loop Over Items",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "read_ticket",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "chat1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Loop Over Items": {
+        "main": [
+          [],
+          [
+            {
+              "node": "If1",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "app_id",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Mark a message as read": {
+        "main": [
+          [
+            {
+              "node": "Upsert row(s)",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "If": {
+        "main": [
+          [
+            {
+              "node": "Limit",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Get row(s)": {
+        "main": [
+          [
+            {
+              "node": "If",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "If1": {
+        "main": [
+          [
+            {
+              "node": "Get row(s)",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Upsert row(s)": {
+        "main": [
+          [
+            {
+              "node": "Loop Over Items",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Limit": {
+        "main": [
+          [
+            {
+              "node": "random_text",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "app_id": {
+        "main": [
+          [
+            {
+              "node": "get_app_info",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "random_text": {
+        "main": [
+          [
+            {
+              "node": "check_order",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "chat": {
+        "main": [
+          [
+            {
+              "node": "Mark a message as read",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "read_ticket": {
+        "main": [
+          [
+            {
+              "node": "Trash a thread",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "check_order": {
+        "main": [
+          [
+            {
+              "node": "chat",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Gmail Trigger": {
+        "main": [
+          [
+            {
+              "node": "Limit1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "When clicking ‘Execute workflow’": {
+        "main": [
+          [
+            {
+              "node": "Get a message",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Limit1": {
+        "main": [
+          [
+            {
+              "node": "Get many messages",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "chat1": {
+        "main": [
+          [
+            {
+              "node": "Mark a message as read1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "authors": "Hoang Nguyen",
+    "name": "Version f28779ae",
+    "description": "",
+    "autosaved": true
+  },
+  "activeVersionId": "f28779ae-5e85-4a21-8482-a6177ef3aa71",
+  "connections": {
+    "Get many messages": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "read_ticket",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "chat1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "app_id",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mark a message as read": {
+      "main": [
+        [
+          {
+            "node": "Upsert row(s)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Limit",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get row(s)": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "Get row(s)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Upsert row(s)": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit": {
+      "main": [
+        [
+          {
+            "node": "random_text",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "app_id": {
+      "main": [
+        [
+          {
+            "node": "get_app_info",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "random_text": {
+      "main": [
+        [
+          {
+            "node": "check_order",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "chat": {
+      "main": [
+        [
+          {
+            "node": "Mark a message as read",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "read_ticket": {
+      "main": [
+        [
+          {
+            "node": "Trash a thread",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "check_order": {
+      "main": [
+        [
+          {
+            "node": "chat",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gmail Trigger": {
+      "main": [
+        [
+          {
+            "node": "Limit1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Get a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit1": {
+      "main": [
+        [
+          {
+            "node": "Get many messages",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "chat1": {
+      "main": [
+        [
+          {
+            "node": "Mark a message as read1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2026-02-23T01:51:48.243Z",
+  "id": "DxdBV6tNK8g545LO",
+  "isArchived": false,
+  "meta": null,
+  "name": "get-contract-hcm",
+  "nodes": [
+    {
+      "parameters": {
+        "operation": "getAll",
+        "limit": 30,
+        "simple": false,
+        "filters": {
+          "readStatus": "unread"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        992,
+        256
+      ],
+      "id": "7f938cd1-e127-468d-83d0-b3a2134205cd",
+      "name": "Get many messages",
+      "webhookId": "55095519-7b3a-4145-bef3-10e6915e24b1",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "ffOqNpYKMyS4cfS8",
+          "name": "Gmail tuyen.ndt"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false,
+                  "leftValue": "",
+                  "typeValidation": "loose",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.subject }}",
+                    "rightValue": "[HD",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    },
+                    "id": "95ac2771-8871-4607-b95d-5e81ca74a903"
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false,
+                  "leftValue": "",
+                  "typeValidation": "loose",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "1d469c7c-816e-4255-b6b2-12dc1cf952d5",
+                    "leftValue": "={{ $json.subject }}",
+                    "rightValue": "[HĐ",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false,
+                  "leftValue": "",
+                  "typeValidation": "loose",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "7f4fb762-cedf-4d10-b11b-e97c0ce4b37d",
+                    "leftValue": "={{ $json.subject }}",
+                    "rightValue": "[ HD",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false,
+                  "leftValue": "",
+                  "typeValidation": "loose",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "dc4a26e3-c8e6-4ab4-936b-a256b05dfd9c",
+                    "leftValue": "={{ $json.subject }}",
+                    "rightValue": "[ HĐ",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false,
+                  "leftValue": "",
+                  "typeValidation": "loose",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "f27808e7-8484-42e2-ad6a-8d689e517f41",
+                    "leftValue": "={{ $json.subject }}",
+                    "rightValue": "ticket",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "ticket"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false,
+                  "leftValue": "",
+                  "typeValidation": "loose",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "10b677cb-da0f-40e5-89d7-b3dfeaf81fd1",
+                    "leftValue": "={{ $json.subject }}",
+                    "rightValue": "thẩm định",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "tham dinh"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false,
+                  "leftValue": "",
+                  "typeValidation": "loose",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "6ed26b6c-dd94-4e09-9781-75f843c3ebf9",
+                    "leftValue": "",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "looseTypeValidation": true,
+        "options": {
+          "ignoreCase": true
+        }
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.3,
+      "position": [
+        1152,
+        192
+      ],
+      "id": "84c00d24-b306-4def-b00f-63c4ddecc07b",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "operation": "markAsRead",
+        "messageId": "={{ $json.id }}"
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        1328,
+        384
+      ],
+      "id": "babcab68-2895-4355-9c8b-84e456717a9c",
+      "name": "read_ticket",
+      "webhookId": "1873e1d9-bd20-4074-8b53-98ffb4016872",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "ffOqNpYKMyS4cfS8",
+          "name": "Gmail tuyen.ndt"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "markAsRead",
+        "messageId": "={{ $('Loop Over Items').item.json.id }}"
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        2400,
+        224
+      ],
+      "id": "bdc71f7c-d42f-4098-927b-0434fedfba21",
+      "name": "Mark a message as read",
+      "webhookId": "9568971a-debc-46d7-b56e-bdab37b57990",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "ffOqNpYKMyS4cfS8",
+          "name": "Gmail tuyen.ndt"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        1376,
+        224
+      ],
+      "id": "a7c2e786-ddfc-4899-a350-4a11b2d3303e",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "e632f79e-5fcf-44dc-a286-6b641a5fa7c6",
+              "leftValue": "={{ $('Loop Over Items').item.json.threadId }}",
+              "rightValue": "={{ $json.threadId }}",
+              "operator": {
+                "type": "string",
+                "operation": "notEquals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1760,
+        224
+      ],
+      "id": "c72a9b94-bf6a-4097-860b-d8cd6e56513c",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "dataTableId": {
+          "__rl": true,
+          "value": "BpxAp7cwNamW19xd",
+          "mode": "list",
+          "cachedResultName": "mail-beiu",
+          "cachedResultUrl": "/projects/GTQprNa3RcCSHh8s/datatables/BpxAp7cwNamW19xd"
+        },
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "threadId",
+              "condition": "isNotEmpty"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        1632,
+        224
+      ],
+      "id": "6146f250-0188-4c67-973a-6449be3c661c",
+      "name": "Get row(s)",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": false,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "3fdcb706-d9e5-4790-9444-56e40d3a2f20",
+              "leftValue": "={{ $json.subject }}",
+              "rightValue": "nhân viên",
+              "operator": {
+                "type": "string",
+                "operation": "notContains"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {
+          "ignoreCase": true
+        }
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1504,
+        224
+      ],
+      "id": "f88829b0-fa9a-4e02-99ab-df39394a82b6",
+      "name": "If1"
+    },
+    {
+      "parameters": {
+        "operation": "upsert",
+        "dataTableId": {
+          "__rl": true,
+          "value": "BpxAp7cwNamW19xd",
+          "mode": "list",
+          "cachedResultName": "mail-beiu",
+          "cachedResultUrl": "/projects/GTQprNa3RcCSHh8s/datatables/BpxAp7cwNamW19xd"
+        },
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "threadId",
+              "keyValue": "={{ $json.threadId }}"
+            }
+          ]
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "threadId": "={{ $json.threadId }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "threadId",
+              "displayName": "threadId",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "timeSentToZalo",
+              "displayName": "timeSentToZalo",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        2560,
+        224
+      ],
+      "id": "0bf836e1-535d-4dba-9f66-aa88096f1a0f",
+      "name": "Upsert row(s)"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        1888,
+        224
+      ],
+      "id": "439dd0dd-6610-4576-a07f-e9b27ca5119f",
+      "name": "Limit"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "dataTableId": {
+          "__rl": true,
+          "value": "sc1dOTktntfbMUel",
+          "mode": "list",
+          "cachedResultName": "seatalk-app-access-token",
+          "cachedResultUrl": "/projects/GTQprNa3RcCSHh8s/datatables/sc1dOTktntfbMUel"
+        },
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "app_id",
+              "keyValue": "={{ $json.app_id }}"
+            }
+          ]
+        },
+        "returnAll": true
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        1504,
+        0
+      ],
+      "id": "2ca8552d-e377-426e-8540-924a4da38955",
+      "name": "get_app_info"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "3de90b61-c36c-47c7-bfa1-ee1d3bc9eaf7",
+              "name": "app_id",
+              "value": "MTk5MzA1OTkxODcw",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1376,
+        0
+      ],
+      "id": "ccf4a298-3a6c-4f0d-94d1-7c195aafd07d",
+      "name": "app_id"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://openapi.seatalk.io/messaging/v2/single_chat",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $('get_app_info').first().json.app_access_token }}"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"employee_code\": \"e_w2c6h5px\",\n    \"message\": {\n        \"tag\": \"text\",\n        \"text\": {\n            \"format\": 1,\n            \"content\": \"{{ $('random_text').first().json.phrase }}\\n{{ ($('Loop Over Items').first().json.subject || '').replace(/\"/g, '') }}\\nĐơn hàng: {{ $('check_order').first().json.result }}\"\n        }\n    },\n    \"usable_platform\": \"all\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        2272,
+        224
+      ],
+      "id": "6a9aed51-7d1d-4062-9108-48d7f49fbb5c",
+      "name": "chat"
+    },
+    {
+      "parameters": {
+        "jsCode": "const phrases = [\n  \"Xin chào người đẹp, có hợp đồng nè\",\n  \"Hú hú, hợp đồng tới đây\",\n  \"Hợp đồng cái qq gì nhiều dãy\",\n  \"Tới giờ nữa rồi đó, hợp đồng tới rồi đó\",\n  \"Hợp đồng nữa, vỡn hẻ\",\n  \"Uống nước, uống nước rồi làm hợp đồng nè\",\n  \"Làm hợp đồng rồi nghĩ cách tiêu hết xiền nè người đẹp\",\n  \"Ẻn Ẻn, hợp đồng tới đây\"\n];\n\nconst randomIndex = Math.floor(Math.random() * phrases.length);\n\nreturn [\n  {\n    json: {\n      phrase: phrases[randomIndex]\n    }\n  }\n];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2016,
+        224
+      ],
+      "id": "76176f3a-8eba-4877-b7e3-97efe17e99e5",
+      "name": "random_text"
+    },
+    {
+      "parameters": {
+        "resource": "thread",
+        "operation": "trash",
+        "threadId": "={{ $json.threadId }}"
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        1472,
+        384
+      ],
+      "id": "83868d8b-fdfd-4f6f-95f3-8522ebb2e849",
+      "name": "Trash a thread",
+      "webhookId": "59aa89c5-cdc0-4f25-8ca2-73b9fa2e5e4c",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "ffOqNpYKMyS4cfS8",
+          "name": "Gmail tuyen.ndt"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Lấy text từ node \"Loop Over Items\"\nconst text = $('Loop Over Items').first().json.text || '';\n\n// Tìm chuỗi 14 chữ số liên tiếp\nconst match = text.match(/\\d{14}/);\n\n// Trả kết quả\nreturn [\n  {\n    json: {\n      result: match ? match[0] : \"Không có mã đơn hàng\"\n    }\n  }\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2144,
+        224
+      ],
+      "id": "ce3c29a9-37a3-4a01-89dc-62fba4e0eba2",
+      "name": "check_order"
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "filters": {}
+      },
+      "type": "n8n-nodes-base.gmailTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        704,
+        256
+      ],
+      "id": "33892663-8069-4746-8895-bc863d31e393",
+      "name": "Gmail Trigger",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "ffOqNpYKMyS4cfS8",
+          "name": "Gmail tuyen.ndt"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "23f135cd-549a-4a15-93b3-be703e027af4",
+      "name": "When clicking ‘Execute workflow’",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "messageId": "19c1d7595178fb2a",
+        "simple": false,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        224,
+        0
+      ],
+      "id": "e044a128-f9bd-4467-8103-b7bb3b97de77",
+      "name": "Get a message",
+      "webhookId": "7203ec53-a821-4914-8fac-a4841d29eacc",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "ffOqNpYKMyS4cfS8",
+          "name": "Gmail tuyen.ndt"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        848,
+        256
+      ],
+      "id": "aa7ccdbb-2c4f-442a-9b84-98d7941fc5fc",
+      "name": "Limit1"
+    },
+    {
+      "parameters": {
+        "operation": "markAsRead",
+        "messageId": "={{ $('Switch').item.json.id }}"
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        1840,
+        432
+      ],
+      "id": "ff79785f-6b5b-451c-ad4e-4640f235cc38",
+      "name": "Mark a message as read1",
+      "webhookId": "9568971a-debc-46d7-b56e-bdab37b57990",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "ffOqNpYKMyS4cfS8",
+          "name": "Gmail tuyen.ndt"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://openapi.seatalk.io/messaging/v2/single_chat",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $('get_app_info').first().json.app_access_token }}"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"employee_code\": \"e_w2c6h5px\",\n    \"message\": {\n        \"tag\": \"text\",\n        \"text\": {\n            \"format\": 1,\n            \"content\": \"{{ ($('Switch').first().json.subject || '').replace(/\"/g, '') }}\"\n        }\n    },\n    \"usable_platform\": \"all\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        1712,
+        432
+      ],
+      "id": "97d047b9-851f-4e81-bd98-9d768c12df4b",
+      "name": "chat1"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false,
+    "timeSavedMode": "fixed",
+    "errorWorkflow": "tUGf8pqhOC0yFiUP",
+    "callerPolicy": "workflowsFromSameOwner"
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-02-23T01:51:48.243Z",
+      "createdAt": "2026-02-23T01:51:48.243Z",
+      "role": "workflow:owner",
+      "workflowId": "DxdBV6tNK8g545LO",
+      "projectId": "GTQprNa3RcCSHh8s"
+    }
+  ],
+  "staticData": {
+    "node:Gmail Trigger": {
+      "Gmail Trigger": {
+        "lastTimeChecked": 1775389241,
+        "possibleDuplicates": [
+          "19d5d7225703b974"
+        ]
+      }
+    }
+  },
+  "tags": [
+    {
+      "updatedAt": "2025-11-08T12:09:40.816Z",
+      "createdAt": "2025-11-08T12:08:49.207Z",
+      "id": "aJR3FZVXiQEfDzcy",
+      "name": "pv.vn"
+    }
+  ],
+  "triggerCount": 1,
+  "updatedAt": "2026-03-25T10:23:16.806Z",
+  "versionId": "f28779ae-5e85-4a21-8482-a6177ef3aa71"
+}
