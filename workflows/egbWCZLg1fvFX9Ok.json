@@ -1,0 +1,931 @@
+{
+  "active": true,
+  "activeVersion": {
+    "updatedAt": "2026-02-22T19:32:02.197Z",
+    "createdAt": "2026-02-22T19:31:35.569Z",
+    "versionId": "a9f4ee92-1813-4483-8e48-492bba5548bf",
+    "workflowId": "egbWCZLg1fvFX9Ok",
+    "nodes": [
+      {
+        "parameters": {
+          "jsCode": "// INPUT: có thể nhiều email items; mỗi item có nhiều binary (attachment_*)\n// OUTPUT: mỗi file Excel thành 1 item với binary.data\nconst wantMime = new Set([\n  'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',\n  'application/vnd.ms-excel',\n  'application/vnd.ms-excel.sheet.macroEnabled.12',\n]);\nconst isExcelName = (name='') => /\\.(xlsx|xlsm|xls)$/i.test(String(name));\n\nconst out = [];\nfor (const it of $input.all()) {\n  const b = it.binary || {};\n  for (const [k, bin] of Object.entries(b)) {\n    const mime = bin.mimeType || bin.contentType || '';\n    const name = bin.fileName || '';\n    if (!(wantMime.has(mime) || isExcelName(name))) continue;\n\n    const picked = { ...bin };\n    if (!picked.fileName) {\n      const ext = wantMime.has(mime)\n        ? (mime.includes('macroEnabled') ? 'xlsm'\n           : mime.includes('officedocument.spreadsheetml.sheet') ? 'xlsx'\n           : 'xls')\n        : (name.match(/\\.(xlsx|xlsm|xls)$/i)?.[1] || 'xlsx');\n      picked.fileName = `attachment.${ext}`;\n    }\n    out.push({ json: { ...it.json, attachmentName: picked.fileName }, binary: { data: picked } });\n  }\n}\nreturn out.length ? out : [];\n"
+        },
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          -480,
+          176
+        ],
+        "id": "47812bc2-23b7-4eb5-adc5-a957e0eb5dd5",
+        "name": "Code in JavaScript",
+        "alwaysOutputData": true
+      },
+      {
+        "parameters": {},
+        "type": "n8n-nodes-base.merge",
+        "typeVersion": 3.2,
+        "position": [
+          -224,
+          176
+        ],
+        "id": "b24915c1-8ddf-4b95-8522-4d59d3235546",
+        "name": "Merge"
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 2
+            },
+            "conditions": [
+              {
+                "id": "894b7409-6d33-489c-b716-8f62b4d136fa",
+                "leftValue": "={{ $json['Ho Chi Minh'] }}",
+                "rightValue": 0,
+                "operator": {
+                  "type": "number",
+                  "operation": "gt"
+                }
+              },
+              {
+                "id": "df53f635-777d-43c4-9998-d7cf23c8b398",
+                "leftValue": "={{ $json['Product Name'] }}",
+                "rightValue": "Grand Total",
+                "operator": {
+                  "type": "string",
+                  "operation": "notEquals"
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.filter",
+        "typeVersion": 2.2,
+        "position": [
+          -112,
+          176
+        ],
+        "id": "b82621ef-8d96-40c0-a2bd-04b135728ae4",
+        "name": "Filter",
+        "alwaysOutputData": true
+      },
+      {
+        "parameters": {
+          "operation": "xlsx",
+          "options": {
+            "sheetName": "Tài xế"
+          }
+        },
+        "type": "n8n-nodes-base.extractFromFile",
+        "typeVersion": 1,
+        "position": [
+          -352,
+          96
+        ],
+        "id": "f703a511-bcf3-4434-aea7-adab15f7c56a",
+        "name": "get-driver",
+        "alwaysOutputData": true,
+        "onError": "continueRegularOutput"
+      },
+      {
+        "parameters": {
+          "operation": "xlsx",
+          "options": {
+            "sheetName": "Chủ cửa hàng"
+          }
+        },
+        "type": "n8n-nodes-base.extractFromFile",
+        "typeVersion": 1,
+        "position": [
+          -352,
+          256
+        ],
+        "id": "2f5b4d63-bbed-4ccb-88d8-b34faf9e9984",
+        "name": "get-merchant",
+        "alwaysOutputData": true,
+        "onError": "continueRegularOutput"
+      },
+      {
+        "parameters": {},
+        "type": "n8n-nodes-base.limit",
+        "typeVersion": 1,
+        "position": [
+          112,
+          176
+        ],
+        "id": "f7be1a35-ca6d-4ce7-806c-91b253a5bb96",
+        "name": "Limit"
+      },
+      {
+        "parameters": {
+          "inputSource": "passthrough"
+        },
+        "type": "n8n-nodes-base.executeWorkflowTrigger",
+        "typeVersion": 1.1,
+        "position": [
+          -624,
+          176
+        ],
+        "id": "882352f3-f328-41c6-8c23-6e504b24c12c",
+        "name": "from_gmail"
+      },
+      {
+        "parameters": {
+          "amount": 7,
+          "unit": "days"
+        },
+        "type": "n8n-nodes-base.wait",
+        "typeVersion": 1.1,
+        "position": [
+          336,
+          176
+        ],
+        "id": "aed86449-e40a-4601-9cdd-3e7f36a1706e",
+        "name": "Wait",
+        "webhookId": "76f7e861-666e-4359-8ef6-98399c005f9b"
+      },
+      {
+        "parameters": {
+          "operation": "delete",
+          "documentId": {
+            "__rl": true,
+            "value": "1f-s_5kEyFrA-DEP2yL9cYbSZAm-czpoPP7s9bKH8e5U",
+            "mode": "list",
+            "cachedResultName": "gfin-sku",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1f-s_5kEyFrA-DEP2yL9cYbSZAm-czpoPP7s9bKH8e5U/edit?usp=drivesdk"
+          },
+          "sheetName": {
+            "__rl": true,
+            "value": "gid=0",
+            "mode": "list",
+            "cachedResultName": "Sheet1",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1f-s_5kEyFrA-DEP2yL9cYbSZAm-czpoPP7s9bKH8e5U/edit#gid=0"
+          },
+          "numberToDelete": 100
+        },
+        "type": "n8n-nodes-base.googleSheets",
+        "typeVersion": 4.7,
+        "position": [
+          448,
+          176
+        ],
+        "id": "12991a4e-ea20-445b-affb-110f4bccb8bc",
+        "name": "delete_all_gfin",
+        "credentials": {
+          "googleSheetsOAuth2Api": {
+            "id": "MTh9LghqaMKPTAzs",
+            "name": "zalo-chat-bot-hoang.nv1"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "operation": "appendOrUpdate",
+          "documentId": {
+            "__rl": true,
+            "value": "1f-s_5kEyFrA-DEP2yL9cYbSZAm-czpoPP7s9bKH8e5U",
+            "mode": "list",
+            "cachedResultName": "gfin-sku",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1f-s_5kEyFrA-DEP2yL9cYbSZAm-czpoPP7s9bKH8e5U/edit?usp=drivesdk"
+          },
+          "sheetName": {
+            "__rl": true,
+            "value": "gid=0",
+            "mode": "list",
+            "cachedResultName": "Sheet1",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1f-s_5kEyFrA-DEP2yL9cYbSZAm-czpoPP7s9bKH8e5U/edit#gid=0"
+          },
+          "columns": {
+            "mappingMode": "defineBelow",
+            "value": {
+              "sku_gfin": "={{ $('Filter').item.json['SKU SNPL'] }}"
+            },
+            "matchingColumns": [
+              "sku_gfin"
+            ],
+            "schema": [
+              {
+                "id": "sku_gfin",
+                "displayName": "sku_gfin",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              }
+            ],
+            "attemptToConvertTypes": false,
+            "convertFieldsToString": false
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.googleSheets",
+        "typeVersion": 4.7,
+        "position": [
+          0,
+          176
+        ],
+        "id": "584d90f7-7309-463a-8d59-94bf4cbf9743",
+        "name": "record_gfin_sku",
+        "credentials": {
+          "googleSheetsOAuth2Api": {
+            "id": "MTh9LghqaMKPTAzs",
+            "name": "zalo-chat-bot-hoang.nv1"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "operation": "delete",
+          "documentId": {
+            "__rl": true,
+            "value": "1f-s_5kEyFrA-DEP2yL9cYbSZAm-czpoPP7s9bKH8e5U",
+            "mode": "list",
+            "cachedResultName": "gfin-sku",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1f-s_5kEyFrA-DEP2yL9cYbSZAm-czpoPP7s9bKH8e5U/edit?usp=drivesdk"
+          },
+          "sheetName": {
+            "__rl": true,
+            "value": "gid=0",
+            "mode": "list",
+            "cachedResultName": "Sheet1",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1f-s_5kEyFrA-DEP2yL9cYbSZAm-czpoPP7s9bKH8e5U/edit#gid=0"
+          },
+          "numberToDelete": 200
+        },
+        "type": "n8n-nodes-base.googleSheets",
+        "typeVersion": 4.7,
+        "position": [
+          144,
+          0
+        ],
+        "id": "5262d5b6-0d9f-421e-a37b-f77df1776a4f",
+        "name": "Delete rows or columns from sheet",
+        "alwaysOutputData": true,
+        "credentials": {
+          "googleSheetsOAuth2Api": {
+            "id": "MTh9LghqaMKPTAzs",
+            "name": "zalo-chat-bot-hoang.nv1"
+          }
+        },
+        "onError": "continueRegularOutput"
+      },
+      {
+        "parameters": {},
+        "type": "n8n-nodes-base.limit",
+        "typeVersion": 1,
+        "position": [
+          0,
+          0
+        ],
+        "id": "86124e27-538a-4b1b-a0ba-8898eb4f3bab",
+        "name": "Limit1"
+      },
+      {
+        "parameters": {
+          "chatId": "5013029624",
+          "text": "=Đã cập nhật danh sách GFIN mới.",
+          "additionalFields": {}
+        },
+        "type": "n8n-nodes-base.telegram",
+        "typeVersion": 1.2,
+        "position": [
+          224,
+          176
+        ],
+        "id": "7cdacb14-7dc6-40fc-ab69-7344b2b7d64f",
+        "name": "Send a text message",
+        "webhookId": "44f7bda3-2e42-4ba8-985e-b3ca611100cb",
+        "credentials": {
+          "telegramApi": {
+            "id": "yOqJ91F4uxm9OoWc",
+            "name": "@culi001"
+          }
+        }
+      }
+    ],
+    "connections": {
+      "Code in JavaScript": {
+        "main": [
+          [
+            {
+              "node": "get-driver",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "get-merchant",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Merge": {
+        "main": [
+          [
+            {
+              "node": "Filter",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Filter": {
+        "main": [
+          [
+            {
+              "node": "Limit1",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "record_gfin_sku",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "get-driver": {
+        "main": [
+          [
+            {
+              "node": "Merge",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "get-merchant": {
+        "main": [
+          [
+            {
+              "node": "Merge",
+              "type": "main",
+              "index": 1
+            }
+          ]
+        ]
+      },
+      "Limit": {
+        "main": [
+          [
+            {
+              "node": "Send a text message",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "from_gmail": {
+        "main": [
+          [
+            {
+              "node": "Code in JavaScript",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Wait": {
+        "main": [
+          [
+            {
+              "node": "delete_all_gfin",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "record_gfin_sku": {
+        "main": [
+          [
+            {
+              "node": "Limit",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Limit1": {
+        "main": [
+          [
+            {
+              "node": "Delete rows or columns from sheet",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Send a text message": {
+        "main": [
+          [
+            {
+              "node": "Wait",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "authors": "Hoang Nguyen",
+    "name": "Version a9f4ee92",
+    "description": "",
+    "autosaved": true
+  },
+  "activeVersionId": "a9f4ee92-1813-4483-8e48-492bba5548bf",
+  "connections": {
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "get-driver",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "get-merchant",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Filter",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter": {
+      "main": [
+        [
+          {
+            "node": "Limit1",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "record_gfin_sku",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "get-driver": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "get-merchant": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Limit": {
+      "main": [
+        [
+          {
+            "node": "Send a text message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "from_gmail": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "delete_all_gfin",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "record_gfin_sku": {
+      "main": [
+        [
+          {
+            "node": "Limit",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit1": {
+      "main": [
+        [
+          {
+            "node": "Delete rows or columns from sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send a text message": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2026-02-22T19:31:35.569Z",
+  "id": "egbWCZLg1fvFX9Ok",
+  "isArchived": false,
+  "meta": null,
+  "name": "sub - get grab sku",
+  "nodes": [
+    {
+      "parameters": {
+        "jsCode": "// INPUT: có thể nhiều email items; mỗi item có nhiều binary (attachment_*)\n// OUTPUT: mỗi file Excel thành 1 item với binary.data\nconst wantMime = new Set([\n  'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',\n  'application/vnd.ms-excel',\n  'application/vnd.ms-excel.sheet.macroEnabled.12',\n]);\nconst isExcelName = (name='') => /\\.(xlsx|xlsm|xls)$/i.test(String(name));\n\nconst out = [];\nfor (const it of $input.all()) {\n  const b = it.binary || {};\n  for (const [k, bin] of Object.entries(b)) {\n    const mime = bin.mimeType || bin.contentType || '';\n    const name = bin.fileName || '';\n    if (!(wantMime.has(mime) || isExcelName(name))) continue;\n\n    const picked = { ...bin };\n    if (!picked.fileName) {\n      const ext = wantMime.has(mime)\n        ? (mime.includes('macroEnabled') ? 'xlsm'\n           : mime.includes('officedocument.spreadsheetml.sheet') ? 'xlsx'\n           : 'xls')\n        : (name.match(/\\.(xlsx|xlsm|xls)$/i)?.[1] || 'xlsx');\n      picked.fileName = `attachment.${ext}`;\n    }\n    out.push({ json: { ...it.json, attachmentName: picked.fileName }, binary: { data: picked } });\n  }\n}\nreturn out.length ? out : [];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -480,
+        176
+      ],
+      "id": "47812bc2-23b7-4eb5-adc5-a957e0eb5dd5",
+      "name": "Code in JavaScript",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        -224,
+        176
+      ],
+      "id": "b24915c1-8ddf-4b95-8522-4d59d3235546",
+      "name": "Merge"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "894b7409-6d33-489c-b716-8f62b4d136fa",
+              "leftValue": "={{ $json['Ho Chi Minh'] }}",
+              "rightValue": 0,
+              "operator": {
+                "type": "number",
+                "operation": "gt"
+              }
+            },
+            {
+              "id": "df53f635-777d-43c4-9998-d7cf23c8b398",
+              "leftValue": "={{ $json['Product Name'] }}",
+              "rightValue": "Grand Total",
+              "operator": {
+                "type": "string",
+                "operation": "notEquals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.2,
+      "position": [
+        -112,
+        176
+      ],
+      "id": "b82621ef-8d96-40c0-a2bd-04b135728ae4",
+      "name": "Filter",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "operation": "xlsx",
+        "options": {
+          "sheetName": "Tài xế"
+        }
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1,
+      "position": [
+        -352,
+        96
+      ],
+      "id": "f703a511-bcf3-4434-aea7-adab15f7c56a",
+      "name": "get-driver",
+      "alwaysOutputData": true,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "operation": "xlsx",
+        "options": {
+          "sheetName": "Chủ cửa hàng"
+        }
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1,
+      "position": [
+        -352,
+        256
+      ],
+      "id": "2f5b4d63-bbed-4ccb-88d8-b34faf9e9984",
+      "name": "get-merchant",
+      "alwaysOutputData": true,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        112,
+        176
+      ],
+      "id": "f7be1a35-ca6d-4ce7-806c-91b253a5bb96",
+      "name": "Limit"
+    },
+    {
+      "parameters": {
+        "inputSource": "passthrough"
+      },
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -624,
+        176
+      ],
+      "id": "882352f3-f328-41c6-8c23-6e504b24c12c",
+      "name": "from_gmail"
+    },
+    {
+      "parameters": {
+        "amount": 7,
+        "unit": "days"
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        336,
+        176
+      ],
+      "id": "aed86449-e40a-4601-9cdd-3e7f36a1706e",
+      "name": "Wait",
+      "webhookId": "76f7e861-666e-4359-8ef6-98399c005f9b"
+    },
+    {
+      "parameters": {
+        "operation": "delete",
+        "documentId": {
+          "__rl": true,
+          "value": "1f-s_5kEyFrA-DEP2yL9cYbSZAm-czpoPP7s9bKH8e5U",
+          "mode": "list",
+          "cachedResultName": "gfin-sku",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1f-s_5kEyFrA-DEP2yL9cYbSZAm-czpoPP7s9bKH8e5U/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1f-s_5kEyFrA-DEP2yL9cYbSZAm-czpoPP7s9bKH8e5U/edit#gid=0"
+        },
+        "numberToDelete": 100
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        448,
+        176
+      ],
+      "id": "12991a4e-ea20-445b-affb-110f4bccb8bc",
+      "name": "delete_all_gfin",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "MTh9LghqaMKPTAzs",
+          "name": "zalo-chat-bot-hoang.nv1"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "1f-s_5kEyFrA-DEP2yL9cYbSZAm-czpoPP7s9bKH8e5U",
+          "mode": "list",
+          "cachedResultName": "gfin-sku",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1f-s_5kEyFrA-DEP2yL9cYbSZAm-czpoPP7s9bKH8e5U/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1f-s_5kEyFrA-DEP2yL9cYbSZAm-czpoPP7s9bKH8e5U/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "sku_gfin": "={{ $('Filter').item.json['SKU SNPL'] }}"
+          },
+          "matchingColumns": [
+            "sku_gfin"
+          ],
+          "schema": [
+            {
+              "id": "sku_gfin",
+              "displayName": "sku_gfin",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        0,
+        176
+      ],
+      "id": "584d90f7-7309-463a-8d59-94bf4cbf9743",
+      "name": "record_gfin_sku",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "MTh9LghqaMKPTAzs",
+          "name": "zalo-chat-bot-hoang.nv1"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "delete",
+        "documentId": {
+          "__rl": true,
+          "value": "1f-s_5kEyFrA-DEP2yL9cYbSZAm-czpoPP7s9bKH8e5U",
+          "mode": "list",
+          "cachedResultName": "gfin-sku",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1f-s_5kEyFrA-DEP2yL9cYbSZAm-czpoPP7s9bKH8e5U/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1f-s_5kEyFrA-DEP2yL9cYbSZAm-czpoPP7s9bKH8e5U/edit#gid=0"
+        },
+        "numberToDelete": 200
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        144,
+        0
+      ],
+      "id": "5262d5b6-0d9f-421e-a37b-f77df1776a4f",
+      "name": "Delete rows or columns from sheet",
+      "alwaysOutputData": true,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "MTh9LghqaMKPTAzs",
+          "name": "zalo-chat-bot-hoang.nv1"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "86124e27-538a-4b1b-a0ba-8898eb4f3bab",
+      "name": "Limit1"
+    },
+    {
+      "parameters": {
+        "chatId": "5013029624",
+        "text": "=Đã cập nhật danh sách GFIN mới.",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        224,
+        176
+      ],
+      "id": "7cdacb14-7dc6-40fc-ab69-7344b2b7d64f",
+      "name": "Send a text message",
+      "webhookId": "44f7bda3-2e42-4ba8-985e-b3ca611100cb",
+      "credentials": {
+        "telegramApi": {
+          "id": "yOqJ91F4uxm9OoWc",
+          "name": "@culi001"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false,
+    "timeSavedMode": "fixed",
+    "errorWorkflow": "tUGf8pqhOC0yFiUP",
+    "callerPolicy": "workflowsFromSameOwner"
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-02-22T19:31:35.569Z",
+      "createdAt": "2026-02-22T19:31:35.569Z",
+      "role": "workflow:owner",
+      "workflowId": "egbWCZLg1fvFX9Ok",
+      "projectId": "GTQprNa3RcCSHh8s"
+    }
+  ],
+  "staticData": null,
+  "tags": [
+    {
+      "updatedAt": "2025-11-08T12:09:40.816Z",
+      "createdAt": "2025-11-08T12:08:49.207Z",
+      "id": "aJR3FZVXiQEfDzcy",
+      "name": "pv.vn"
+    },
+    {
+      "updatedAt": "2025-10-07T13:20:03.468Z",
+      "createdAt": "2025-10-07T13:20:03.468Z",
+      "id": "B0udxU6cGYBEciuM",
+      "name": "gmail"
+    }
+  ],
+  "triggerCount": 0,
+  "updatedAt": "2026-02-22T19:32:09.191Z",
+  "versionId": "a9f4ee92-1813-4483-8e48-492bba5548bf"
+}
