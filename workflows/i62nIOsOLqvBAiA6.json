@@ -1,0 +1,1263 @@
+{
+  "active": true,
+  "activeVersion": {
+    "updatedAt": "2026-03-25T11:18:36.798Z",
+    "createdAt": "2026-03-25T11:18:03.232Z",
+    "versionId": "22a68048-4e63-4ea2-82b7-372b1411736e",
+    "workflowId": "i62nIOsOLqvBAiA6",
+    "nodes": [
+      {
+        "parameters": {
+          "operation": "get",
+          "dataTableId": {
+            "__rl": true,
+            "value": "QpxIohOBxfgdnxrO",
+            "mode": "list",
+            "cachedResultName": "cp62_employee",
+            "cachedResultUrl": "/projects/GTQprNa3RcCSHh8s/datatables/QpxIohOBxfgdnxrO"
+          },
+          "filters": {
+            "conditions": [
+              {
+                "keyName": "name",
+                "keyValue": "={{ $json.HO_VA_TEN }}"
+              }
+            ]
+          },
+          "returnAll": true
+        },
+        "type": "n8n-nodes-base.dataTable",
+        "typeVersion": 1,
+        "position": [
+          576,
+          512
+        ],
+        "id": "6e1e04a4-bc0f-4c9c-a927-b1b1709e0255",
+        "name": "get_employee"
+      },
+      {
+        "parameters": {
+          "rule": {
+            "interval": [
+              {
+                "triggerAtHour": 23,
+                "triggerAtMinute": 45
+              }
+            ]
+          }
+        },
+        "type": "n8n-nodes-base.scheduleTrigger",
+        "typeVersion": 1.3,
+        "position": [
+          192,
+          512
+        ],
+        "id": "2255909d-bf65-416d-91c6-374487939590",
+        "name": "Schedule Trigger"
+      },
+      {
+        "parameters": {
+          "documentId": {
+            "__rl": true,
+            "value": "1j-XRvTQOTazoduNnvHU1nGH_iWRvYHPRzszKHMJreEs",
+            "mode": "id"
+          },
+          "sheetName": {
+            "__rl": true,
+            "value": 840987576,
+            "mode": "list",
+            "cachedResultName": "shift-for-bot",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1j-XRvTQOTazoduNnvHU1nGH_iWRvYHPRzszKHMJreEs/edit#gid=840987576"
+          },
+          "filtersUI": {
+            "values": [
+              {
+                "lookupColumn": "Title",
+                "lookupValue": "Sale"
+              },
+              {
+                "lookupColumn": "Title",
+                "lookupValue": "Tech"
+              }
+            ]
+          },
+          "combineFilters": "OR",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.googleSheets",
+        "typeVersion": 4.7,
+        "position": [
+          320,
+          512
+        ],
+        "id": "dbd18d66-795b-4882-8d1d-aaef2ed5735b",
+        "name": "get_shift",
+        "retryOnFail": true,
+        "waitBetweenTries": 5000,
+        "credentials": {
+          "googleSheetsOAuth2Api": {
+            "id": "V9RsDbAreeVaJR0q",
+            "name": "check-ctkm-hoang.nv1"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "loose",
+              "version": 3
+            },
+            "conditions": [
+              {
+                "id": "0640cff3-3905-4bc1-9c1b-a1f817d5895e",
+                "leftValue": "={{ $json.title }}",
+                "rightValue": "Sale",
+                "operator": {
+                  "type": "string",
+                  "operation": "equals"
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "looseTypeValidation": true,
+          "options": {}
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.3,
+        "position": [
+          704,
+          512
+        ],
+        "id": "b1994b4d-42aa-4982-b35b-a2b49a448077",
+        "name": "If"
+      },
+      {
+        "parameters": {
+          "operation": "get",
+          "dataTableId": {
+            "__rl": true,
+            "value": "ZViwdzSgsisLSXZH",
+            "mode": "list",
+            "cachedResultName": "sale_report_10",
+            "cachedResultUrl": "/projects/GTQprNa3RcCSHh8s/datatables/ZViwdzSgsisLSXZH"
+          },
+          "matchType": "allConditions",
+          "filters": {
+            "conditions": [
+              {
+                "keyName": "email",
+                "keyValue": "={{ $json.email }}"
+              },
+              {
+                "keyName": "date",
+                "keyValue": "={{ DateTime.fromISO($now).format('dd/MM/yyyy')}}"
+              }
+            ]
+          },
+          "returnAll": true
+        },
+        "type": "n8n-nodes-base.dataTable",
+        "typeVersion": 1,
+        "position": [
+          832,
+          384
+        ],
+        "id": "7f2ceb58-0024-4dc2-8a9c-5f48c55f9e3f",
+        "name": "get_sale_reports",
+        "alwaysOutputData": true
+      },
+      {
+        "parameters": {},
+        "type": "n8n-nodes-base.merge",
+        "typeVersion": 3.2,
+        "position": [
+          1104,
+          512
+        ],
+        "id": "6cb57fc8-b6a5-4c73-af3a-403c2b1cd230",
+        "name": "Merge"
+      },
+      {
+        "parameters": {
+          "jsCode": "// Lấy thời gian hiện tại theo timezone Hồ Chí Minh (UTC+7)\nconst now = new Date();\nconst hcmTime = new Date(now.toLocaleString('en-US', { timeZone: 'Asia/Ho_Chi_Minh' }));\n\nconst currentHour = hcmTime.getHours();\nconst currentMinute = hcmTime.getMinutes();\nconst currentTime = currentHour + currentMinute / 60;\n\n// Lấy ngày hiện tại theo timezone Hồ Chí Minh\nconst currentDay = hcmTime.getDate();\nconst currentMonth = hcmTime.getMonth() + 1;\nconst currentYear = hcmTime.getFullYear();\n\n// Tạo các format cột ngày có thể có\nconst dateCol1 = `${currentDay.toString().padStart(2, '0')}/${currentMonth.toString().padStart(2, '0')}/${currentYear}`;\nconst dateCol2 = `${currentDay.toString().padStart(2, '0')}/${currentMonth.toString().padStart(2, '0')}`;\n\n// Xác định ca làm việc hiện tại (có thể có nhiều ca nếu overlap)\n// Ca sáng: 8h-17h30 (8.0 - 17.5)\n// Ca chiều: 12h30-21h30 (12.5 - 21.5)\nconst currentShifts = [];\n\nif (currentTime >= 8.0 && currentTime < 17.5) {\n  currentShifts.push('sang');\n}\nif (currentTime >= 12.5 && currentTime < 21.5) {\n  currentShifts.push('chieu');\n}\n\n// Lọc và lấy danh sách nhân viên theo ca\nconst result = [];\n\nfor (const item of $input.all()) {\n  // Chỉ lấy Title là Sale hoặc Tech\n  const title = item.json.Title;\n  if (title !== 'Sale' && title !== 'Tech') {\n    continue;\n  }\n  \n  // Tìm cột ngày phù hợp\n  let shiftValue = null;\n  \n  if (item.json[dateCol1] !== undefined) {\n    shiftValue = item.json[dateCol1];\n  } else if (item.json[dateCol2] !== undefined) {\n    shiftValue = item.json[dateCol2];\n  }\n  \n  // Lấy tất cả nhân viên TRỪ những người off\n  if (shiftValue && shiftValue !== 'off') {\n    result.push({\n      json: {\n        HO_VA_TEN: item.json['HỌ VÀ TÊN'],\n        Title: item.json.Title,\n        STT: item.json.STT,\n        shift: shiftValue,\n        currentShifts: currentShifts.join(', '),\n        currentTime: `${currentHour}:${currentMinute.toString().padStart(2, '0')}`,\n        currentDate: dateCol1\n      }\n    });\n  }\n}\n\nreturn result;"
+        },
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          448,
+          512
+        ],
+        "id": "9fee7ee6-6f39-47bf-87ab-628ef3dfb151",
+        "name": "check_shift"
+      },
+      {
+        "parameters": {
+          "jsCode": "// Hàm chuẩn hoá email\nconst normalizeEmail = (email) =>\n  typeof email === 'string'\n    ? email.trim().toLowerCase()\n    : null;\n\n// Lấy dữ liệu\nconst reports = $items('Merge').map(i => i.json);\nconst employees = $items('get_employee').map(i => i.json);\n\n// Đếm số báo cáo theo email\nconst reportCountByEmail = {};\nfor (const r of reports) {\n  const email = normalizeEmail(r.email);\n  if (!email) continue;\n\n  reportCountByEmail[email] = (reportCountByEmail[email] || 0) + 1;\n}\n\n// Tạo danh sách dòng text\nconst lines = [];\n\nemployees.forEach((emp) => {\n  const email = normalizeEmail(emp.email);\n  const name = emp.name || 'Không rõ';\n\n  const count =\n    email && reportCountByEmail[email] !== undefined\n      ? reportCountByEmail[email]\n      : 'chưa nhập';\n\n  lines.push(`Họ tên: ${name} - Báo cáo: ${count}`);\n});\n\n// Gộp tất cả bằng xuống dòng\nconst message = lines.join('\\\\n');\n\n// Trả về 1 item duy nhất\nreturn [\n  {\n    json: {\n      message\n    }\n  }\n];"
+        },
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          1232,
+          512
+        ],
+        "id": "f545ab00-5ab2-4afc-a357-8717a871d261",
+        "name": "gen_reports"
+      },
+      {
+        "parameters": {
+          "operation": "get",
+          "dataTableId": {
+            "__rl": true,
+            "value": "sc1dOTktntfbMUel",
+            "mode": "list",
+            "cachedResultName": "seatalk-app-access-token",
+            "cachedResultUrl": "/projects/GTQprNa3RcCSHh8s/datatables/sc1dOTktntfbMUel"
+          },
+          "filters": {
+            "conditions": [
+              {
+                "keyName": "app_id",
+                "keyValue": "={{ $json.app_id }}"
+              }
+            ]
+          },
+          "returnAll": true
+        },
+        "type": "n8n-nodes-base.dataTable",
+        "typeVersion": 1,
+        "position": [
+          128,
+          0
+        ],
+        "id": "28192ac2-c710-46af-b0fb-169fae736ca0",
+        "name": "get_app_info"
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "3de90b61-c36c-47c7-bfa1-ee1d3bc9eaf7",
+                "name": "app_id",
+                "value": "MTk5MzA1OTkxODcw",
+                "type": "string"
+              }
+            ]
+          },
+          "includeOtherFields": true,
+          "options": {}
+        },
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          0,
+          0
+        ],
+        "id": "6c53a458-a296-437b-97d3-e019e9e5257a",
+        "name": "app_id"
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "b50cdc3f-5dd9-41a6-92ce-aad306d861f2",
+                "name": "group_test",
+                "value": "MjA3NjEwOTc5MzQw",
+                "type": "string"
+              },
+              {
+                "id": "a5e0df55-a03f-4acd-a58e-b9594233476e",
+                "name": "group_training",
+                "value": "NjExMDk1NTM4NDYy",
+                "type": "string"
+              },
+              {
+                "id": "d4001f57-227e-47b2-b1ac-b8b1cc474ebb",
+                "name": "group_all",
+                "value": "NTkyODcxNzE2MDUx",
+                "type": "string"
+              },
+              {
+                "id": "2bba58cf-f7af-420c-ac25-234191f65afd",
+                "name": "group_sale",
+                "value": "MDM2NzE5ODk4MDc3",
+                "type": "string"
+              },
+              {
+                "id": "04424065-3c5a-4dc3-a0e3-ed4f6f9eaa8e",
+                "name": "group_kho",
+                "value": "NjgwNzg4ODA3NzMy",
+                "type": "string"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          0,
+          176
+        ],
+        "id": "b56dced4-f56d-447c-96ff-6e84aa81b1a1",
+        "name": "set_group_info"
+      },
+      {
+        "parameters": {
+          "method": "POST",
+          "url": "https://openapi.seatalk.io/messaging/v2/group_chat",
+          "sendHeaders": true,
+          "headerParameters": {
+            "parameters": [
+              {
+                "name": "Authorization",
+                "value": "=Bearer {{ $('get_app_info').first().json.app_access_token }}"
+              },
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          },
+          "sendBody": true,
+          "specifyBody": "json",
+          "jsonBody": "={\n    \"group_id\":\"{{ $('set_group_info').first().json.group_all }}\",\n    \"message\":{\n        \"tag\":\"interactive_message\",\n        \"interactive_message\":{\n            \"elements\":[\n                {\n                    \"element_type\":\"title\",\n                    \"title\":{\n                        \"text\":\"DANH SÁCH BÁO CÁO HVTC & NTDV:\"\n                    }\n                },\n                {\n                    \"element_type\":\"description\",\n                    \"description\":{\n                        \"format\": 1,\n                        \"text\":\"Tất cả nhân sự có ca làm việc hôm nay:\\n{{ $json.message }}\\n<mention-tag target=\\\"seatalk://user?id=0\\\"/> Nhớ nhập báo cáo đầy đủ!\"\n                    }\n                }\n            ]\n        }\n    }\n}",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.3,
+        "position": [
+          1456,
+          512
+        ],
+        "id": "921ee414-d626-4a2a-a783-6dc80701cf3a",
+        "name": "send_all_reports"
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "3feff4db-a8c7-4e4e-9253-d507232e0cd8",
+                "name": "email",
+                "value": "={{ $json['Địa chỉ email'] }}",
+                "type": "string"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          976,
+          624
+        ],
+        "id": "cb89d47b-abe2-404b-9ce4-acf1773bcfe8",
+        "name": "Edit Fields"
+      },
+      {
+        "parameters": {
+          "documentId": {
+            "__rl": true,
+            "value": "1TaotzXpi6Vk0oCUDS4CkCGe4l3v9guk9c800w3vUuOo",
+            "mode": "id"
+          },
+          "sheetName": {
+            "__rl": true,
+            "value": "gid=0",
+            "mode": "list",
+            "cachedResultName": "Sheet1",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1TaotzXpi6Vk0oCUDS4CkCGe4l3v9guk9c800w3vUuOo/edit#gid=0"
+          },
+          "filtersUI": {
+            "values": [
+              {
+                "lookupColumn": "Ngày",
+                "lookupValue": "={{ DateTime.fromISO($now).format('dd/MM/yyyy')}}"
+              },
+              {
+                "lookupColumn": "Địa chỉ email",
+                "lookupValue": "={{ $json.email }}"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.googleSheets",
+        "typeVersion": 4.7,
+        "position": [
+          832,
+          624
+        ],
+        "id": "70822f43-26d1-418a-90f3-bd3cafc11d9f",
+        "name": "get_tech_report",
+        "credentials": {
+          "googleSheetsOAuth2Api": {
+            "id": "MTh9LghqaMKPTAzs",
+            "name": "zalo-chat-bot-hoang.nv1"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "rule": {
+            "interval": [
+              {
+                "triggerAtHour": 21,
+                "triggerAtMinute": 20
+              }
+            ]
+          }
+        },
+        "type": "n8n-nodes-base.scheduleTrigger",
+        "typeVersion": 1.3,
+        "position": [
+          192,
+          656
+        ],
+        "id": "79e7e569-fca3-469e-b8da-83aad9065af8",
+        "name": "21h20"
+      },
+      {
+        "parameters": {
+          "rule": {
+            "interval": [
+              {
+                "triggerAtHour": 17,
+                "triggerAtMinute": 20
+              }
+            ]
+          }
+        },
+        "type": "n8n-nodes-base.scheduleTrigger",
+        "typeVersion": 1.3,
+        "position": [
+          192,
+          800
+        ],
+        "id": "cd5be38b-acf6-4fc6-8194-03de4b87923e",
+        "name": "17h20"
+      }
+    ],
+    "connections": {
+      "get_employee": {
+        "main": [
+          [
+            {
+              "node": "If",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Schedule Trigger": {
+        "main": [
+          [
+            {
+              "node": "get_shift",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "get_shift": {
+        "main": [
+          [
+            {
+              "node": "check_shift",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "If": {
+        "main": [
+          [
+            {
+              "node": "get_sale_reports",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "get_tech_report",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "get_sale_reports": {
+        "main": [
+          [
+            {
+              "node": "Merge",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Merge": {
+        "main": [
+          [
+            {
+              "node": "gen_reports",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "check_shift": {
+        "main": [
+          [
+            {
+              "node": "get_employee",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "app_id": {
+        "main": [
+          [
+            {
+              "node": "get_app_info",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "gen_reports": {
+        "main": [
+          [
+            {
+              "node": "send_all_reports",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "set_group_info",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "app_id",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Edit Fields": {
+        "main": [
+          [
+            {
+              "node": "Merge",
+              "type": "main",
+              "index": 1
+            }
+          ]
+        ]
+      },
+      "get_tech_report": {
+        "main": [
+          [
+            {
+              "node": "Edit Fields",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "21h20": {
+        "main": [
+          [
+            {
+              "node": "get_shift",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "17h20": {
+        "main": [
+          [
+            {
+              "node": "get_shift",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "authors": "Hoang Nguyen",
+    "name": "Version 22a68048",
+    "description": "",
+    "autosaved": true
+  },
+  "activeVersionId": "22a68048-4e63-4ea2-82b7-372b1411736e",
+  "connections": {
+    "get_employee": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "get_shift",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "get_shift": {
+      "main": [
+        [
+          {
+            "node": "check_shift",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "get_sale_reports",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "get_tech_report",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "get_sale_reports": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "gen_reports",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "check_shift": {
+      "main": [
+        [
+          {
+            "node": "get_employee",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "app_id": {
+      "main": [
+        [
+          {
+            "node": "get_app_info",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "gen_reports": {
+      "main": [
+        [
+          {
+            "node": "send_all_reports",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "set_group_info",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "app_id",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "get_tech_report": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "21h20": {
+      "main": [
+        [
+          {
+            "node": "get_shift",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "17h20": {
+      "main": [
+        [
+          {
+            "node": "get_shift",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2026-02-22T19:28:58.120Z",
+  "id": "i62nIOsOLqvBAiA6",
+  "isArchived": false,
+  "meta": null,
+  "name": "schedule-check-report",
+  "nodes": [
+    {
+      "parameters": {
+        "operation": "get",
+        "dataTableId": {
+          "__rl": true,
+          "value": "QpxIohOBxfgdnxrO",
+          "mode": "list",
+          "cachedResultName": "cp62_employee",
+          "cachedResultUrl": "/projects/GTQprNa3RcCSHh8s/datatables/QpxIohOBxfgdnxrO"
+        },
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "name",
+              "keyValue": "={{ $json.HO_VA_TEN }}"
+            }
+          ]
+        },
+        "returnAll": true
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        576,
+        512
+      ],
+      "id": "6e1e04a4-bc0f-4c9c-a927-b1b1709e0255",
+      "name": "get_employee"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 23,
+              "triggerAtMinute": 45
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        192,
+        512
+      ],
+      "id": "2255909d-bf65-416d-91c6-374487939590",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1j-XRvTQOTazoduNnvHU1nGH_iWRvYHPRzszKHMJreEs",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 840987576,
+          "mode": "list",
+          "cachedResultName": "shift-for-bot",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1j-XRvTQOTazoduNnvHU1nGH_iWRvYHPRzszKHMJreEs/edit#gid=840987576"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "Title",
+              "lookupValue": "Sale"
+            },
+            {
+              "lookupColumn": "Title",
+              "lookupValue": "Tech"
+            }
+          ]
+        },
+        "combineFilters": "OR",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        320,
+        512
+      ],
+      "id": "dbd18d66-795b-4882-8d1d-aaef2ed5735b",
+      "name": "get_shift",
+      "retryOnFail": true,
+      "waitBetweenTries": 5000,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "V9RsDbAreeVaJR0q",
+          "name": "check-ctkm-hoang.nv1"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "0640cff3-3905-4bc1-9c1b-a1f817d5895e",
+              "leftValue": "={{ $json.title }}",
+              "rightValue": "Sale",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        704,
+        512
+      ],
+      "id": "b1994b4d-42aa-4982-b35b-a2b49a448077",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "dataTableId": {
+          "__rl": true,
+          "value": "ZViwdzSgsisLSXZH",
+          "mode": "list",
+          "cachedResultName": "sale_report_10",
+          "cachedResultUrl": "/projects/GTQprNa3RcCSHh8s/datatables/ZViwdzSgsisLSXZH"
+        },
+        "matchType": "allConditions",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "email",
+              "keyValue": "={{ $json.email }}"
+            },
+            {
+              "keyName": "date",
+              "keyValue": "={{ DateTime.fromISO($now).format('dd/MM/yyyy')}}"
+            }
+          ]
+        },
+        "returnAll": true
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        832,
+        384
+      ],
+      "id": "7f2ceb58-0024-4dc2-8a9c-5f48c55f9e3f",
+      "name": "get_sale_reports",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        1104,
+        512
+      ],
+      "id": "6cb57fc8-b6a5-4c73-af3a-403c2b1cd230",
+      "name": "Merge"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Lấy thời gian hiện tại theo timezone Hồ Chí Minh (UTC+7)\nconst now = new Date();\nconst hcmTime = new Date(now.toLocaleString('en-US', { timeZone: 'Asia/Ho_Chi_Minh' }));\n\nconst currentHour = hcmTime.getHours();\nconst currentMinute = hcmTime.getMinutes();\nconst currentTime = currentHour + currentMinute / 60;\n\n// Lấy ngày hiện tại theo timezone Hồ Chí Minh\nconst currentDay = hcmTime.getDate();\nconst currentMonth = hcmTime.getMonth() + 1;\nconst currentYear = hcmTime.getFullYear();\n\n// Tạo các format cột ngày có thể có\nconst dateCol1 = `${currentDay.toString().padStart(2, '0')}/${currentMonth.toString().padStart(2, '0')}/${currentYear}`;\nconst dateCol2 = `${currentDay.toString().padStart(2, '0')}/${currentMonth.toString().padStart(2, '0')}`;\n\n// Xác định ca làm việc hiện tại (có thể có nhiều ca nếu overlap)\n// Ca sáng: 8h-17h30 (8.0 - 17.5)\n// Ca chiều: 12h30-21h30 (12.5 - 21.5)\nconst currentShifts = [];\n\nif (currentTime >= 8.0 && currentTime < 17.5) {\n  currentShifts.push('sang');\n}\nif (currentTime >= 12.5 && currentTime < 21.5) {\n  currentShifts.push('chieu');\n}\n\n// Lọc và lấy danh sách nhân viên theo ca\nconst result = [];\n\nfor (const item of $input.all()) {\n  // Chỉ lấy Title là Sale hoặc Tech\n  const title = item.json.Title;\n  if (title !== 'Sale' && title !== 'Tech') {\n    continue;\n  }\n  \n  // Tìm cột ngày phù hợp\n  let shiftValue = null;\n  \n  if (item.json[dateCol1] !== undefined) {\n    shiftValue = item.json[dateCol1];\n  } else if (item.json[dateCol2] !== undefined) {\n    shiftValue = item.json[dateCol2];\n  }\n  \n  // Lấy tất cả nhân viên TRỪ những người off\n  if (shiftValue && shiftValue !== 'off') {\n    result.push({\n      json: {\n        HO_VA_TEN: item.json['HỌ VÀ TÊN'],\n        Title: item.json.Title,\n        STT: item.json.STT,\n        shift: shiftValue,\n        currentShifts: currentShifts.join(', '),\n        currentTime: `${currentHour}:${currentMinute.toString().padStart(2, '0')}`,\n        currentDate: dateCol1\n      }\n    });\n  }\n}\n\nreturn result;"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        448,
+        512
+      ],
+      "id": "9fee7ee6-6f39-47bf-87ab-628ef3dfb151",
+      "name": "check_shift"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Hàm chuẩn hoá email\nconst normalizeEmail = (email) =>\n  typeof email === 'string'\n    ? email.trim().toLowerCase()\n    : null;\n\n// Lấy dữ liệu\nconst reports = $items('Merge').map(i => i.json);\nconst employees = $items('get_employee').map(i => i.json);\n\n// Đếm số báo cáo theo email\nconst reportCountByEmail = {};\nfor (const r of reports) {\n  const email = normalizeEmail(r.email);\n  if (!email) continue;\n\n  reportCountByEmail[email] = (reportCountByEmail[email] || 0) + 1;\n}\n\n// Tạo danh sách dòng text\nconst lines = [];\n\nemployees.forEach((emp) => {\n  const email = normalizeEmail(emp.email);\n  const name = emp.name || 'Không rõ';\n\n  const count =\n    email && reportCountByEmail[email] !== undefined\n      ? reportCountByEmail[email]\n      : 'chưa nhập';\n\n  lines.push(`Họ tên: ${name} - Báo cáo: ${count}`);\n});\n\n// Gộp tất cả bằng xuống dòng\nconst message = lines.join('\\\\n');\n\n// Trả về 1 item duy nhất\nreturn [\n  {\n    json: {\n      message\n    }\n  }\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1232,
+        512
+      ],
+      "id": "f545ab00-5ab2-4afc-a357-8717a871d261",
+      "name": "gen_reports"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "dataTableId": {
+          "__rl": true,
+          "value": "sc1dOTktntfbMUel",
+          "mode": "list",
+          "cachedResultName": "seatalk-app-access-token",
+          "cachedResultUrl": "/projects/GTQprNa3RcCSHh8s/datatables/sc1dOTktntfbMUel"
+        },
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "app_id",
+              "keyValue": "={{ $json.app_id }}"
+            }
+          ]
+        },
+        "returnAll": true
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        128,
+        0
+      ],
+      "id": "28192ac2-c710-46af-b0fb-169fae736ca0",
+      "name": "get_app_info"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "3de90b61-c36c-47c7-bfa1-ee1d3bc9eaf7",
+              "name": "app_id",
+              "value": "MTk5MzA1OTkxODcw",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        0,
+        0
+      ],
+      "id": "6c53a458-a296-437b-97d3-e019e9e5257a",
+      "name": "app_id"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "b50cdc3f-5dd9-41a6-92ce-aad306d861f2",
+              "name": "group_test",
+              "value": "MjA3NjEwOTc5MzQw",
+              "type": "string"
+            },
+            {
+              "id": "a5e0df55-a03f-4acd-a58e-b9594233476e",
+              "name": "group_training",
+              "value": "NjExMDk1NTM4NDYy",
+              "type": "string"
+            },
+            {
+              "id": "d4001f57-227e-47b2-b1ac-b8b1cc474ebb",
+              "name": "group_all",
+              "value": "NTkyODcxNzE2MDUx",
+              "type": "string"
+            },
+            {
+              "id": "2bba58cf-f7af-420c-ac25-234191f65afd",
+              "name": "group_sale",
+              "value": "MDM2NzE5ODk4MDc3",
+              "type": "string"
+            },
+            {
+              "id": "04424065-3c5a-4dc3-a0e3-ed4f6f9eaa8e",
+              "name": "group_kho",
+              "value": "NjgwNzg4ODA3NzMy",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        0,
+        176
+      ],
+      "id": "b56dced4-f56d-447c-96ff-6e84aa81b1a1",
+      "name": "set_group_info"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://openapi.seatalk.io/messaging/v2/group_chat",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $('get_app_info').first().json.app_access_token }}"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"group_id\":\"{{ $('set_group_info').first().json.group_all }}\",\n    \"message\":{\n        \"tag\":\"interactive_message\",\n        \"interactive_message\":{\n            \"elements\":[\n                {\n                    \"element_type\":\"title\",\n                    \"title\":{\n                        \"text\":\"DANH SÁCH BÁO CÁO HVTC & NTDV:\"\n                    }\n                },\n                {\n                    \"element_type\":\"description\",\n                    \"description\":{\n                        \"format\": 1,\n                        \"text\":\"Tất cả nhân sự có ca làm việc hôm nay:\\n{{ $json.message }}\\n<mention-tag target=\\\"seatalk://user?id=0\\\"/> Nhớ nhập báo cáo đầy đủ!\"\n                    }\n                }\n            ]\n        }\n    }\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        1456,
+        512
+      ],
+      "id": "921ee414-d626-4a2a-a783-6dc80701cf3a",
+      "name": "send_all_reports"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "3feff4db-a8c7-4e4e-9253-d507232e0cd8",
+              "name": "email",
+              "value": "={{ $json['Địa chỉ email'] }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        976,
+        624
+      ],
+      "id": "cb89d47b-abe2-404b-9ce4-acf1773bcfe8",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1TaotzXpi6Vk0oCUDS4CkCGe4l3v9guk9c800w3vUuOo",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1TaotzXpi6Vk0oCUDS4CkCGe4l3v9guk9c800w3vUuOo/edit#gid=0"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "Ngày",
+              "lookupValue": "={{ DateTime.fromISO($now).format('dd/MM/yyyy')}}"
+            },
+            {
+              "lookupColumn": "Địa chỉ email",
+              "lookupValue": "={{ $json.email }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        832,
+        624
+      ],
+      "id": "70822f43-26d1-418a-90f3-bd3cafc11d9f",
+      "name": "get_tech_report",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "MTh9LghqaMKPTAzs",
+          "name": "zalo-chat-bot-hoang.nv1"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 21,
+              "triggerAtMinute": 20
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        192,
+        656
+      ],
+      "id": "79e7e569-fca3-469e-b8da-83aad9065af8",
+      "name": "21h20"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 17,
+              "triggerAtMinute": 20
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        192,
+        800
+      ],
+      "id": "cd5be38b-acf6-4fc6-8194-03de4b87923e",
+      "name": "17h20"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false,
+    "timeSavedMode": "fixed",
+    "errorWorkflow": "tUGf8pqhOC0yFiUP",
+    "callerPolicy": "workflowsFromSameOwner"
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-02-22T19:28:58.120Z",
+      "createdAt": "2026-02-22T19:28:58.120Z",
+      "role": "workflow:owner",
+      "workflowId": "i62nIOsOLqvBAiA6",
+      "projectId": "GTQprNa3RcCSHh8s"
+    }
+  ],
+  "staticData": {
+    "node:Schedule Trigger": {
+      "recurrenceRules": []
+    },
+    "node:21h20": {
+      "recurrenceRules": []
+    },
+    "node:17h20": {
+      "recurrenceRules": []
+    }
+  },
+  "tags": [
+    {
+      "updatedAt": "2025-12-17T02:41:50.389Z",
+      "createdAt": "2025-12-17T02:41:50.389Z",
+      "id": "tf48o2CcAcmF6X41",
+      "name": "Seatalk app"
+    }
+  ],
+  "triggerCount": 3,
+  "updatedAt": "2026-03-25T11:18:03.231Z",
+  "versionId": "22a68048-4e63-4ea2-82b7-372b1411736e"
+}
