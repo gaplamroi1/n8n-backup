@@ -1,0 +1,645 @@
+{
+  "active": true,
+  "activeVersion": {
+    "updatedAt": "2026-02-23T02:17:45.335Z",
+    "createdAt": "2026-02-23T02:16:25.130Z",
+    "versionId": "1b61b564-c7a7-41ef-94eb-f58ea8581b48",
+    "workflowId": "CAuhDorBtexSBa3l",
+    "nodes": [
+      {
+        "parameters": {
+          "pollTimes": {
+            "item": [
+              {
+                "mode": "everyMinute"
+              }
+            ]
+          },
+          "documentId": {
+            "__rl": true,
+            "value": "1AVb-6GibcYXPyRp9tI36vOgq_6BL2wCL3i5dbn9d0Sg",
+            "mode": "id"
+          },
+          "sheetName": {
+            "__rl": true,
+            "value": "gid=0",
+            "mode": "list",
+            "cachedResultName": "Trang tính1",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1AVb-6GibcYXPyRp9tI36vOgq_6BL2wCL3i5dbn9d0Sg/edit#gid=0"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.googleSheetsTrigger",
+        "typeVersion": 1,
+        "position": [
+          -128,
+          224
+        ],
+        "id": "28e23a88-6b2a-4c5a-ba05-e9617ef82c9d",
+        "name": "Google Sheets Trigger",
+        "credentials": {
+          "googleSheetsTriggerOAuth2Api": {
+            "id": "D9OdQTNBWpGt5m0U",
+            "name": "zalo-chat-bot-hoang.nv1-trigger"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "mode": "combine",
+          "advanced": true,
+          "mergeByFields": {
+            "values": [
+              {
+                "field1": "col_9",
+                "field2": "email"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.merge",
+        "typeVersion": 3.2,
+        "position": [
+          96,
+          0
+        ],
+        "id": "935d1090-4398-4762-8ec9-b294511b48e2",
+        "name": "Merge"
+      },
+      {
+        "parameters": {
+          "documentId": {
+            "__rl": true,
+            "value": "1AVb-6GibcYXPyRp9tI36vOgq_6BL2wCL3i5dbn9d0Sg",
+            "mode": "id"
+          },
+          "sheetName": {
+            "__rl": true,
+            "value": "gid=0",
+            "mode": "list",
+            "cachedResultName": "Trang tính1",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1AVb-6GibcYXPyRp9tI36vOgq_6BL2wCL3i5dbn9d0Sg/edit#gid=0"
+          },
+          "filtersUI": {
+            "values": [
+              {
+                "lookupColumn": "col_11",
+                "lookupValue": "CP62"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.googleSheets",
+        "typeVersion": 4.7,
+        "position": [
+          96,
+          224
+        ],
+        "id": "c5d7f4f9-4dc2-4dda-94d4-4571ae162f22",
+        "name": "get_employee",
+        "credentials": {
+          "googleSheetsOAuth2Api": {
+            "id": "MTh9LghqaMKPTAzs",
+            "name": "zalo-chat-bot-hoang.nv1"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "documentId": {
+            "__rl": true,
+            "value": "1L3-Dek7jU4D0WxOOB_AUl33Q2L_ATy3Sh7jdi0hdZdc",
+            "mode": "list",
+            "cachedResultName": "Thông tin zalo",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1L3-Dek7jU4D0WxOOB_AUl33Q2L_ATy3Sh7jdi0hdZdc/edit?usp=drivesdk"
+          },
+          "sheetName": {
+            "__rl": true,
+            "value": 1700780642,
+            "mode": "list",
+            "cachedResultName": "Sheet2",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1L3-Dek7jU4D0WxOOB_AUl33Q2L_ATy3Sh7jdi0hdZdc/edit#gid=1700780642"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.googleSheets",
+        "typeVersion": 4.7,
+        "position": [
+          -128,
+          0
+        ],
+        "id": "0e93efb4-2189-4c99-ad49-b9daebe64fa6",
+        "name": "get_zalo_user_id",
+        "credentials": {
+          "googleSheetsOAuth2Api": {
+            "id": "MTh9LghqaMKPTAzs",
+            "name": "zalo-chat-bot-hoang.nv1"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "operation": "upsert",
+          "dataTableId": {
+            "__rl": true,
+            "value": "QpxIohOBxfgdnxrO",
+            "mode": "list",
+            "cachedResultName": "cp62_employee",
+            "cachedResultUrl": "/projects/GTQprNa3RcCSHh8s/datatables/QpxIohOBxfgdnxrO"
+          },
+          "matchType": "allConditions",
+          "filters": {
+            "conditions": [
+              {
+                "keyName": "email",
+                "keyValue": "={{ $json.col_9 }}"
+              },
+              {
+                "keyName": "employee_code",
+                "keyValue": "={{ $json.col_2 }}"
+              }
+            ]
+          },
+          "columns": {
+            "mappingMode": "defineBelow",
+            "value": {
+              "employee_code": "={{ $json.col_2 }}",
+              "name": "={{ $json.col_3 }}",
+              "title": "={{ $json.col_4 }}",
+              "sex": "={{ $json.col_5 }}",
+              "email": "={{ $json.col_9 }}",
+              "brand_code": "={{ $json.col_11 }}"
+            },
+            "matchingColumns": [],
+            "schema": [
+              {
+                "id": "employee_code",
+                "displayName": "employee_code",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "number",
+                "readOnly": false,
+                "removed": false
+              },
+              {
+                "id": "name",
+                "displayName": "name",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": false
+              },
+              {
+                "id": "title",
+                "displayName": "title",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": false
+              },
+              {
+                "id": "sex",
+                "displayName": "sex",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": false
+              },
+              {
+                "id": "email",
+                "displayName": "email",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": false
+              },
+              {
+                "id": "brand_code",
+                "displayName": "brand_code",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": false
+              },
+              {
+                "id": "seatalk_id",
+                "displayName": "seatalk_id",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "number",
+                "readOnly": false,
+                "removed": true
+              }
+            ],
+            "attemptToConvertTypes": false,
+            "convertFieldsToString": false
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.dataTable",
+        "typeVersion": 1,
+        "position": [
+          320,
+          224
+        ],
+        "id": "d6b1d434-a908-49d1-9042-7caf44047789",
+        "name": "Upsert row(s)"
+      }
+    ],
+    "connections": {
+      "Google Sheets Trigger": {
+        "main": [
+          [
+            {
+              "node": "get_employee",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "get_employee": {
+        "main": [
+          [
+            {
+              "node": "Upsert row(s)",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "get_zalo_user_id": {
+        "main": [
+          [
+            {
+              "node": "Merge",
+              "type": "main",
+              "index": 1
+            }
+          ]
+        ]
+      }
+    },
+    "authors": "Hoang Nguyen",
+    "name": "Version 1b61b564",
+    "description": "",
+    "autosaved": true
+  },
+  "activeVersionId": "1b61b564-c7a7-41ef-94eb-f58ea8581b48",
+  "connections": {
+    "Google Sheets Trigger": {
+      "main": [
+        [
+          {
+            "node": "get_employee",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "get_employee": {
+      "main": [
+        [
+          {
+            "node": "Upsert row(s)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "get_zalo_user_id": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2026-02-23T02:14:10.384Z",
+  "id": "CAuhDorBtexSBa3l",
+  "isArchived": false,
+  "meta": null,
+  "name": "schedule - get_employee",
+  "nodes": [
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "documentId": {
+          "__rl": true,
+          "value": "1AVb-6GibcYXPyRp9tI36vOgq_6BL2wCL3i5dbn9d0Sg",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Trang tính1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1AVb-6GibcYXPyRp9tI36vOgq_6BL2wCL3i5dbn9d0Sg/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTrigger",
+      "typeVersion": 1,
+      "position": [
+        -128,
+        224
+      ],
+      "id": "28e23a88-6b2a-4c5a-ba05-e9617ef82c9d",
+      "name": "Google Sheets Trigger",
+      "credentials": {
+        "googleSheetsTriggerOAuth2Api": {
+          "id": "D9OdQTNBWpGt5m0U",
+          "name": "zalo-chat-bot-hoang.nv1-trigger"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "advanced": true,
+        "mergeByFields": {
+          "values": [
+            {
+              "field1": "col_9",
+              "field2": "email"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        96,
+        0
+      ],
+      "id": "935d1090-4398-4762-8ec9-b294511b48e2",
+      "name": "Merge"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1AVb-6GibcYXPyRp9tI36vOgq_6BL2wCL3i5dbn9d0Sg",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Trang tính1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1AVb-6GibcYXPyRp9tI36vOgq_6BL2wCL3i5dbn9d0Sg/edit#gid=0"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "col_11",
+              "lookupValue": "CP62"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        96,
+        224
+      ],
+      "id": "c5d7f4f9-4dc2-4dda-94d4-4571ae162f22",
+      "name": "get_employee",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "MTh9LghqaMKPTAzs",
+          "name": "zalo-chat-bot-hoang.nv1"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1L3-Dek7jU4D0WxOOB_AUl33Q2L_ATy3Sh7jdi0hdZdc",
+          "mode": "list",
+          "cachedResultName": "Thông tin zalo",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1L3-Dek7jU4D0WxOOB_AUl33Q2L_ATy3Sh7jdi0hdZdc/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1700780642,
+          "mode": "list",
+          "cachedResultName": "Sheet2",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1L3-Dek7jU4D0WxOOB_AUl33Q2L_ATy3Sh7jdi0hdZdc/edit#gid=1700780642"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -128,
+        0
+      ],
+      "id": "0e93efb4-2189-4c99-ad49-b9daebe64fa6",
+      "name": "get_zalo_user_id",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "MTh9LghqaMKPTAzs",
+          "name": "zalo-chat-bot-hoang.nv1"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "upsert",
+        "dataTableId": {
+          "__rl": true,
+          "value": "QpxIohOBxfgdnxrO",
+          "mode": "list",
+          "cachedResultName": "cp62_employee",
+          "cachedResultUrl": "/projects/GTQprNa3RcCSHh8s/datatables/QpxIohOBxfgdnxrO"
+        },
+        "matchType": "allConditions",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "email",
+              "keyValue": "={{ $json.col_9 }}"
+            },
+            {
+              "keyName": "employee_code",
+              "keyValue": "={{ $json.col_2 }}"
+            }
+          ]
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "employee_code": "={{ $json.col_2 }}",
+            "name": "={{ $json.col_3 }}",
+            "title": "={{ $json.col_4 }}",
+            "sex": "={{ $json.col_5 }}",
+            "email": "={{ $json.col_9 }}",
+            "brand_code": "={{ $json.col_11 }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "employee_code",
+              "displayName": "employee_code",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "name",
+              "displayName": "name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "title",
+              "displayName": "title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "sex",
+              "displayName": "sex",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "email",
+              "displayName": "email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "brand_code",
+              "displayName": "brand_code",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "seatalk_id",
+              "displayName": "seatalk_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        320,
+        224
+      ],
+      "id": "d6b1d434-a908-49d1-9042-7caf44047789",
+      "name": "Upsert row(s)"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-02-23T02:14:10.384Z",
+      "createdAt": "2026-02-23T02:14:10.384Z",
+      "role": "workflow:owner",
+      "workflowId": "CAuhDorBtexSBa3l",
+      "projectId": "GTQprNa3RcCSHh8s"
+    }
+  ],
+  "staticData": {
+    "node:Google Sheets Trigger": {
+      "documentId": "1AVb-6GibcYXPyRp9tI36vOgq_6BL2wCL3i5dbn9d0Sg",
+      "sheetId": 0,
+      "lastRevision": 19,
+      "lastRevisionLink": "https://docs.google.com/spreadsheets/export?id=1AVb-6GibcYXPyRp9tI36vOgq_6BL2wCL3i5dbn9d0Sg&revision=19&exportFormat=xlsx"
+    }
+  },
+  "tags": [
+    {
+      "updatedAt": "2025-11-08T12:09:40.816Z",
+      "createdAt": "2025-11-08T12:08:49.207Z",
+      "id": "aJR3FZVXiQEfDzcy",
+      "name": "pv.vn"
+    },
+    {
+      "updatedAt": "2025-12-17T02:41:50.389Z",
+      "createdAt": "2025-12-17T02:41:50.389Z",
+      "id": "tf48o2CcAcmF6X41",
+      "name": "Seatalk app"
+    },
+    {
+      "updatedAt": "2026-02-22T19:25:48.964Z",
+      "createdAt": "2026-02-22T19:25:48.964Z",
+      "id": "eafg8h8piujdlV6P",
+      "name": "pv-opshub-app"
+    }
+  ],
+  "triggerCount": 1,
+  "updatedAt": "2026-02-23T07:49:02.019Z",
+  "versionId": "1b61b564-c7a7-41ef-94eb-f58ea8581b48"
+}
