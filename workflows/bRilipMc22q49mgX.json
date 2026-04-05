@@ -1,0 +1,4805 @@
+{
+  "active": true,
+  "activeVersion": {
+    "updatedAt": "2026-04-03T07:03:27.944Z",
+    "createdAt": "2026-04-03T07:03:25.666Z",
+    "versionId": "c50bee2b-35fc-4784-8582-b93d28ffaa77",
+    "workflowId": "bRilipMc22q49mgX",
+    "nodes": [
+      {
+        "parameters": {
+          "formTitle": "Goods Coming",
+          "formFields": {
+            "values": [
+              {
+                "fieldLabel": "File0",
+                "fieldType": "file"
+              }
+            ]
+          },
+          "options": {
+            "path": "692a11a2-5a36-43eb-9df4-acd6dcf351a6"
+          }
+        },
+        "type": "n8n-nodes-base.formTrigger",
+        "typeVersion": 2.5,
+        "position": [
+          -576,
+          960
+        ],
+        "id": "80240ad2-14d3-49b2-b4b7-8c846a20124f",
+        "name": "On form submission",
+        "webhookId": "692a11a2-5a36-43eb-9df4-acd6dcf351a6"
+      },
+      {
+        "parameters": {
+          "operation": "xlsx",
+          "binaryPropertyName": "File0",
+          "options": {
+            "headerRow": true,
+            "range": "A1:O500"
+          }
+        },
+        "type": "n8n-nodes-base.extractFromFile",
+        "typeVersion": 1.1,
+        "position": [
+          -32,
+          368
+        ],
+        "id": "3f8c3a20-1017-41fe-9e84-ffb58b5fc7bf",
+        "name": "Extract from File"
+      },
+      {
+        "parameters": {
+          "httpMethod": "POST",
+          "path": "culi-automation",
+          "options": {
+            "binaryPropertyName": "File",
+            "responseCode": {
+              "values": {}
+            }
+          }
+        },
+        "type": "n8n-nodes-base.webhook",
+        "typeVersion": 2.1,
+        "position": [
+          -576,
+          608
+        ],
+        "id": "26031991-48d6-4122-8251-dd15aeff833e",
+        "name": "Webhook",
+        "webhookId": "294c8f17-dd6a-461d-b8f4-81f5c1a70424"
+      },
+      {
+        "parameters": {
+          "rules": {
+            "values": [
+              {
+                "conditions": {
+                  "options": {
+                    "caseSensitive": false,
+                    "leftValue": "",
+                    "typeValidation": "loose",
+                    "version": 3
+                  },
+                  "conditions": [
+                    {
+                      "id": "544ffb69-a5ee-4761-bca4-58789be2bd25",
+                      "leftValue": "={{ $json.body.skill_name }}",
+                      "rightValue": "range-automation",
+                      "operator": {
+                        "type": "string",
+                        "operation": "equals",
+                        "name": "filter.operator.equals"
+                      }
+                    }
+                  ],
+                  "combinator": "and"
+                },
+                "renameOutput": true,
+                "outputKey": "Range plan"
+              },
+              {
+                "conditions": {
+                  "options": {
+                    "caseSensitive": false,
+                    "leftValue": "",
+                    "typeValidation": "loose",
+                    "version": 3
+                  },
+                  "conditions": [
+                    {
+                      "leftValue": "={{ $json.body.skill_name }}",
+                      "rightValue": "goods-coming-automation",
+                      "operator": {
+                        "type": "string",
+                        "operation": "equals"
+                      },
+                      "id": "6c87c590-5990-4ef9-9393-476941a97b25"
+                    }
+                  ],
+                  "combinator": "and"
+                },
+                "renameOutput": true,
+                "outputKey": "Hàng sắp về"
+              },
+              {
+                "conditions": {
+                  "options": {
+                    "caseSensitive": false,
+                    "leftValue": "",
+                    "typeValidation": "loose",
+                    "version": 3
+                  },
+                  "conditions": [
+                    {
+                      "id": "94400f57-e74b-4159-9cfa-4a745a55fa2a",
+                      "leftValue": "={{ $json.body.skill_name }}",
+                      "rightValue": "inventory-automation",
+                      "operator": {
+                        "type": "string",
+                        "operation": "equals",
+                        "name": "filter.operator.equals"
+                      }
+                    }
+                  ],
+                  "combinator": "and"
+                },
+                "renameOutput": true,
+                "outputKey": "Tồn kho"
+              },
+              {
+                "conditions": {
+                  "options": {
+                    "caseSensitive": false,
+                    "leftValue": "",
+                    "typeValidation": "loose",
+                    "version": 3
+                  },
+                  "conditions": [
+                    {
+                      "id": "328cdce5-1b49-4902-ae5d-adf968e1a1d3",
+                      "leftValue": "={{ $json.body.skill_name }}",
+                      "rightValue": "sales-automation",
+                      "operator": {
+                        "type": "string",
+                        "operation": "equals",
+                        "name": "filter.operator.equals"
+                      }
+                    }
+                  ],
+                  "combinator": "and"
+                },
+                "renameOutput": true,
+                "outputKey": "Sales"
+              }
+            ]
+          },
+          "looseTypeValidation": true,
+          "options": {
+            "ignoreCase": true
+          }
+        },
+        "type": "n8n-nodes-base.switch",
+        "typeVersion": 3.4,
+        "position": [
+          -384,
+          576
+        ],
+        "id": "04804c26-138a-4c4a-b22d-39fb51501152",
+        "name": "Switch"
+      },
+      {
+        "parameters": {
+          "binaryPropertyName": "File0"
+        },
+        "type": "n8n-nodes-base.compression",
+        "typeVersion": 1.1,
+        "position": [
+          -160,
+          208
+        ],
+        "id": "6b9c5607-fee4-4270-b5f1-cf0c42d58897",
+        "name": "Compression"
+      },
+      {
+        "parameters": {
+          "operation": "clear",
+          "documentId": {
+            "__rl": true,
+            "value": "1jycp8oWgGavy6HObWQW4dp8VxMUrlemhmWMKTPZkNJQ",
+            "mode": "id"
+          },
+          "sheetName": {
+            "__rl": true,
+            "value": "gid=0",
+            "mode": "list",
+            "cachedResultName": "Sheet1",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1jycp8oWgGavy6HObWQW4dp8VxMUrlemhmWMKTPZkNJQ/edit#gid=0"
+          },
+          "keepFirstRow": true
+        },
+        "type": "n8n-nodes-base.googleSheets",
+        "typeVersion": 4.7,
+        "position": [
+          -32,
+          64
+        ],
+        "id": "5e46ffdf-5ae0-401d-8580-9eb00db303b9",
+        "name": "clear_old",
+        "credentials": {
+          "googleSheetsOAuth2Api": {
+            "id": "MTh9LghqaMKPTAzs",
+            "name": "zalo-chat-bot-hoang.nv1"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "operation": "append",
+          "documentId": {
+            "__rl": true,
+            "value": "1jycp8oWgGavy6HObWQW4dp8VxMUrlemhmWMKTPZkNJQ",
+            "mode": "id"
+          },
+          "sheetName": {
+            "__rl": true,
+            "value": "gid=0",
+            "mode": "list",
+            "cachedResultName": "Sheet1",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1jycp8oWgGavy6HObWQW4dp8VxMUrlemhmWMKTPZkNJQ/edit#gid=0"
+          },
+          "columns": {
+            "mappingMode": "defineBelow",
+            "value": {
+              "sku": "={{ $json.SKU }}",
+              "sku_name": "={{ $json['SKU name'] }}",
+              "branch_id": "={{ $json['Branch ID'] }}",
+              "branch_name": "={{ $json['Branch name'] }}",
+              "subcat_2_id": "={{ $json['Subcat 2 ID'] }}",
+              "subcat_2": "={{ $json.Subcat2 }}",
+              "brand": "={{ $json.Brand }}",
+              "purchase_status": "={{ $json['Purchase status'] }}",
+              "product_listing": "={{ $json['Product listing'] }}",
+              "range": "={{ $json.Range }}"
+            },
+            "matchingColumns": [],
+            "schema": [
+              {
+                "id": "sku",
+                "displayName": "sku",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "sku_name",
+                "displayName": "sku_name",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "branch_id",
+                "displayName": "branch_id",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "branch_name",
+                "displayName": "branch_name",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "subcat_2_id",
+                "displayName": "subcat_2_id",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "subcat_2",
+                "displayName": "subcat_2",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "brand",
+                "displayName": "brand",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "purchase_status",
+                "displayName": "purchase_status",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "product_listing",
+                "displayName": "product_listing",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "range",
+                "displayName": "range",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              }
+            ],
+            "attemptToConvertTypes": false,
+            "convertFieldsToString": false
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.googleSheets",
+        "typeVersion": 4.7,
+        "position": [
+          96,
+          208
+        ],
+        "id": "e558030c-50ae-4b28-a06c-ecd7fb523b92",
+        "name": "insert_new",
+        "credentials": {
+          "googleSheetsOAuth2Api": {
+            "id": "MTh9LghqaMKPTAzs",
+            "name": "zalo-chat-bot-hoang.nv1"
+          }
+        }
+      },
+      {
+        "parameters": {},
+        "type": "n8n-nodes-base.limit",
+        "typeVersion": 1,
+        "position": [
+          224,
+          208
+        ],
+        "id": "a04963b6-60cd-4933-a5c7-b2c2b936bb32",
+        "name": "Limit"
+      },
+      {
+        "parameters": {
+          "binaryPropertyName": "file_0",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.extractFromFile",
+        "typeVersion": 1.1,
+        "position": [
+          -32,
+          208
+        ],
+        "id": "4d0a0b45-6f75-4d6c-bc49-35d8ce46a788",
+        "name": "Extract from File1"
+      },
+      {
+        "parameters": {
+          "operation": "append",
+          "documentId": {
+            "__rl": true,
+            "value": "1HBHA5y1QYKKbUf-bHDj7BB2eXG2eerndTc9fP_9cUBg",
+            "mode": "id"
+          },
+          "sheetName": {
+            "__rl": true,
+            "value": "gid=0",
+            "mode": "list",
+            "cachedResultName": "Sheet1",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1HBHA5y1QYKKbUf-bHDj7BB2eXG2eerndTc9fP_9cUBg/edit#gid=0"
+          },
+          "columns": {
+            "mappingMode": "defineBelow",
+            "value": {
+              "Report date": "={{ new Date($json['Report date']).toLocaleDateString('en-US') }}",
+              "Channel": "={{ $json.Channel }}",
+              "Branch code": "={{ $json['Branch code'] }}",
+              "Store": "={{ $json.Store }}",
+              "Customer full name": "={{ $json['Customer full name'] }}",
+              "Order code": "={{ $json['Order code'] }}",
+              "Export return branch ID": "={{ $json['Export return branch ID'] }}",
+              "Order type": "={{ $json['Order type'] }}",
+              "Email": "={{ $json.Email }}",
+              "HRM ID": "={{ $json['HRM ID'] }}",
+              "Salesman": "={{ $json.Salesman }}",
+              "Customer ID": "={{ $json['Customer ID'] }}",
+              "SKU": "={{ $json.SKU }}",
+              "SKU name": "={{ $json['SKU name'] }}",
+              "Sale point per item": "={{ $json['Sale point per item'] }}",
+              "Dealer type": "={{ $json['Dealer type'] }}",
+              "Brand name": "={{ $json['Brand name'] }}",
+              "Billing tax code": "={{ $json['Billing tax code'] }}",
+              "Cat group ID": "={{ $json['Cat group ID'] }}",
+              "Cat group name": "={{ $json['Cat group name'] }}",
+              "Subcat 2 ID": "={{ $json['Subcat 2 ID'] }}",
+              "Subcat 2 name": "={{ $json['Subcat 2 name'] }}",
+              "Subcat ID lowest level": "={{ $json['Subcat ID lowest level'] }}",
+              "Subcat name lowest level": "={{ $json['Subcat name lowest level'] }}",
+              "Is delivery": "={{ $json['Is delivery'] }}",
+              "Order note": "={{ $json['Order note'] }}",
+              "Terminal code": "={{ $json['Terminal code'] }}",
+              "Terminal name": "={{ $json['Terminal name'] }}",
+              "Platform": "={{ $json.Platform }}",
+              "Sale point": "={{ $json['Sale point'] }}",
+              "Quantity": "={{ $json.Quantity }}",
+              "Revenue": "={{ $json.Revenue }}",
+              "Revenue with VAT": "={{ $json['Revenue with VAT'] }}"
+            },
+            "matchingColumns": [],
+            "schema": [
+              {
+                "id": "Report date",
+                "displayName": "Report date",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Channel",
+                "displayName": "Channel",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Store",
+                "displayName": "Store",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Branch code",
+                "displayName": "Branch code",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Customer full name",
+                "displayName": "Customer full name",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Order code",
+                "displayName": "Order code",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Export return branch ID",
+                "displayName": "Export return branch ID",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Order type",
+                "displayName": "Order type",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Email",
+                "displayName": "Email",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "HRM ID",
+                "displayName": "HRM ID",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Salesman",
+                "displayName": "Salesman",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Customer ID",
+                "displayName": "Customer ID",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "SKU",
+                "displayName": "SKU",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Doc ID",
+                "displayName": "Doc ID",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": true
+              },
+              {
+                "id": "Sale point per item",
+                "displayName": "Sale point per item",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "SKU name",
+                "displayName": "SKU name",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Dealer type",
+                "displayName": "Dealer type",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Brand name",
+                "displayName": "Brand name",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Billing tax code",
+                "displayName": "Billing tax code",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Cat group ID",
+                "displayName": "Cat group ID",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Cat group name",
+                "displayName": "Cat group name",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Subcat 2 ID",
+                "displayName": "Subcat 2 ID",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Subcat 2 name",
+                "displayName": "Subcat 2 name",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Subcat ID lowest level",
+                "displayName": "Subcat ID lowest level",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Subcat name lowest level",
+                "displayName": "Subcat name lowest level",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Is delivery",
+                "displayName": "Is delivery",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Order note",
+                "displayName": "Order note",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Terminal code",
+                "displayName": "Terminal code",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Terminal name",
+                "displayName": "Terminal name",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Platform",
+                "displayName": "Platform",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Sale point",
+                "displayName": "Sale point",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Quantity",
+                "displayName": "Quantity",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Revenue",
+                "displayName": "Revenue",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Revenue with VAT",
+                "displayName": "Revenue with VAT",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              }
+            ],
+            "attemptToConvertTypes": false,
+            "convertFieldsToString": false
+          },
+          "options": {
+            "cellFormat": "USER_ENTERED"
+          }
+        },
+        "type": "n8n-nodes-base.googleSheets",
+        "typeVersion": 4.7,
+        "position": [
+          112,
+          944
+        ],
+        "id": "054d63ea-9008-4adb-8bd1-aee437f4fc95",
+        "name": "Append row in sheet",
+        "credentials": {
+          "googleSheetsOAuth2Api": {
+            "id": "MTh9LghqaMKPTAzs",
+            "name": "zalo-chat-bot-hoang.nv1"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "binaryPropertyName": "File0"
+        },
+        "type": "n8n-nodes-base.compression",
+        "typeVersion": 1.1,
+        "position": [
+          -144,
+          944
+        ],
+        "id": "be622cd3-c814-4755-92a3-1e20b695a6db",
+        "name": "Compression1"
+      },
+      {
+        "parameters": {
+          "binaryPropertyName": "file_0",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.extractFromFile",
+        "typeVersion": 1.1,
+        "position": [
+          -16,
+          944
+        ],
+        "id": "d29e92a7-4e7f-45b0-ab87-ffba35d86766",
+        "name": "Extract from File2"
+      },
+      {
+        "parameters": {},
+        "type": "n8n-nodes-base.limit",
+        "typeVersion": 1,
+        "position": [
+          240,
+          944
+        ],
+        "id": "b7420e20-8f71-4ac8-a48a-be22346ca01a",
+        "name": "Limit1"
+      },
+      {
+        "parameters": {
+          "chatId": "5013029624",
+          "text": "=Sales đã được cập nhật.",
+          "additionalFields": {}
+        },
+        "type": "n8n-nodes-base.telegram",
+        "typeVersion": 1.2,
+        "position": [
+          368,
+          944
+        ],
+        "id": "4dd9531f-e8bd-408c-b1e5-0ab8f1910627",
+        "name": "Send a text message1",
+        "webhookId": "44f7bda3-2e42-4ba8-985e-b3ca611100cb",
+        "credentials": {
+          "telegramApi": {
+            "id": "yOqJ91F4uxm9OoWc",
+            "name": "n8n reports"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "fieldsToSummarize": {
+            "values": [
+              {
+                "field": "serial_number"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.summarize",
+        "typeVersion": 1.1,
+        "position": [
+          384,
+          800
+        ],
+        "id": "0a0272e6-c6bc-4f6f-99f0-404a832f7b17",
+        "name": "Summarize"
+      },
+      {
+        "parameters": {
+          "operation": "clear",
+          "documentId": {
+            "__rl": true,
+            "value": "1f0Xycoy_GMeef9gVZnx-SSPtDQJdM9eN4Z92eZ8ZDEE",
+            "mode": "list",
+            "cachedResultName": "inventory_data",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1f0Xycoy_GMeef9gVZnx-SSPtDQJdM9eN4Z92eZ8ZDEE/edit?usp=drivesdk"
+          },
+          "sheetName": {
+            "__rl": true,
+            "value": 34713994,
+            "mode": "list",
+            "cachedResultName": "Main",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1f0Xycoy_GMeef9gVZnx-SSPtDQJdM9eN4Z92eZ8ZDEE/edit#gid=34713994"
+          },
+          "clear": "specificRange",
+          "range": "A2:W"
+        },
+        "type": "n8n-nodes-base.googleSheets",
+        "typeVersion": 4.7,
+        "position": [
+          336,
+          640
+        ],
+        "id": "1514f46f-d1dd-46b3-a43a-3289e3b93d7f",
+        "name": "clear_inv_data",
+        "retryOnFail": true,
+        "credentials": {
+          "googleSheetsOAuth2Api": {
+            "id": "MTh9LghqaMKPTAzs",
+            "name": "zalo-chat-bot-hoang.nv1"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "operation": "append",
+          "documentId": {
+            "__rl": true,
+            "value": "1f0Xycoy_GMeef9gVZnx-SSPtDQJdM9eN4Z92eZ8ZDEE",
+            "mode": "list",
+            "cachedResultName": "inventory_data",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1f0Xycoy_GMeef9gVZnx-SSPtDQJdM9eN4Z92eZ8ZDEE/edit?usp=drivesdk"
+          },
+          "sheetName": {
+            "__rl": true,
+            "value": 34713994,
+            "mode": "list",
+            "cachedResultName": "Main",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1f0Xycoy_GMeef9gVZnx-SSPtDQJdM9eN4Z92eZ8ZDEE/edit#gid=34713994"
+          },
+          "columns": {
+            "mappingMode": "defineBelow",
+            "value": {
+              "STT": "={{ $json.STT }}",
+              "sku": "={{ $json['Mã sản phẩm'] }}",
+              "sku_name": "={{ $json['Tên sản phẩm'] }}",
+              "part_number": "={{ $json['Part number'] }}",
+              "cal_unit": "={{ $json['ĐVT'] }}",
+              "qty": "={{ $json['Số lượng'] }}",
+              "serial_number": "={{ $json['Số Serial'] }}",
+              "serial_type": "={{ $json['Loại Serial'] }}",
+              "serial_type_change_date": "={{ $json['Ngày đánh dấu chuyển loại Serial'] }}",
+              "brand": "={{ $json['Thương hiệu'] }}",
+              "category_id": "={{ $json['Mã ngành hàng'] }}",
+              "category_name": "={{ $json['Mã ngành hàng'] }}",
+              "lowest_category_id": "={{ $json['Mã nhóm sản phẩm'] }}",
+              "lowest_category_name": "={{ $json['Tên nhóm sản phẩm'] }}",
+              "import_date_company": "={{ $json['Ngày nhập kho'] }}",
+              "branch_id": "={{ $json['Mã chi nhánh'] }}",
+              "branch_name": "={{ $json['Tên chi nhánh'] }}",
+              "zone": "={{ $json.Zone }}",
+              "bin_id": "={{ $json['Mã Bin'] }}",
+              "bin_name": "={{ $json['Tên Bin'] }}",
+              "type": "={{ $json['Loại hàng'] }}",
+              "total_product_volume": "={{ $json['Tổng thể tích sản phẩm'] }}",
+              "bin_volume": "={{ $json['Thể tích Bin'] }}"
+            },
+            "matchingColumns": [],
+            "schema": [
+              {
+                "id": "STT",
+                "displayName": "STT",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "sku",
+                "displayName": "sku",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "sku_name",
+                "displayName": "sku_name",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "part_number",
+                "displayName": "part_number",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "cal_unit",
+                "displayName": "cal_unit",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "qty",
+                "displayName": "qty",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "serial_number",
+                "displayName": "serial_number",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "serial_type",
+                "displayName": "serial_type",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "serial_type_change_date",
+                "displayName": "serial_type_change_date",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "brand",
+                "displayName": "brand",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "category_id",
+                "displayName": "category_id",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "category_name",
+                "displayName": "category_name",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "lowest_category_id",
+                "displayName": "lowest_category_id",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "lowest_category_name",
+                "displayName": "lowest_category_name",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "import_date_company",
+                "displayName": "import_date_company",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "branch_id",
+                "displayName": "branch_id",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "branch_name",
+                "displayName": "branch_name",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "zone",
+                "displayName": "zone",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "bin_id",
+                "displayName": "bin_id",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "bin_name",
+                "displayName": "bin_name",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "type",
+                "displayName": "type",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "total_product_volume",
+                "displayName": "total_product_volume",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "bin_volume",
+                "displayName": "bin_volume",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              }
+            ],
+            "attemptToConvertTypes": false,
+            "convertFieldsToString": false
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.googleSheets",
+        "typeVersion": 4.7,
+        "position": [
+          208,
+          800
+        ],
+        "id": "027d735e-f947-4bc3-ba9a-d3aeaf71d2a9",
+        "name": "append_inv_data",
+        "retryOnFail": true,
+        "credentials": {
+          "googleSheetsOAuth2Api": {
+            "id": "MTh9LghqaMKPTAzs",
+            "name": "zalo-chat-bot-hoang.nv1"
+          }
+        }
+      },
+      {
+        "parameters": {},
+        "type": "n8n-nodes-base.limit",
+        "typeVersion": 1,
+        "position": [
+          768,
+          800
+        ],
+        "id": "faf7c7d1-a403-4439-8b98-1b05e9bd3463",
+        "name": "Limit2"
+      },
+      {
+        "parameters": {
+          "authentication": "serviceAccount",
+          "projectId": {
+            "__rl": true,
+            "value": "nimble-volt-459313-b8",
+            "mode": "list",
+            "cachedResultName": "My First Project",
+            "cachedResultUrl": "https://console.cloud.google.com/bigquery?project=nimble-volt-459313-b8"
+          },
+          "sqlQuery": "SELECT *\nFROM `nimble-volt-459313-b8.Inventory.inv_seri_1`\nWHERE Branch_ID = 'CP62'",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.googleBigQuery",
+        "typeVersion": 2.1,
+        "position": [
+          512,
+          800
+        ],
+        "id": "1867dce9-b090-4442-9500-2b135bb50f3c",
+        "name": "getInv",
+        "credentials": {
+          "googleApi": {
+            "id": "MobroXPII5JrGVTH",
+            "name": "Google Service Account promocheck vu.nt1"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "workflowId": {
+            "__rl": true,
+            "value": "lBHj2v9socaObenK",
+            "mode": "list",
+            "cachedResultUrl": "/workflow/lBHj2v9socaObenK",
+            "cachedResultName": "schedule - inv-update"
+          },
+          "workflowInputs": {
+            "mappingMode": "defineBelow",
+            "value": {},
+            "matchingColumns": [],
+            "schema": [],
+            "attemptToConvertTypes": false,
+            "convertFieldsToString": true
+          },
+          "mode": "each",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.executeWorkflow",
+        "typeVersion": 1.3,
+        "position": [
+          1184,
+          800
+        ],
+        "id": "623cfad1-b9d8-4300-9541-b90262972015",
+        "name": "Call 'schedule - inv-update'"
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "fc56ca5f-cf28-4842-95d8-1bbc17e82a59",
+                "name": "msg",
+                "value": "=Đã cập nhật tồn kho mới. Tổng cộng: {{ $('Summarize').first().json['count_Số_Serial'] }} serial.",
+                "type": "string"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          896,
+          800
+        ],
+        "id": "30e0e8ff-75c6-4b42-8893-fb27f3bba4ec",
+        "name": "Edit Fields"
+      },
+      {
+        "parameters": {
+          "operation": "xlsx",
+          "binaryPropertyName": "File0",
+          "options": {
+            "range": "2"
+          }
+        },
+        "type": "n8n-nodes-base.extractFromFile",
+        "typeVersion": 1,
+        "position": [
+          -144,
+          720
+        ],
+        "id": "8d15a173-6ccc-492a-90d3-4240778c7984",
+        "name": "Extract from File3"
+      },
+      {
+        "parameters": {},
+        "type": "n8n-nodes-base.limit",
+        "typeVersion": 1,
+        "position": [
+          208,
+          640
+        ],
+        "id": "bada4657-09e3-465d-a482-c793c7bd67af",
+        "name": "Limit3"
+      },
+      {
+        "parameters": {
+          "chatId": "5013029624",
+          "text": "={{ $json.msg }}",
+          "additionalFields": {}
+        },
+        "type": "n8n-nodes-base.telegram",
+        "typeVersion": 1.2,
+        "position": [
+          1024,
+          800
+        ],
+        "id": "be7283bc-377a-4dd6-b879-8b08d8a37ee2",
+        "name": "Send a text message2",
+        "webhookId": "3e9bc8f7-98b2-402e-9644-d7be6d0b50fb",
+        "credentials": {
+          "telegramApi": {
+            "id": "yOqJ91F4uxm9OoWc",
+            "name": "n8n reports"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "formTitle": "Sales",
+          "formFields": {
+            "values": [
+              {
+                "fieldLabel": "File0",
+                "fieldType": "file"
+              }
+            ]
+          },
+          "options": {
+            "path": "sales"
+          }
+        },
+        "type": "n8n-nodes-base.formTrigger",
+        "typeVersion": 2.5,
+        "position": [
+          -576,
+          1136
+        ],
+        "id": "ccaeea4e-1364-47c6-a402-68c1d9d173f0",
+        "name": "On form submission1",
+        "webhookId": "ebcb2e8f-6719-4e93-a3f9-ba3cf074c8e4"
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "loose",
+              "version": 3
+            },
+            "conditions": [
+              {
+                "id": "2b5e49c3-5313-41ab-851b-f649859f02c4",
+                "leftValue": "={{ $json.STT }}",
+                "rightValue": 0,
+                "operator": {
+                  "type": "number",
+                  "operation": "notExists",
+                  "singleValue": true
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "looseTypeValidation": true,
+          "options": {}
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.3,
+        "position": [
+          0,
+          720
+        ],
+        "id": "21bdee0e-3d78-42da-8ab7-6305716225dd",
+        "name": "If"
+      },
+      {
+        "parameters": {
+          "operation": "clear",
+          "documentId": {
+            "__rl": true,
+            "value": "1zArV4bQMl6i2-rZYLUddoOl_lQmS_A3xpdwoirwsyIg",
+            "mode": "id"
+          },
+          "sheetName": {
+            "__rl": true,
+            "value": "gid=0",
+            "mode": "list",
+            "cachedResultName": "Sheet1",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1zArV4bQMl6i2-rZYLUddoOl_lQmS_A3xpdwoirwsyIg/edit#gid=0"
+          },
+          "keepFirstRow": true
+        },
+        "type": "n8n-nodes-base.googleSheets",
+        "typeVersion": 4.7,
+        "position": [
+          -160,
+          368
+        ],
+        "id": "d619688c-b714-478a-a168-f906f964188c",
+        "name": "clear_old_data",
+        "credentials": {
+          "googleSheetsOAuth2Api": {
+            "id": "MTh9LghqaMKPTAzs",
+            "name": "zalo-chat-bot-hoang.nv1"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "operation": "append",
+          "documentId": {
+            "__rl": true,
+            "value": "1zArV4bQMl6i2-rZYLUddoOl_lQmS_A3xpdwoirwsyIg",
+            "mode": "id"
+          },
+          "sheetName": {
+            "__rl": true,
+            "value": "gid=0",
+            "mode": "list",
+            "cachedResultName": "Sheet1",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1zArV4bQMl6i2-rZYLUddoOl_lQmS_A3xpdwoirwsyIg/edit#gid=0"
+          },
+          "columns": {
+            "mappingMode": "defineBelow",
+            "value": {
+              "Số chứng từ": "={{ $json['Số chứng từ'] }}",
+              "Ngày tạo": "={{ $json['Ngày tạo'] }}",
+              "Người tạo": "={{ $json['Người tạo'] }}",
+              "Mã NCC": "={{ $json['Mã NCC'] }}",
+              "Tên NCC": "={{ $json['Tên NCC'] }}",
+              "Kho xuất": "={{ $json['Kho xuất'] }}",
+              "Kho nhận": "={{ $json['Kho nhận'] }}",
+              "SKU\r": "={{ $json.SKU }}",
+              "Tên sản phẩm": "={{ $json['Tên sản phẩm'] }}",
+              "ĐVT": "={{ $json['ĐVT'] }}",
+              "SL yêu cầu": "={{ $json['SL yêu cầu'] }}",
+              "SL đã xuất": "={{ $json['SL đã xuất'] }}",
+              "SL đã nhận\r": "={{ $json['SL đã nhận'] }}",
+              "Ghi chú": "={{ $json['Ghi chú'] }}",
+              "Trạng thái\r": "={{ $json['Trạng thái'] }}"
+            },
+            "matchingColumns": [],
+            "schema": [
+              {
+                "id": "Số chứng từ",
+                "displayName": "Số chứng từ",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Ngày tạo",
+                "displayName": "Ngày tạo",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Người tạo",
+                "displayName": "Người tạo",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Mã NCC",
+                "displayName": "Mã NCC",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Tên NCC",
+                "displayName": "Tên NCC",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Kho xuất",
+                "displayName": "Kho xuất",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Kho nhận",
+                "displayName": "Kho nhận",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "SKU\r",
+                "displayName": "SKU\r",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Tên sản phẩm",
+                "displayName": "Tên sản phẩm",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "ĐVT",
+                "displayName": "ĐVT",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "SL yêu cầu",
+                "displayName": "SL yêu cầu",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "SL đã xuất",
+                "displayName": "SL đã xuất",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "SL đã nhận\r",
+                "displayName": "SL đã nhận\r",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Ghi chú",
+                "displayName": "Ghi chú",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Trạng thái\r",
+                "displayName": "Trạng thái\r",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              }
+            ],
+            "attemptToConvertTypes": false,
+            "convertFieldsToString": false
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.googleSheets",
+        "typeVersion": 4.7,
+        "position": [
+          96,
+          368
+        ],
+        "id": "49b66b3d-8757-4663-88ba-40e9848bfba9",
+        "name": "append_new_data",
+        "credentials": {
+          "googleSheetsOAuth2Api": {
+            "id": "MTh9LghqaMKPTAzs",
+            "name": "zalo-chat-bot-hoang.nv1"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "chatId": "-1002735167249",
+          "text": "=Range plan đã được cập nhật.",
+          "additionalFields": {}
+        },
+        "type": "n8n-nodes-base.telegram",
+        "typeVersion": 1.2,
+        "position": [
+          352,
+          208
+        ],
+        "id": "6c415192-8090-477a-9814-9d37f7d5a354",
+        "name": "range_report",
+        "webhookId": "44f7bda3-2e42-4ba8-985e-b3ca611100cb",
+        "credentials": {
+          "telegramApi": {
+            "id": "yOqJ91F4uxm9OoWc",
+            "name": "n8n reports"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "chatId": "-1002735167249",
+          "text": "=Hàng sắp về đã được cập nhật.",
+          "additionalFields": {}
+        },
+        "type": "n8n-nodes-base.telegram",
+        "typeVersion": 1.2,
+        "position": [
+          352,
+          368
+        ],
+        "id": "f1c316c5-560c-4b20-9b70-f90c9ff83c48",
+        "name": "goods_coming_report",
+        "webhookId": "44f7bda3-2e42-4ba8-985e-b3ca611100cb",
+        "credentials": {
+          "telegramApi": {
+            "id": "yOqJ91F4uxm9OoWc",
+            "name": "n8n reports"
+          }
+        }
+      },
+      {
+        "parameters": {},
+        "type": "n8n-nodes-base.limit",
+        "typeVersion": 1,
+        "position": [
+          224,
+          368
+        ],
+        "id": "988bc732-13bb-4a46-90b3-2791b0358cf3",
+        "name": "Limit4"
+      },
+      {
+        "parameters": {
+          "workflowId": {
+            "__rl": true,
+            "value": "4YKHCkkzazk3p8I0ppc93",
+            "mode": "list",
+            "cachedResultUrl": "/workflow/4YKHCkkzazk3p8I0ppc93",
+            "cachedResultName": "stock_inventory"
+          },
+          "workflowInputs": {
+            "mappingMode": "defineBelow",
+            "value": {},
+            "matchingColumns": [],
+            "schema": [],
+            "attemptToConvertTypes": false,
+            "convertFieldsToString": true
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.executeWorkflow",
+        "typeVersion": 1.3,
+        "position": [
+          528,
+          368
+        ],
+        "id": "b68844a1-3c9d-4f05-8d86-6ab40cf75b3d",
+        "name": "Call 'stock_inventory'"
+      },
+      {
+        "parameters": {
+          "operation": "update",
+          "documentId": {
+            "__rl": true,
+            "value": "1f0Xycoy_GMeef9gVZnx-SSPtDQJdM9eN4Z92eZ8ZDEE",
+            "mode": "list",
+            "cachedResultName": "inventory_data",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1f0Xycoy_GMeef9gVZnx-SSPtDQJdM9eN4Z92eZ8ZDEE/edit?usp=drivesdk"
+          },
+          "sheetName": {
+            "__rl": true,
+            "value": 34713994,
+            "mode": "list",
+            "cachedResultName": "Main",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1f0Xycoy_GMeef9gVZnx-SSPtDQJdM9eN4Z92eZ8ZDEE/edit#gid=34713994"
+          },
+          "columns": {
+            "mappingMode": "defineBelow",
+            "value": {
+              "serial_number": "={{ $json.Serial }}",
+              "import_date_company": "={{ $json.Date_import_company }}"
+            },
+            "matchingColumns": [
+              "serial_number"
+            ],
+            "schema": [
+              {
+                "id": "STT",
+                "displayName": "STT",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": true
+              },
+              {
+                "id": "sku",
+                "displayName": "sku",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": true
+              },
+              {
+                "id": "sku_name",
+                "displayName": "sku_name",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": true
+              },
+              {
+                "id": "part_number",
+                "displayName": "part_number",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": true
+              },
+              {
+                "id": "cal_unit",
+                "displayName": "cal_unit",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": true
+              },
+              {
+                "id": "qty",
+                "displayName": "qty",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": true
+              },
+              {
+                "id": "serial_number",
+                "displayName": "serial_number",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "serial_type",
+                "displayName": "serial_type",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": true
+              },
+              {
+                "id": "serial_type_change_date",
+                "displayName": "serial_type_change_date",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": true
+              },
+              {
+                "id": "brand",
+                "displayName": "brand",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": true
+              },
+              {
+                "id": "category_id",
+                "displayName": "category_id",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": true
+              },
+              {
+                "id": "category_name",
+                "displayName": "category_name",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": true
+              },
+              {
+                "id": "lowest_category_id",
+                "displayName": "lowest_category_id",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": true
+              },
+              {
+                "id": "lowest_category_name",
+                "displayName": "lowest_category_name",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": true
+              },
+              {
+                "id": "import_date_company",
+                "displayName": "import_date_company",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "branch_id",
+                "displayName": "branch_id",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": true
+              },
+              {
+                "id": "branch_name",
+                "displayName": "branch_name",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": true
+              },
+              {
+                "id": "zone",
+                "displayName": "zone",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": true
+              },
+              {
+                "id": "bin_id",
+                "displayName": "bin_id",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": true
+              },
+              {
+                "id": "bin_name",
+                "displayName": "bin_name",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": true
+              },
+              {
+                "id": "type",
+                "displayName": "type",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": true
+              },
+              {
+                "id": "total_product_volume",
+                "displayName": "total_product_volume",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": true
+              },
+              {
+                "id": "bin_volume",
+                "displayName": "bin_volume",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": true
+              },
+              {
+                "id": "row_number",
+                "displayName": "row_number",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "number",
+                "canBeUsedToMatch": true,
+                "readOnly": true,
+                "removed": true
+              }
+            ],
+            "attemptToConvertTypes": false,
+            "convertFieldsToString": false
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.googleSheets",
+        "typeVersion": 4.7,
+        "position": [
+          640,
+          800
+        ],
+        "id": "8fedf623-7292-4885-a6c1-338ac8b1567a",
+        "name": "update_company_inv1",
+        "credentials": {
+          "googleSheetsOAuth2Api": {
+            "id": "MTh9LghqaMKPTAzs",
+            "name": "zalo-chat-bot-hoang.nv1"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "method": "POST",
+          "url": "http://100.115.211.95:18789/hooks/agent",
+          "sendHeaders": true,
+          "headerParameters": {
+            "parameters": [
+              {
+                "name": "Authorization",
+                "value": "Bearer culi-secret-token-2026"
+              },
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          },
+          "sendBody": true,
+          "specifyBody": "json",
+          "jsonBody": "{\n  \"message\": \"ping from n8n\",\n  \"name\": \"n8n\",\n  \"wakeMode\": \"now\",\n  \"deliver\": true\n}",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.4,
+        "position": [
+          1424,
+          800
+        ],
+        "id": "f8af1210-7ac7-4932-8983-3b788421081b",
+        "name": "HTTP Request"
+      }
+    ],
+    "connections": {
+      "On form submission": {
+        "main": [
+          [
+            {
+              "node": "Extract from File3",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Webhook": {
+        "main": [
+          [
+            {
+              "node": "Switch",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Switch": {
+        "main": [
+          [
+            {
+              "node": "Compression",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "clear_old_data",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "Extract from File3",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "Compression1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Compression": {
+        "main": [
+          [
+            {
+              "node": "Extract from File1",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "clear_old",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "insert_new": {
+        "main": [
+          [
+            {
+              "node": "Limit",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Limit": {
+        "main": [
+          [
+            {
+              "node": "range_report",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Extract from File1": {
+        "main": [
+          [
+            {
+              "node": "insert_new",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Append row in sheet": {
+        "main": [
+          [
+            {
+              "node": "Limit1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Compression1": {
+        "main": [
+          [
+            {
+              "node": "Extract from File2",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Extract from File2": {
+        "main": [
+          [
+            {
+              "node": "Append row in sheet",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Limit1": {
+        "main": [
+          [
+            {
+              "node": "Send a text message1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Summarize": {
+        "main": [
+          [
+            {
+              "node": "getInv",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "append_inv_data": {
+        "main": [
+          [
+            {
+              "node": "Summarize",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Limit2": {
+        "main": [
+          [
+            {
+              "node": "Edit Fields",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "getInv": {
+        "main": [
+          [
+            {
+              "node": "update_company_inv1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Edit Fields": {
+        "main": [
+          [
+            {
+              "node": "Send a text message2",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Extract from File3": {
+        "main": [
+          [
+            {
+              "node": "If",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Limit3": {
+        "main": [
+          [
+            {
+              "node": "clear_inv_data",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Send a text message2": {
+        "main": [
+          [
+            {
+              "node": "Call 'schedule - inv-update'",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "On form submission1": {
+        "main": [
+          [
+            {
+              "node": "Compression1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "If": {
+        "main": [
+          [],
+          [
+            {
+              "node": "append_inv_data",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "Limit3",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "clear_old_data": {
+        "main": [
+          [
+            {
+              "node": "Extract from File",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Extract from File": {
+        "main": [
+          [
+            {
+              "node": "append_new_data",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "append_new_data": {
+        "main": [
+          [
+            {
+              "node": "Limit4",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "range_report": {
+        "main": [
+          []
+        ]
+      },
+      "goods_coming_report": {
+        "main": [
+          [
+            {
+              "node": "Call 'stock_inventory'",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Limit4": {
+        "main": [
+          [
+            {
+              "node": "goods_coming_report",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "update_company_inv1": {
+        "main": [
+          [
+            {
+              "node": "Limit2",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "authors": "Hoang Nguyen",
+    "name": "Version c50bee2b",
+    "description": "",
+    "autosaved": true
+  },
+  "activeVersionId": "c50bee2b-35fc-4784-8582-b93d28ffaa77",
+  "connections": {
+    "On form submission": {
+      "main": [
+        [
+          {
+            "node": "Extract from File3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Compression",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "clear_old_data",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Extract from File3",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Compression1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Compression": {
+      "main": [
+        [
+          {
+            "node": "Extract from File1",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "clear_old",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "insert_new": {
+      "main": [
+        [
+          {
+            "node": "Limit",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit": {
+      "main": [
+        [
+          {
+            "node": "range_report",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract from File1": {
+      "main": [
+        [
+          {
+            "node": "insert_new",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append row in sheet": {
+      "main": [
+        [
+          {
+            "node": "Limit1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Compression1": {
+      "main": [
+        [
+          {
+            "node": "Extract from File2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract from File2": {
+      "main": [
+        [
+          {
+            "node": "Append row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit1": {
+      "main": [
+        [
+          {
+            "node": "Send a text message1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Summarize": {
+      "main": [
+        [
+          {
+            "node": "getInv",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "append_inv_data": {
+      "main": [
+        [
+          {
+            "node": "Summarize",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit2": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "getInv": {
+      "main": [
+        [
+          {
+            "node": "update_company_inv1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Send a text message2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract from File3": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit3": {
+      "main": [
+        [
+          {
+            "node": "clear_inv_data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send a text message2": {
+      "main": [
+        [
+          {
+            "node": "Call 'schedule - inv-update'",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "On form submission1": {
+      "main": [
+        [
+          {
+            "node": "Compression1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [],
+        [
+          {
+            "node": "append_inv_data",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Limit3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "clear_old_data": {
+      "main": [
+        [
+          {
+            "node": "Extract from File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract from File": {
+      "main": [
+        [
+          {
+            "node": "append_new_data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "append_new_data": {
+      "main": [
+        [
+          {
+            "node": "Limit4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "range_report": {
+      "main": [
+        []
+      ]
+    },
+    "goods_coming_report": {
+      "main": [
+        [
+          {
+            "node": "Call 'stock_inventory'",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit4": {
+      "main": [
+        [
+          {
+            "node": "goods_coming_report",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "update_company_inv1": {
+      "main": [
+        [
+          {
+            "node": "Limit2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2026-02-23T02:27:01.606Z",
+  "id": "bRilipMc22q49mgX",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "openclaw-cronjob",
+  "nodes": [
+    {
+      "parameters": {
+        "formTitle": "Goods Coming",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "File0",
+              "fieldType": "file"
+            }
+          ]
+        },
+        "options": {
+          "path": "692a11a2-5a36-43eb-9df4-acd6dcf351a6"
+        }
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.5,
+      "position": [
+        -576,
+        960
+      ],
+      "id": "80240ad2-14d3-49b2-b4b7-8c846a20124f",
+      "name": "On form submission",
+      "webhookId": "692a11a2-5a36-43eb-9df4-acd6dcf351a6"
+    },
+    {
+      "parameters": {
+        "operation": "xlsx",
+        "binaryPropertyName": "File0",
+        "options": {
+          "headerRow": true,
+          "range": "A1:O500"
+        }
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1.1,
+      "position": [
+        -32,
+        368
+      ],
+      "id": "3f8c3a20-1017-41fe-9e84-ffb58b5fc7bf",
+      "name": "Extract from File"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "culi-automation",
+        "options": {
+          "binaryPropertyName": "File",
+          "responseCode": {
+            "values": {}
+          }
+        }
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -576,
+        608
+      ],
+      "id": "26031991-48d6-4122-8251-dd15aeff833e",
+      "name": "Webhook",
+      "webhookId": "294c8f17-dd6a-461d-b8f4-81f5c1a70424"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false,
+                  "leftValue": "",
+                  "typeValidation": "loose",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "544ffb69-a5ee-4761-bca4-58789be2bd25",
+                    "leftValue": "={{ $json.body.skill_name }}",
+                    "rightValue": "range-automation",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Range plan"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false,
+                  "leftValue": "",
+                  "typeValidation": "loose",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.body.skill_name }}",
+                    "rightValue": "goods-coming-automation",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "6c87c590-5990-4ef9-9393-476941a97b25"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Hàng sắp về"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false,
+                  "leftValue": "",
+                  "typeValidation": "loose",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "94400f57-e74b-4159-9cfa-4a745a55fa2a",
+                    "leftValue": "={{ $json.body.skill_name }}",
+                    "rightValue": "inventory-automation",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Tồn kho"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false,
+                  "leftValue": "",
+                  "typeValidation": "loose",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "328cdce5-1b49-4902-ae5d-adf968e1a1d3",
+                    "leftValue": "={{ $json.body.skill_name }}",
+                    "rightValue": "sales-automation",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Sales"
+            }
+          ]
+        },
+        "looseTypeValidation": true,
+        "options": {
+          "ignoreCase": true
+        }
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.4,
+      "position": [
+        -384,
+        576
+      ],
+      "id": "04804c26-138a-4c4a-b22d-39fb51501152",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "binaryPropertyName": "File0"
+      },
+      "type": "n8n-nodes-base.compression",
+      "typeVersion": 1.1,
+      "position": [
+        -160,
+        208
+      ],
+      "id": "6b9c5607-fee4-4270-b5f1-cf0c42d58897",
+      "name": "Compression"
+    },
+    {
+      "parameters": {
+        "operation": "clear",
+        "documentId": {
+          "__rl": true,
+          "value": "1jycp8oWgGavy6HObWQW4dp8VxMUrlemhmWMKTPZkNJQ",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1jycp8oWgGavy6HObWQW4dp8VxMUrlemhmWMKTPZkNJQ/edit#gid=0"
+        },
+        "keepFirstRow": true
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -32,
+        64
+      ],
+      "id": "5e46ffdf-5ae0-401d-8580-9eb00db303b9",
+      "name": "clear_old",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "MTh9LghqaMKPTAzs",
+          "name": "zalo-chat-bot-hoang.nv1"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1jycp8oWgGavy6HObWQW4dp8VxMUrlemhmWMKTPZkNJQ",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1jycp8oWgGavy6HObWQW4dp8VxMUrlemhmWMKTPZkNJQ/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "sku": "={{ $json.SKU }}",
+            "sku_name": "={{ $json['SKU name'] }}",
+            "branch_id": "={{ $json['Branch ID'] }}",
+            "branch_name": "={{ $json['Branch name'] }}",
+            "subcat_2_id": "={{ $json['Subcat 2 ID'] }}",
+            "subcat_2": "={{ $json.Subcat2 }}",
+            "brand": "={{ $json.Brand }}",
+            "purchase_status": "={{ $json['Purchase status'] }}",
+            "product_listing": "={{ $json['Product listing'] }}",
+            "range": "={{ $json.Range }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "sku",
+              "displayName": "sku",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "sku_name",
+              "displayName": "sku_name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "branch_id",
+              "displayName": "branch_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "branch_name",
+              "displayName": "branch_name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "subcat_2_id",
+              "displayName": "subcat_2_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "subcat_2",
+              "displayName": "subcat_2",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "brand",
+              "displayName": "brand",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "purchase_status",
+              "displayName": "purchase_status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "product_listing",
+              "displayName": "product_listing",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "range",
+              "displayName": "range",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        96,
+        208
+      ],
+      "id": "e558030c-50ae-4b28-a06c-ecd7fb523b92",
+      "name": "insert_new",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "MTh9LghqaMKPTAzs",
+          "name": "zalo-chat-bot-hoang.nv1"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        224,
+        208
+      ],
+      "id": "a04963b6-60cd-4933-a5c7-b2c2b936bb32",
+      "name": "Limit"
+    },
+    {
+      "parameters": {
+        "binaryPropertyName": "file_0",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1.1,
+      "position": [
+        -32,
+        208
+      ],
+      "id": "4d0a0b45-6f75-4d6c-bc49-35d8ce46a788",
+      "name": "Extract from File1"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1HBHA5y1QYKKbUf-bHDj7BB2eXG2eerndTc9fP_9cUBg",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1HBHA5y1QYKKbUf-bHDj7BB2eXG2eerndTc9fP_9cUBg/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Report date": "={{ new Date($json['Report date']).toLocaleDateString('en-US') }}",
+            "Channel": "={{ $json.Channel }}",
+            "Branch code": "={{ $json['Branch code'] }}",
+            "Store": "={{ $json.Store }}",
+            "Customer full name": "={{ $json['Customer full name'] }}",
+            "Order code": "={{ $json['Order code'] }}",
+            "Export return branch ID": "={{ $json['Export return branch ID'] }}",
+            "Order type": "={{ $json['Order type'] }}",
+            "Email": "={{ $json.Email }}",
+            "HRM ID": "={{ $json['HRM ID'] }}",
+            "Salesman": "={{ $json.Salesman }}",
+            "Customer ID": "={{ $json['Customer ID'] }}",
+            "SKU": "={{ $json.SKU }}",
+            "SKU name": "={{ $json['SKU name'] }}",
+            "Sale point per item": "={{ $json['Sale point per item'] }}",
+            "Dealer type": "={{ $json['Dealer type'] }}",
+            "Brand name": "={{ $json['Brand name'] }}",
+            "Billing tax code": "={{ $json['Billing tax code'] }}",
+            "Cat group ID": "={{ $json['Cat group ID'] }}",
+            "Cat group name": "={{ $json['Cat group name'] }}",
+            "Subcat 2 ID": "={{ $json['Subcat 2 ID'] }}",
+            "Subcat 2 name": "={{ $json['Subcat 2 name'] }}",
+            "Subcat ID lowest level": "={{ $json['Subcat ID lowest level'] }}",
+            "Subcat name lowest level": "={{ $json['Subcat name lowest level'] }}",
+            "Is delivery": "={{ $json['Is delivery'] }}",
+            "Order note": "={{ $json['Order note'] }}",
+            "Terminal code": "={{ $json['Terminal code'] }}",
+            "Terminal name": "={{ $json['Terminal name'] }}",
+            "Platform": "={{ $json.Platform }}",
+            "Sale point": "={{ $json['Sale point'] }}",
+            "Quantity": "={{ $json.Quantity }}",
+            "Revenue": "={{ $json.Revenue }}",
+            "Revenue with VAT": "={{ $json['Revenue with VAT'] }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Report date",
+              "displayName": "Report date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Channel",
+              "displayName": "Channel",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Store",
+              "displayName": "Store",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Branch code",
+              "displayName": "Branch code",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Customer full name",
+              "displayName": "Customer full name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Order code",
+              "displayName": "Order code",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Export return branch ID",
+              "displayName": "Export return branch ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Order type",
+              "displayName": "Order type",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "HRM ID",
+              "displayName": "HRM ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Salesman",
+              "displayName": "Salesman",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Customer ID",
+              "displayName": "Customer ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "SKU",
+              "displayName": "SKU",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Doc ID",
+              "displayName": "Doc ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Sale point per item",
+              "displayName": "Sale point per item",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "SKU name",
+              "displayName": "SKU name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Dealer type",
+              "displayName": "Dealer type",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Brand name",
+              "displayName": "Brand name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Billing tax code",
+              "displayName": "Billing tax code",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Cat group ID",
+              "displayName": "Cat group ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Cat group name",
+              "displayName": "Cat group name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Subcat 2 ID",
+              "displayName": "Subcat 2 ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Subcat 2 name",
+              "displayName": "Subcat 2 name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Subcat ID lowest level",
+              "displayName": "Subcat ID lowest level",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Subcat name lowest level",
+              "displayName": "Subcat name lowest level",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Is delivery",
+              "displayName": "Is delivery",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Order note",
+              "displayName": "Order note",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Terminal code",
+              "displayName": "Terminal code",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Terminal name",
+              "displayName": "Terminal name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Platform",
+              "displayName": "Platform",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Sale point",
+              "displayName": "Sale point",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Quantity",
+              "displayName": "Quantity",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Revenue",
+              "displayName": "Revenue",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Revenue with VAT",
+              "displayName": "Revenue with VAT",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {
+          "cellFormat": "USER_ENTERED"
+        }
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        112,
+        944
+      ],
+      "id": "054d63ea-9008-4adb-8bd1-aee437f4fc95",
+      "name": "Append row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "MTh9LghqaMKPTAzs",
+          "name": "zalo-chat-bot-hoang.nv1"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "binaryPropertyName": "File0"
+      },
+      "type": "n8n-nodes-base.compression",
+      "typeVersion": 1.1,
+      "position": [
+        -144,
+        944
+      ],
+      "id": "be622cd3-c814-4755-92a3-1e20b695a6db",
+      "name": "Compression1"
+    },
+    {
+      "parameters": {
+        "binaryPropertyName": "file_0",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1.1,
+      "position": [
+        -16,
+        944
+      ],
+      "id": "d29e92a7-4e7f-45b0-ab87-ffba35d86766",
+      "name": "Extract from File2"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        240,
+        944
+      ],
+      "id": "b7420e20-8f71-4ac8-a48a-be22346ca01a",
+      "name": "Limit1"
+    },
+    {
+      "parameters": {
+        "chatId": "5013029624",
+        "text": "=Sales đã được cập nhật.",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        368,
+        944
+      ],
+      "id": "4dd9531f-e8bd-408c-b1e5-0ab8f1910627",
+      "name": "Send a text message1",
+      "webhookId": "44f7bda3-2e42-4ba8-985e-b3ca611100cb",
+      "credentials": {
+        "telegramApi": {
+          "id": "yOqJ91F4uxm9OoWc",
+          "name": "n8n reports"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fieldsToSummarize": {
+          "values": [
+            {
+              "field": "serial_number"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.summarize",
+      "typeVersion": 1.1,
+      "position": [
+        384,
+        800
+      ],
+      "id": "0a0272e6-c6bc-4f6f-99f0-404a832f7b17",
+      "name": "Summarize"
+    },
+    {
+      "parameters": {
+        "operation": "clear",
+        "documentId": {
+          "__rl": true,
+          "value": "1f0Xycoy_GMeef9gVZnx-SSPtDQJdM9eN4Z92eZ8ZDEE",
+          "mode": "list",
+          "cachedResultName": "inventory_data",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1f0Xycoy_GMeef9gVZnx-SSPtDQJdM9eN4Z92eZ8ZDEE/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 34713994,
+          "mode": "list",
+          "cachedResultName": "Main",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1f0Xycoy_GMeef9gVZnx-SSPtDQJdM9eN4Z92eZ8ZDEE/edit#gid=34713994"
+        },
+        "clear": "specificRange",
+        "range": "A2:W"
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        336,
+        640
+      ],
+      "id": "1514f46f-d1dd-46b3-a43a-3289e3b93d7f",
+      "name": "clear_inv_data",
+      "retryOnFail": true,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "MTh9LghqaMKPTAzs",
+          "name": "zalo-chat-bot-hoang.nv1"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1f0Xycoy_GMeef9gVZnx-SSPtDQJdM9eN4Z92eZ8ZDEE",
+          "mode": "list",
+          "cachedResultName": "inventory_data",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1f0Xycoy_GMeef9gVZnx-SSPtDQJdM9eN4Z92eZ8ZDEE/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 34713994,
+          "mode": "list",
+          "cachedResultName": "Main",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1f0Xycoy_GMeef9gVZnx-SSPtDQJdM9eN4Z92eZ8ZDEE/edit#gid=34713994"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "STT": "={{ $json.STT }}",
+            "sku": "={{ $json['Mã sản phẩm'] }}",
+            "sku_name": "={{ $json['Tên sản phẩm'] }}",
+            "part_number": "={{ $json['Part number'] }}",
+            "cal_unit": "={{ $json['ĐVT'] }}",
+            "qty": "={{ $json['Số lượng'] }}",
+            "serial_number": "={{ $json['Số Serial'] }}",
+            "serial_type": "={{ $json['Loại Serial'] }}",
+            "serial_type_change_date": "={{ $json['Ngày đánh dấu chuyển loại Serial'] }}",
+            "brand": "={{ $json['Thương hiệu'] }}",
+            "category_id": "={{ $json['Mã ngành hàng'] }}",
+            "category_name": "={{ $json['Mã ngành hàng'] }}",
+            "lowest_category_id": "={{ $json['Mã nhóm sản phẩm'] }}",
+            "lowest_category_name": "={{ $json['Tên nhóm sản phẩm'] }}",
+            "import_date_company": "={{ $json['Ngày nhập kho'] }}",
+            "branch_id": "={{ $json['Mã chi nhánh'] }}",
+            "branch_name": "={{ $json['Tên chi nhánh'] }}",
+            "zone": "={{ $json.Zone }}",
+            "bin_id": "={{ $json['Mã Bin'] }}",
+            "bin_name": "={{ $json['Tên Bin'] }}",
+            "type": "={{ $json['Loại hàng'] }}",
+            "total_product_volume": "={{ $json['Tổng thể tích sản phẩm'] }}",
+            "bin_volume": "={{ $json['Thể tích Bin'] }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "STT",
+              "displayName": "STT",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "sku",
+              "displayName": "sku",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "sku_name",
+              "displayName": "sku_name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "part_number",
+              "displayName": "part_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "cal_unit",
+              "displayName": "cal_unit",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "qty",
+              "displayName": "qty",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "serial_number",
+              "displayName": "serial_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "serial_type",
+              "displayName": "serial_type",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "serial_type_change_date",
+              "displayName": "serial_type_change_date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "brand",
+              "displayName": "brand",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "category_id",
+              "displayName": "category_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "category_name",
+              "displayName": "category_name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "lowest_category_id",
+              "displayName": "lowest_category_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "lowest_category_name",
+              "displayName": "lowest_category_name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "import_date_company",
+              "displayName": "import_date_company",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "branch_id",
+              "displayName": "branch_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "branch_name",
+              "displayName": "branch_name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "zone",
+              "displayName": "zone",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "bin_id",
+              "displayName": "bin_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "bin_name",
+              "displayName": "bin_name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "type",
+              "displayName": "type",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "total_product_volume",
+              "displayName": "total_product_volume",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "bin_volume",
+              "displayName": "bin_volume",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        208,
+        800
+      ],
+      "id": "027d735e-f947-4bc3-ba9a-d3aeaf71d2a9",
+      "name": "append_inv_data",
+      "retryOnFail": true,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "MTh9LghqaMKPTAzs",
+          "name": "zalo-chat-bot-hoang.nv1"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        768,
+        800
+      ],
+      "id": "faf7c7d1-a403-4439-8b98-1b05e9bd3463",
+      "name": "Limit2"
+    },
+    {
+      "parameters": {
+        "authentication": "serviceAccount",
+        "projectId": {
+          "__rl": true,
+          "value": "nimble-volt-459313-b8",
+          "mode": "list",
+          "cachedResultName": "My First Project",
+          "cachedResultUrl": "https://console.cloud.google.com/bigquery?project=nimble-volt-459313-b8"
+        },
+        "sqlQuery": "SELECT *\nFROM `nimble-volt-459313-b8.Inventory.inv_seri_1`\nWHERE Branch_ID = 'CP62'",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleBigQuery",
+      "typeVersion": 2.1,
+      "position": [
+        512,
+        800
+      ],
+      "id": "1867dce9-b090-4442-9500-2b135bb50f3c",
+      "name": "getInv",
+      "credentials": {
+        "googleApi": {
+          "id": "MobroXPII5JrGVTH",
+          "name": "Google Service Account promocheck vu.nt1"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "lBHj2v9socaObenK",
+          "mode": "list",
+          "cachedResultUrl": "/workflow/lBHj2v9socaObenK",
+          "cachedResultName": "schedule - inv-update"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "mode": "each",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.3,
+      "position": [
+        1184,
+        800
+      ],
+      "id": "623cfad1-b9d8-4300-9541-b90262972015",
+      "name": "Call 'schedule - inv-update'"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "fc56ca5f-cf28-4842-95d8-1bbc17e82a59",
+              "name": "msg",
+              "value": "=Đã cập nhật tồn kho mới. Tổng cộng: {{ $('Summarize').first().json['count_Số_Serial'] }} serial.",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        896,
+        800
+      ],
+      "id": "30e0e8ff-75c6-4b42-8893-fb27f3bba4ec",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "operation": "xlsx",
+        "binaryPropertyName": "File0",
+        "options": {
+          "range": "2"
+        }
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1,
+      "position": [
+        -144,
+        720
+      ],
+      "id": "8d15a173-6ccc-492a-90d3-4240778c7984",
+      "name": "Extract from File3"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        208,
+        640
+      ],
+      "id": "bada4657-09e3-465d-a482-c793c7bd67af",
+      "name": "Limit3"
+    },
+    {
+      "parameters": {
+        "chatId": "5013029624",
+        "text": "={{ $json.msg }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1024,
+        800
+      ],
+      "id": "be7283bc-377a-4dd6-b879-8b08d8a37ee2",
+      "name": "Send a text message2",
+      "webhookId": "3e9bc8f7-98b2-402e-9644-d7be6d0b50fb",
+      "credentials": {
+        "telegramApi": {
+          "id": "yOqJ91F4uxm9OoWc",
+          "name": "n8n reports"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "formTitle": "Sales",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "File0",
+              "fieldType": "file"
+            }
+          ]
+        },
+        "options": {
+          "path": "sales"
+        }
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.5,
+      "position": [
+        -576,
+        1136
+      ],
+      "id": "ccaeea4e-1364-47c6-a402-68c1d9d173f0",
+      "name": "On form submission1",
+      "webhookId": "ebcb2e8f-6719-4e93-a3f9-ba3cf074c8e4"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "2b5e49c3-5313-41ab-851b-f649859f02c4",
+              "leftValue": "={{ $json.STT }}",
+              "rightValue": 0,
+              "operator": {
+                "type": "number",
+                "operation": "notExists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        0,
+        720
+      ],
+      "id": "21bdee0e-3d78-42da-8ab7-6305716225dd",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "operation": "clear",
+        "documentId": {
+          "__rl": true,
+          "value": "1zArV4bQMl6i2-rZYLUddoOl_lQmS_A3xpdwoirwsyIg",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1zArV4bQMl6i2-rZYLUddoOl_lQmS_A3xpdwoirwsyIg/edit#gid=0"
+        },
+        "keepFirstRow": true
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -160,
+        368
+      ],
+      "id": "d619688c-b714-478a-a168-f906f964188c",
+      "name": "clear_old_data",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "MTh9LghqaMKPTAzs",
+          "name": "zalo-chat-bot-hoang.nv1"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1zArV4bQMl6i2-rZYLUddoOl_lQmS_A3xpdwoirwsyIg",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1zArV4bQMl6i2-rZYLUddoOl_lQmS_A3xpdwoirwsyIg/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Số chứng từ": "={{ $json['Số chứng từ'] }}",
+            "Ngày tạo": "={{ $json['Ngày tạo'] }}",
+            "Người tạo": "={{ $json['Người tạo'] }}",
+            "Mã NCC": "={{ $json['Mã NCC'] }}",
+            "Tên NCC": "={{ $json['Tên NCC'] }}",
+            "Kho xuất": "={{ $json['Kho xuất'] }}",
+            "Kho nhận": "={{ $json['Kho nhận'] }}",
+            "SKU\r": "={{ $json.SKU }}",
+            "Tên sản phẩm": "={{ $json['Tên sản phẩm'] }}",
+            "ĐVT": "={{ $json['ĐVT'] }}",
+            "SL yêu cầu": "={{ $json['SL yêu cầu'] }}",
+            "SL đã xuất": "={{ $json['SL đã xuất'] }}",
+            "SL đã nhận\r": "={{ $json['SL đã nhận'] }}",
+            "Ghi chú": "={{ $json['Ghi chú'] }}",
+            "Trạng thái\r": "={{ $json['Trạng thái'] }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Số chứng từ",
+              "displayName": "Số chứng từ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Ngày tạo",
+              "displayName": "Ngày tạo",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Người tạo",
+              "displayName": "Người tạo",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Mã NCC",
+              "displayName": "Mã NCC",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Tên NCC",
+              "displayName": "Tên NCC",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Kho xuất",
+              "displayName": "Kho xuất",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Kho nhận",
+              "displayName": "Kho nhận",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "SKU\r",
+              "displayName": "SKU\r",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Tên sản phẩm",
+              "displayName": "Tên sản phẩm",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "ĐVT",
+              "displayName": "ĐVT",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "SL yêu cầu",
+              "displayName": "SL yêu cầu",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "SL đã xuất",
+              "displayName": "SL đã xuất",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "SL đã nhận\r",
+              "displayName": "SL đã nhận\r",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Ghi chú",
+              "displayName": "Ghi chú",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Trạng thái\r",
+              "displayName": "Trạng thái\r",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        96,
+        368
+      ],
+      "id": "49b66b3d-8757-4663-88ba-40e9848bfba9",
+      "name": "append_new_data",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "MTh9LghqaMKPTAzs",
+          "name": "zalo-chat-bot-hoang.nv1"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "-1002735167249",
+        "text": "=Range plan đã được cập nhật.",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        352,
+        208
+      ],
+      "id": "6c415192-8090-477a-9814-9d37f7d5a354",
+      "name": "range_report",
+      "webhookId": "44f7bda3-2e42-4ba8-985e-b3ca611100cb",
+      "credentials": {
+        "telegramApi": {
+          "id": "yOqJ91F4uxm9OoWc",
+          "name": "n8n reports"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "-1002735167249",
+        "text": "=Hàng sắp về đã được cập nhật.",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        352,
+        368
+      ],
+      "id": "f1c316c5-560c-4b20-9b70-f90c9ff83c48",
+      "name": "goods_coming_report",
+      "webhookId": "44f7bda3-2e42-4ba8-985e-b3ca611100cb",
+      "credentials": {
+        "telegramApi": {
+          "id": "yOqJ91F4uxm9OoWc",
+          "name": "n8n reports"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        224,
+        368
+      ],
+      "id": "988bc732-13bb-4a46-90b3-2791b0358cf3",
+      "name": "Limit4"
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "4YKHCkkzazk3p8I0ppc93",
+          "mode": "list",
+          "cachedResultUrl": "/workflow/4YKHCkkzazk3p8I0ppc93",
+          "cachedResultName": "stock_inventory"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.3,
+      "position": [
+        528,
+        368
+      ],
+      "id": "b68844a1-3c9d-4f05-8d86-6ab40cf75b3d",
+      "name": "Call 'stock_inventory'"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1f0Xycoy_GMeef9gVZnx-SSPtDQJdM9eN4Z92eZ8ZDEE",
+          "mode": "list",
+          "cachedResultName": "inventory_data",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1f0Xycoy_GMeef9gVZnx-SSPtDQJdM9eN4Z92eZ8ZDEE/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 34713994,
+          "mode": "list",
+          "cachedResultName": "Main",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1f0Xycoy_GMeef9gVZnx-SSPtDQJdM9eN4Z92eZ8ZDEE/edit#gid=34713994"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "serial_number": "={{ $json.Serial }}",
+            "import_date_company": "={{ $json.Date_import_company }}"
+          },
+          "matchingColumns": [
+            "serial_number"
+          ],
+          "schema": [
+            {
+              "id": "STT",
+              "displayName": "STT",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "sku",
+              "displayName": "sku",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "sku_name",
+              "displayName": "sku_name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "part_number",
+              "displayName": "part_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "cal_unit",
+              "displayName": "cal_unit",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "qty",
+              "displayName": "qty",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "serial_number",
+              "displayName": "serial_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "serial_type",
+              "displayName": "serial_type",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "serial_type_change_date",
+              "displayName": "serial_type_change_date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "brand",
+              "displayName": "brand",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "category_id",
+              "displayName": "category_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "category_name",
+              "displayName": "category_name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "lowest_category_id",
+              "displayName": "lowest_category_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "lowest_category_name",
+              "displayName": "lowest_category_name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "import_date_company",
+              "displayName": "import_date_company",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "branch_id",
+              "displayName": "branch_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "branch_name",
+              "displayName": "branch_name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "zone",
+              "displayName": "zone",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "bin_id",
+              "displayName": "bin_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "bin_name",
+              "displayName": "bin_name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "type",
+              "displayName": "type",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "total_product_volume",
+              "displayName": "total_product_volume",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "bin_volume",
+              "displayName": "bin_volume",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        640,
+        800
+      ],
+      "id": "8fedf623-7292-4885-a6c1-338ac8b1567a",
+      "name": "update_company_inv1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "MTh9LghqaMKPTAzs",
+          "name": "zalo-chat-bot-hoang.nv1"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://100.115.211.95:18789/hooks/agent",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer culi-secret-token-2026"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n  \"message\": \"ping from n8n\",\n  \"name\": \"n8n\",\n  \"wakeMode\": \"now\",\n  \"deliver\": true\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        1424,
+        800
+      ],
+      "id": "f8af1210-7ac7-4932-8983-3b788421081b",
+      "name": "HTTP Request"
+    }
+  ],
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "host": "n8n.hoanghochoi.com",
+            "user-agent": "python-requests/2.32.5",
+            "content-length": "862728",
+            "accept": "*/*",
+            "accept-encoding": "gzip, br",
+            "cdn-loop": "cloudflare; loops=1",
+            "cf-connecting-ip": "14.187.212.69",
+            "cf-ipcountry": "VN",
+            "cf-ray": "9d8032c9ac17dbcf-HKG",
+            "cf-visitor": "{\"scheme\":\"https\"}",
+            "cf-warp-tag-id": "e29be3d2-4ed5-4153-bf34-97fbb2b7e165",
+            "connection": "keep-alive",
+            "content-type": "multipart/form-data; boundary=485572ff394da691160ed497d39b8372",
+            "x-forwarded-for": "14.187.212.69",
+            "x-forwarded-proto": "https"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "skill_name": "inventory-automation"
+          },
+          "webhookUrl": "https://n8n.hoanghochoi.com/webhook/culi-automation",
+          "executionMode": "production"
+        },
+        "binary": {
+          "File0": {
+            "mimeType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            "fileExtension": "xlsx",
+            "data": "filesystem-v2",
+            "fileName": "Bang_ke_ton_kho_theo_serial_den_ngay_hien_tai_2026_03_06_06032026140739.xlsx",
+            "id": "filesystem-v2:workflows/bRilipMc22q49mgX/executions/temp/binary_data/f7daee63-c711-404b-83b5-b22a4db87a82",
+            "fileSize": "862 kB",
+            "bytes": 862320
+          }
+        },
+        "pairedItem": {
+          "item": 0
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false,
+    "timeSavedMode": "fixed",
+    "errorWorkflow": "tUGf8pqhOC0yFiUP",
+    "callerPolicy": "workflowsFromSameOwner"
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-02-23T02:27:01.606Z",
+      "createdAt": "2026-02-23T02:27:01.606Z",
+      "role": "workflow:owner",
+      "workflowId": "bRilipMc22q49mgX",
+      "projectId": "GTQprNa3RcCSHh8s"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 3,
+  "updatedAt": "2026-04-03T07:03:25.664Z",
+  "versionId": "c50bee2b-35fc-4784-8582-b93d28ffaa77"
+}
