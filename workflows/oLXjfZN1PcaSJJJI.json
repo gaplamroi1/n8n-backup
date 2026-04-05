@@ -1,0 +1,3267 @@
+{
+  "active": true,
+  "activeVersion": {
+    "updatedAt": "2026-04-02T07:47:57.027Z",
+    "createdAt": "2026-04-02T07:47:52.664Z",
+    "versionId": "bddc1932-bd6a-4568-ba0e-204e8fa558bb",
+    "workflowId": "oLXjfZN1PcaSJJJI",
+    "nodes": [
+      {
+        "parameters": {
+          "operation": "get",
+          "dataTableId": {
+            "__rl": true,
+            "value": "sc1dOTktntfbMUel",
+            "mode": "list",
+            "cachedResultName": "seatalk-app-access-token",
+            "cachedResultUrl": "/projects/GTQprNa3RcCSHh8s/datatables/sc1dOTktntfbMUel"
+          },
+          "filters": {
+            "conditions": [
+              {
+                "keyName": "app_id",
+                "keyValue": "={{ $json.app_id }}"
+              }
+            ]
+          },
+          "returnAll": true
+        },
+        "type": "n8n-nodes-base.dataTable",
+        "typeVersion": 1,
+        "position": [
+          -64,
+          -544
+        ],
+        "id": "88e96534-65b1-44a7-95ff-d2bf6ffdd41c",
+        "name": "get_app_info"
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "3de90b61-c36c-47c7-bfa1-ee1d3bc9eaf7",
+                "name": "app_id",
+                "value": "NzMwMzg0MzczMjE5",
+                "type": "string"
+              }
+            ]
+          },
+          "includeOtherFields": true,
+          "options": {}
+        },
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          -208,
+          -544
+        ],
+        "id": "eb0857dc-1b09-4d21-ae3b-af0785dae889",
+        "name": "app_id"
+      },
+      {
+        "parameters": {
+          "operation": "get",
+          "dataTableId": {
+            "__rl": true,
+            "value": "oyXKvWj5mW6M5dIX",
+            "mode": "list",
+            "cachedResultName": "phongvu-employee",
+            "cachedResultUrl": "/projects/GTQprNa3RcCSHh8s/datatables/oyXKvWj5mW6M5dIX"
+          },
+          "filters": {
+            "conditions": [
+              {
+                "keyName": "email",
+                "keyValue": "={{ $json.body.event.email }}"
+              }
+            ]
+          },
+          "returnAll": true
+        },
+        "type": "n8n-nodes-base.dataTable",
+        "typeVersion": 1.1,
+        "position": [
+          96,
+          464
+        ],
+        "id": "3ea5d63e-5d2d-4cb3-b542-c28c0b612782",
+        "name": "get_user",
+        "alwaysOutputData": true,
+        "onError": "continueRegularOutput"
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": false,
+              "leftValue": "",
+              "typeValidation": "loose",
+              "version": 3
+            },
+            "conditions": [
+              {
+                "id": "5433e03a-7eb6-47c4-9162-d5c72f3c90a1",
+                "leftValue": "={{ $json.email }}",
+                "rightValue": "",
+                "operator": {
+                  "type": "boolean",
+                  "operation": "exists",
+                  "singleValue": true
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "looseTypeValidation": true,
+          "options": {
+            "ignoreCase": true
+          }
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.3,
+        "position": [
+          256,
+          464
+        ],
+        "id": "634e8760-5dbc-4a45-aa33-3fc1d15979c8",
+        "name": "user_esits"
+      },
+      {
+        "parameters": {
+          "rules": {
+            "values": [
+              {
+                "conditions": {
+                  "options": {
+                    "caseSensitive": true,
+                    "leftValue": "",
+                    "typeValidation": "strict",
+                    "version": 3
+                  },
+                  "conditions": [
+                    {
+                      "leftValue": "={{ $json.body.event.message.text.content }}",
+                      "rightValue": "/reg",
+                      "operator": {
+                        "type": "string",
+                        "operation": "startsWith"
+                      },
+                      "id": "d459f138-7943-45c8-8eb4-d624e157582b"
+                    }
+                  ],
+                  "combinator": "and"
+                },
+                "renameOutput": true,
+                "outputKey": "dang ky"
+              },
+              {
+                "conditions": {
+                  "options": {
+                    "caseSensitive": true,
+                    "leftValue": "",
+                    "typeValidation": "strict",
+                    "version": 3
+                  },
+                  "conditions": [
+                    {
+                      "id": "93caf9fb-130d-4f5b-a6a0-c93052be3a16",
+                      "leftValue": "={{ $json.body.event.message.text.content }}",
+                      "rightValue": "/qr",
+                      "operator": {
+                        "type": "string",
+                        "operation": "startsWith"
+                      }
+                    }
+                  ],
+                  "combinator": "and"
+                },
+                "renameOutput": true,
+                "outputKey": "gen qr"
+              },
+              {
+                "conditions": {
+                  "options": {
+                    "caseSensitive": true,
+                    "leftValue": "",
+                    "typeValidation": "strict",
+                    "version": 3
+                  },
+                  "conditions": [
+                    {
+                      "id": "767dcc44-ca00-4e8c-9886-df29ea3b0a10",
+                      "leftValue": "={{ $json.body.event.message.text.content }}",
+                      "rightValue": "/help",
+                      "operator": {
+                        "type": "string",
+                        "operation": "startsWith"
+                      }
+                    }
+                  ],
+                  "combinator": "and"
+                },
+                "renameOutput": true,
+                "outputKey": "huong dan"
+              },
+              {
+                "conditions": {
+                  "options": {
+                    "caseSensitive": true,
+                    "leftValue": "",
+                    "typeValidation": "strict",
+                    "version": 3
+                  },
+                  "conditions": [
+                    {
+                      "id": "07d9f6a8-a964-42ea-87a8-2f47d24d2230",
+                      "leftValue": "={{ $json.body.event.message.text.content }}",
+                      "rightValue": "reg",
+                      "operator": {
+                        "type": "string",
+                        "operation": "startsWith"
+                      }
+                    }
+                  ],
+                  "combinator": "and"
+                },
+                "renameOutput": true,
+                "outputKey": "reg no /"
+              },
+              {
+                "conditions": {
+                  "options": {
+                    "caseSensitive": true,
+                    "leftValue": "",
+                    "typeValidation": "strict",
+                    "version": 3
+                  },
+                  "conditions": [
+                    {
+                      "id": "f88e7347-3c12-400c-9ef2-bf1021f229f4",
+                      "leftValue": "={{ $json.body.event.message.text.content }}",
+                      "rightValue": "qr",
+                      "operator": {
+                        "type": "string",
+                        "operation": "startsWith"
+                      }
+                    }
+                  ],
+                  "combinator": "and"
+                },
+                "renameOutput": true,
+                "outputKey": "qr no /"
+              },
+              {
+                "conditions": {
+                  "options": {
+                    "caseSensitive": true,
+                    "leftValue": "",
+                    "typeValidation": "strict",
+                    "version": 3
+                  },
+                  "conditions": [
+                    {
+                      "id": "ddbcc5d5-41de-4698-aa2a-0b29169ffeeb",
+                      "leftValue": "",
+                      "rightValue": "",
+                      "operator": {
+                        "type": "string",
+                        "operation": "equals",
+                        "name": "filter.operator.equals"
+                      }
+                    }
+                  ],
+                  "combinator": "and"
+                }
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.switch",
+        "typeVersion": 3.4,
+        "position": [
+          -64,
+          96
+        ],
+        "id": "43439e3e-4b4e-4c54-a168-32109dcf97db",
+        "name": "Switch"
+      },
+      {
+        "parameters": {
+          "dataTableId": {
+            "__rl": true,
+            "value": "oyXKvWj5mW6M5dIX",
+            "mode": "list",
+            "cachedResultName": "phongvu-employee",
+            "cachedResultUrl": "/projects/GTQprNa3RcCSHh8s/datatables/oyXKvWj5mW6M5dIX"
+          },
+          "columns": {
+            "mappingMode": "defineBelow",
+            "value": {
+              "email": "={{ $json.email }}",
+              "name": "={{ $json.name }}",
+              "store": "={{ $json.code }}",
+              "employee_code": "={{ $json.employee_code }}"
+            },
+            "matchingColumns": [],
+            "schema": [
+              {
+                "id": "email",
+                "displayName": "email",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": false
+              },
+              {
+                "id": "name",
+                "displayName": "name",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": false
+              },
+              {
+                "id": "store",
+                "displayName": "store",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": false
+              },
+              {
+                "id": "qr_countt",
+                "displayName": "qr_countt",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "number",
+                "readOnly": false,
+                "removed": true
+              },
+              {
+                "id": "employee_code",
+                "displayName": "employee_code",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": false
+              }
+            ],
+            "attemptToConvertTypes": false,
+            "convertFieldsToString": false
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.dataTable",
+        "typeVersion": 1.1,
+        "position": [
+          752,
+          -208
+        ],
+        "id": "f92ab30e-f7e8-441a-8b56-648615e7c485",
+        "name": "save_user_info"
+      },
+      {
+        "parameters": {
+          "method": "POST",
+          "url": "https://openapi.seatalk.io/messaging/v2/single_chat",
+          "sendHeaders": true,
+          "headerParameters": {
+            "parameters": [
+              {
+                "name": "Authorization",
+                "value": "=Bearer {{ $('get_app_info').first().json.app_access_token }}"
+              },
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          },
+          "sendBody": true,
+          "specifyBody": "json",
+          "jsonBody": "={\n    \"employee_code\": \"{{ $('seatalk_bot').first().json.body.event.employee_code }}\",\n    \"message\": {\n        \"tag\": \"text\",\n        \"text\": {\n            \"format\": 1,\n            \"content\": \"Xin chào, mình là QR Generator, hiện tại bạn chưa có thông tin trong hệ thống. Vui lòng nhắn tin theo cú pháp bên dưới để đăng ký thông tin:\\n\\n**/reg <Họ & Tên>/<Mã cửa hàng>**\\n\\nVD: /reg Nguyễn Văn A/CP62\"\n        }\n    },\n    \"usable_platform\": \"all\"\n}",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.4,
+        "position": [
+          592,
+          544
+        ],
+        "id": "e4ed097f-bb22-421a-bc60-24763e0fab9f",
+        "name": "registral_request"
+      },
+      {
+        "parameters": {
+          "method": "POST",
+          "url": "https://openapi.seatalk.io/messaging/v2/single_chat",
+          "sendHeaders": true,
+          "headerParameters": {
+            "parameters": [
+              {
+                "name": "Authorization",
+                "value": "=Bearer {{ $('get_app_info').first().json.app_access_token }}"
+              },
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          },
+          "sendBody": true,
+          "specifyBody": "json",
+          "jsonBody": "={\n    \"employee_code\": \"{{ $('seatalk_bot').first().json.body.event.employee_code }}\",\n    \"message\": {\n        \"tag\": \"text\",\n        \"text\": {\n            \"format\": 1,\n            \"content\": \"Xin chào {{ $('parse_user_info').first().json.name }}, Bạn đã đăng ký thành công, bắt đầu tạo QR thanh toán bằng cách gửi thông tin theo mẫu bên dưới nhé.\\n\\n**/qr** -> Chỉ lấy QR\\n**/qr <số tiền>** -> Lấy QR có sẵn số tiền, nội dung: CPxx\\n**/qr <Số tiền>/<Mã đơn hàng>** -> Lấy QR có sẵn số tiền, nội dung <mã đơn hàng> CPxx\\n\\nVD: /qr 50000/260321123456\"\n        }\n    },\n    \"usable_platform\": \"all\"\n}",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.4,
+        "position": [
+          896,
+          -208
+        ],
+        "id": "1c4f610b-5b58-4250-a202-97c0a682d7a3",
+        "name": "reg_successfully"
+      },
+      {
+        "parameters": {
+          "jsCode": "const items = $items(\"seatalk_bot\");\n\nconst result = items.map(item => {\n  const email = item.json.body?.event?.email || \"\";\n  const employee_code = item.json.body?.event?.employee_code || \"\";\n  const content = item.json.body?.event?.message?.text?.content || \"\";\n\n  let name = \"\";\n  let code = \"\";\n\n  // Kiểm tra và xử lý cả \"/reg\" và \"reg\"\n  if (content.startsWith(\"/reg\") || content.startsWith(\"reg\")) {\n    // Loại bỏ \"/reg\" hoặc \"reg\" và trim khoảng trắng\n    const parts = content.replace(/^\\/?reg\\s*/, \"\").trim().split(\"/\");\n\n    name = parts[0]?.trim() || \"\";\n    code = parts[1]?.trim() || \"\";\n  }\n\n  // Name: Unicode (tiếng Việt) + số + khoảng trắng\n  const nameRegex = /^[\\p{L}0-9\\s]+$/u;\n\n  // Code: CP + đúng 2 hoặc 4 số\n  const codeRegex = /^CP(\\d{2}|\\d{4})$/;\n\n  if (!nameRegex.test(name)) {\n    name = \"sai\";\n  }\n\n  if (!codeRegex.test(code)) {\n    code = \"sai\";\n  }\n\n  return {\n    json: {\n      email,\n      name,\n      code,\n      employee_code\n    }\n  };\n});\n\nreturn result;"
+        },
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          464,
+          -144
+        ],
+        "id": "8a9e3ae6-6572-4d7f-97b3-fa0e5e657257",
+        "name": "parse_user_info"
+      },
+      {
+        "parameters": {
+          "documentId": {
+            "__rl": true,
+            "value": "1ylN_miQZ_YVLa300B5HvTU-kJbEJgvOiqRyuB7endgg",
+            "mode": "id"
+          },
+          "sheetName": {
+            "__rl": true,
+            "value": "gid=0",
+            "mode": "list",
+            "cachedResultName": "Sheet1",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1ylN_miQZ_YVLa300B5HvTU-kJbEJgvOiqRyuB7endgg/edit#gid=0"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.googleSheets",
+        "typeVersion": 4.7,
+        "position": [
+          -480,
+          656
+        ],
+        "id": "2a519452-9bad-4c06-bc72-760dafe613d6",
+        "name": "Get row(s) in sheet",
+        "credentials": {
+          "googleSheetsOAuth2Api": {
+            "id": "MTh9LghqaMKPTAzs",
+            "name": "zalo-chat-bot-hoang.nv1"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "operation": "upsert",
+          "dataTableId": {
+            "__rl": true,
+            "value": "Pf7ApE3d1UJUFRCh",
+            "mode": "list",
+            "cachedResultName": "account_list",
+            "cachedResultUrl": "/projects/GTQprNa3RcCSHh8s/datatables/Pf7ApE3d1UJUFRCh"
+          },
+          "filters": {
+            "conditions": [
+              {
+                "keyName": "store",
+                "keyValue": "={{ $json.store }}"
+              }
+            ]
+          },
+          "columns": {
+            "mappingMode": "defineBelow",
+            "value": {
+              "store": "={{ $json.store }}",
+              "account": "={{ $json.account }}"
+            },
+            "matchingColumns": [],
+            "schema": [
+              {
+                "id": "store",
+                "displayName": "store",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": false
+              },
+              {
+                "id": "account",
+                "displayName": "account",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": false
+              }
+            ],
+            "attemptToConvertTypes": false,
+            "convertFieldsToString": false
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.dataTable",
+        "typeVersion": 1.1,
+        "position": [
+          -320,
+          656
+        ],
+        "id": "a5affb44-1fa4-44fc-9393-6d622905594f",
+        "name": "Upsert row(s)"
+      },
+      {
+        "parameters": {
+          "operation": "get",
+          "dataTableId": {
+            "__rl": true,
+            "value": "Pf7ApE3d1UJUFRCh",
+            "mode": "list",
+            "cachedResultName": "account_list",
+            "cachedResultUrl": "/projects/GTQprNa3RcCSHh8s/datatables/Pf7ApE3d1UJUFRCh"
+          },
+          "matchType": "allConditions",
+          "filters": {
+            "conditions": [
+              {
+                "keyName": "store",
+                "keyValue": "={{ $json.store }}"
+              }
+            ]
+          },
+          "returnAll": true
+        },
+        "type": "n8n-nodes-base.dataTable",
+        "typeVersion": 1.1,
+        "position": [
+          752,
+          96
+        ],
+        "id": "d1845ddb-613d-41fb-b922-640422a11777",
+        "name": "get_account"
+      },
+      {
+        "parameters": {
+          "jsCode": "const item = $input.first().json;\n\n// Lấy email\nconst email = item.body?.event?.email || \"\";\n\n// Lấy content\nconst content = item.body?.event?.message?.text?.content || \"\";\n\n// Hàm chuyển tiếng Việt có dấu thành không dấu (Bước 1)\nfunction convertToNoAccents(str) {\n  const accents = [\n    { base: 'a', letters: /[àáạảãâầấậẩẫăằắặẳẵ]/g },\n    { base: 'e', letters: /[èéẹẻẽêềếệểễ]/g },\n    { base: 'i', letters: /[ìíịỉĩ]/g },\n    { base: 'o', letters: /[òóọỏõôồốộổỗơờớợởỡ]/g },\n    { base: 'u', letters: /[ùúụủũûừứựửữ]/g },\n    { base: 'y', letters: /[ỳýỵỷỹ]/g },\n    { base: 'd', letters: /[đ]/g },\n  ];\n\n  accents.forEach(acc => {\n    str = str.replace(acc.letters, acc.base);\n  });\n  return str;\n}\n\n// Parse name + code\nlet amount = \"\";\nlet order_code = \"\";\n\n// Kiểm tra nếu chuỗi bắt đầu bằng \"/qr\" hoặc \"qr\"\nif (content.startsWith(\"/qr\") || content.startsWith(\"qr\")) {\n  // Loại bỏ \"/qr\" hoặc \"qr\" và trim khoảng trắng thừa\n  const parts = content.replace(/^\\/?qr\\s*/, \"\").trim();\n  \n  // Tìm vị trí dấu \"/\" đầu tiên (nếu có)\n  const firstSlashIndex = parts.indexOf(\"/\");\n\n  if (firstSlashIndex !== -1) {\n    // Lấy phần trước dấu \"/\" là số tiền\n    amount = parts.slice(0, firstSlashIndex).trim();\n    \n    // Lấy phần còn lại sau dấu \"/\" là order_code\n    order_code = parts.slice(firstSlashIndex + 1).trim();\n    \n    // Bước 1: Chuyển tiếng Việt có dấu thành tiếng Việt không dấu\n    order_code = convertToNoAccents(order_code);\n    \n    // Bước 2: Thay thế các ký tự đặc biệt thành dấu space (giữ lại chữ cái, số, dấu cách và dấu chấm)\n    order_code = order_code.replace(/[^a-zA-Z0-9\\s\\.,]/g, ' ');\n  }\n}\n\n// Trả về 1 item với email, amount và order_code\nreturn [\n  {\n    json: {\n      email,\n      amount,\n      order_code\n    }\n  }\n];"
+        },
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          304,
+          112
+        ],
+        "id": "afb326b9-0c50-45af-8f58-c08aef6ce30a",
+        "name": "parse_qr_info"
+      },
+      {
+        "parameters": {
+          "operation": "get",
+          "dataTableId": {
+            "__rl": true,
+            "value": "oyXKvWj5mW6M5dIX",
+            "mode": "list",
+            "cachedResultName": "phongvu-employee",
+            "cachedResultUrl": "/projects/GTQprNa3RcCSHh8s/datatables/oyXKvWj5mW6M5dIX"
+          },
+          "filters": {
+            "conditions": [
+              {
+                "keyName": "email",
+                "keyValue": "={{ $('parse_qr_info').first().json.email }}"
+              }
+            ]
+          },
+          "returnAll": true
+        },
+        "type": "n8n-nodes-base.dataTable",
+        "typeVersion": 1.1,
+        "position": [
+          448,
+          112
+        ],
+        "id": "a012e985-4df7-412c-8968-2eb2242cf01f",
+        "name": "take_user",
+        "alwaysOutputData": true,
+        "onError": "continueRegularOutput"
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 3
+            },
+            "conditions": [
+              {
+                "id": "7effdc4b-56e5-489c-889b-994a9efa6c6b",
+                "leftValue": "={{ $json.name }}",
+                "rightValue": "",
+                "operator": {
+                  "type": "string",
+                  "operation": "notEmpty",
+                  "singleValue": true
+                }
+              },
+              {
+                "id": "580051ab-5de8-4ab1-97cc-9f608b481502",
+                "leftValue": "={{ $json.code }}",
+                "rightValue": "",
+                "operator": {
+                  "type": "string",
+                  "operation": "notEmpty",
+                  "singleValue": true
+                }
+              },
+              {
+                "id": "0ceb8532-f2a7-4d9b-9cac-a09ac247517c",
+                "leftValue": "={{ $json.code }}",
+                "rightValue": "CP",
+                "operator": {
+                  "type": "string",
+                  "operation": "startsWith"
+                }
+              },
+              {
+                "id": "72db8e31-e282-45bf-93d1-ef2fccdc6aa6",
+                "leftValue": "={{ $json.name }}",
+                "rightValue": "=<",
+                "operator": {
+                  "type": "string",
+                  "operation": "notContains"
+                }
+              },
+              {
+                "id": "3f62f343-8036-4de4-901a-7fb926d79f2d",
+                "leftValue": "={{ $json.code }}",
+                "rightValue": ">",
+                "operator": {
+                  "type": "string",
+                  "operation": "notContains"
+                }
+              },
+              {
+                "id": "dcb6b411-8a69-4171-9327-9ca333c4846d",
+                "leftValue": "={{ $json.name }}",
+                "rightValue": "sai",
+                "operator": {
+                  "type": "string",
+                  "operation": "notEquals"
+                }
+              },
+              {
+                "id": "df48502f-b588-404b-86b1-6d46b2e51ce7",
+                "leftValue": "={{ $json.code }}",
+                "rightValue": "sai",
+                "operator": {
+                  "type": "string",
+                  "operation": "notEquals"
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.3,
+        "position": [
+          608,
+          -144
+        ],
+        "id": "e448b02d-0771-462e-a82c-e6095f4fe5f0",
+        "name": "reg_validator"
+      },
+      {
+        "parameters": {
+          "method": "POST",
+          "url": "https://openapi.seatalk.io/messaging/v2/single_chat",
+          "sendHeaders": true,
+          "headerParameters": {
+            "parameters": [
+              {
+                "name": "Authorization",
+                "value": "=Bearer {{ $('get_app_info').first().json.app_access_token }}"
+              },
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          },
+          "sendBody": true,
+          "specifyBody": "json",
+          "jsonBody": "={\n    \"employee_code\": \"{{ $('seatalk_bot').first().json.body.event.employee_code }}\",\n    \"message\": {\n        \"tag\": \"text\",\n        \"text\": {\n            \"format\": 1,\n            \"content\": \"Đăng ký **THẤT BẠI**, bạn đã nhập thiếu thông tin hoặc sai cú pháp.Vui lòng nhập đúng thông tin:\\n\\n**/reg <Họ & Tên>/<Mã cửa hàng>**\\n\\nVD: /reg Nguyễn Văn A/CP62\"\n        }\n    },\n    \"usable_platform\": \"all\"\n}",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.4,
+        "position": [
+          752,
+          -80
+        ],
+        "id": "e68b3932-4fec-4b91-98ad-6f7eff587fb9",
+        "name": "reg_fail"
+      },
+      {
+        "parameters": {
+          "method": "POST",
+          "url": "https://openapi.seatalk.io/messaging/v2/single_chat",
+          "sendHeaders": true,
+          "headerParameters": {
+            "parameters": [
+              {
+                "name": "Authorization",
+                "value": "=Bearer {{ $('get_app_info').first().json.app_access_token }}"
+              },
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          },
+          "sendBody": true,
+          "specifyBody": "json",
+          "jsonBody": "={\n    \"employee_code\": \"{{ $('seatalk_bot').first().json.body.event.employee_code }}\",\n    \"message\": {\n        \"tag\": \"text\",\n        \"text\": {\n            \"format\": 1,\n            \"content\": \"Xin chào {{ $('take_user').item.json.name }}, mình chưa có thông tin tài khoản của {{ $('take_user').item.json.store }}, vui lòng liên hệ hoang.nv1@phongvu-mna.vn để thêm thông tin tài khoản nhé!\"\n        }\n    },\n    \"usable_platform\": \"all\"\n}",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.4,
+        "position": [
+          1056,
+          16
+        ],
+        "id": "07c6f4aa-161d-4384-898f-44772f3d259c",
+        "name": "request_account_info"
+      },
+      {
+        "parameters": {
+          "url": "={{ $json.quick_link }}",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.4,
+        "position": [
+          1200,
+          192
+        ],
+        "id": "71a7c8a5-711b-4bc9-8125-20e5a6c1dad4",
+        "name": "download_image"
+      },
+      {
+        "parameters": {
+          "method": "POST",
+          "url": "https://openapi.seatalk.io/messaging/v2/single_chat",
+          "sendHeaders": true,
+          "headerParameters": {
+            "parameters": [
+              {
+                "name": "Authorization",
+                "value": "=Bearer {{ $('get_app_info').first().json.app_access_token }}"
+              },
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          },
+          "sendBody": true,
+          "specifyBody": "json",
+          "jsonBody": "={\n    \"employee_code\": \"{{ $('seatalk_bot').first().json.body.event.employee_code }}\",\n    \"message\": {\n        \"tag\": \"image\",\n        \"image\": {\n            \"content\": \"{{ $json.base64 }}\"\n        }\n    },\n    \"usable_platform\": \"all\"\n}",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.4,
+        "position": [
+          1488,
+          192
+        ],
+        "id": "a31f332f-2418-4da4-b2f7-dedf5d7551aa",
+        "name": "send_qr"
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 3
+            },
+            "conditions": [
+              {
+                "id": "1ff52cbc-3635-4823-ab31-cf32f18d7f4f",
+                "leftValue": "={{ $json.email }}",
+                "rightValue": "",
+                "operator": {
+                  "type": "string",
+                  "operation": "exists",
+                  "singleValue": true
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.3,
+        "position": [
+          592,
+          112
+        ],
+        "id": "7da22828-b6f5-4b89-a16b-e2b0b14f81cd",
+        "name": "check_user_exits"
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "loose",
+              "version": 3
+            },
+            "conditions": [
+              {
+                "id": "13ffa5a9-af56-4b6e-8de1-1ecc4d440e42",
+                "leftValue": "={{ $('get_account').item.json.account }}",
+                "rightValue": "",
+                "operator": {
+                  "type": "string",
+                  "operation": "empty",
+                  "singleValue": true
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "looseTypeValidation": true,
+          "options": {}
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.3,
+        "position": [
+          896,
+          96
+        ],
+        "id": "dd222539-13fc-4469-85a4-9b63b4ddfb98",
+        "name": "check_account"
+      },
+      {
+        "parameters": {
+          "operation": "binaryToPropery",
+          "destinationKey": "base64",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.extractFromFile",
+        "typeVersion": 1.1,
+        "position": [
+          1344,
+          192
+        ],
+        "id": "1eb96ffc-0c56-491d-a26f-41f9a2599a7d",
+        "name": "extract_to_base64"
+      },
+      {
+        "parameters": {
+          "chatId": "5013029624",
+          "text": "=Người lạ {{ $('seatalk_bot').first().json.body.event.email }} vừa tương tác với bot QR Generator!",
+          "additionalFields": {}
+        },
+        "type": "n8n-nodes-base.telegram",
+        "typeVersion": 1.2,
+        "position": [
+          752,
+          544
+        ],
+        "id": "129ff7ce-dc7f-4a11-851e-16ba565c27a8",
+        "name": "interract_report",
+        "webhookId": "44f7bda3-2e42-4ba8-985e-b3ca611100cb",
+        "credentials": {
+          "telegramApi": {
+            "id": "yOqJ91F4uxm9OoWc",
+            "name": "n8n reports"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "chatId": "5013029624",
+          "text": "=QR Generator đăng ký mới! Thông tin:\nEmail: {{ $('save_user_info').item.json.email }}\nName: {{ $('save_user_info').item.json.name }}\nStore: {{ $('save_user_info').item.json.store }}",
+          "additionalFields": {}
+        },
+        "type": "n8n-nodes-base.telegram",
+        "typeVersion": 1.2,
+        "position": [
+          1040,
+          -208
+        ],
+        "id": "7bd9bb7b-f13b-4e88-91dd-4fce46ae65c0",
+        "name": "reg_report",
+        "webhookId": "44f7bda3-2e42-4ba8-985e-b3ca611100cb",
+        "credentials": {
+          "telegramApi": {
+            "id": "yOqJ91F4uxm9OoWc",
+            "name": "n8n reports"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "method": "POST",
+          "url": "https://openapi.seatalk.io/messaging/v2/single_chat",
+          "sendHeaders": true,
+          "headerParameters": {
+            "parameters": [
+              {
+                "name": "Authorization",
+                "value": "=Bearer {{ $('get_app_info').first().json.app_access_token }}"
+              },
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          },
+          "sendBody": true,
+          "specifyBody": "json",
+          "jsonBody": "={\n    \"employee_code\": \"{{ $('seatalk_bot').first().json.body.event.employee_code }}\",\n    \"message\": {\n        \"tag\": \"text\",\n        \"text\": {\n            \"format\": 1,\n            \"content\": \"Tạo QR thanh toán bằng cách gửi thông tin theo mẫu bên dưới nhé.\\n\\n**/qr** -> Chỉ lấy QR\\n**/qr <số tiền>** -> Lấy QR có sẵn số tiền, nội dung: CPxx\\n**/qr <Số tiền>/<Mã đơn hàng>** -> Lấy QR có sẵn số tiền, nội dung <mã đơn hàng> CPxx\\n\\nVD: /qr 50000/260321123456\"\n        }\n    },\n    \"usable_platform\": \"all\"\n}",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.4,
+        "position": [
+          304,
+          256
+        ],
+        "id": "2b8b13be-9816-4bf9-827b-ad01f08808be",
+        "name": "help_content"
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "0d28144a-c2b6-408c-a358-a9104c80d867",
+                "name": "quick_link",
+                "value": "=https://api.vietqr.io/image/970415-{{ $('get_account').first().json.account }}-u9AjLCM.jpg?accountName=CTY%20CO%20PHAN%20THUONG%20MAI%20DV%20PHONG%20VU&amount={{ $('parse_qr_info').first().json.amount }}&addInfo={{ $('parse_qr_info').first().json.order_code }}%20{{ $('take_user').item.json.store }}",
+                "type": "string"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          1056,
+          192
+        ],
+        "id": "e09617f7-5891-4c56-b121-53e7d36d3086",
+        "name": "gen_quick_link3"
+      },
+      {
+        "parameters": {
+          "operation": "get",
+          "dataTableId": {
+            "__rl": true,
+            "value": "oyXKvWj5mW6M5dIX",
+            "mode": "list",
+            "cachedResultName": "phongvu-employee",
+            "cachedResultUrl": "/projects/GTQprNa3RcCSHh8s/datatables/oyXKvWj5mW6M5dIX"
+          },
+          "matchType": "allConditions",
+          "filters": {
+            "conditions": [
+              {
+                "keyName": "email",
+                "keyValue": "={{ $json.body.event.email }}"
+              }
+            ]
+          },
+          "returnAll": true
+        },
+        "type": "n8n-nodes-base.dataTable",
+        "typeVersion": 1.1,
+        "position": [
+          176,
+          -224
+        ],
+        "id": "f1af160c-4e02-4fe5-9546-534c6bdcad40",
+        "name": "check_user",
+        "alwaysOutputData": true
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 3
+            },
+            "conditions": [
+              {
+                "id": "6db98a1c-04dc-4071-9518-88dadbec0f7f",
+                "leftValue": "={{ $json.email }}",
+                "rightValue": "",
+                "operator": {
+                  "type": "string",
+                  "operation": "notEmpty",
+                  "singleValue": true
+                }
+              },
+              {
+                "id": "59812864-9dbf-4c69-903e-871a11abdc75",
+                "leftValue": "={{ $json.name }}",
+                "rightValue": "",
+                "operator": {
+                  "type": "string",
+                  "operation": "notEmpty",
+                  "singleValue": true
+                }
+              },
+              {
+                "id": "a079e7b6-0a6e-4bdb-96bb-1a8f39f2983c",
+                "leftValue": "={{ $json.store }}",
+                "rightValue": "",
+                "operator": {
+                  "type": "string",
+                  "operation": "notEmpty",
+                  "singleValue": true
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.3,
+        "position": [
+          304,
+          -224
+        ],
+        "id": "a94a205a-1d3d-48d4-bc21-e368c54fb443",
+        "name": "If"
+      },
+      {
+        "parameters": {
+          "method": "POST",
+          "url": "https://openapi.seatalk.io/messaging/v2/single_chat",
+          "sendHeaders": true,
+          "headerParameters": {
+            "parameters": [
+              {
+                "name": "Authorization",
+                "value": "=Bearer {{ $('get_app_info').first().json.app_access_token }}"
+              },
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          },
+          "sendBody": true,
+          "specifyBody": "json",
+          "jsonBody": "={\n    \"employee_code\": \"{{ $('seatalk_bot').first().json.body.event.employee_code }}\",\n    \"message\": {\n        \"tag\": \"text\",\n        \"text\": {\n            \"format\": 1,\n            \"content\": \"Thông tin của bạn đã có trong hệ thống, nếu thông tin trước đó bạn nhập sai, vui lòng liên hệ hoang.nv1@phongvu-mna.vn để sửa lại.\\nBắt đầu tạo QR thanh toán bằng cách gửi thông tin theo mẫu bên dưới nhé.\\n\\n**/qr** -> Chỉ lấy QR\\n**/qr <số tiền>** -> Lấy QR có sẵn số tiền, nội dung: CPxx\\n**/qr <Số tiền>/<Mã đơn hàng>** -> Lấy QR có sẵn số tiền, nội dung <mã đơn hàng> CPxx\\n\\nVD: /qr 50000/260321123456\"\n        }\n    },\n    \"usable_platform\": \"all\"\n}",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.4,
+        "position": [
+          464,
+          -304
+        ],
+        "id": "f8c8d165-cd11-460e-b97c-cb74156bd5c4",
+        "name": "info_already_exits"
+      },
+      {
+        "parameters": {
+          "operation": "upsert",
+          "dataTableId": {
+            "__rl": true,
+            "value": "oyXKvWj5mW6M5dIX",
+            "mode": "list",
+            "cachedResultName": "phongvu-employee",
+            "cachedResultUrl": "/projects/GTQprNa3RcCSHh8s/datatables/oyXKvWj5mW6M5dIX"
+          },
+          "matchType": "allConditions",
+          "filters": {
+            "conditions": [
+              {
+                "keyName": "email",
+                "keyValue": "={{ $json.email }}"
+              }
+            ]
+          },
+          "columns": {
+            "mappingMode": "defineBelow",
+            "value": {
+              "qr_countt": "={{ $json.userCount }}"
+            },
+            "matchingColumns": [],
+            "schema": [
+              {
+                "id": "email",
+                "displayName": "email",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": true
+              },
+              {
+                "id": "name",
+                "displayName": "name",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": true
+              },
+              {
+                "id": "store",
+                "displayName": "store",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": true
+              },
+              {
+                "id": "qr_countt",
+                "displayName": "qr_countt",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "number",
+                "readOnly": false,
+                "removed": false
+              }
+            ],
+            "attemptToConvertTypes": false,
+            "convertFieldsToString": false
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.dataTable",
+        "typeVersion": 1.1,
+        "position": [
+          1792,
+          192
+        ],
+        "id": "3359bc40-e31a-484c-9be0-7cd022f26be4",
+        "name": "upsert_count"
+      },
+      {
+        "parameters": {
+          "jsCode": "const data = $getWorkflowStaticData(\"global\");\n\nconst items = $items(\"take_user\");\n\nreturn items.map(item => {\n  const email = item.json.email;\n\n  if (!data[email]) {\n    data[email] = 0;\n  }\n\n  data[email]++;\n\n  return {\n    json: {\n      ...item.json,\n      userCount: data[email]\n    }\n  };\n});"
+        },
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          1648,
+          192
+        ],
+        "id": "28a8a804-6780-4a03-bad7-613ef2bff95d",
+        "name": "user_count"
+      },
+      {
+        "parameters": {
+          "httpMethod": "POST",
+          "path": "qr-generator",
+          "responseMode": "lastNode",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.webhook",
+        "typeVersion": 2.1,
+        "position": [
+          -224,
+          128
+        ],
+        "id": "b21c95af-018c-44d3-bb35-bddc8447e822",
+        "name": "seatalk_bot",
+        "webhookId": "eba41761-d6f4-4f64-afbb-80c9fa7b1a1d"
+      },
+      {
+        "parameters": {
+          "multipleMethods": true,
+          "httpMethod": [
+            "POST"
+          ],
+          "path": "zalo_qr_gen",
+          "authentication": "headerAuth",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.webhook",
+        "typeVersion": 2.1,
+        "position": [
+          -528,
+          288
+        ],
+        "id": "0db07e82-4624-45bc-9099-0269c1f9c847",
+        "name": "Webhook",
+        "webhookId": "f9c917c2-c7a6-41f8-b43a-06fe7777bbd4",
+        "credentials": {
+          "httpHeaderAuth": {
+            "id": "IUsr4I408i65uByp",
+            "name": "Header Auth zalo bot"
+          }
+        },
+        "disabled": true
+      }
+    ],
+    "connections": {
+      "app_id": {
+        "main": [
+          [
+            {
+              "node": "get_app_info",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "get_user": {
+        "main": [
+          [
+            {
+              "node": "user_esits",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "user_esits": {
+        "main": [
+          [],
+          [
+            {
+              "node": "registral_request",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Switch": {
+        "main": [
+          [
+            {
+              "node": "check_user",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "parse_qr_info",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "help_content",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "get_user",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "check_user",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "parse_qr_info",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          []
+        ]
+      },
+      "save_user_info": {
+        "main": [
+          [
+            {
+              "node": "reg_successfully",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "parse_user_info": {
+        "main": [
+          [
+            {
+              "node": "reg_validator",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Get row(s) in sheet": {
+        "main": [
+          [
+            {
+              "node": "Upsert row(s)",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "get_account": {
+        "main": [
+          [
+            {
+              "node": "check_account",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "parse_qr_info": {
+        "main": [
+          [
+            {
+              "node": "take_user",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "take_user": {
+        "main": [
+          [
+            {
+              "node": "check_user_exits",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "reg_validator": {
+        "main": [
+          [
+            {
+              "node": "save_user_info",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "reg_fail",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "download_image": {
+        "main": [
+          [
+            {
+              "node": "extract_to_base64",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "check_user_exits": {
+        "main": [
+          [
+            {
+              "node": "get_account",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "registral_request",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "check_account": {
+        "main": [
+          [
+            {
+              "node": "request_account_info",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "gen_quick_link3",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "extract_to_base64": {
+        "main": [
+          [
+            {
+              "node": "send_qr",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "registral_request": {
+        "main": [
+          [
+            {
+              "node": "interract_report",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "reg_successfully": {
+        "main": [
+          [
+            {
+              "node": "reg_report",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "send_qr": {
+        "main": [
+          [
+            {
+              "node": "user_count",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "gen_quick_link3": {
+        "main": [
+          [
+            {
+              "node": "download_image",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "check_user": {
+        "main": [
+          [
+            {
+              "node": "If",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "If": {
+        "main": [
+          [
+            {
+              "node": "info_already_exits",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "parse_user_info",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "user_count": {
+        "main": [
+          [
+            {
+              "node": "upsert_count",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "seatalk_bot": {
+        "main": [
+          [
+            {
+              "node": "app_id",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "Switch",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "authors": "Hoang Nguyen",
+    "name": "Version bddc1932",
+    "description": "",
+    "autosaved": true
+  },
+  "activeVersionId": "bddc1932-bd6a-4568-ba0e-204e8fa558bb",
+  "connections": {
+    "app_id": {
+      "main": [
+        [
+          {
+            "node": "get_app_info",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "get_user": {
+      "main": [
+        [
+          {
+            "node": "user_esits",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "user_esits": {
+      "main": [
+        [],
+        [
+          {
+            "node": "registral_request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "check_user",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "parse_qr_info",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "help_content",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "get_user",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "check_user",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "parse_qr_info",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        []
+      ]
+    },
+    "save_user_info": {
+      "main": [
+        [
+          {
+            "node": "reg_successfully",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "parse_user_info": {
+      "main": [
+        [
+          {
+            "node": "reg_validator",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get row(s) in sheet": {
+      "main": [
+        [
+          {
+            "node": "Upsert row(s)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "get_account": {
+      "main": [
+        [
+          {
+            "node": "check_account",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "parse_qr_info": {
+      "main": [
+        [
+          {
+            "node": "take_user",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "take_user": {
+      "main": [
+        [
+          {
+            "node": "check_user_exits",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "reg_validator": {
+      "main": [
+        [
+          {
+            "node": "save_user_info",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "reg_fail",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "download_image": {
+      "main": [
+        [
+          {
+            "node": "extract_to_base64",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "check_user_exits": {
+      "main": [
+        [
+          {
+            "node": "get_account",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "registral_request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "check_account": {
+      "main": [
+        [
+          {
+            "node": "request_account_info",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "gen_quick_link3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "extract_to_base64": {
+      "main": [
+        [
+          {
+            "node": "send_qr",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "registral_request": {
+      "main": [
+        [
+          {
+            "node": "interract_report",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "reg_successfully": {
+      "main": [
+        [
+          {
+            "node": "reg_report",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "send_qr": {
+      "main": [
+        [
+          {
+            "node": "user_count",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "gen_quick_link3": {
+      "main": [
+        [
+          {
+            "node": "download_image",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "check_user": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "info_already_exits",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "parse_user_info",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "user_count": {
+      "main": [
+        [
+          {
+            "node": "upsert_count",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "seatalk_bot": {
+      "main": [
+        [
+          {
+            "node": "app_id",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2026-03-20T16:36:58.307Z",
+  "id": "oLXjfZN1PcaSJJJI",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "QR-generator",
+  "nodes": [
+    {
+      "parameters": {
+        "operation": "get",
+        "dataTableId": {
+          "__rl": true,
+          "value": "sc1dOTktntfbMUel",
+          "mode": "list",
+          "cachedResultName": "seatalk-app-access-token",
+          "cachedResultUrl": "/projects/GTQprNa3RcCSHh8s/datatables/sc1dOTktntfbMUel"
+        },
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "app_id",
+              "keyValue": "={{ $json.app_id }}"
+            }
+          ]
+        },
+        "returnAll": true
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        -64,
+        -544
+      ],
+      "id": "88e96534-65b1-44a7-95ff-d2bf6ffdd41c",
+      "name": "get_app_info"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "3de90b61-c36c-47c7-bfa1-ee1d3bc9eaf7",
+              "name": "app_id",
+              "value": "NzMwMzg0MzczMjE5",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -208,
+        -544
+      ],
+      "id": "eb0857dc-1b09-4d21-ae3b-af0785dae889",
+      "name": "app_id"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "dataTableId": {
+          "__rl": true,
+          "value": "oyXKvWj5mW6M5dIX",
+          "mode": "list",
+          "cachedResultName": "phongvu-employee",
+          "cachedResultUrl": "/projects/GTQprNa3RcCSHh8s/datatables/oyXKvWj5mW6M5dIX"
+        },
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "email",
+              "keyValue": "={{ $json.body.event.email }}"
+            }
+          ]
+        },
+        "returnAll": true
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1.1,
+      "position": [
+        96,
+        464
+      ],
+      "id": "3ea5d63e-5d2d-4cb3-b542-c28c0b612782",
+      "name": "get_user",
+      "alwaysOutputData": true,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": false,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "5433e03a-7eb6-47c4-9162-d5c72f3c90a1",
+              "leftValue": "={{ $json.email }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {
+          "ignoreCase": true
+        }
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        256,
+        464
+      ],
+      "id": "634e8760-5dbc-4a45-aa33-3fc1d15979c8",
+      "name": "user_esits"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.body.event.message.text.content }}",
+                    "rightValue": "/reg",
+                    "operator": {
+                      "type": "string",
+                      "operation": "startsWith"
+                    },
+                    "id": "d459f138-7943-45c8-8eb4-d624e157582b"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "dang ky"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "93caf9fb-130d-4f5b-a6a0-c93052be3a16",
+                    "leftValue": "={{ $json.body.event.message.text.content }}",
+                    "rightValue": "/qr",
+                    "operator": {
+                      "type": "string",
+                      "operation": "startsWith"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "gen qr"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "767dcc44-ca00-4e8c-9886-df29ea3b0a10",
+                    "leftValue": "={{ $json.body.event.message.text.content }}",
+                    "rightValue": "/help",
+                    "operator": {
+                      "type": "string",
+                      "operation": "startsWith"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "huong dan"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "07d9f6a8-a964-42ea-87a8-2f47d24d2230",
+                    "leftValue": "={{ $json.body.event.message.text.content }}",
+                    "rightValue": "reg",
+                    "operator": {
+                      "type": "string",
+                      "operation": "startsWith"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "reg no /"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "f88e7347-3c12-400c-9ef2-bf1021f229f4",
+                    "leftValue": "={{ $json.body.event.message.text.content }}",
+                    "rightValue": "qr",
+                    "operator": {
+                      "type": "string",
+                      "operation": "startsWith"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "qr no /"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "ddbcc5d5-41de-4698-aa2a-0b29169ffeeb",
+                    "leftValue": "",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.4,
+      "position": [
+        -64,
+        96
+      ],
+      "id": "43439e3e-4b4e-4c54-a168-32109dcf97db",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "dataTableId": {
+          "__rl": true,
+          "value": "oyXKvWj5mW6M5dIX",
+          "mode": "list",
+          "cachedResultName": "phongvu-employee",
+          "cachedResultUrl": "/projects/GTQprNa3RcCSHh8s/datatables/oyXKvWj5mW6M5dIX"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "email": "={{ $json.email }}",
+            "name": "={{ $json.name }}",
+            "store": "={{ $json.code }}",
+            "employee_code": "={{ $json.employee_code }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "email",
+              "displayName": "email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "name",
+              "displayName": "name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "store",
+              "displayName": "store",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "qr_countt",
+              "displayName": "qr_countt",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "employee_code",
+              "displayName": "employee_code",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1.1,
+      "position": [
+        752,
+        -208
+      ],
+      "id": "f92ab30e-f7e8-441a-8b56-648615e7c485",
+      "name": "save_user_info"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://openapi.seatalk.io/messaging/v2/single_chat",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $('get_app_info').first().json.app_access_token }}"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"employee_code\": \"{{ $('seatalk_bot').first().json.body.event.employee_code }}\",\n    \"message\": {\n        \"tag\": \"text\",\n        \"text\": {\n            \"format\": 1,\n            \"content\": \"Xin chào, mình là QR Generator, hiện tại bạn chưa có thông tin trong hệ thống. Vui lòng nhắn tin theo cú pháp bên dưới để đăng ký thông tin:\\n\\n**/reg <Họ & Tên>/<Mã cửa hàng>**\\n\\nVD: /reg Nguyễn Văn A/CP62\"\n        }\n    },\n    \"usable_platform\": \"all\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        592,
+        480
+      ],
+      "id": "e4ed097f-bb22-421a-bc60-24763e0fab9f",
+      "name": "registral_request"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://openapi.seatalk.io/messaging/v2/single_chat",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $('get_app_info').first().json.app_access_token }}"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"employee_code\": \"{{ $('seatalk_bot').first().json.body.event.employee_code }}\",\n    \"message\": {\n        \"tag\": \"text\",\n        \"text\": {\n            \"format\": 1,\n            \"content\": \"Xin chào {{ $('parse_user_info').first().json.name }}, Bạn đã đăng ký thành công, bắt đầu tạo QR thanh toán bằng cách gửi thông tin theo mẫu bên dưới nhé.\\n\\n**/qr** -> Chỉ lấy QR\\n**/qr <số tiền>** -> Lấy QR có sẵn số tiền, nội dung: CPxx\\n**/qr <Số tiền>/<Mã đơn hàng>** -> Lấy QR có sẵn số tiền, nội dung <mã đơn hàng> CPxx\\n\\nVD: /qr 50000/260321123456\"\n        }\n    },\n    \"usable_platform\": \"all\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        896,
+        -208
+      ],
+      "id": "1c4f610b-5b58-4250-a202-97c0a682d7a3",
+      "name": "reg_successfully"
+    },
+    {
+      "parameters": {
+        "jsCode": "const items = $items(\"seatalk_bot\");\n\nconst result = items.map(item => {\n  const email = item.json.body?.event?.email || \"\";\n  const employee_code = item.json.body?.event?.employee_code || \"\";\n  const content = item.json.body?.event?.message?.text?.content || \"\";\n\n  let name = \"\";\n  let code = \"\";\n\n  // Kiểm tra và xử lý cả \"/reg\" và \"reg\"\n  if (content.startsWith(\"/reg\") || content.startsWith(\"reg\")) {\n    // Loại bỏ \"/reg\" hoặc \"reg\" và trim khoảng trắng\n    const parts = content.replace(/^\\/?reg\\s*/, \"\").trim().split(\"/\");\n\n    name = parts[0]?.trim() || \"\";\n    code = parts[1]?.trim() || \"\";\n  }\n\n  // Name: Unicode (tiếng Việt) + số + khoảng trắng\n  const nameRegex = /^[\\p{L}0-9\\s]+$/u;\n\n  // Code: CP + đúng 2 hoặc 4 số\n  const codeRegex = /^CP(\\d{2}|\\d{4})$/;\n\n  if (!nameRegex.test(name)) {\n    name = \"sai\";\n  }\n\n  if (!codeRegex.test(code)) {\n    code = \"sai\";\n  }\n\n  return {\n    json: {\n      email,\n      name,\n      code,\n      employee_code\n    }\n  };\n});\n\nreturn result;"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        464,
+        -144
+      ],
+      "id": "8a9e3ae6-6572-4d7f-97b3-fa0e5e657257",
+      "name": "parse_user_info"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1ylN_miQZ_YVLa300B5HvTU-kJbEJgvOiqRyuB7endgg",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1ylN_miQZ_YVLa300B5HvTU-kJbEJgvOiqRyuB7endgg/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -480,
+        656
+      ],
+      "id": "2a519452-9bad-4c06-bc72-760dafe613d6",
+      "name": "Get row(s) in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "MTh9LghqaMKPTAzs",
+          "name": "zalo-chat-bot-hoang.nv1"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "upsert",
+        "dataTableId": {
+          "__rl": true,
+          "value": "Pf7ApE3d1UJUFRCh",
+          "mode": "list",
+          "cachedResultName": "account_list",
+          "cachedResultUrl": "/projects/GTQprNa3RcCSHh8s/datatables/Pf7ApE3d1UJUFRCh"
+        },
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "store",
+              "keyValue": "={{ $json.store }}"
+            }
+          ]
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "store": "={{ $json.store }}",
+            "account": "={{ $json.account }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "store",
+              "displayName": "store",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "account",
+              "displayName": "account",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1.1,
+      "position": [
+        -320,
+        656
+      ],
+      "id": "a5affb44-1fa4-44fc-9393-6d622905594f",
+      "name": "Upsert row(s)"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "dataTableId": {
+          "__rl": true,
+          "value": "Pf7ApE3d1UJUFRCh",
+          "mode": "list",
+          "cachedResultName": "account_list",
+          "cachedResultUrl": "/projects/GTQprNa3RcCSHh8s/datatables/Pf7ApE3d1UJUFRCh"
+        },
+        "matchType": "allConditions",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "store",
+              "keyValue": "={{ $json.store }}"
+            }
+          ]
+        },
+        "returnAll": true
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1.1,
+      "position": [
+        752,
+        96
+      ],
+      "id": "d1845ddb-613d-41fb-b922-640422a11777",
+      "name": "get_account"
+    },
+    {
+      "parameters": {
+        "jsCode": "const item = $input.first().json;\n\n// Lấy email\nconst email = item.body?.event?.email || \"\";\n\n// Lấy content\nconst content = item.body?.event?.message?.text?.content || \"\";\n\n// Hàm chuyển tiếng Việt có dấu thành không dấu (Bước 1)\nfunction convertToNoAccents(str) {\n  const accents = [\n    { base: 'a', letters: /[àáạảãâầấậẩẫăằắặẳẵ]/g },\n    { base: 'e', letters: /[èéẹẻẽêềếệểễ]/g },\n    { base: 'i', letters: /[ìíịỉĩ]/g },\n    { base: 'o', letters: /[òóọỏõôồốộổỗơờớợởỡ]/g },\n    { base: 'u', letters: /[ùúụủũûừứựửữ]/g },\n    { base: 'y', letters: /[ỳýỵỷỹ]/g },\n    { base: 'd', letters: /[đ]/g },\n  ];\n\n  accents.forEach(acc => {\n    str = str.replace(acc.letters, acc.base);\n  });\n  return str;\n}\n\n// Parse name + code\nlet amount = \"\";\nlet order_code = \"\";\n\n// Kiểm tra nếu chuỗi bắt đầu bằng \"/qr\" hoặc \"qr\"\nif (content.startsWith(\"/qr\") || content.startsWith(\"qr\")) {\n  // Loại bỏ \"/qr\" hoặc \"qr\" và trim khoảng trắng thừa\n  const parts = content.replace(/^\\/?qr\\s*/, \"\").trim();\n  \n  // Tìm vị trí dấu \"/\" đầu tiên (nếu có)\n  const firstSlashIndex = parts.indexOf(\"/\");\n\n  if (firstSlashIndex !== -1) {\n    // Lấy phần trước dấu \"/\" là số tiền\n    amount = parts.slice(0, firstSlashIndex).trim();\n    \n    // Lấy phần còn lại sau dấu \"/\" là order_code\n    order_code = parts.slice(firstSlashIndex + 1).trim();\n    \n    // Bước 1: Chuyển tiếng Việt có dấu thành tiếng Việt không dấu\n    order_code = convertToNoAccents(order_code);\n    \n    // Bước 2: Thay thế các ký tự đặc biệt thành dấu space (giữ lại chữ cái, số, dấu cách và dấu chấm)\n    order_code = order_code.replace(/[^a-zA-Z0-9\\s\\.,]/g, ' ');\n  }\n}\n\n// Trả về 1 item với email, amount và order_code\nreturn [\n  {\n    json: {\n      email,\n      amount,\n      order_code\n    }\n  }\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        304,
+        112
+      ],
+      "id": "afb326b9-0c50-45af-8f58-c08aef6ce30a",
+      "name": "parse_qr_info"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "dataTableId": {
+          "__rl": true,
+          "value": "oyXKvWj5mW6M5dIX",
+          "mode": "list",
+          "cachedResultName": "phongvu-employee",
+          "cachedResultUrl": "/projects/GTQprNa3RcCSHh8s/datatables/oyXKvWj5mW6M5dIX"
+        },
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "email",
+              "keyValue": "={{ $('parse_qr_info').first().json.email }}"
+            }
+          ]
+        },
+        "returnAll": true
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1.1,
+      "position": [
+        448,
+        112
+      ],
+      "id": "a012e985-4df7-412c-8968-2eb2242cf01f",
+      "name": "take_user",
+      "alwaysOutputData": true,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "7effdc4b-56e5-489c-889b-994a9efa6c6b",
+              "leftValue": "={{ $json.name }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "580051ab-5de8-4ab1-97cc-9f608b481502",
+              "leftValue": "={{ $json.code }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "0ceb8532-f2a7-4d9b-9cac-a09ac247517c",
+              "leftValue": "={{ $json.code }}",
+              "rightValue": "CP",
+              "operator": {
+                "type": "string",
+                "operation": "startsWith"
+              }
+            },
+            {
+              "id": "72db8e31-e282-45bf-93d1-ef2fccdc6aa6",
+              "leftValue": "={{ $json.name }}",
+              "rightValue": "=<",
+              "operator": {
+                "type": "string",
+                "operation": "notContains"
+              }
+            },
+            {
+              "id": "3f62f343-8036-4de4-901a-7fb926d79f2d",
+              "leftValue": "={{ $json.code }}",
+              "rightValue": ">",
+              "operator": {
+                "type": "string",
+                "operation": "notContains"
+              }
+            },
+            {
+              "id": "dcb6b411-8a69-4171-9327-9ca333c4846d",
+              "leftValue": "={{ $json.name }}",
+              "rightValue": "sai",
+              "operator": {
+                "type": "string",
+                "operation": "notEquals"
+              }
+            },
+            {
+              "id": "df48502f-b588-404b-86b1-6d46b2e51ce7",
+              "leftValue": "={{ $json.code }}",
+              "rightValue": "sai",
+              "operator": {
+                "type": "string",
+                "operation": "notEquals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        608,
+        -144
+      ],
+      "id": "e448b02d-0771-462e-a82c-e6095f4fe5f0",
+      "name": "reg_validator"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://openapi.seatalk.io/messaging/v2/single_chat",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $('get_app_info').first().json.app_access_token }}"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"employee_code\": \"{{ $('seatalk_bot').first().json.body.event.employee_code }}\",\n    \"message\": {\n        \"tag\": \"text\",\n        \"text\": {\n            \"format\": 1,\n            \"content\": \"Đăng ký **THẤT BẠI**, bạn đã nhập thiếu thông tin hoặc sai cú pháp.Vui lòng nhập đúng thông tin:\\n\\n**/reg <Họ & Tên>/<Mã cửa hàng>**\\n\\nVD: /reg Nguyễn Văn A/CP62\"\n        }\n    },\n    \"usable_platform\": \"all\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        752,
+        -80
+      ],
+      "id": "e68b3932-4fec-4b91-98ad-6f7eff587fb9",
+      "name": "reg_fail"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://openapi.seatalk.io/messaging/v2/single_chat",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $('get_app_info').first().json.app_access_token }}"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"employee_code\": \"{{ $('seatalk_bot').first().json.body.event.employee_code }}\",\n    \"message\": {\n        \"tag\": \"text\",\n        \"text\": {\n            \"format\": 1,\n            \"content\": \"Xin chào {{ $('take_user').item.json.name }}, mình chưa có thông tin tài khoản của {{ $('take_user').item.json.store }}, vui lòng liên hệ hoang.nv1@phongvu-mna.vn để thêm thông tin tài khoản nhé!\"\n        }\n    },\n    \"usable_platform\": \"all\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        1056,
+        16
+      ],
+      "id": "07c6f4aa-161d-4384-898f-44772f3d259c",
+      "name": "request_account_info"
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.quick_link }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        1200,
+        192
+      ],
+      "id": "71a7c8a5-711b-4bc9-8125-20e5a6c1dad4",
+      "name": "download_image"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://openapi.seatalk.io/messaging/v2/single_chat",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $('get_app_info').first().json.app_access_token }}"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"employee_code\": \"{{ $('seatalk_bot').first().json.body.event.employee_code }}\",\n    \"message\": {\n        \"tag\": \"image\",\n        \"image\": {\n            \"content\": \"{{ $json.base64 }}\"\n        }\n    },\n    \"usable_platform\": \"all\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        1488,
+        192
+      ],
+      "id": "a31f332f-2418-4da4-b2f7-dedf5d7551aa",
+      "name": "send_qr"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "1ff52cbc-3635-4823-ab31-cf32f18d7f4f",
+              "leftValue": "={{ $json.email }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        592,
+        112
+      ],
+      "id": "7da22828-b6f5-4b89-a16b-e2b0b14f81cd",
+      "name": "check_user_exits"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "13ffa5a9-af56-4b6e-8de1-1ecc4d440e42",
+              "leftValue": "={{ $('get_account').item.json.account }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "empty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        896,
+        96
+      ],
+      "id": "dd222539-13fc-4469-85a4-9b63b4ddfb98",
+      "name": "check_account"
+    },
+    {
+      "parameters": {
+        "operation": "binaryToPropery",
+        "destinationKey": "base64",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1.1,
+      "position": [
+        1344,
+        192
+      ],
+      "id": "1eb96ffc-0c56-491d-a26f-41f9a2599a7d",
+      "name": "extract_to_base64"
+    },
+    {
+      "parameters": {
+        "chatId": "5013029624",
+        "text": "=Người lạ {{ $('seatalk_bot').first().json.body.event.email }} vừa tương tác với bot QR Generator!",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        752,
+        480
+      ],
+      "id": "129ff7ce-dc7f-4a11-851e-16ba565c27a8",
+      "name": "interract_report",
+      "webhookId": "44f7bda3-2e42-4ba8-985e-b3ca611100cb",
+      "credentials": {
+        "telegramApi": {
+          "id": "yOqJ91F4uxm9OoWc",
+          "name": "n8n reports"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "5013029624",
+        "text": "=QR Generator đăng ký mới! Thông tin:\nEmail: {{ $('save_user_info').item.json.email }}\nName: {{ $('save_user_info').item.json.name }}\nStore: {{ $('save_user_info').item.json.store }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1040,
+        -208
+      ],
+      "id": "7bd9bb7b-f13b-4e88-91dd-4fce46ae65c0",
+      "name": "reg_report",
+      "webhookId": "44f7bda3-2e42-4ba8-985e-b3ca611100cb",
+      "credentials": {
+        "telegramApi": {
+          "id": "yOqJ91F4uxm9OoWc",
+          "name": "n8n reports"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://openapi.seatalk.io/messaging/v2/single_chat",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $('get_app_info').first().json.app_access_token }}"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"employee_code\": \"{{ $('seatalk_bot').first().json.body.event.employee_code }}\",\n    \"message\": {\n        \"tag\": \"text\",\n        \"text\": {\n            \"format\": 1,\n            \"content\": \"Tạo QR thanh toán bằng cách gửi thông tin theo mẫu bên dưới nhé.\\n\\n**/qr** -> Chỉ lấy QR\\n**/qr <số tiền>** -> Lấy QR có sẵn số tiền, nội dung: CPxx\\n**/qr <Số tiền>/<Mã đơn hàng>** -> Lấy QR có sẵn số tiền, nội dung <mã đơn hàng> CPxx\\n\\nVD: /qr 50000/260321123456\"\n        }\n    },\n    \"usable_platform\": \"all\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        304,
+        256
+      ],
+      "id": "2b8b13be-9816-4bf9-827b-ad01f08808be",
+      "name": "help_content"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "0d28144a-c2b6-408c-a358-a9104c80d867",
+              "name": "quick_link",
+              "value": "=https://api.vietqr.io/image/970415-{{ $('get_account').first().json.account }}-u9AjLCM.jpg?accountName=CTY%20CO%20PHAN%20THUONG%20MAI%20DV%20PHONG%20VU&amount={{ $('parse_qr_info').first().json.amount }}&addInfo={{ $('parse_qr_info').first().json.order_code }}%20{{ $('take_user').item.json.store }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1056,
+        192
+      ],
+      "id": "e09617f7-5891-4c56-b121-53e7d36d3086",
+      "name": "gen_quick_link3"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "dataTableId": {
+          "__rl": true,
+          "value": "oyXKvWj5mW6M5dIX",
+          "mode": "list",
+          "cachedResultName": "phongvu-employee",
+          "cachedResultUrl": "/projects/GTQprNa3RcCSHh8s/datatables/oyXKvWj5mW6M5dIX"
+        },
+        "matchType": "allConditions",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "email",
+              "keyValue": "={{ $json.body.event.email }}"
+            }
+          ]
+        },
+        "returnAll": true
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1.1,
+      "position": [
+        176,
+        -224
+      ],
+      "id": "f1af160c-4e02-4fe5-9546-534c6bdcad40",
+      "name": "check_user",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "6db98a1c-04dc-4071-9518-88dadbec0f7f",
+              "leftValue": "={{ $json.email }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "59812864-9dbf-4c69-903e-871a11abdc75",
+              "leftValue": "={{ $json.name }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "a079e7b6-0a6e-4bdb-96bb-1a8f39f2983c",
+              "leftValue": "={{ $json.store }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        304,
+        -224
+      ],
+      "id": "a94a205a-1d3d-48d4-bc21-e368c54fb443",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://openapi.seatalk.io/messaging/v2/single_chat",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $('get_app_info').first().json.app_access_token }}"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"employee_code\": \"{{ $('seatalk_bot').first().json.body.event.employee_code }}\",\n    \"message\": {\n        \"tag\": \"text\",\n        \"text\": {\n            \"format\": 1,\n            \"content\": \"Thông tin của bạn đã có trong hệ thống, nếu thông tin trước đó bạn nhập sai, vui lòng liên hệ hoang.nv1@phongvu-mna.vn để sửa lại.\\nBắt đầu tạo QR thanh toán bằng cách gửi thông tin theo mẫu bên dưới nhé.\\n\\n**/qr** -> Chỉ lấy QR\\n**/qr <số tiền>** -> Lấy QR có sẵn số tiền, nội dung: CPxx\\n**/qr <Số tiền>/<Mã đơn hàng>** -> Lấy QR có sẵn số tiền, nội dung <mã đơn hàng> CPxx\\n\\nVD: /qr 50000/260321123456\"\n        }\n    },\n    \"usable_platform\": \"all\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        464,
+        -304
+      ],
+      "id": "f8c8d165-cd11-460e-b97c-cb74156bd5c4",
+      "name": "info_already_exits"
+    },
+    {
+      "parameters": {
+        "operation": "upsert",
+        "dataTableId": {
+          "__rl": true,
+          "value": "oyXKvWj5mW6M5dIX",
+          "mode": "list",
+          "cachedResultName": "phongvu-employee",
+          "cachedResultUrl": "/projects/GTQprNa3RcCSHh8s/datatables/oyXKvWj5mW6M5dIX"
+        },
+        "matchType": "allConditions",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "email",
+              "keyValue": "={{ $json.email }}"
+            }
+          ]
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "qr_countt": "={{ $json.userCount }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "email",
+              "displayName": "email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "name",
+              "displayName": "name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "store",
+              "displayName": "store",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "qr_countt",
+              "displayName": "qr_countt",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1.1,
+      "position": [
+        1792,
+        192
+      ],
+      "id": "3359bc40-e31a-484c-9be0-7cd022f26be4",
+      "name": "upsert_count"
+    },
+    {
+      "parameters": {
+        "jsCode": "const data = $getWorkflowStaticData(\"global\");\n\nconst items = $items(\"take_user\");\n\nreturn items.map(item => {\n  const email = item.json.email;\n\n  if (!data[email]) {\n    data[email] = 0;\n  }\n\n  data[email]++;\n\n  return {\n    json: {\n      ...item.json,\n      userCount: data[email]\n    }\n  };\n});"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1648,
+        192
+      ],
+      "id": "28a8a804-6780-4a03-bad7-613ef2bff95d",
+      "name": "user_count"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "qr-generator",
+        "responseMode": "lastNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -224,
+        128
+      ],
+      "id": "b21c95af-018c-44d3-bb35-bddc8447e822",
+      "name": "seatalk_bot",
+      "webhookId": "eba41761-d6f4-4f64-afbb-80c9fa7b1a1d"
+    },
+    {
+      "parameters": {
+        "multipleMethods": true,
+        "httpMethod": [
+          "POST"
+        ],
+        "path": "zalo_qr_gen",
+        "authentication": "headerAuth",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -528,
+        288
+      ],
+      "id": "0db07e82-4624-45bc-9099-0269c1f9c847",
+      "name": "Webhook",
+      "webhookId": "f9c917c2-c7a6-41f8-b43a-06fe7777bbd4",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "IUsr4I408i65uByp",
+          "name": "Header Auth zalo bot"
+        }
+      },
+      "disabled": true
+    }
+  ],
+  "pinData": {
+    "seatalk_bot": [
+      {
+        "json": {
+          "headers": {
+            "host": "n8n.hoanghochoi.com",
+            "user-agent": "Go-http-client/1.1",
+            "content-length": "440",
+            "accept-encoding": "gzip, br",
+            "cdn-loop": "cloudflare; loops=1",
+            "cf-connecting-ip": "143.92.74.164",
+            "cf-ipcountry": "SG",
+            "cf-ray": "9e5e06503b2c5880-SIN",
+            "cf-visitor": "{\"scheme\":\"https\"}",
+            "cf-warp-tag-id": "e29be3d2-4ed5-4153-bf34-97fbb2b7e165",
+            "connection": "keep-alive",
+            "content-type": "application/json",
+            "signature": "2416f038f2daae1cb9e92d7a70885d9595f7a5cfe98066e5ebb7f1960b00f7ae",
+            "x-event-user-jwt": "eyJhbGciOiJFZERTQSIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjp7ImVtYWlsIjoiaG9hbmcubnYxQHBob25ndnUtbW5hLnZuIiwiYXBwX2lkIjoiTnpNd016ZzBNemN6TWpFNSJ9LCJpc3MiOiJTZWF0YWxrIFNPUCIsImV4cCI6MTc3NTExNDAwMCwibmJmIjoxNzc1MTEzOTQwLCJpYXQiOjE3NzUxMTM5NDAsImp0aSI6IjVmZTQ1MDVhLWIyMWUtNDM2OS1iZjJlLWI1NGEzMGI5NGNmOSJ9.GyliGQhXKGWhsouuWqMhR-RijUIn9mfLLMH0qKoX3LdLJyhezqcgJr2ISI1GsTiR4yRJrucD8a9-kQ9Z0TWEAA",
+            "x-forwarded-for": "143.92.74.164",
+            "x-forwarded-proto": "https"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "event_id": "c50e2e6e-1d02-4c8e-a8de-c1e1a8bec8a0",
+            "event_type": "message_from_bot_subscriber",
+            "timestamp": 1775113940,
+            "app_id": "NzMwMzg0MzczMjE5",
+            "event": {
+              "seatalk_id": "9214333551",
+              "employee_code": "e_6mv57e5u",
+              "email": "hoang.nv1@phongvu-mna.vn",
+              "message": {
+                "message_id": "u7YirumAclDtSUjP41Nhy80BvXNAhNTu2uDw3edUCReM_TO40WdbRPOz",
+                "quoted_message_id": "",
+                "tag": "text",
+                "text": {
+                  "content": "qr 10000/chuyển tiền cho Phong Vũ"
+                },
+                "thread_id": ""
+              }
+            }
+          },
+          "webhookUrl": "https://n8n.hoanghochoi.com/webhook/qr-generator",
+          "executionMode": "production"
+        },
+        "pairedItem": {
+          "item": 0
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false,
+    "timeSavedMode": "fixed",
+    "errorWorkflow": "tUGf8pqhOC0yFiUP",
+    "callerPolicy": "workflowsFromSameOwner"
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-03-20T16:36:58.307Z",
+      "createdAt": "2026-03-20T16:36:58.307Z",
+      "role": "workflow:owner",
+      "workflowId": "oLXjfZN1PcaSJJJI",
+      "projectId": "GTQprNa3RcCSHh8s"
+    }
+  ],
+  "staticData": {
+    "global": {
+      "count": 2,
+      "undefined": 1,
+      "hoang.nv1@phongvu-mna.vn": 26,
+      "sang.dta@phongvu-mna.vn": 12,
+      "toan.btq@phongvu-mna.vn": 6,
+      "hieu.nh@phongvu-mna.vn": 14,
+      "an.nt@phongvu-mna.vn": 14,
+      "ban.vt@phongvu-mna.vn": 13,
+      "nhut.tm@phongvu-mna.vn": 1,
+      "canh.lv@phongvu-mna.vn": 7,
+      "linh.tg@phongvu-mna.vn": 11,
+      "quyen.dg@phongvu-mna.vn": 13,
+      "tuyen.ph@phongvu-mna.vn": 4,
+      "loc.ph@phongvu-mna.vn": 11,
+      "dang.nh@phongvu-mna.vn": 1,
+      "thinh.np01@phongvu-mna.vn": 8,
+      "tram.ntt@phongvu-mna.vn": 51,
+      "hong.mv@phongvu-mna.vn": 2,
+      "thu.hm@phongvu-mna.vn": 19,
+      "tho.lt@phongvu-mna.vn": 4,
+      "hieu.ltm@phongvu-mna.vn": 17,
+      "hung.bd@phongvu-mna.vn": 2,
+      "huy.hm@phongvu-mna.vn": 11,
+      "hai.ltp@phongvu-mna.vn": 6,
+      "tuyen.ltb@phongvu-mna.vn": 1,
+      "man.hp@phongvu-mna.vn": 2,
+      "lien.vtk01@phongvu-mna.vn": 15,
+      "nghia.dh@phongvu-mna.vn": 1,
+      "anh.vtn@phongvu-mna.vn": 1,
+      "quyen.tv@phongvu-mna.vn": 6,
+      "huong.ns@phongvu-mna.vn": 6,
+      "long.nd@phongvu-mna.vn": 1,
+      "hong.lc@phongvu-mna.vn": 4,
+      "hieu.hv@phongvu-mna.vn": 5,
+      "huy.dv01@phongvu-mna.vn": 1
+    }
+  },
+  "tags": [
+    {
+      "updatedAt": "2025-12-17T02:41:50.389Z",
+      "createdAt": "2025-12-17T02:41:50.389Z",
+      "id": "tf48o2CcAcmF6X41",
+      "name": "Seatalk app"
+    }
+  ],
+  "triggerCount": 1,
+  "updatedAt": "2026-04-03T03:42:45.955Z",
+  "versionId": "175d9db4-ab5e-4388-a952-243801c044c0"
+}
