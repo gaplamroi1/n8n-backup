@@ -1,0 +1,1844 @@
+{
+  "active": false,
+  "activeVersion": null,
+  "activeVersionId": null,
+  "connections": {
+    "getPromotions": {
+      "main": [
+        [
+          {
+            "node": "Append row in sheet",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Limit1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit1": {
+      "main": [
+        [
+          {
+            "node": "deleteOldSheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "makeLink": {
+      "main": [
+        [
+          {
+            "node": "updateLinks",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "getDocVu",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "getDocMKT",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "getDocVu": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "setSheetId": {
+      "main": [
+        [
+          {
+            "node": "getSheetName",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "getDocMKT": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Limit",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit": {
+      "main": [
+        [
+          {
+            "node": "checkDiff",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "checkDiff": {
+      "main": [
+        [
+          {
+            "node": "diff?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "diff?": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Wait1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "setPra": {
+      "main": [
+        [
+          {
+            "node": "Call 'check-blackfriday'",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When Executed by Another Workflow": {
+      "main": [
+        [
+          {
+            "node": "getPromotions",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append row in sheet": {
+      "main": [
+        [
+          {
+            "node": "Wait2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Limit3",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Compare Datasets",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Limit3": {
+      "main": [
+        [
+          {
+            "node": "getPromotionsNameVu",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "deleteOldSheet": {
+      "main": [
+        [
+          {
+            "node": "createNewDoc",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit5": {
+      "main": [
+        [
+          {
+            "node": "setSheetId",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "addPromationName": {
+      "main": [
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Compare Datasets": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [],
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "addPromationName",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items1": {
+      "main": [
+        [],
+        [
+          {
+            "node": "getNameHiddenInMKT",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "getNameHiddenInMKT": {
+      "main": [
+        [
+          {
+            "node": "clearRow",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "createNewDoc": {
+      "main": [
+        [
+          {
+            "node": "makeLink",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "clearRow": {
+      "main": [
+        [
+          {
+            "node": "deleteHiddenSheetVu",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "setPra",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit2": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "deleteHiddenSheetVu": {
+      "main": [
+        [
+          {
+            "node": "2s",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "updateLinks": {
+      "main": [
+        [
+          {
+            "node": "updateTime",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge1": {
+      "main": [
+        [
+          {
+            "node": "Limit5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "updateTime": {
+      "main": [
+        []
+      ]
+    },
+    "Wait1": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit4": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "getPromotionsNameVu": {
+      "main": [
+        [
+          {
+            "node": "Compare Datasets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "2s": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets Trigger1": {
+      "main": [
+        [
+          {
+            "node": "Limit4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "getSheetName": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Split Out",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Call 'check-blackfriday'": {
+      "main": [
+        [
+          {
+            "node": "Limit2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "callByCheckCTKM": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-11-13T12:25:53.951Z",
+  "id": "rTkYdjwqmDFwGgTf",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "check-blackfriday",
+  "nodes": [
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1gSBdStfQ7sJ1w1yhx0ctj6bxXVoSoE0R_MUp5108dJU",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "={{ $json.sheetName }}",
+          "mode": "name"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        272,
+        -240
+      ],
+      "id": "c017da95-f6c2-4551-80ff-d5c3ba35da5a",
+      "name": "getPromotions",
+      "notesInFlow": true,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "V9RsDbAreeVaJR0q",
+          "name": "check-ctkm-hoang.nv1"
+        }
+      },
+      "notes": "Vu's doc"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1wFzm6pfQToQQdSFeO48JOaLthdgwQ200u_a2PoZ7xJo",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "={{ $('When Executed by Another Workflow').item.json.sheetName }}",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "DÁN MÀN HÌNH LAPTOP MIỄN PHÍ",
+              "displayName": "DÁN MÀN HÌNH LAPTOP MIỄN PHÍ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "col_2",
+              "displayName": "col_2",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "col_3",
+              "displayName": "col_3",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "col_4",
+              "displayName": "col_4",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        448,
+        -176
+      ],
+      "id": "a188b247-a5b2-44ef-be7b-e7ef397a4bc0",
+      "name": "Append row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "V9RsDbAreeVaJR0q",
+          "name": "check-ctkm-hoang.nv1"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        448,
+        -304
+      ],
+      "id": "53f7650a-e0e1-4f0b-9595-8ba2896562c7",
+      "name": "Limit1"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "f2aad1ae-81d1-4004-a24d-e844d1247beb",
+              "name": "link",
+              "value": "=https://docs.google.com/spreadsheets/d/1wFzm6pfQToQQdSFeO48JOaLthdgwQ200u_a2PoZ7xJo/edit?gid={{ $json.sheetId }}#gid={{ $json.sheetId }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        832,
+        -304
+      ],
+      "id": "a94cfba7-3a52-4057-aeb1-42d04482fce0",
+      "name": "makeLink"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 8,
+              "triggerAtMinute": 20
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -80,
+        -848
+      ],
+      "id": "807d32ef-cd2d-4c65-b512-2114561a1d31",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        672,
+        -560
+      ],
+      "id": "5cba2766-3639-4243-b9ff-33fc43742525",
+      "name": "Loop Over Items",
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "={{ $('setSheetId').first().json.vuDocId }}",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "={{ $json['Tên CTKM'] }}",
+          "mode": "name"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        832,
+        -608
+      ],
+      "id": "752b65c5-76b7-4553-9ba3-035a4963ca8f",
+      "name": "getDocVu",
+      "alwaysOutputData": false,
+      "notesInFlow": true,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "V9RsDbAreeVaJR0q",
+          "name": "check-ctkm-hoang.nv1"
+        }
+      },
+      "onError": "continueRegularOutput",
+      "notes": "Vu's doc"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "={{ $('setSheetId').first().json.mktDocId }}",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "={{ $json['Tên CTKM'] }}",
+          "mode": "name"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        832,
+        -480
+      ],
+      "id": "c186744d-d91c-446c-815c-810429bdbedf",
+      "name": "getDocMKT",
+      "executeOnce": false,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "V9RsDbAreeVaJR0q",
+          "name": "check-ctkm-hoang.nv1"
+        }
+      },
+      "onError": "continueRegularOutput",
+      "notes": "MKT's doc"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "a059a127-a36e-4d6f-9f48-99b40245623d",
+              "name": "vuDocId",
+              "value": "1wFzm6pfQToQQdSFeO48JOaLthdgwQ200u_a2PoZ7xJo",
+              "type": "string"
+            },
+            {
+              "id": "4188e7b4-376d-4e54-b3d2-f1f2acc949c5",
+              "name": "mktDocId",
+              "value": "1gSBdStfQ7sJ1w1yhx0ctj6bxXVoSoE0R_MUp5108dJU",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        368,
+        -560
+      ],
+      "id": "0ee0a0f9-505e-4583-9904-82d9559d8a93",
+      "name": "setSheetId"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Lấy dữ liệu từ 2 input\nconst input1 = $('getDocVu').all();\nconst input2 = $('getDocMKT').all();\n\nlet hasChanges = false;\nlet changes = [];\n\n// Hàm tạo key từ các giá trị (bỏ qua row_number)\nfunction createValueKey(record) {\n  const values = [];\n  Object.keys(record)\n    .filter(key => key !== 'row_number')\n    .sort()\n    .forEach(key => {\n      values.push(`${key}:${record[key]}`);\n    });\n  return values.join('|');\n}\n\n// Tạo Set các giá trị từ input1 và input2\nconst values1 = new Set(input1.map(item => createValueKey(item.json)));\nconst values2 = new Set(input2.map(item => createValueKey(item.json)));\n\n// Kiểm tra số lượng bản ghi unique\nif (values1.size !== values2.size) {\n  hasChanges = true;\n  changes.push({\n    type: 'Unique record count difference',\n    input1_unique: values1.size,\n    input2_unique: values2.size\n  });\n}\n\n// Tìm các giá trị chỉ có trong input1\nvalues1.forEach(value => {\n  if (!values2.has(value)) {\n    hasChanges = true;\n    changes.push({\n      type: 'Only in Input 1',\n      value: value\n    });\n  }\n});\n\n// Tìm các giá trị chỉ có trong input2\nvalues2.forEach(value => {\n  if (!values1.has(value)) {\n    hasChanges = true;\n    changes.push({\n      type: 'Only in Input 2',\n      value: value\n    });\n  }\n});\n\n// Trả về kết quả\nreturn [{\n  json: {\n    has_changes: hasChanges,\n    total_changes: changes.length,\n    input1_records: input1.length,\n    input2_records: input2.length,\n    input1_unique: values1.size,\n    input2_unique: values2.size,\n    changes: changes.slice(0, 20) // Hiển thị 20 thay đổi đầu tiên\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1248,
+        -560
+      ],
+      "id": "ced38c71-066a-477e-8db6-ba3e5add3d50",
+      "name": "checkDiff"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        992,
+        -560
+      ],
+      "id": "43862e0f-5486-4b68-b2b4-7846658897b2",
+      "name": "Merge"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        1120,
+        -560
+      ],
+      "id": "fd1b75c6-8266-4db9-ba92-dddf2bd62a05",
+      "name": "Limit"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "51921e90-3bd2-43cb-8319-cd6796109d24",
+              "leftValue": "={{ $json.has_changes }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1376,
+        -560
+      ],
+      "id": "576f5c75-882b-4f18-b787-bf83d88fd412",
+      "name": "diff?"
+    },
+    {
+      "parameters": {
+        "inputSource": "passthrough"
+      },
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        128,
+        -240
+      ],
+      "id": "c1dcf248-1b28-425f-b32d-7861b0101e7d",
+      "name": "When Executed by Another Workflow"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "80e5dc1f-0587-45d8-8a9f-d9b28741b7be",
+              "name": "sheetName",
+              "value": "={{ $('Loop Over Items').item.json['Tên CTKM'] }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1648,
+        -624
+      ],
+      "id": "97270538-4ca9-4c3d-b993-0ccd9f62dd26",
+      "name": "setPra"
+    },
+    {
+      "parameters": {
+        "amount": 30
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        1520,
+        -624
+      ],
+      "id": "55e3a3fd-aee9-4349-beba-c9338a5a1b61",
+      "name": "Wait",
+      "webhookId": "46253aaf-ae75-419d-b629-e263c56450fa"
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "sheets",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        256,
+        -848
+      ],
+      "id": "dddc25be-644d-418a-94a0-c0c288d8451b",
+      "name": "Split Out"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": false,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "e647c546-3383-425d-999f-b0e1914487a6",
+              "leftValue": "={{ $json.properties.hidden }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "cafc6a3d-b0b8-4c77-9348-e65fb524ac04",
+              "leftValue": "={{ $json.properties.title }}",
+              "rightValue": "Overview",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "or"
+        },
+        "options": {
+          "ignoreCase": true
+        }
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        384,
+        -848
+      ],
+      "id": "531488e9-b550-402f-b968-88dbeaced887",
+      "name": "If"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        592,
+        -912
+      ],
+      "id": "f1c31817-a272-4a5f-9087-2b8bcbdc8b3a",
+      "name": "Limit3"
+    },
+    {
+      "parameters": {
+        "operation": "remove",
+        "documentId": {
+          "__rl": true,
+          "value": "1wFzm6pfQToQQdSFeO48JOaLthdgwQ200u_a2PoZ7xJo",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "={{ $('When Executed by Another Workflow').item.json.sheetName }}",
+          "mode": "name"
+        }
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        576,
+        -304
+      ],
+      "id": "36f94cde-f734-4a67-bcc4-09dc0af68f42",
+      "name": "deleteOldSheet",
+      "notesInFlow": true,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "V9RsDbAreeVaJR0q",
+          "name": "check-ctkm-hoang.nv1"
+        }
+      },
+      "onError": "continueRegularOutput",
+      "notes": "Vu's doc"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        256,
+        -560
+      ],
+      "id": "64bda5c2-9af1-4aa7-a9b3-263f7b237af3",
+      "name": "Limit5"
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "1wFzm6pfQToQQdSFeO48JOaLthdgwQ200u_a2PoZ7xJo",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "CKTM BLF",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Tên CTKM": "={{ $json.properties.title }}"
+          },
+          "matchingColumns": [
+            "Tên CTKM"
+          ],
+          "schema": [
+            {
+              "id": "Time",
+              "displayName": "Time",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Date (Auto check 8h20 hàng ngày hoặc . mới vào cột Time)",
+              "displayName": "Date (Auto check 8h20 hàng ngày hoặc . mới vào cột Time)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Tên CTKM",
+              "displayName": "Tên CTKM",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Link",
+              "displayName": "Link",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Trạng thái (chuyển về Chưa cập nhật nếu doc MKT có thay đổi)",
+              "displayName": "Trạng thái (chuyển về Chưa cập nhật nếu doc MKT có thay đổi)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Phụ trách",
+              "displayName": "Phụ trách",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Trạng thái đưa lên Web_App",
+              "displayName": "Trạng thái đưa lên Web_App",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1056,
+        -800
+      ],
+      "id": "2df70ddc-1391-4a63-b388-bf7d88e42d7c",
+      "name": "addPromationName",
+      "notesInFlow": true,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "V9RsDbAreeVaJR0q",
+          "name": "check-ctkm-hoang.nv1"
+        }
+      },
+      "onError": "continueRegularOutput",
+      "notes": "Vu's doc"
+    },
+    {
+      "parameters": {
+        "mergeByFields": {
+          "values": [
+            {
+              "field1": "Tên CTKM",
+              "field2": "properties.title"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.compareDatasets",
+      "typeVersion": 2.3,
+      "position": [
+        864,
+        -880
+      ],
+      "id": "64c7fcec-0647-4e27-ba00-4661c1e1ab1f",
+      "name": "Compare Datasets"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        1056,
+        -992
+      ],
+      "id": "0e673c00-ace8-46d4-b503-a80edd739d45",
+      "name": "Loop Over Items1"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1wFzm6pfQToQQdSFeO48JOaLthdgwQ200u_a2PoZ7xJo",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "CKTM BLF",
+          "mode": "name"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "Tên CTKM",
+              "lookupValue": "={{ $json['Tên CTKM'] }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1216,
+        -992
+      ],
+      "id": "97b04515-882f-49b3-a9b0-4633ae7138ff",
+      "name": "getNameHiddenInMKT",
+      "notesInFlow": true,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "V9RsDbAreeVaJR0q",
+          "name": "check-ctkm-hoang.nv1"
+        }
+      },
+      "notes": "Vu's doc"
+    },
+    {
+      "parameters": {
+        "operation": "create",
+        "documentId": {
+          "__rl": true,
+          "value": "1wFzm6pfQToQQdSFeO48JOaLthdgwQ200u_a2PoZ7xJo",
+          "mode": "id"
+        },
+        "title": "={{ $('When Executed by Another Workflow').item.json.sheetName }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        704,
+        -304
+      ],
+      "id": "57349d2c-5d7d-497e-96e9-4015590e43bb",
+      "name": "createNewDoc",
+      "notesInFlow": true,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "V9RsDbAreeVaJR0q",
+          "name": "check-ctkm-hoang.nv1"
+        }
+      },
+      "notes": "Vu's doc"
+    },
+    {
+      "parameters": {
+        "operation": "delete",
+        "documentId": {
+          "__rl": true,
+          "value": "1wFzm6pfQToQQdSFeO48JOaLthdgwQ200u_a2PoZ7xJo",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "CKTM BLF",
+          "mode": "name"
+        },
+        "startIndex": "={{ $json.row_number }}"
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1376,
+        -992
+      ],
+      "id": "95cc5274-24e9-4c4c-ac67-3bf4f5f36afc",
+      "name": "clearRow",
+      "alwaysOutputData": false,
+      "notesInFlow": true,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "V9RsDbAreeVaJR0q",
+          "name": "check-ctkm-hoang.nv1"
+        }
+      },
+      "onError": "continueRegularOutput",
+      "notes": "Vu's doc"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        1904,
+        -624
+      ],
+      "id": "c59423f7-701b-46c2-8b1a-dee382c0d3da",
+      "name": "Limit2"
+    },
+    {
+      "parameters": {
+        "operation": "remove",
+        "documentId": {
+          "__rl": true,
+          "value": "1wFzm6pfQToQQdSFeO48JOaLthdgwQ200u_a2PoZ7xJo",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "={{ $('Loop Over Items1').item.json['Tên CTKM'] }}",
+          "mode": "name"
+        }
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1536,
+        -992
+      ],
+      "id": "951170b5-dd83-4982-9521-cee9debb9158",
+      "name": "deleteHiddenSheetVu",
+      "alwaysOutputData": true,
+      "notesInFlow": true,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "V9RsDbAreeVaJR0q",
+          "name": "check-ctkm-hoang.nv1"
+        }
+      },
+      "notes": "Vu's doc"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "=1wFzm6pfQToQQdSFeO48JOaLthdgwQ200u_a2PoZ7xJo",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "=CKTM BLF",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Tên CTKM": "={{ $('createNewDoc').item.json.title }}",
+            "Link": "={{ $json.link }}",
+            "Trạng thái (chuyển về Chưa cập nhật nếu doc MKT có thay đổi)": "Chưa cập nhật"
+          },
+          "matchingColumns": [
+            "Tên CTKM"
+          ],
+          "schema": [
+            {
+              "id": "Time",
+              "displayName": "Time",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Date (Auto check 8h20 hàng ngày hoặc . mới vào cột Time)",
+              "displayName": "Date (Auto check 8h20 hàng ngày hoặc . mới vào cột Time)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Tên CTKM",
+              "displayName": "Tên CTKM",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Link",
+              "displayName": "Link",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Trạng thái (chuyển về Chưa cập nhật nếu doc MKT có thay đổi)",
+              "displayName": "Trạng thái (chuyển về Chưa cập nhật nếu doc MKT có thay đổi)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Phụ trách",
+              "displayName": "Phụ trách",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Trạng thái đưa lên Web_App",
+              "displayName": "Trạng thái đưa lên Web_App",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        960,
+        -304
+      ],
+      "id": "9bec0cc1-574e-401f-b87e-bc74f5ac2f88",
+      "name": "updateLinks",
+      "notesInFlow": true,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "V9RsDbAreeVaJR0q",
+          "name": "check-ctkm-hoang.nv1"
+        }
+      },
+      "notes": "Vu's doc"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        128,
+        -560
+      ],
+      "id": "3ae06890-585b-4373-a4e7-0873cf13dba0",
+      "name": "Merge1"
+    },
+    {
+      "parameters": {
+        "amount": 15
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        576,
+        -176
+      ],
+      "id": "9555627b-50a2-4a34-87aa-79d2935fd96d",
+      "name": "Wait2",
+      "webhookId": "9d159a4c-bbb9-4468-80b6-cedc248e8c38"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "=1wFzm6pfQToQQdSFeO48JOaLthdgwQ200u_a2PoZ7xJo",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "=CKTM BLF",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Tên CTKM": "={{ $('When Executed by Another Workflow').first().json.sheetName }}",
+            "Date (Auto check 8h20 hàng ngày hoặc . mới vào cột Time)": "={{ DateTime.now().setZone('Asia/Ho_Chi_Minh').toFormat('dd/MM/yyyy') }}",
+            "Time": "={{ DateTime.now().setZone('Asia/Ho_Chi_Minh').toFormat('HH:mm:ss') }}"
+          },
+          "matchingColumns": [
+            "Tên CTKM"
+          ],
+          "schema": [
+            {
+              "id": "Time",
+              "displayName": "Time",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Date (Auto check 8h20 hàng ngày hoặc . mới vào cột Time)",
+              "displayName": "Date (Auto check 8h20 hàng ngày hoặc . mới vào cột Time)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Tên CTKM",
+              "displayName": "Tên CTKM",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Link",
+              "displayName": "Link",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Trạng thái (chuyển về Chưa cập nhật nếu doc MKT có thay đổi)",
+              "displayName": "Trạng thái (chuyển về Chưa cập nhật nếu doc MKT có thay đổi)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Phụ trách",
+              "displayName": "Phụ trách",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Trạng thái đưa lên Web_App",
+              "displayName": "Trạng thái đưa lên Web_App",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1088,
+        -304
+      ],
+      "id": "3bd800a1-68a9-430f-a9ad-7b3dd38597d8",
+      "name": "updateTime",
+      "notesInFlow": true,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "V9RsDbAreeVaJR0q",
+          "name": "check-ctkm-hoang.nv1"
+        }
+      },
+      "notes": "Vu's doc"
+    },
+    {
+      "parameters": {
+        "amount": 15
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        1520,
+        -496
+      ],
+      "id": "a9bc1926-e89c-4dcc-be55-c3aa0147ff7c",
+      "name": "Wait1",
+      "webhookId": "c55e8870-b570-4a43-a86c-fa01751fe06b"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        -80,
+        -976
+      ],
+      "id": "2ae9015a-64d7-4722-b80b-6d098a195294",
+      "name": "Limit4"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1wFzm6pfQToQQdSFeO48JOaLthdgwQ200u_a2PoZ7xJo",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "CKTM BLF",
+          "mode": "name"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        720,
+        -912
+      ],
+      "id": "0364dc9c-17e1-4138-9ea7-23fdf94e6d52",
+      "name": "getPromotionsNameVu",
+      "notesInFlow": true,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "V9RsDbAreeVaJR0q",
+          "name": "check-ctkm-hoang.nv1"
+        }
+      },
+      "notes": "Vu'doc"
+    },
+    {
+      "parameters": {
+        "amount": 2
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        1696,
+        -992
+      ],
+      "id": "acc56068-c66e-4ff8-b3b7-53eb79f62a11",
+      "name": "2s",
+      "webhookId": "5738cdd0-15e2-4eb7-b678-a174a330bd35"
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyHour"
+            }
+          ]
+        },
+        "documentId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "1wFzm6pfQToQQdSFeO48JOaLthdgwQ200u_a2PoZ7xJo"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1597317326,
+          "mode": "list",
+          "cachedResultName": "CKTM BLF",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1wFzm6pfQToQQdSFeO48JOaLthdgwQ200u_a2PoZ7xJo/edit#gid=1597317326"
+        },
+        "options": {
+          "columnsToWatch": [
+            "Time"
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.googleSheetsTrigger",
+      "typeVersion": 1,
+      "position": [
+        -240,
+        -976
+      ],
+      "id": "0b114f44-93a3-4848-8f68-b50d12bebaf5",
+      "name": "Google Sheets Trigger1",
+      "credentials": {
+        "googleSheetsTriggerOAuth2Api": {
+          "id": "PTTp5TaHF098N5jv",
+          "name": "check-ctkm-hoang.nv1-trigger"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "={{ $json.vuDocId }}",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "CKTM BLF",
+          "mode": "name"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        512,
+        -560
+      ],
+      "id": "a56fa9e3-18ac-4034-b41a-de5b77cd4666",
+      "name": "getSheetName",
+      "notesInFlow": true,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "V9RsDbAreeVaJR0q",
+          "name": "check-ctkm-hoang.nv1"
+        }
+      },
+      "notes": "Vu's doc"
+    },
+    {
+      "parameters": {
+        "url": "https://sheets.googleapis.com/v4/spreadsheets/1gSBdStfQ7sJ1w1yhx0ctj6bxXVoSoE0R_MUp5108dJU",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "googleSheetsOAuth2Api",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "fields",
+              "value": "sheets(properties(title,sheetId,index,hidden))"
+            },
+            {
+              "name": "includeGridData",
+              "value": "false"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        96,
+        -848
+      ],
+      "id": "4e544256-cf10-4c5b-b422-1aad0f283e28",
+      "name": "HTTP Request",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "V9RsDbAreeVaJR0q",
+          "name": "check-ctkm-hoang.nv1"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "rTkYdjwqmDFwGgTf",
+          "mode": "list",
+          "cachedResultUrl": "/workflow/rTkYdjwqmDFwGgTf",
+          "cachedResultName": "check-blackfriday"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {}
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.3,
+      "position": [
+        1776,
+        -624
+      ],
+      "id": "334def02-c1ed-4d8e-a0e8-394f6feefa43",
+      "name": "Call 'check-blackfriday'",
+      "retryOnFail": true,
+      "waitBetweenTries": 5000,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "path": "run-by-check-ctkm",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -80,
+        -720
+      ],
+      "id": "43abd8e3-8ee0-404f-9895-a4af5e8234f5",
+      "name": "callByCheckCTKM",
+      "webhookId": "ecb6ef5a-c7dd-430a-b160-baf2686f6c7d"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "Asia/Ho_Chi_Minh",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false,
+    "errorWorkflow": "80zc32Np6wJfRsoG"
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-02-22T18:08:15.515Z",
+      "createdAt": "2026-02-22T18:08:15.515Z",
+      "role": "workflow:owner",
+      "workflowId": "rTkYdjwqmDFwGgTf",
+      "projectId": "GTQprNa3RcCSHh8s"
+    }
+  ],
+  "staticData": {
+    "node:Schedule Trigger": {
+      "recurrenceRules": []
+    },
+    "node:Google Sheets Trigger": {
+      "documentId": "1wFzm6pfQToQQdSFeO48JOaLthdgwQ200u_a2PoZ7xJo",
+      "sheetId": 1184787655,
+      "lastRevision": 4132,
+      "lastRevisionLink": "https://docs.google.com/spreadsheets/export?id=1wFzm6pfQToQQdSFeO48JOaLthdgwQ200u_a2PoZ7xJo&revision=4132&exportFormat=xlsx"
+    },
+    "node:Google Sheets Trigger1": {
+      "documentId": "1wFzm6pfQToQQdSFeO48JOaLthdgwQ200u_a2PoZ7xJo",
+      "sheetId": 1597317326,
+      "lastRevision": 12184,
+      "lastRevisionLink": "https://docs.google.com/spreadsheets/export?id=1wFzm6pfQToQQdSFeO48JOaLthdgwQ200u_a2PoZ7xJo&revision=12184&exportFormat=xlsx"
+    }
+  },
+  "tags": [
+    {
+      "updatedAt": "2025-11-08T12:09:40.816Z",
+      "createdAt": "2025-11-08T12:08:49.207Z",
+      "id": "aJR3FZVXiQEfDzcy",
+      "name": "pv.vn"
+    }
+  ],
+  "triggerCount": 3,
+  "updatedAt": "2025-11-17T08:47:04.190Z",
+  "versionId": "33580dc6-9cd5-4ee3-bf30-eaffa60083c3"
+}
