@@ -1,0 +1,68 @@
+{
+  "active": false,
+  "activeVersion": null,
+  "activeVersionId": null,
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Code in Python (Native)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-12-16T17:46:39.027Z",
+  "id": "QvXj6gIUNJtVRjT2",
+  "isArchived": false,
+  "meta": null,
+  "name": "test-runner",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "31a12212-8c2c-4d01-bc0a-55731f36ee41",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "language": "pythonNative",
+        "pythonCode": "import sys\n\nreturn [{\n  \"python\": sys.executable,\n  \"version\": sys.version\n}]"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        208,
+        0
+      ],
+      "id": "009bc52a-81ff-4c6c-af15-7da30d3b2232",
+      "name": "Code in Python (Native)"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-02-22T18:06:31.608Z",
+      "createdAt": "2026-02-22T18:06:31.608Z",
+      "role": "workflow:owner",
+      "workflowId": "QvXj6gIUNJtVRjT2",
+      "projectId": "GTQprNa3RcCSHh8s"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-12-16T18:49:25.326Z",
+  "versionId": "56d15cbe-ec53-4a71-a00b-6f97fb860d79"
+}
