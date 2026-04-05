@@ -1,0 +1,50 @@
+{
+  "active": false,
+  "activeVersion": null,
+  "activeVersionId": null,
+  "connections": {},
+  "createdAt": "2025-12-03T02:32:13.187Z",
+  "id": "cP8UTi8Pxwdb92zh",
+  "isArchived": false,
+  "meta": null,
+  "name": "check-bhsc",
+  "nodes": [
+    {
+      "parameters": {
+        "multipleMethods": true,
+        "httpMethod": [
+          "POST"
+        ],
+        "path": "check-bhsc",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -176,
+        -16
+      ],
+      "id": "0c7345bf-4abd-40b5-96dc-56bfd0b91cb8",
+      "name": "Webhook",
+      "webhookId": "b1aeebfd-254c-48e8-99bf-127d084bf21f"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-02-22T18:07:34.918Z",
+      "createdAt": "2026-02-22T18:07:34.918Z",
+      "role": "workflow:owner",
+      "workflowId": "cP8UTi8Pxwdb92zh",
+      "projectId": "GTQprNa3RcCSHh8s"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-12-03T02:32:51.999Z",
+  "versionId": "0af518a7-c925-4ba7-b037-4676432bcd8e"
+}
