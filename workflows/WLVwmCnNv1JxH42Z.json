@@ -1,0 +1,213 @@
+{
+  "active": false,
+  "activeVersion": null,
+  "activeVersionId": null,
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Search Pexels Videos": {
+      "main": [
+        [
+          {
+            "node": "Extract Video URLs",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract Video URLs": {
+      "main": [
+        [
+          {
+            "node": "Download Videos",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Download Videos": {
+      "main": [
+        [
+          {
+            "node": "Upload file",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Search Pexels Videos",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-12-01T14:40:04.727Z",
+  "id": "WLVwmCnNv1JxH42Z",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "download-stock-from-pexel",
+  "nodes": [
+    {
+      "parameters": {
+        "url": "=https://api.pexels.com/videos/search?query={{$json.searchKeywords}}&per_page=50&orientation=portrait",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=K9vIFk6cqjfemikJPbCphLtzQNNT6W7sV5cHiQmZ36aESJtvzPoL8TAD"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "610d2229-f1cb-41d8-9d92-72828df5e50c",
+      "name": "Search Pexels Videos",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -64,
+        0
+      ]
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -464,
+        0
+      ],
+      "id": "c2bc9292-7ac9-4d03-ae36-cb255d4477aa",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Extract video URLs từ Pexels response\n\nconst response = $input.item.json;\nconst videos = [];\n\nif (response.videos && response.videos.length > 0) {\n  for (const video of response.videos) {\n    // Get portrait HD video file\n    const hdFile = video.video_files.find(f => \n      f.width === 1080 && f.height === 1920\n    ) || video.video_files.find(f => \n      f.quality === 'hd'\n    ) || video.video_files[0];\n    \n    videos.push({\n      id: video.id,\n      url: hdFile.link,\n      width: hdFile.width,\n      height: hdFile.height,\n      duration: video.duration,\n      keyword: $json.searchKeywords\n    });\n  }\n}\n\nreturn videos.map(v => ({ json: v }));"
+      },
+      "id": "ce7471af-3f6f-402a-befa-9b3b22a4fcf0",
+      "name": "Extract Video URLs",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        176,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "url": "={{$json.url}}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "file"
+            }
+          }
+        }
+      },
+      "id": "2fde49c0-b5f7-429a-9a28-91857a063151",
+      "name": "Download Videos",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        432,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "name": "=video_{{$itemIndex}}.mp4",
+        "driveId": {
+          "__rl": true,
+          "value": "My Drive",
+          "mode": "list",
+          "cachedResultName": "My Drive",
+          "cachedResultUrl": "https://drive.google.com/drive/my-drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "1Il91FU6N8pB6KX8vTnaXBjR89Jk9bw_v",
+          "mode": "list",
+          "cachedResultName": "stock-videos",
+          "cachedResultUrl": "https://drive.google.com/drive/folders/1Il91FU6N8pB6KX8vTnaXBjR89Jk9bw_v"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        640,
+        0
+      ],
+      "id": "d38cf54e-e109-4a10-917b-289b337f6b5d",
+      "name": "Upload file",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "XOVmGIm8iVuG71h0",
+          "name": "Google Drive account hoanghochoi1618"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "602d42c5-7274-4e53-94b2-66677127a8be",
+              "name": "searchKeywords",
+              "value": "nature",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -256,
+        0
+      ],
+      "id": "e1c3eef0-fe6d-4aae-91da-328c2ba1f182",
+      "name": "Edit Fields"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-02-22T18:07:00.459Z",
+      "createdAt": "2026-02-22T18:07:00.459Z",
+      "role": "workflow:owner",
+      "workflowId": "WLVwmCnNv1JxH42Z",
+      "projectId": "GTQprNa3RcCSHh8s"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-12-01T15:17:15.993Z",
+  "versionId": "99ad2b7e-9dee-4f94-b0b6-6b9a27a52345"
+}
