@@ -1,0 +1,1529 @@
+{
+  "active": true,
+  "activeVersion": {
+    "updatedAt": "2026-02-23T07:00:56.244Z",
+    "createdAt": "2026-02-23T07:00:41.949Z",
+    "versionId": "44e70936-ae18-4717-8031-cadc0ff83c54",
+    "workflowId": "2XuvK29l2oS20Z2Z",
+    "nodes": [
+      {
+        "parameters": {
+          "httpMethod": "POST",
+          "path": "fifo-cp62",
+          "responseMode": "lastNode",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.webhook",
+        "typeVersion": 2.1,
+        "position": [
+          -384,
+          560
+        ],
+        "id": "c4835197-4f86-4556-a53f-eb3a6942f75c",
+        "name": "Webhook",
+        "webhookId": "e0eee903-c316-4c56-9d4a-ede7ec73fd73"
+      },
+      {
+        "parameters": {
+          "mode": "chooseBranch",
+          "useDataOfInput": 2
+        },
+        "type": "n8n-nodes-base.merge",
+        "typeVersion": 3.2,
+        "position": [
+          1408,
+          272
+        ],
+        "id": "f0c7992b-2b3e-4b70-adb3-f0dd4e33a37b",
+        "name": "Merge"
+      },
+      {
+        "parameters": {
+          "operation": "get",
+          "dataTableId": {
+            "__rl": true,
+            "value": "sc1dOTktntfbMUel",
+            "mode": "list",
+            "cachedResultName": "seatalk-app-access-token",
+            "cachedResultUrl": "/projects/GTQprNa3RcCSHh8s/datatables/sc1dOTktntfbMUel"
+          },
+          "filters": {
+            "conditions": [
+              {
+                "keyName": "app_id",
+                "keyValue": "={{ $('Webhook').item.json.body.app_id }}"
+              }
+            ]
+          },
+          "returnAll": true
+        },
+        "type": "n8n-nodes-base.dataTable",
+        "typeVersion": 1,
+        "position": [
+          1184,
+          224
+        ],
+        "id": "91d76dbc-8113-49af-a5b2-b40411edf3ee",
+        "name": "get_app_info"
+      },
+      {
+        "parameters": {
+          "options": {}
+        },
+        "type": "n8n-nodes-base.splitInBatches",
+        "typeVersion": 3,
+        "position": [
+          1632,
+          272
+        ],
+        "id": "95fa6a84-e256-4d7b-bf87-fd39986784ee",
+        "name": "Loop Over Items"
+      },
+      {
+        "parameters": {
+          "rules": {
+            "values": [
+              {
+                "conditions": {
+                  "options": {
+                    "caseSensitive": true,
+                    "leftValue": "",
+                    "typeValidation": "strict",
+                    "version": 3
+                  },
+                  "conditions": [
+                    {
+                      "leftValue": "={{ $json.body.event.value }}",
+                      "rightValue": "exported",
+                      "operator": {
+                        "type": "string",
+                        "operation": "equals"
+                      },
+                      "id": "781b21d1-cdd8-4a7e-ae00-250000752587"
+                    }
+                  ],
+                  "combinator": "and"
+                },
+                "renameOutput": true,
+                "outputKey": "exported"
+              },
+              {
+                "conditions": {
+                  "options": {
+                    "caseSensitive": true,
+                    "leftValue": "",
+                    "typeValidation": "strict",
+                    "version": 3
+                  },
+                  "conditions": [
+                    {
+                      "id": "630ef9bc-e35b-4e5a-b203-717148d135bb",
+                      "leftValue": "",
+                      "rightValue": "",
+                      "operator": {
+                        "type": "string",
+                        "operation": "equals",
+                        "name": "filter.operator.equals"
+                      }
+                    }
+                  ],
+                  "combinator": "and"
+                },
+                "renameOutput": true,
+                "outputKey": "check"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.switch",
+        "typeVersion": 3.4,
+        "position": [
+          64,
+          640
+        ],
+        "id": "a32038a2-eb21-4e9f-936d-e5531970ed21",
+        "name": "Switch"
+      },
+      {
+        "parameters": {
+          "url": "=https://openapi.seatalk.io/messaging/v2/get_message_by_message_id?message_id={{ $json.body.event.message_id }}",
+          "sendHeaders": true,
+          "headerParameters": {
+            "parameters": [
+              {
+                "name": "Authorization",
+                "value": "=Bearer {{ $('get_app_info').first().json.app_access_token }}"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.3,
+        "position": [
+          288,
+          368
+        ],
+        "id": "50865253-63e2-486e-a1f6-1748d0c702f2",
+        "name": "HTTP Request1"
+      },
+      {
+        "parameters": {
+          "method": "POST",
+          "url": "https://openapi.seatalk.io/messaging/v2/single_chat",
+          "sendHeaders": true,
+          "headerParameters": {
+            "parameters": [
+              {
+                "name": "Authorization",
+                "value": "=Bearer {{ $('get_app_info').first().json.app_access_token }}"
+              },
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          },
+          "sendBody": true,
+          "specifyBody": "json",
+          "jsonBody": "={\n  \"employee_code\": \"{{ $('Webhook').item.json.body.event.employee_code }}\",\n  \"message\": {\n    \"tag\": \"interactive_message\",\n    \"interactive_message\": {\n      \"elements\": [\n        {\n          \"element_type\": \"title\",\n          \"title\": {\n            \"text\": \"SKU: {{ $json.sku }}\"\n          }\n        },\n        {\n          \"element_type\": \"description\",\n          \"description\": {\n            \"format\": 1,\n            \"text\": \"**Tên:** {{ $json.sku_name }}\\n**Serial cần lấy:** {{ $json.serial_number }}\\n**Vị trí:** {{ $json.bin }}\\n**Loại BIN:** {{ $json.zone }}\\n**Ngày nhập kho:** {{ DateTime.fromJSDate(new Date($json['import_date'])).toFormat(\"dd-MM-yyyy\") }}\"\n          }\n        },\n        {\n          \"element_type\": \"button\",\n          \"button\": {\n            \"button_type\": \"callback\",\n            \"text\": \"Xuất kho\",\n            \"value\": \"exported\"\n         }\n        },\n        {\n          \"element_type\": \"button\",\n          \"button\": {\n            \"button_type\": \"callback\",\n            \"text\": \"Sắp xếp\",\n            \"value\": \"sorted\"\n         }\n        }\n      ]\n    }\n  },\n  \"usable_platform\": \"all\"\n}",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.3,
+        "position": [
+          -384,
+          0
+        ],
+        "id": "7f7b3aa7-8217-44dc-b976-62fe3ffba20b",
+        "name": "with_button"
+      },
+      {
+        "parameters": {
+          "method": "POST",
+          "url": "https://openapi.seatalk.io/messaging/v2/single_chat",
+          "sendHeaders": true,
+          "headerParameters": {
+            "parameters": [
+              {
+                "name": "Authorization",
+                "value": "=Bearer {{ $('get_app_info').first().json.app_access_token }}"
+              },
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          },
+          "sendBody": true,
+          "specifyBody": "json",
+          "jsonBody": "={\n  \"employee_code\": \"{{ $('Webhook').item.json.body.event.employee_code }}\",\n  \"message\": {\n    \"tag\": \"interactive_message\",\n    \"interactive_message\": {\n      \"elements\": [\n        {\n          \"element_type\": \"title\",\n          \"title\": {\n            \"text\": \"SKU: {{ $json.sku }} - Tổng tồn kho: {{ $json.count }}\"\n          }\n        },\n        {\n          \"element_type\": \"description\",\n          \"description\": {\n            \"format\": 1,\n            \"text\": \"**Tên:** {{ $json.sku_name_proper }}\\n**Serial cần lấy:** {{ $json.serial_number }}\\n**Vị trí:** {{ $json.bin }}\\n**Loại BIN:** {{ $json.zone }}\\n**Ngày nhập kho:** {{ DateTime.fromJSDate(new Date($json['import_date'])).toFormat(\"dd-MM-yyyy\") }}\"\n          }\n        }\n      ]\n    }\n  },\n  \"usable_platform\": \"all\"\n}",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.3,
+        "position": [
+          1856,
+          272
+        ],
+        "id": "f2789171-2239-40c6-b645-1b9b58bc78c7",
+        "name": "no_button"
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": false,
+              "leftValue": "",
+              "typeValidation": "loose",
+              "version": 3
+            },
+            "conditions": [
+              {
+                "id": "065657b3-0a13-43dd-ac70-96044ec2b0c3",
+                "leftValue": "={{ $json.body.event_type }}",
+                "rightValue": "message_from_bot_subscriber",
+                "operator": {
+                  "type": "string",
+                  "operation": "equals"
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "looseTypeValidation": true,
+          "options": {
+            "ignoreCase": true
+          }
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.3,
+        "position": [
+          -160,
+          640
+        ],
+        "id": "624b4621-617d-47a6-902c-8a7d0443cef4",
+        "name": "private_or_group"
+      },
+      {
+        "parameters": {
+          "mode": "chooseBranch",
+          "useDataOfInput": 2
+        },
+        "type": "n8n-nodes-base.merge",
+        "typeVersion": 3.2,
+        "position": [
+          1408,
+          560
+        ],
+        "id": "43d197d6-2f18-4640-b1ec-594154b1a170",
+        "name": "Merge1"
+      },
+      {
+        "parameters": {
+          "method": "POST",
+          "url": "https://openapi.seatalk.io/messaging/v2/single_chat",
+          "sendHeaders": true,
+          "headerParameters": {
+            "parameters": [
+              {
+                "name": "Authorization",
+                "value": "=Bearer {{ $('get_app_info').first().json.app_access_token }}"
+              },
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          },
+          "sendBody": true,
+          "specifyBody": "json",
+          "jsonBody": "={\n  \"employee_code\": \"{{ $('Webhook').item.json.body.event.employee_code }}\",\n  \"message\": {\n    \"tag\": \"interactive_message\",\n    \"interactive_message\": {\n      \"elements\": [\n        {\n          \"element_type\": \"title\",\n          \"title\": {\n            \"text\": \"Serial: {{ $json.serial_number }} - Đúng FIFO\"\n          }\n        },\n        {\n          \"element_type\": \"description\",\n          \"description\": {\n            \"format\": 1,\n            \"text\": \"**SKU**: {{ $json.sku }}\\n**Tên:** {{ $json.sku_name_proper }}\\n**Vị trí:** {{ $json.bin }}\\n**Loại BIN:** {{ $json.zone }}\\n**Ngày nhập kho:** {{ DateTime.fromJSDate(new Date($json['import_date'])).toFormat(\"dd-MM-yyyy\") }}\"\n          }\n        }\n      ]\n    }\n  },\n  \"usable_platform\": \"all\"\n}",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.3,
+        "position": [
+          1856,
+          464
+        ],
+        "id": "e5cc4a6f-0369-4923-812d-a9a07b0b83e5",
+        "name": "fifo_yes"
+      },
+      {
+        "parameters": {
+          "method": "POST",
+          "url": "https://openapi.seatalk.io/messaging/v2/single_chat",
+          "sendHeaders": true,
+          "headerParameters": {
+            "parameters": [
+              {
+                "name": "Authorization",
+                "value": "=Bearer {{ $('get_app_info').first().json.app_access_token }}"
+              },
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          },
+          "sendBody": true,
+          "specifyBody": "json",
+          "jsonBody": "={\n  \"employee_code\": \"{{ $('Webhook').item.json.body.event.employee_code }}\",\n  \"message\": {\n    \"tag\": \"interactive_message\",\n    \"interactive_message\": {\n      \"elements\": [\n        {\n          \"element_type\": \"title\",\n          \"title\": {\n            \"text\": \"Serial: {{ $json.serial_number }} - Chưa đúng FIFO\"\n          }\n        },\n        {\n          \"element_type\": \"description\",\n          \"description\": {\n            \"format\": 1,\n            \"text\": \"**SKU**: {{ $json.sku }}\\n**Tên:** {{ $json.sku_name_proper }}\\n**Vị trí:** {{ $json.bin }}\\n**Loại BIN:** {{ $json.zone }}\\n**Ngày nhập kho:** {{ DateTime.fromJSDate(new Date($json['import_date'])).toFormat(\"dd-MM-yyyy\") }}\"\n          }\n        }\n      ]\n    }\n  },\n  \"usable_platform\": \"all\"\n}",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.3,
+        "position": [
+          1856,
+          656
+        ],
+        "id": "50788959-821f-400f-8a51-56162088b6fa",
+        "name": "fifo_no"
+      },
+      {
+        "parameters": {
+          "method": "POST",
+          "url": "https://openapi.seatalk.io/messaging/v2/single_chat",
+          "sendHeaders": true,
+          "headerParameters": {
+            "parameters": [
+              {
+                "name": "Authorization",
+                "value": "=Bearer {{ $('get_app_info').first().json.app_access_token }}"
+              },
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          },
+          "sendBody": true,
+          "specifyBody": "json",
+          "jsonBody": "={\n  \"employee_code\": \"{{ $('Webhook').item.json.body.event.employee_code }}\",\n  \"message\": {\n    \"tag\": \"interactive_message\",\n    \"interactive_message\": {\n      \"elements\": [\n        {\n          \"element_type\": \"title\",\n          \"title\": {\n            \"text\": \"Lưu ý:\"\n          }\n        },\n        {\n          \"element_type\": \"description\",\n          \"description\": {\n            \"format\": 1,\n            \"text\": \"{{ $json.message }}\"\n          }\n        }\n      ]\n    }\n  },\n  \"usable_platform\": \"all\"\n}",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.3,
+        "position": [
+          1184,
+          832
+        ],
+        "id": "ae7f3a84-52c5-449f-8a79-6d43278c2ef0",
+        "name": "anorther_messages"
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": false,
+              "leftValue": "",
+              "typeValidation": "loose",
+              "version": 3
+            },
+            "conditions": [
+              {
+                "id": "1b891b3a-943a-4e53-9648-4ffd5be3862a",
+                "leftValue": "={{ $json.message }}",
+                "rightValue": "",
+                "operator": {
+                  "type": "string",
+                  "operation": "notExists",
+                  "singleValue": true
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "looseTypeValidation": true,
+          "options": {
+            "ignoreCase": true
+          }
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.3,
+        "position": [
+          960,
+          736
+        ],
+        "id": "e40e4202-1a75-44f9-9074-41af1142d475",
+        "name": "check_message"
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": false,
+              "leftValue": "",
+              "typeValidation": "loose",
+              "version": 3
+            },
+            "conditions": [
+              {
+                "id": "79792413-6003-4e13-ad41-cf2afc2cc789",
+                "leftValue": "={{ $json.fifo }}",
+                "rightValue": "",
+                "operator": {
+                  "type": "string",
+                  "operation": "notExists",
+                  "singleValue": true
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "looseTypeValidation": true,
+          "options": {
+            "ignoreCase": true
+          }
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.3,
+        "position": [
+          1184,
+          640
+        ],
+        "id": "2e313710-c4a5-4bf5-ac17-98ae3b11cc84",
+        "name": "check_serial_or_sku"
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": false,
+              "leftValue": "",
+              "typeValidation": "loose",
+              "version": 3
+            },
+            "conditions": [
+              {
+                "id": "98b76418-3a7a-4197-8795-0a765dafa0c9",
+                "leftValue": "={{ $('Merge1').item.json.fifo }}",
+                "rightValue": "yes",
+                "operator": {
+                  "type": "string",
+                  "operation": "equals"
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "looseTypeValidation": true,
+          "options": {
+            "ignoreCase": true
+          }
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.3,
+        "position": [
+          1632,
+          560
+        ],
+        "id": "e8cea780-cb42-4472-81c5-d5f7b2ba15c2",
+        "name": "fifo_or_not"
+      },
+      {
+        "parameters": {
+          "jsCode": "// Lấy content từ input\nconst content = $json.body?.event?.message?.text?.content || '';\nconst input = content.trim();\n\n// Nếu content rỗng thì dừng\nif (!input) {\n  throw new Error('Content is empty');\n}\n\n// Tách theo khoảng trắng\nconst parts = input.split(/\\s+/);\n\n// sku luôn là phần đầu\nconst sku = parts[0];\n\n// qty mặc định = 1\nlet qty = 1;\n\n// Nếu user gửi kèm qty\nif (parts.length > 1) {\n  const parsedQty = parseInt(parts[1], 10);\n  if (!isNaN(parsedQty) && parsedQty > 0) {\n    qty = parsedQty;\n  }\n}\n\n// Trả ra object body chứa sku và qty\nreturn {\n  body: {\n    sku,\n    qty,\n  },\n};\n"
+        },
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          288,
+          736
+        ],
+        "id": "34e74fb9-958f-4d8f-97c9-c5ca20b0dabc",
+        "name": "Code in JavaScript"
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "d56c3c72-16bc-4cc2-81e1-3b3df8ba62aa",
+                "name": "sku_name_proper",
+                "value": "={{ ($json.sku_name || '').replace(/\"/g, '') }}",
+                "type": "string"
+              }
+            ]
+          },
+          "includeOtherFields": true,
+          "options": {}
+        },
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          736,
+          736
+        ],
+        "id": "fbcce253-ebc3-4ba4-866b-ed7303c04369",
+        "name": "proper_sku_name"
+      },
+      {
+        "parameters": {
+          "workflowId": {
+            "__rl": true,
+            "value": "8T9Xr9W3Wmb0a0NI",
+            "mode": "list",
+            "cachedResultUrl": "/workflow/8T9Xr9W3Wmb0a0NI",
+            "cachedResultName": "sub - app/seatalk-fifo-flow"
+          },
+          "workflowInputs": {
+            "mappingMode": "defineBelow",
+            "value": {},
+            "matchingColumns": [],
+            "schema": [],
+            "attemptToConvertTypes": false,
+            "convertFieldsToString": true
+          },
+          "mode": "each",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.executeWorkflow",
+        "typeVersion": 1.3,
+        "position": [
+          512,
+          736
+        ],
+        "id": "a927c148-ed8a-436e-8170-a02c69c67f19",
+        "name": "Call 'sub - app/seatalk-fifo-flow'"
+      }
+    ],
+    "connections": {
+      "Webhook": {
+        "main": [
+          [
+            {
+              "node": "get_app_info",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "private_or_group",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "get_app_info": {
+        "main": [
+          [
+            {
+              "node": "Merge",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "Merge1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Merge": {
+        "main": [
+          [
+            {
+              "node": "Loop Over Items",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Loop Over Items": {
+        "main": [
+          [],
+          [
+            {
+              "node": "no_button",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Switch": {
+        "main": [
+          [
+            {
+              "node": "HTTP Request1",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "Code in JavaScript",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "no_button": {
+        "main": [
+          [
+            {
+              "node": "Loop Over Items",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "private_or_group": {
+        "main": [
+          [
+            {
+              "node": "Switch",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Merge1": {
+        "main": [
+          [
+            {
+              "node": "fifo_or_not",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "check_message": {
+        "main": [
+          [
+            {
+              "node": "check_serial_or_sku",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "anorther_messages",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "check_serial_or_sku": {
+        "main": [
+          [
+            {
+              "node": "Merge",
+              "type": "main",
+              "index": 1
+            }
+          ],
+          [
+            {
+              "node": "Merge1",
+              "type": "main",
+              "index": 1
+            }
+          ]
+        ]
+      },
+      "fifo_or_not": {
+        "main": [
+          [
+            {
+              "node": "fifo_yes",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "fifo_no",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Code in JavaScript": {
+        "main": [
+          [
+            {
+              "node": "Call 'sub - app/seatalk-fifo-flow'",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "proper_sku_name": {
+        "main": [
+          [
+            {
+              "node": "check_message",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Call 'sub - app/seatalk-fifo-flow'": {
+        "main": [
+          [
+            {
+              "node": "proper_sku_name",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "authors": "Hoang Nguyen",
+    "name": "Version 44e70936",
+    "description": "",
+    "autosaved": false
+  },
+  "activeVersionId": "44e70936-ae18-4717-8031-cadc0ff83c54",
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "get_app_info",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "private_or_group",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "get_app_info": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "no_button",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "no_button": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "private_or_group": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge1": {
+      "main": [
+        [
+          {
+            "node": "fifo_or_not",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "check_message": {
+      "main": [
+        [
+          {
+            "node": "check_serial_or_sku",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "anorther_messages",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "check_serial_or_sku": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ],
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "fifo_or_not": {
+      "main": [
+        [
+          {
+            "node": "fifo_yes",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "fifo_no",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "Call 'sub - app/seatalk-fifo-flow'",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "proper_sku_name": {
+      "main": [
+        [
+          {
+            "node": "check_message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Call 'sub - app/seatalk-fifo-flow'": {
+      "main": [
+        [
+          {
+            "node": "proper_sku_name",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2026-02-23T02:20:55.413Z",
+  "id": "2XuvK29l2oS20Z2Z",
+  "isArchived": false,
+  "meta": null,
+  "name": "seatalk-cp62-fifo-main",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "fifo-cp62",
+        "responseMode": "lastNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -384,
+        560
+      ],
+      "id": "c4835197-4f86-4556-a53f-eb3a6942f75c",
+      "name": "Webhook",
+      "webhookId": "e0eee903-c316-4c56-9d4a-ede7ec73fd73"
+    },
+    {
+      "parameters": {
+        "mode": "chooseBranch",
+        "useDataOfInput": 2
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        1408,
+        272
+      ],
+      "id": "f0c7992b-2b3e-4b70-adb3-f0dd4e33a37b",
+      "name": "Merge"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "dataTableId": {
+          "__rl": true,
+          "value": "sc1dOTktntfbMUel",
+          "mode": "list",
+          "cachedResultName": "seatalk-app-access-token",
+          "cachedResultUrl": "/projects/GTQprNa3RcCSHh8s/datatables/sc1dOTktntfbMUel"
+        },
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "app_id",
+              "keyValue": "={{ $('Webhook').item.json.body.app_id }}"
+            }
+          ]
+        },
+        "returnAll": true
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        1184,
+        224
+      ],
+      "id": "91d76dbc-8113-49af-a5b2-b40411edf3ee",
+      "name": "get_app_info"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        1632,
+        272
+      ],
+      "id": "95fa6a84-e256-4d7b-bf87-fd39986784ee",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.body.event.value }}",
+                    "rightValue": "exported",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "781b21d1-cdd8-4a7e-ae00-250000752587"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "exported"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "630ef9bc-e35b-4e5a-b203-717148d135bb",
+                    "leftValue": "",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "check"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.4,
+      "position": [
+        64,
+        640
+      ],
+      "id": "a32038a2-eb21-4e9f-936d-e5531970ed21",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "url": "=https://openapi.seatalk.io/messaging/v2/get_message_by_message_id?message_id={{ $json.body.event.message_id }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $('get_app_info').first().json.app_access_token }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        288,
+        368
+      ],
+      "id": "50865253-63e2-486e-a1f6-1748d0c702f2",
+      "name": "HTTP Request1"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://openapi.seatalk.io/messaging/v2/single_chat",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $('get_app_info').first().json.app_access_token }}"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"employee_code\": \"{{ $('Webhook').item.json.body.event.employee_code }}\",\n  \"message\": {\n    \"tag\": \"interactive_message\",\n    \"interactive_message\": {\n      \"elements\": [\n        {\n          \"element_type\": \"title\",\n          \"title\": {\n            \"text\": \"SKU: {{ $json.sku }}\"\n          }\n        },\n        {\n          \"element_type\": \"description\",\n          \"description\": {\n            \"format\": 1,\n            \"text\": \"**Tên:** {{ $json.sku_name }}\\n**Serial cần lấy:** {{ $json.serial_number }}\\n**Vị trí:** {{ $json.bin }}\\n**Loại BIN:** {{ $json.zone }}\\n**Ngày nhập kho:** {{ DateTime.fromJSDate(new Date($json['import_date'])).toFormat(\"dd-MM-yyyy\") }}\"\n          }\n        },\n        {\n          \"element_type\": \"button\",\n          \"button\": {\n            \"button_type\": \"callback\",\n            \"text\": \"Xuất kho\",\n            \"value\": \"exported\"\n         }\n        },\n        {\n          \"element_type\": \"button\",\n          \"button\": {\n            \"button_type\": \"callback\",\n            \"text\": \"Sắp xếp\",\n            \"value\": \"sorted\"\n         }\n        }\n      ]\n    }\n  },\n  \"usable_platform\": \"all\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        -384,
+        0
+      ],
+      "id": "7f7b3aa7-8217-44dc-b976-62fe3ffba20b",
+      "name": "with_button"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://openapi.seatalk.io/messaging/v2/single_chat",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $('get_app_info').first().json.app_access_token }}"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"employee_code\": \"{{ $('Webhook').item.json.body.event.employee_code }}\",\n  \"message\": {\n    \"tag\": \"interactive_message\",\n    \"interactive_message\": {\n      \"elements\": [\n        {\n          \"element_type\": \"title\",\n          \"title\": {\n            \"text\": \"SKU: {{ $json.sku }} - Tổng tồn kho: {{ $json.count }}\"\n          }\n        },\n        {\n          \"element_type\": \"description\",\n          \"description\": {\n            \"format\": 1,\n            \"text\": \"**Tên:** {{ $json.sku_name_proper }}\\n**Serial cần lấy:** {{ $json.serial_number }}\\n**Vị trí:** {{ $json.bin }}\\n**Loại BIN:** {{ $json.zone }}\\n**Ngày nhập kho:** {{ DateTime.fromJSDate(new Date($json['import_date'])).toFormat(\"dd-MM-yyyy\") }}\"\n          }\n        }\n      ]\n    }\n  },\n  \"usable_platform\": \"all\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        1856,
+        272
+      ],
+      "id": "f2789171-2239-40c6-b645-1b9b58bc78c7",
+      "name": "no_button"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": false,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "065657b3-0a13-43dd-ac70-96044ec2b0c3",
+              "leftValue": "={{ $json.body.event_type }}",
+              "rightValue": "message_from_bot_subscriber",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {
+          "ignoreCase": true
+        }
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        -160,
+        640
+      ],
+      "id": "624b4621-617d-47a6-902c-8a7d0443cef4",
+      "name": "private_or_group"
+    },
+    {
+      "parameters": {
+        "mode": "chooseBranch",
+        "useDataOfInput": 2
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        1408,
+        560
+      ],
+      "id": "43d197d6-2f18-4640-b1ec-594154b1a170",
+      "name": "Merge1"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://openapi.seatalk.io/messaging/v2/single_chat",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $('get_app_info').first().json.app_access_token }}"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"employee_code\": \"{{ $('Webhook').item.json.body.event.employee_code }}\",\n  \"message\": {\n    \"tag\": \"interactive_message\",\n    \"interactive_message\": {\n      \"elements\": [\n        {\n          \"element_type\": \"title\",\n          \"title\": {\n            \"text\": \"Serial: {{ $json.serial_number }} - Đúng FIFO\"\n          }\n        },\n        {\n          \"element_type\": \"description\",\n          \"description\": {\n            \"format\": 1,\n            \"text\": \"**SKU**: {{ $json.sku }}\\n**Tên:** {{ $json.sku_name_proper }}\\n**Vị trí:** {{ $json.bin }}\\n**Loại BIN:** {{ $json.zone }}\\n**Ngày nhập kho:** {{ DateTime.fromJSDate(new Date($json['import_date'])).toFormat(\"dd-MM-yyyy\") }}\"\n          }\n        }\n      ]\n    }\n  },\n  \"usable_platform\": \"all\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        1856,
+        464
+      ],
+      "id": "e5cc4a6f-0369-4923-812d-a9a07b0b83e5",
+      "name": "fifo_yes"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://openapi.seatalk.io/messaging/v2/single_chat",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $('get_app_info').first().json.app_access_token }}"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"employee_code\": \"{{ $('Webhook').item.json.body.event.employee_code }}\",\n  \"message\": {\n    \"tag\": \"interactive_message\",\n    \"interactive_message\": {\n      \"elements\": [\n        {\n          \"element_type\": \"title\",\n          \"title\": {\n            \"text\": \"Serial: {{ $json.serial_number }} - Chưa đúng FIFO\"\n          }\n        },\n        {\n          \"element_type\": \"description\",\n          \"description\": {\n            \"format\": 1,\n            \"text\": \"**SKU**: {{ $json.sku }}\\n**Tên:** {{ $json.sku_name_proper }}\\n**Vị trí:** {{ $json.bin }}\\n**Loại BIN:** {{ $json.zone }}\\n**Ngày nhập kho:** {{ DateTime.fromJSDate(new Date($json['import_date'])).toFormat(\"dd-MM-yyyy\") }}\"\n          }\n        }\n      ]\n    }\n  },\n  \"usable_platform\": \"all\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        1856,
+        656
+      ],
+      "id": "50788959-821f-400f-8a51-56162088b6fa",
+      "name": "fifo_no"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://openapi.seatalk.io/messaging/v2/single_chat",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $('get_app_info').first().json.app_access_token }}"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"employee_code\": \"{{ $('Webhook').item.json.body.event.employee_code }}\",\n  \"message\": {\n    \"tag\": \"interactive_message\",\n    \"interactive_message\": {\n      \"elements\": [\n        {\n          \"element_type\": \"title\",\n          \"title\": {\n            \"text\": \"Lưu ý:\"\n          }\n        },\n        {\n          \"element_type\": \"description\",\n          \"description\": {\n            \"format\": 1,\n            \"text\": \"{{ $json.message }}\"\n          }\n        }\n      ]\n    }\n  },\n  \"usable_platform\": \"all\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        1184,
+        832
+      ],
+      "id": "ae7f3a84-52c5-449f-8a79-6d43278c2ef0",
+      "name": "anorther_messages"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": false,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "1b891b3a-943a-4e53-9648-4ffd5be3862a",
+              "leftValue": "={{ $json.message }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notExists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {
+          "ignoreCase": true
+        }
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        960,
+        736
+      ],
+      "id": "e40e4202-1a75-44f9-9074-41af1142d475",
+      "name": "check_message"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": false,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "79792413-6003-4e13-ad41-cf2afc2cc789",
+              "leftValue": "={{ $json.fifo }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notExists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {
+          "ignoreCase": true
+        }
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        1184,
+        640
+      ],
+      "id": "2e313710-c4a5-4bf5-ac17-98ae3b11cc84",
+      "name": "check_serial_or_sku"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": false,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "98b76418-3a7a-4197-8795-0a765dafa0c9",
+              "leftValue": "={{ $('Merge1').item.json.fifo }}",
+              "rightValue": "yes",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {
+          "ignoreCase": true
+        }
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        1632,
+        560
+      ],
+      "id": "e8cea780-cb42-4472-81c5-d5f7b2ba15c2",
+      "name": "fifo_or_not"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Lấy content từ input\nconst content = $json.body?.event?.message?.text?.content || '';\nconst input = content.trim();\n\n// Nếu content rỗng thì dừng\nif (!input) {\n  throw new Error('Content is empty');\n}\n\n// Tách theo khoảng trắng\nconst parts = input.split(/\\s+/);\n\n// sku luôn là phần đầu\nconst sku = parts[0];\n\n// qty mặc định = 1\nlet qty = 1;\n\n// Nếu user gửi kèm qty\nif (parts.length > 1) {\n  const parsedQty = parseInt(parts[1], 10);\n  if (!isNaN(parsedQty) && parsedQty > 0) {\n    qty = parsedQty;\n  }\n}\n\n// Trả ra object body chứa sku và qty\nreturn {\n  body: {\n    sku,\n    qty,\n  },\n};\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        288,
+        736
+      ],
+      "id": "34e74fb9-958f-4d8f-97c9-c5ca20b0dabc",
+      "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "d56c3c72-16bc-4cc2-81e1-3b3df8ba62aa",
+              "name": "sku_name_proper",
+              "value": "={{ ($json.sku_name || '').replace(/\"/g, '') }}",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        736,
+        736
+      ],
+      "id": "fbcce253-ebc3-4ba4-866b-ed7303c04369",
+      "name": "proper_sku_name"
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "8T9Xr9W3Wmb0a0NI",
+          "mode": "list",
+          "cachedResultUrl": "/workflow/8T9Xr9W3Wmb0a0NI",
+          "cachedResultName": "sub - app/seatalk-fifo-flow"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "mode": "each",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.3,
+      "position": [
+        512,
+        736
+      ],
+      "id": "a927c148-ed8a-436e-8170-a02c69c67f19",
+      "name": "Call 'sub - app/seatalk-fifo-flow'"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false,
+    "timeSavedMode": "fixed",
+    "errorWorkflow": "tUGf8pqhOC0yFiUP",
+    "callerPolicy": "workflowsFromSameOwner"
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-02-23T02:20:55.413Z",
+      "createdAt": "2026-02-23T02:20:55.413Z",
+      "role": "workflow:owner",
+      "workflowId": "2XuvK29l2oS20Z2Z",
+      "projectId": "GTQprNa3RcCSHh8s"
+    }
+  ],
+  "staticData": null,
+  "tags": [
+    {
+      "updatedAt": "2025-12-17T02:41:50.389Z",
+      "createdAt": "2025-12-17T02:41:50.389Z",
+      "id": "tf48o2CcAcmF6X41",
+      "name": "Seatalk app"
+    }
+  ],
+  "triggerCount": 1,
+  "updatedAt": "2026-02-23T07:01:10.782Z",
+  "versionId": "44e70936-ae18-4717-8031-cadc0ff83c54"
+}
