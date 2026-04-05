@@ -1,0 +1,573 @@
+{
+  "active": false,
+  "activeVersion": null,
+  "activeVersionId": null,
+  "connections": {
+    "On form submission": {
+      "main": [
+        [
+          {
+            "node": "Compression",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Compression": {
+      "main": [
+        [
+          {
+            "node": "Extract from File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract from File": {
+      "main": [
+        [
+          {
+            "node": "Append row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append row in sheet": {
+      "main": [
+        [
+          {
+            "node": "Limit",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit": {
+      "main": [
+        [
+          {
+            "node": "Send a text message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2026-02-05T10:47:16.775Z",
+  "id": "PyE6DF_-l6-B8wArQ0mka",
+  "isArchived": true,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "auto-update-sales-daily",
+  "nodes": [
+    {
+      "parameters": {
+        "formTitle": "Daily Sales Update",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "File",
+              "fieldType": "file"
+            }
+          ]
+        },
+        "options": {
+          "path": "daily_sales"
+        }
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.5,
+      "position": [
+        0,
+        0
+      ],
+      "id": "68bcc361-db6d-4f21-a9c4-63cbbc5697b1",
+      "name": "On form submission",
+      "webhookId": "93358e35-7d3e-4add-827a-502437444172"
+    },
+    {
+      "parameters": {
+        "binaryPropertyName": "File"
+      },
+      "type": "n8n-nodes-base.compression",
+      "typeVersion": 1.1,
+      "position": [
+        208,
+        0
+      ],
+      "id": "6e8db0dc-0030-407d-b19a-31d74434452e",
+      "name": "Compression"
+    },
+    {
+      "parameters": {
+        "binaryPropertyName": "file_0",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1.1,
+      "position": [
+        416,
+        0
+      ],
+      "id": "e49b4581-6135-40b8-9044-99f43bcb6c55",
+      "name": "Extract from File"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1HBHA5y1QYKKbUf-bHDj7BB2eXG2eerndTc9fP_9cUBg",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1HBHA5y1QYKKbUf-bHDj7BB2eXG2eerndTc9fP_9cUBg/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Report date": "={{ new Date($json['Report date']).toLocaleDateString('en-US') }}",
+            "Channel": "={{ $json.Channel }}",
+            "Branch code": "={{ $json['Branch code'] }}",
+            "Store": "={{ $json.Store }}",
+            "Customer full name": "={{ $json['Customer full name'] }}",
+            "Order code": "={{ $json['Order code'] }}",
+            "Export return branch ID": "={{ $json['Export return branch ID'] }}",
+            "Order type": "={{ $json['Order type'] }}",
+            "Email": "={{ $json.Email }}",
+            "HRM ID": "={{ $json['HRM ID'] }}",
+            "Salesman": "={{ $json.Salesman }}",
+            "Customer ID": "={{ $json['Customer ID'] }}",
+            "SKU": "={{ $json.SKU }}",
+            "SKU name": "={{ $json['SKU name'] }}",
+            "Sale point per item": "={{ $json['Sale point per item'] }}",
+            "Dealer type": "={{ $json['Dealer type'] }}",
+            "Brand name": "={{ $json['Brand name'] }}",
+            "Billing tax code": "={{ $json['Billing tax code'] }}",
+            "Cat group ID": "={{ $json['Cat group ID'] }}",
+            "Cat group name": "={{ $json['Cat group name'] }}",
+            "Subcat 2 ID": "={{ $json['Subcat 2 ID'] }}",
+            "Subcat 2 name": "={{ $json['Subcat 2 name'] }}",
+            "Subcat ID lowest level": "={{ $json['Subcat ID lowest level'] }}",
+            "Subcat name lowest level": "={{ $json['Subcat name lowest level'] }}",
+            "Is delivery": "={{ $json['Is delivery'] }}",
+            "Order note": "={{ $json['Order note'] }}",
+            "Terminal code": "={{ $json['Terminal code'] }}",
+            "Terminal name": "={{ $json['Terminal name'] }}",
+            "Platform": "={{ $json.Platform }}",
+            "Sale point": "={{ $json['Sale point'] }}",
+            "Quantity": "={{ $json.Quantity }}",
+            "Revenue": "={{ $json.Revenue }}",
+            "Revenue with VAT": "={{ $json['Revenue with VAT'] }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Report date",
+              "displayName": "Report date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Channel",
+              "displayName": "Channel",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Store",
+              "displayName": "Store",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Branch code",
+              "displayName": "Branch code",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Customer full name",
+              "displayName": "Customer full name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Order code",
+              "displayName": "Order code",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Export return branch ID",
+              "displayName": "Export return branch ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Order type",
+              "displayName": "Order type",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "HRM ID",
+              "displayName": "HRM ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Salesman",
+              "displayName": "Salesman",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Customer ID",
+              "displayName": "Customer ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "SKU",
+              "displayName": "SKU",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Doc ID",
+              "displayName": "Doc ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Sale point per item",
+              "displayName": "Sale point per item",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "SKU name",
+              "displayName": "SKU name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Dealer type",
+              "displayName": "Dealer type",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Brand name",
+              "displayName": "Brand name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Billing tax code",
+              "displayName": "Billing tax code",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Cat group ID",
+              "displayName": "Cat group ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Cat group name",
+              "displayName": "Cat group name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Subcat 2 ID",
+              "displayName": "Subcat 2 ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Subcat 2 name",
+              "displayName": "Subcat 2 name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Subcat ID lowest level",
+              "displayName": "Subcat ID lowest level",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Subcat name lowest level",
+              "displayName": "Subcat name lowest level",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Is delivery",
+              "displayName": "Is delivery",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Order note",
+              "displayName": "Order note",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Terminal code",
+              "displayName": "Terminal code",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Terminal name",
+              "displayName": "Terminal name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Platform",
+              "displayName": "Platform",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Sale point",
+              "displayName": "Sale point",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Quantity",
+              "displayName": "Quantity",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Revenue",
+              "displayName": "Revenue",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Revenue with VAT",
+              "displayName": "Revenue with VAT",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {
+          "cellFormat": "USER_ENTERED"
+        }
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        624,
+        0
+      ],
+      "id": "6f949997-f6bd-4c82-adb2-aadf1252c441",
+      "name": "Append row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "MTh9LghqaMKPTAzs",
+          "name": "zalo-chat-bot-hoang.nv1"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        832,
+        0
+      ],
+      "id": "1f8e28ae-bad0-4e24-8d3c-dbc5075f7f90",
+      "name": "Limit"
+    },
+    {
+      "parameters": {
+        "chatId": "5013029624",
+        "text": "=Sales đã được cập nhật.",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1024,
+        0
+      ],
+      "id": "27c56a61-80f2-4400-ad3c-b15af0bb5063",
+      "name": "Send a text message",
+      "webhookId": "44f7bda3-2e42-4ba8-985e-b3ca611100cb",
+      "credentials": {
+        "telegramApi": {
+          "id": "yOqJ91F4uxm9OoWc",
+          "name": "@culi001"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-02-22T18:06:25.820Z",
+      "createdAt": "2026-02-22T18:06:25.820Z",
+      "role": "workflow:owner",
+      "workflowId": "PyE6DF_-l6-B8wArQ0mka",
+      "projectId": "GTQprNa3RcCSHh8s"
+    }
+  ],
+  "staticData": null,
+  "tags": [
+    {
+      "updatedAt": "2025-12-17T02:41:50.389Z",
+      "createdAt": "2025-12-17T02:41:50.389Z",
+      "id": "tf48o2CcAcmF6X41",
+      "name": "Seatalk app"
+    },
+    {
+      "updatedAt": "2026-02-09T07:11:42.210Z",
+      "createdAt": "2026-02-09T07:11:42.210Z",
+      "id": "xYJcmxixfnklJJVn",
+      "name": "openclaw"
+    }
+  ],
+  "triggerCount": 1,
+  "updatedAt": "2026-02-11T18:04:55.167Z",
+  "versionId": "97aa5201-6d5e-4715-82b1-be763e2fcaa0"
+}
