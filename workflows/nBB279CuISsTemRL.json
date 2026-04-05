@@ -1,0 +1,3193 @@
+{
+  "active": true,
+  "activeVersion": {
+    "updatedAt": "2026-03-21T04:49:07.292Z",
+    "createdAt": "2026-03-21T04:49:06.048Z",
+    "versionId": "bc098301-4d68-419b-8f9c-3595e2421f00",
+    "workflowId": "nBB279CuISsTemRL",
+    "nodes": [
+      {
+        "parameters": {
+          "keep": "lastItems"
+        },
+        "type": "n8n-nodes-base.limit",
+        "typeVersion": 1,
+        "position": [
+          384,
+          1216
+        ],
+        "id": "a771ee0f-99f3-4af2-91fa-6950ea012a0c",
+        "name": "Limit4"
+      },
+      {
+        "parameters": {
+          "operation": "download",
+          "fileId": {
+            "__rl": true,
+            "value": "https://docs.google.com/spreadsheets/d/1N3RqgFnMVJ-i-SlzXA523aVHjyA1dlLVOpdR_Eh9i2Q/edit?usp=drive_link",
+            "mode": "url"
+          },
+          "options": {
+            "googleFileConversion": {
+              "conversion": {
+                "sheetsToFormat": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+              }
+            },
+            "fileName": "={{ $('Start').item.json.store }} - Báo cáo kiểm kê tháng {{ DateTime.fromISO($today).format('MM-yyyy')}}.xlsx"
+          }
+        },
+        "type": "n8n-nodes-base.googleDrive",
+        "typeVersion": 3,
+        "position": [
+          -128,
+          1072
+        ],
+        "id": "6ddb3abc-c1a5-4b52-acae-ec93e4188e90",
+        "name": "Download file",
+        "credentials": {
+          "googleDriveOAuth2Api": {
+            "id": "GpJUmnoBmqg9ldSq",
+            "name": "Google Drive account hoang.nv1"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "keep": "lastItems"
+        },
+        "type": "n8n-nodes-base.limit",
+        "typeVersion": 1,
+        "position": [
+          384,
+          1072
+        ],
+        "id": "993e6384-b9d7-4c86-a299-7cbe38b54e96",
+        "name": "Limit3"
+      },
+      {
+        "parameters": {},
+        "type": "n8n-nodes-base.limit",
+        "typeVersion": 1,
+        "position": [
+          -256,
+          1072
+        ],
+        "id": "a04105fc-6763-4009-ac80-b8d110243adc",
+        "name": "Limit5"
+      },
+      {
+        "parameters": {
+          "fieldsToSummarize": {
+            "values": [
+              {
+                "aggregation": "sum",
+                "field": "kiemKe"
+              },
+              {
+                "aggregation": "sum",
+                "field": "tonCuoi"
+              },
+              {
+                "aggregation": "sum",
+                "field": "chenhLech"
+              },
+              {
+                "field": "chenhLech",
+                "includeEmpty": true
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.summarize",
+        "typeVersion": 1.1,
+        "position": [
+          0,
+          816
+        ],
+        "id": "3cfcd2d8-6783-428f-b3c3-11a98ad5d327",
+        "name": "Summarize"
+      },
+      {
+        "parameters": {
+          "jsCode": "// Lấy summary data\nconst input = $input.first().json;\n\n// Item 1: Tổng số liệu từ summarize\nconst item1 = {\n  MaVatTu: null,\n  TenVatTu: null,\n  dvt: null,\n  TinhTrangHangHoa: null,\n  PhieuKiemKe: null,\n  tonCuoi: input.sum_tonCuoi,\n  kiemKe: input.sum_kiemKe,\n  chenhLech: input.sum_chenhLech,\n  id: null,\n  createdAt: null,\n  updatedAt: null\n};\n\n// Item 2: Chữ ký\nconst item2 = {\n  MaVatTu: 'ĐẠI DIỆN KIỂM KHO',\n  TenVatTu: 'ĐẠI DIỆN KIỂM KÊ',\n  dvt: 'QUẢN LÝ CHI NHÁNH',\n  TinhTrangHangHoa: null,\n  PhieuKiemKe: null,\n  tonCuoi: null,\n  kiemKe: null,\n  chenhLech: 'KIỂM SOÁT NỘI BỘ',\n  id: null,\n  createdAt: null,\n  updatedAt: null\n};\n\nreturn [\n  { json: item1 },\n  { json: item2 }\n];"
+        },
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          128,
+          816
+        ],
+        "id": "447ddb5c-6f7f-45a0-998f-58508bab12f0",
+        "name": "genSum&Sign"
+      },
+      {
+        "parameters": {
+          "operation": "append",
+          "documentId": {
+            "__rl": true,
+            "value": "1N3RqgFnMVJ-i-SlzXA523aVHjyA1dlLVOpdR_Eh9i2Q",
+            "mode": "id"
+          },
+          "sheetName": {
+            "__rl": true,
+            "value": 462606250,
+            "mode": "list",
+            "cachedResultName": "BBKK",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1N3RqgFnMVJ-i-SlzXA523aVHjyA1dlLVOpdR_Eh9i2Q/edit#gid=462606250"
+          },
+          "columns": {
+            "mappingMode": "defineBelow",
+            "value": {
+              "STT": "={{ $itemIndex + 1 }}",
+              "Mã vật tư": "={{ $json.MaVatTu }}",
+              "Tên vật tư": "={{ $json.TenVatTu }}",
+              "Chênh lệch": "={{ $json.chenhLech }}",
+              "Phiên kiểm kê": "={{ $json.PhieuKiemKe }}",
+              "Đvt": "={{ $json.dvt }}",
+              "Tồn cuối\n phần mềm": "={{ $json.tonCuoi }}",
+              "Kiểm kê\n thực tế": "={{ $json.kiemKe }}"
+            },
+            "matchingColumns": [
+              "CÔNG TY CỔ PHẨN THƯƠNG MẠI DỊCH VỤ PHONG VŨ"
+            ],
+            "schema": [
+              {
+                "id": "STT",
+                "displayName": "STT",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "Mã vật tư",
+                "displayName": "Mã vật tư",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "Tên vật tư",
+                "displayName": "Tên vật tư",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "Đvt",
+                "displayName": "Đvt",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "Tồn cuối\n phần mềm",
+                "displayName": "Tồn cuối\n phần mềm",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "Kiểm kê\n thực tế",
+                "displayName": "Kiểm kê\n thực tế",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "Chênh lệch",
+                "displayName": "Chênh lệch",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "Trình trạng hàng hóa",
+                "displayName": "Trình trạng hàng hóa",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "Phiên kiểm kê",
+                "displayName": "Phiên kiểm kê",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              }
+            ],
+            "attemptToConvertTypes": false,
+            "convertFieldsToString": false
+          },
+          "options": {
+            "cellFormat": "RAW",
+            "locationDefine": {
+              "values": {
+                "headerRow": 9
+              }
+            }
+          }
+        },
+        "type": "n8n-nodes-base.googleSheets",
+        "typeVersion": 4.7,
+        "position": [
+          384,
+          768
+        ],
+        "id": "0d54b70a-f01c-4dcf-9629-a60071f5ebd4",
+        "name": "addDetailsToSheet",
+        "credentials": {
+          "googleSheetsOAuth2Api": {
+            "id": "MTh9LghqaMKPTAzs",
+            "name": "zalo-chat-bot-hoang.nv1"
+          }
+        }
+      },
+      {
+        "parameters": {},
+        "type": "n8n-nodes-base.merge",
+        "typeVersion": 3.2,
+        "position": [
+          256,
+          768
+        ],
+        "id": "a6dc688c-d566-4575-b466-ab100d0ab369",
+        "name": "Merge"
+      },
+      {
+        "parameters": {
+          "operation": "get",
+          "dataTableId": {
+            "__rl": true,
+            "value": "PG041wB1h4yGDO7m",
+            "mode": "list",
+            "cachedResultName": "inv_count - details",
+            "cachedResultUrl": "/projects/GTQprNa3RcCSHh8s/datatables/PG041wB1h4yGDO7m"
+          },
+          "returnAll": true
+        },
+        "type": "n8n-nodes-base.dataTable",
+        "typeVersion": 1,
+        "position": [
+          -128,
+          752
+        ],
+        "id": "ea86f169-1a86-4e02-ac77-f130716e007c",
+        "name": "getDetails"
+      },
+      {
+        "parameters": {},
+        "type": "n8n-nodes-base.limit",
+        "typeVersion": 1,
+        "position": [
+          -256,
+          752
+        ],
+        "id": "a62fbd84-42e1-46c0-a74e-fea908397cc1",
+        "name": "Limit"
+      },
+      {
+        "parameters": {
+          "operation": "xlsx",
+          "options": {
+            "range": "A9:I1000",
+            "sheetName": "KetQuaTongHop"
+          }
+        },
+        "type": "n8n-nodes-base.extractFromFile",
+        "typeVersion": 1,
+        "position": [
+          128,
+          576
+        ],
+        "id": "41ebf946-3008-4cf7-8d84-e865c81c1aa9",
+        "name": "takeDetailInfo"
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": false,
+              "leftValue": "",
+              "typeValidation": "loose",
+              "version": 2
+            },
+            "conditions": [
+              {
+                "id": "911c2433-5900-480a-834b-e7fea73ee183",
+                "leftValue": "={{ $json['Ngành hàng'] }}",
+                "rightValue": "Dịch vụ kỹ thuật",
+                "operator": {
+                  "type": "string",
+                  "operation": "equals",
+                  "name": "filter.operator.equals"
+                }
+              },
+              {
+                "id": "0636dc18-dcf6-4fcd-91a9-b69a13b18e9b",
+                "leftValue": "={{ $json['Ngành hàng'] }}",
+                "rightValue": "Dịch vụ giá trị gia tăng",
+                "operator": {
+                  "type": "string",
+                  "operation": "equals",
+                  "name": "filter.operator.equals"
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "looseTypeValidation": true,
+          "options": {
+            "ignoreCase": true
+          }
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.2,
+        "position": [
+          256,
+          576
+        ],
+        "id": "29143df9-2615-4926-bb61-024d15ca0bb1",
+        "name": "checkCat"
+      },
+      {
+        "parameters": {
+          "dataTableId": {
+            "__rl": true,
+            "value": "PG041wB1h4yGDO7m",
+            "mode": "list",
+            "cachedResultName": "inv_count - details",
+            "cachedResultUrl": "/projects/GTQprNa3RcCSHh8s/datatables/PG041wB1h4yGDO7m"
+          },
+          "columns": {
+            "mappingMode": "defineBelow",
+            "value": {
+              "MaVatTu": "={{ $json['Mã sản phẩm'] }}",
+              "TenVatTu": "={{ $json['Tên sản phẩm'] }}",
+              "PhieuKiemKe": "={{ $('genSessionInfo').first().json.session }}",
+              "tonCuoi": "={{ $json['Số lượng tồn'] }}",
+              "kiemKe": "={{ $json['Số lượng kiểm đếm'] }}",
+              "chenhLech": "={{ $json['Số lượng chênh lệch'] }}"
+            },
+            "matchingColumns": [],
+            "schema": [
+              {
+                "id": "MaVatTu",
+                "displayName": "MaVatTu",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": false
+              },
+              {
+                "id": "TenVatTu",
+                "displayName": "TenVatTu",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": false
+              },
+              {
+                "id": "dvt",
+                "displayName": "dvt",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": false
+              },
+              {
+                "id": "tonCuoi",
+                "displayName": "tonCuoi",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "number",
+                "readOnly": false,
+                "removed": false
+              },
+              {
+                "id": "kiemKe",
+                "displayName": "kiemKe",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "number",
+                "readOnly": false,
+                "removed": false
+              },
+              {
+                "id": "chenhLech",
+                "displayName": "chenhLech",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "number",
+                "readOnly": false,
+                "removed": false
+              },
+              {
+                "id": "TinhTrangHangHoa",
+                "displayName": "TinhTrangHangHoa",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": false
+              },
+              {
+                "id": "PhieuKiemKe",
+                "displayName": "PhieuKiemKe",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": false
+              }
+            ],
+            "attemptToConvertTypes": false,
+            "convertFieldsToString": false
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.dataTable",
+        "typeVersion": 1,
+        "position": [
+          384,
+          576
+        ],
+        "id": "3969980e-1c85-43f0-ac70-cccaa06e8392",
+        "name": "addDetails"
+      },
+      {
+        "parameters": {
+          "options": {
+            "reset": false
+          }
+        },
+        "type": "n8n-nodes-base.splitInBatches",
+        "typeVersion": 3,
+        "position": [
+          -128,
+          512
+        ],
+        "id": "876e6438-5d36-4974-a3d6-c551fee73a61",
+        "name": "Loop Over Items",
+        "alwaysOutputData": false
+      },
+      {
+        "parameters": {
+          "mode": "chooseBranch",
+          "output": "empty"
+        },
+        "type": "n8n-nodes-base.merge",
+        "typeVersion": 3.2,
+        "position": [
+          576,
+          512
+        ],
+        "id": "144629aa-f9ff-44b2-bdca-33321786076a",
+        "name": "Merge1"
+      },
+      {
+        "parameters": {
+          "operation": "xlsx",
+          "options": {
+            "range": "B0:C5",
+            "rawData": false
+          }
+        },
+        "type": "n8n-nodes-base.extractFromFile",
+        "typeVersion": 1,
+        "position": [
+          128,
+          448
+        ],
+        "id": "1f36afd7-9ba5-4e30-81e7-262686e659f0",
+        "name": "takeSessionInfo"
+      },
+      {
+        "parameters": {
+          "jsCode": "// Function — Run once for all items\n// Lấy: 1) \"phiên kiểm kê\" từ header dạng KK-xxxx-xxxxx\n//      2) \"Ngày yêu cầu kiểm kê\"\n//      3) \"khu vực kiểm kê\"\n\nconst rows = $input.all().map(it => it.json);\nconst table = rows.map(r => Object.values(r).map(v => String(v ?? '').trim()));\n\nconst norm = s => String(s ?? '')\n  .normalize('NFD').replace(/[\\u0300-\\u036f]/g,'')\n  .toLowerCase().trim();\nconst raw = s => String(s ?? '').trim();\n\n// ===== 1) PHIÊN kiểm kê từ header (KK-xxxx-xxxxx) =====\nlet phien = '';\nif (table.length) {\n  const upTo = Math.min(50, table.length);\n  const lines = [];\n  for (let i = 0; i < upTo; i++) lines.push(raw(table[i].join(' ')));\n  const headerText = lines.join('  ');\n\n  // Cố gắng match KK-xxxx-xxxxx\n  let m = headerText.match(/\\bkk[^0-9]*?(\\d{4})[^0-9]*?(\\d{5})\\b/i);\n  if (m) phien = `KK-${m[1]}-${m[2]}`;\n  \n  if (!phien) {\n    const m2 = headerText.replace(/\\s+/g,'').match(/\\bkk(\\d{9})\\b/i);\n    if (m2) phien = `KK-${m2[1].slice(0,4)}-${m2[1].slice(4)}`;\n  }\n\n  if (!phien) {\n    outer:\n    for (let i = 0; i < upTo; i++) {\n      const row = table[i];\n      for (let j = 0; j < row.length; j++) {\n        const cell = row[j];\n        if (!/kk/i.test(cell)) continue;\n        let digits = (cell.match(/(\\d+)/g) || []).join('');\n        for (let k = j + 1; k < row.length && digits.length < 9; k++) {\n          const tok = row[k];\n          const nums = tok.match(/^\\D*(\\d+)/);\n          if (!nums) break;\n          digits += nums[1];\n        }\n        if (digits.length < 9 && i + 1 < table.length) {\n          for (let k = 0; k < table[i+1].length && digits.length < 9; k++) {\n            const tok = table[i+1][k];\n            const nums = tok.match(/^\\D*(\\d+)/);\n            if (!nums) continue;\n            digits += nums[1];\n          }\n        }\n        if (digits.length >= 9) {\n          digits = digits.slice(0,9);\n          phien = `KK-${digits.slice(0,4)}-${digits.slice(4)}`;\n          break outer;\n        }\n      }\n    }\n  }\n\n  if (!phien) {\n    const compact = headerText.replace(/[^A-Za-z0-9]+/g,'').toLowerCase();\n    const m3 = compact.match(/kk(\\d{9})/i);\n    if (m3) phien = `KK-${m3[1].slice(0,4)}-${m3[1].slice(4)}`;\n  }\n}\n\n// ===== 2) \"Ngày yêu cầu kiểm kê\" + 3) \"khu vực kiểm kê\" =====\nconst tokens = {\n  ngayYC: [\n    'ngay yeu cau kiem ke',\n    'ngay yeu cau',\n    'ngay yc kiem ke',\n    'requested date',\n    'request date',\n    'date requested'\n  ],\n  khu: [\n    'khu vuc kiem ke',\n    'khu vuc',\n    'khu vuc kk',\n    'area'\n  ],\n};\nconst hasToken = (s, list) => list.some(t => norm(s).includes(t));\nconst pickAfterSep = s => {\n  const mm = String(s).match(/[:\\-–]\\s*(.+)$/);\n  return mm ? raw(mm[1]) : '';\n};\nconst rightCell = (vals, j) => {\n  for (let k = j + 1; k < vals.length; k++) { const v = raw(vals[k]); if (v) return v; }\n  return '';\n};\nconst nextRowFirst = (tbl, i) => {\n  if (i + 1 >= tbl.length) return '';\n  const vals = tbl[i + 1];\n  for (let k = 0; k < vals.length; k++) { const v = raw(vals[k]); if (v) return v; }\n  return '';\n};\n\nlet ngayYC = '';\nlet khu = '';\n\n// theo tiêu đề cột\nif (table.length) {\n  const header = table[0].map(raw);\n  const idxBy = lists => {\n    for (let j = 0; j < header.length; j++) if (hasToken(header[j], lists)) return j;\n    return -1;\n  };\n  const colNgayYC = idxBy(tokens.ngayYC);\n  const colKhu    = idxBy(tokens.khu);\n\n  const firstBelow = col => {\n    if (col < 0) return '';\n    for (let i = 1; i < table.length; i++) {\n      const v = raw(table[i][col]); if (v) return v;\n    }\n    return '';\n  };\n  if (!ngayYC) ngayYC = firstBelow(colNgayYC);\n  if (!khu)    khu    = firstBelow(colKhu);\n}\n\n// quét nhãn:giá trị\nif (!ngayYC || !khu) {\n  outer2:\n  for (let i = 0; i < table.length; i++) {\n    const row = table[i];\n    for (let j = 0; j < row.length; j++) {\n      const cell = raw(row[j]);\n      if (!cell) continue;\n      if (!ngayYC && hasToken(cell, tokens.ngayYC)) {\n        ngayYC = pickAfterSep(cell) || rightCell(row, j) || nextRowFirst(table, i);\n      }\n      if (!khu && hasToken(cell, tokens.khu)) {\n        khu = pickAfterSep(cell) || rightCell(row, j) || nextRowFirst(table, i);\n      }\n      if (ngayYC && khu) break outer2;\n    }\n  }\n}\n\n// ===== Output 3 item =====\nreturn [\n  {\n    json: {\n      'date': ngayYC || '',\n      'session': phien || '',\n      'zone': khu || ''\n    }\n  }\n];"
+        },
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          256,
+          448
+        ],
+        "id": "28ec6933-9562-4684-8d27-8be3c65ad563",
+        "name": "genSessionInfo"
+      },
+      {
+        "parameters": {
+          "operation": "append",
+          "documentId": {
+            "__rl": true,
+            "value": "1N3RqgFnMVJ-i-SlzXA523aVHjyA1dlLVOpdR_Eh9i2Q",
+            "mode": "id"
+          },
+          "sheetName": {
+            "__rl": true,
+            "value": 211602655,
+            "mode": "list",
+            "cachedResultName": "DSACH Phiên - khu vực",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1N3RqgFnMVJ-i-SlzXA523aVHjyA1dlLVOpdR_Eh9i2Q/edit#gid=211602655"
+          },
+          "columns": {
+            "mappingMode": "defineBelow",
+            "value": {
+              "Ngày tạo phiên kiểm kê": "={{ $json.date }}",
+              "Mã phiên kiểm kê": "={{ $json.session }}",
+              "Khu vực": "={{ $json.zone }}"
+            },
+            "matchingColumns": [
+              "Lưu ý : Cột \"Khu vực kiểm kê\" - cửa hàng cứ kiểm theo khu vực BIN đã chọn kiểm,  phù hợp với điều kiện riêng của từng cửa hàng. "
+            ],
+            "schema": [
+              {
+                "id": "Ngày tạo phiên kiểm kê",
+                "displayName": "Ngày tạo phiên kiểm kê",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "Mã phiên kiểm kê",
+                "displayName": "Mã phiên kiểm kê",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "Khu vực",
+                "displayName": "Khu vực",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              }
+            ],
+            "attemptToConvertTypes": false,
+            "convertFieldsToString": false
+          },
+          "options": {
+            "locationDefine": {
+              "values": {
+                "headerRow": 3
+              }
+            }
+          }
+        },
+        "type": "n8n-nodes-base.googleSheets",
+        "typeVersion": 4.7,
+        "position": [
+          384,
+          448
+        ],
+        "id": "a462a614-54c6-4241-a081-0ef6a175dfbc",
+        "name": "addSessionInfo",
+        "credentials": {
+          "googleSheetsOAuth2Api": {
+            "id": "MTh9LghqaMKPTAzs",
+            "name": "zalo-chat-bot-hoang.nv1"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "inputSource": "passthrough"
+        },
+        "id": "1f6a839c-f8ae-4fc3-b803-2cd0a7b9304a",
+        "typeVersion": 1.1,
+        "name": "Start",
+        "type": "n8n-nodes-base.executeWorkflowTrigger",
+        "position": [
+          -416,
+          272
+        ]
+      },
+      {
+        "parameters": {
+          "url": "https://www.googleapis.com/drive/v3/files",
+          "authentication": "predefinedCredentialType",
+          "nodeCredentialType": "googleDriveOAuth2Api",
+          "sendQuery": true,
+          "queryParameters": {
+            "parameters": [
+              {
+                "name": "q",
+                "value": "='{{ $json.folderId }}' in parents and trashed=false"
+              },
+              {
+                "name": "fields",
+                "value": "files(id,name,mimeType,size,createdTime,modifiedTime,webViewLink)"
+              },
+              {
+                "name": "pageSize",
+                "value": "1000"
+              },
+              {
+                "name": "orderBy",
+                "value": "modifiedTime desc"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.3,
+        "position": [
+          -192,
+          272
+        ],
+        "id": "05a6d67f-d94c-4747-a0b2-22ea0e3ecd93",
+        "name": "getFileInfos",
+        "credentials": {
+          "googleDriveOAuth2Api": {
+            "id": "GpJUmnoBmqg9ldSq",
+            "name": "Google Drive account hoang.nv1"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "jsCode": "// Lấy response từ HTTP Request\nconst response = $input.first().json;\n\n// Lấy array files\nconst files = response.files || [];\n\n// Tách mỗi file thành 1 item riêng\nreturn files.map(file => ({\n  json: file\n}));"
+        },
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          -32,
+          272
+        ],
+        "id": "4e32a47b-2748-4947-aaf1-0dc288a17e43",
+        "name": "splitFileInfos"
+      },
+      {
+        "parameters": {
+          "operation": "download",
+          "fileId": {
+            "__rl": true,
+            "value": "={{ $json.id }}",
+            "mode": "id"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.googleDrive",
+        "typeVersion": 3,
+        "position": [
+          0,
+          512
+        ],
+        "id": "58bb4823-1e3a-498d-9c0c-e978d8888381",
+        "name": "downloadFile",
+        "credentials": {
+          "googleDriveOAuth2Api": {
+            "id": "GpJUmnoBmqg9ldSq",
+            "name": "Google Drive account hoang.nv1"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "sortFieldsUi": {
+            "sortField": [
+              {
+                "fieldName": "name"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.sort",
+        "typeVersion": 1,
+        "position": [
+          -256,
+          512
+        ],
+        "id": "d3d5bd28-1ede-48f5-951b-2ae4f9f18ca7",
+        "name": "Sort"
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": false,
+              "leftValue": "",
+              "typeValidation": "loose",
+              "version": 2
+            },
+            "conditions": [
+              {
+                "id": "c477d24f-f02c-4a8b-be37-b13f08ea61ed",
+                "leftValue": "={{ $json.name }}",
+                "rightValue": "ket_qua_kiem_ke",
+                "operator": {
+                  "type": "string",
+                  "operation": "notContains"
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "looseTypeValidation": true,
+          "options": {
+            "ignoreCase": true
+          }
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.2,
+        "position": [
+          128,
+          272
+        ],
+        "id": "d07b1705-e45b-4934-8dbc-207508564363",
+        "name": "checkFileName"
+      },
+      {
+        "parameters": {
+          "jsCode": "// Mode: Run once for all items\nconst names = $input.all().map(item => item.json.name);\n\n// Tạo YAML format\nconst yaml = names.map(name => `- \"${name}\"`).join('\\n');\n\nreturn [{ json: { yaml, names } }];"
+        },
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          0,
+          128
+        ],
+        "id": "49393fcb-7aab-42c8-8769-8a8c873b0654",
+        "name": "Code in JavaScript"
+      },
+      {
+        "parameters": {
+          "sendTo": "={{ $('Start').first().json['e-mail'] }}",
+          "subject": "LỖI KHI XỬ LÝ FILE KIỂM KÊ",
+          "emailType": "text",
+          "message": "=Hi anh chị,\n\nFile anh chị gửi có file không phải kết quả kiểm kê.\nFile kết quả kiểm kê trong tên phải có chứa \"ket_qua_kiem_ke\".\nAnh chị làm lại giúp em nhé.\n\nList file sai:\n{{ $json.yaml }}",
+          "options": {
+            "appendAttribution": false,
+            "senderName": "Hoàng Học Hỏi"
+          }
+        },
+        "type": "n8n-nodes-base.gmail",
+        "typeVersion": 2.1,
+        "position": [
+          128,
+          128
+        ],
+        "id": "3c2189a5-e057-43e1-9a3d-a317d01dc2f8",
+        "name": "sendError",
+        "webhookId": "931d13c9-e069-4c53-b847-3875bd644475",
+        "credentials": {
+          "gmailOAuth2": {
+            "id": "TOwj33rGKm4cjY0v",
+            "name": "Gmail hoanghochoi1618"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "documentId": {
+            "__rl": true,
+            "value": "1N3RqgFnMVJ-i-SlzXA523aVHjyA1dlLVOpdR_Eh9i2Q",
+            "mode": "id"
+          },
+          "sheetName": {
+            "__rl": true,
+            "value": 462606250,
+            "mode": "list",
+            "cachedResultName": "BBKK",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1N3RqgFnMVJ-i-SlzXA523aVHjyA1dlLVOpdR_Eh9i2Q/edit#gid=462606250"
+          },
+          "options": {
+            "dataLocationOnSheet": {
+              "values": {
+                "rangeDefinition": "specifyRange",
+                "headerRow": 9,
+                "firstDataRow": 10
+              }
+            }
+          }
+        },
+        "type": "n8n-nodes-base.googleSheets",
+        "typeVersion": 4.7,
+        "position": [
+          256,
+          1072
+        ],
+        "id": "26aeaa54-e426-4d0c-82a2-53acb59e0337",
+        "name": "getLastRowDetails",
+        "credentials": {
+          "googleSheetsOAuth2Api": {
+            "id": "MTh9LghqaMKPTAzs",
+            "name": "zalo-chat-bot-hoang.nv1"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "documentId": {
+            "__rl": true,
+            "value": "1N3RqgFnMVJ-i-SlzXA523aVHjyA1dlLVOpdR_Eh9i2Q",
+            "mode": "id"
+          },
+          "sheetName": {
+            "__rl": true,
+            "value": 211602655,
+            "mode": "list",
+            "cachedResultName": "DSACH Phiên - khu vực",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1N3RqgFnMVJ-i-SlzXA523aVHjyA1dlLVOpdR_Eh9i2Q/edit#gid=211602655"
+          },
+          "options": {
+            "dataLocationOnSheet": {
+              "values": {
+                "rangeDefinition": "specifyRange",
+                "headerRow": 3,
+                "firstDataRow": 4
+              }
+            }
+          }
+        },
+        "type": "n8n-nodes-base.googleSheets",
+        "typeVersion": 4.7,
+        "position": [
+          256,
+          1216
+        ],
+        "id": "5fbe30e9-b178-4265-94b6-2f68218c5d59",
+        "name": "getLastRowSession",
+        "credentials": {
+          "googleSheetsOAuth2Api": {
+            "id": "MTh9LghqaMKPTAzs",
+            "name": "zalo-chat-bot-hoang.nv1"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "operation": "clear",
+          "documentId": {
+            "__rl": true,
+            "value": "1N3RqgFnMVJ-i-SlzXA523aVHjyA1dlLVOpdR_Eh9i2Q",
+            "mode": "id"
+          },
+          "sheetName": {
+            "__rl": true,
+            "value": 462606250,
+            "mode": "list",
+            "cachedResultName": "BBKK",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1N3RqgFnMVJ-i-SlzXA523aVHjyA1dlLVOpdR_Eh9i2Q/edit#gid=462606250"
+          },
+          "clear": "specificRows",
+          "startIndex": 10,
+          "rowsToDelete": "={{ $json.row_number }}"
+        },
+        "type": "n8n-nodes-base.googleSheets",
+        "typeVersion": 4.7,
+        "position": [
+          512,
+          1072
+        ],
+        "id": "93249a89-83bc-40f4-8707-df223e411362",
+        "name": "clearDetails",
+        "credentials": {
+          "googleSheetsOAuth2Api": {
+            "id": "MTh9LghqaMKPTAzs",
+            "name": "zalo-chat-bot-hoang.nv1"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "operation": "clear",
+          "documentId": {
+            "__rl": true,
+            "value": "1N3RqgFnMVJ-i-SlzXA523aVHjyA1dlLVOpdR_Eh9i2Q",
+            "mode": "id"
+          },
+          "sheetName": {
+            "__rl": true,
+            "value": 211602655,
+            "mode": "list",
+            "cachedResultName": "DSACH Phiên - khu vực",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1N3RqgFnMVJ-i-SlzXA523aVHjyA1dlLVOpdR_Eh9i2Q/edit#gid=211602655"
+          },
+          "clear": "specificRows",
+          "startIndex": 4,
+          "rowsToDelete": "={{ $json.row_number }}"
+        },
+        "type": "n8n-nodes-base.googleSheets",
+        "typeVersion": 4.7,
+        "position": [
+          512,
+          1216
+        ],
+        "id": "4f7ac7a0-00e5-4886-82e5-3ad1451a3748",
+        "name": "clearSessions",
+        "credentials": {
+          "googleSheetsOAuth2Api": {
+            "id": "MTh9LghqaMKPTAzs",
+            "name": "zalo-chat-bot-hoang.nv1"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "operation": "deleteRows",
+          "dataTableId": {
+            "__rl": true,
+            "value": "PG041wB1h4yGDO7m",
+            "mode": "list",
+            "cachedResultName": "inv_count - details",
+            "cachedResultUrl": "/projects/GTQprNa3RcCSHh8s/datatables/PG041wB1h4yGDO7m"
+          },
+          "filters": {
+            "conditions": [
+              {
+                "condition": "isNotEmpty"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.dataTable",
+        "typeVersion": 1,
+        "position": [
+          256,
+          928
+        ],
+        "id": "787e3d6a-b01a-495e-b246-2580e7c17dfb",
+        "name": "deleteDetails",
+        "alwaysOutputData": true
+      },
+      {
+        "parameters": {
+          "fieldsToSummarize": {
+            "values": [
+              {
+                "field": "name"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.summarize",
+        "typeVersion": 1.1,
+        "position": [
+          0,
+          0
+        ],
+        "id": "08a8ce9f-4a03-45e1-bd73-547a9cbba5c5",
+        "name": "Summarize1"
+      },
+      {
+        "parameters": {},
+        "type": "n8n-nodes-base.noOp",
+        "typeVersion": 1,
+        "position": [
+          384,
+          128
+        ],
+        "id": "602640c9-3b79-42fa-9d0c-1b7b16600772",
+        "name": "done"
+      },
+      {
+        "parameters": {
+          "chatId": "5013029624",
+          "text": "={{ $('Start').item.json['e-mail'] }} đã gửi {{ $('Summarize1').first().json.count_name }} file không đúng định dạng!",
+          "additionalFields": {}
+        },
+        "type": "n8n-nodes-base.telegram",
+        "typeVersion": 1.2,
+        "position": [
+          256,
+          128
+        ],
+        "id": "086eb5cf-df66-4ebf-9b99-f5834d942631",
+        "name": "report_invalid",
+        "webhookId": "44f7bda3-2e42-4ba8-985e-b3ca611100cb",
+        "credentials": {
+          "telegramApi": {
+            "id": "yOqJ91F4uxm9OoWc",
+            "name": "n8n reports"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "chatId": "5013029624",
+          "text": "=Đã xử lý file kiểm kê cho {{ $('Start').item.json.store }}, gửi cho {{ $('Start').item.json['e-mail'] }}, tổng cộng {{ $('Start').item.json.numFile }} files!",
+          "additionalFields": {}
+        },
+        "type": "n8n-nodes-base.telegram",
+        "typeVersion": 1.2,
+        "position": [
+          128,
+          1072
+        ],
+        "id": "8216e87f-fefe-4bfa-b30c-df27ea138d1a",
+        "name": "report1",
+        "webhookId": "44f7bda3-2e42-4ba8-985e-b3ca611100cb",
+        "credentials": {
+          "telegramApi": {
+            "id": "yOqJ91F4uxm9OoWc",
+            "name": "n8n reports"
+          }
+        }
+      },
+      {
+        "parameters": {},
+        "type": "n8n-nodes-base.manualTrigger",
+        "typeVersion": 1,
+        "position": [
+          -400,
+          1360
+        ],
+        "id": "2ab3e91f-49dd-466e-800b-b40e2326a2fd",
+        "name": "When clicking ‘Execute workflow’"
+      },
+      {
+        "parameters": {
+          "sendTo": "=",
+          "subject": "=BÁO CÁO KIỂM KÊ THÁNG {{ DateTime.fromISO($today).format('MM-yyyy')}} CỦA ",
+          "emailType": "text",
+          "message": "=Hi anh chị,\n\nAnh chị check file đính kèm nhé!",
+          "options": {
+            "appendAttribution": false,
+            "attachmentsUi": {
+              "attachmentsBinary": []
+            },
+            "senderName": "Hoàng Học Hỏi"
+          }
+        },
+        "type": "n8n-nodes-base.gmail",
+        "typeVersion": 2.1,
+        "position": [
+          -768,
+          1152
+        ],
+        "id": "655ab9ff-bffb-40c0-9c26-5072a6307d35",
+        "name": "Send a message1",
+        "webhookId": "bf6b6c11-0e66-49b3-bd34-5f2d00b0ff59",
+        "credentials": {
+          "gmailOAuth2": {
+            "id": "TOwj33rGKm4cjY0v",
+            "name": "Gmail hoanghochoi1618"
+          }
+        },
+        "onError": "continueRegularOutput"
+      },
+      {
+        "parameters": {
+          "sendTo": "={{ $('Start').item.json['e-mail'] }}",
+          "subject": "=BÁO CÁO KIỂM KÊ THÁNG {{ DateTime.fromISO($today).format('MM-yyyy')}} CỦA {{ $('Start').item.json.store }}",
+          "emailType": "text",
+          "message": "=Hi anh chị,\n\nAnh chị check file đính kèm nhé!",
+          "options": {
+            "appendAttribution": false,
+            "attachmentsUi": {
+              "attachmentsBinary": [
+                {}
+              ]
+            },
+            "senderName": "Hoàng Nguyễn"
+          }
+        },
+        "type": "n8n-nodes-base.gmail",
+        "typeVersion": 2.1,
+        "position": [
+          0,
+          1072
+        ],
+        "id": "480105da-7446-4fd3-8235-1c6061145cf8",
+        "name": "Send a message3",
+        "webhookId": "bf6b6c11-0e66-49b3-bd34-5f2d00b0ff59",
+        "credentials": {
+          "gmailOAuth2": {
+            "id": "mdeJ5Cwz1YxLTzIG",
+            "name": "hoang.nv1"
+          }
+        },
+        "onError": "continueRegularOutput"
+      },
+      {
+        "parameters": {
+          "sendTo": "=hoang.nv1@phongvu-mna.vn",
+          "subject": "=BÁO CÁO KIỂM KÊ THÁNG {{ DateTime.fromISO($today).format('MM-yyyy')}} CỦA",
+          "emailType": "text",
+          "message": "=Hi anh chị,\n\nAnh chị check file đính kèm nhé!",
+          "options": {
+            "appendAttribution": false,
+            "senderName": "Hoàng Học Hỏi"
+          }
+        },
+        "type": "n8n-nodes-base.gmail",
+        "typeVersion": 2.1,
+        "position": [
+          -96,
+          1360
+        ],
+        "id": "acd42c3d-1863-4d62-b6a3-34541007ba3e",
+        "name": "Send a message",
+        "webhookId": "bf6b6c11-0e66-49b3-bd34-5f2d00b0ff59",
+        "credentials": {
+          "gmailOAuth2": {
+            "id": "mdeJ5Cwz1YxLTzIG",
+            "name": "hoang.nv1"
+          }
+        },
+        "onError": "continueRegularOutput"
+      }
+    ],
+    "connections": {
+      "Loop Over Items": {
+        "main": [
+          [
+            {
+              "node": "Limit",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "downloadFile",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Merge1": {
+        "main": [
+          [
+            {
+              "node": "Loop Over Items",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Download file": {
+        "main": [
+          [
+            {
+              "node": "Send a message3",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "takeSessionInfo": {
+        "main": [
+          [
+            {
+              "node": "genSessionInfo",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "takeDetailInfo": {
+        "main": [
+          [
+            {
+              "node": "checkCat",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "genSessionInfo": {
+        "main": [
+          [
+            {
+              "node": "addSessionInfo",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "checkCat": {
+        "main": [
+          [],
+          [
+            {
+              "node": "addDetails",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "addSessionInfo": {
+        "main": [
+          [
+            {
+              "node": "Merge1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "addDetails": {
+        "main": [
+          [
+            {
+              "node": "Merge1",
+              "type": "main",
+              "index": 1
+            }
+          ]
+        ]
+      },
+      "getDetails": {
+        "main": [
+          [
+            {
+              "node": "Merge",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "Summarize",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Limit": {
+        "main": [
+          [
+            {
+              "node": "getDetails",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "addDetailsToSheet": {
+        "main": [
+          [
+            {
+              "node": "Limit5",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Summarize": {
+        "main": [
+          [
+            {
+              "node": "genSum&Sign",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Merge": {
+        "main": [
+          [
+            {
+              "node": "addDetailsToSheet",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Limit3": {
+        "main": [
+          [
+            {
+              "node": "clearDetails",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Limit4": {
+        "main": [
+          [
+            {
+              "node": "clearSessions",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "genSum&Sign": {
+        "main": [
+          [
+            {
+              "node": "Merge",
+              "type": "main",
+              "index": 1
+            }
+          ]
+        ]
+      },
+      "Limit5": {
+        "main": [
+          [
+            {
+              "node": "Download file",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Start": {
+        "main": [
+          [
+            {
+              "node": "getFileInfos",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "getFileInfos": {
+        "main": [
+          [
+            {
+              "node": "splitFileInfos",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "splitFileInfos": {
+        "main": [
+          [
+            {
+              "node": "checkFileName",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "downloadFile": {
+        "main": [
+          [
+            {
+              "node": "takeSessionInfo",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "takeDetailInfo",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Sort": {
+        "main": [
+          [
+            {
+              "node": "Loop Over Items",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "checkFileName": {
+        "main": [
+          [
+            {
+              "node": "Code in JavaScript",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "Summarize1",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "Sort",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Code in JavaScript": {
+        "main": [
+          [
+            {
+              "node": "sendError",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "sendError": {
+        "main": [
+          [
+            {
+              "node": "report_invalid",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "getLastRowDetails": {
+        "main": [
+          [
+            {
+              "node": "Limit3",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "getLastRowSession": {
+        "main": [
+          [
+            {
+              "node": "Limit4",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "report_invalid": {
+        "main": [
+          [
+            {
+              "node": "done",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "report1": {
+        "main": [
+          [
+            {
+              "node": "getLastRowSession",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "getLastRowDetails",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "deleteDetails",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "When clicking ‘Execute workflow’": {
+        "main": [
+          []
+        ]
+      },
+      "Send a message3": {
+        "main": [
+          [
+            {
+              "node": "report1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "authors": "Hoang Nguyen",
+    "name": "Version bc098301",
+    "description": "",
+    "autosaved": false
+  },
+  "activeVersionId": "bc098301-4d68-419b-8f9c-3595e2421f00",
+  "connections": {
+    "Loop Over Items": {
+      "main": [
+        [
+          {
+            "node": "Limit",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "downloadFile",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge1": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Download file": {
+      "main": [
+        [
+          {
+            "node": "Send a message3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "takeSessionInfo": {
+      "main": [
+        [
+          {
+            "node": "genSessionInfo",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "takeDetailInfo": {
+      "main": [
+        [
+          {
+            "node": "checkCat",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "genSessionInfo": {
+      "main": [
+        [
+          {
+            "node": "addSessionInfo",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "checkCat": {
+      "main": [
+        [],
+        [
+          {
+            "node": "addDetails",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "addSessionInfo": {
+      "main": [
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "addDetails": {
+      "main": [
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "getDetails": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Summarize",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit": {
+      "main": [
+        [
+          {
+            "node": "getDetails",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "addDetailsToSheet": {
+      "main": [
+        [
+          {
+            "node": "Limit5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Summarize": {
+      "main": [
+        [
+          {
+            "node": "genSum&Sign",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "addDetailsToSheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit3": {
+      "main": [
+        [
+          {
+            "node": "clearDetails",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit4": {
+      "main": [
+        [
+          {
+            "node": "clearSessions",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "genSum&Sign": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Limit5": {
+      "main": [
+        [
+          {
+            "node": "Download file",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Start": {
+      "main": [
+        [
+          {
+            "node": "getFileInfos",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "getFileInfos": {
+      "main": [
+        [
+          {
+            "node": "splitFileInfos",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "splitFileInfos": {
+      "main": [
+        [
+          {
+            "node": "checkFileName",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "downloadFile": {
+      "main": [
+        [
+          {
+            "node": "takeSessionInfo",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "takeDetailInfo",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Sort": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "checkFileName": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Summarize1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Sort",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "sendError",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "sendError": {
+      "main": [
+        [
+          {
+            "node": "report_invalid",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "getLastRowDetails": {
+      "main": [
+        [
+          {
+            "node": "Limit3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "getLastRowSession": {
+      "main": [
+        [
+          {
+            "node": "Limit4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "report_invalid": {
+      "main": [
+        [
+          {
+            "node": "done",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "report1": {
+      "main": [
+        [
+          {
+            "node": "getLastRowSession",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "getLastRowDetails",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "deleteDetails",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        []
+      ]
+    },
+    "Send a message3": {
+      "main": [
+        [
+          {
+            "node": "report1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2026-02-22T19:17:44.581Z",
+  "id": "nBB279CuISsTemRL",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "sub-inv_count",
+  "nodes": [
+    {
+      "parameters": {
+        "keep": "lastItems"
+      },
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        384,
+        1216
+      ],
+      "id": "a771ee0f-99f3-4af2-91fa-6950ea012a0c",
+      "name": "Limit4"
+    },
+    {
+      "parameters": {
+        "operation": "download",
+        "fileId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1N3RqgFnMVJ-i-SlzXA523aVHjyA1dlLVOpdR_Eh9i2Q/edit?usp=drive_link",
+          "mode": "url"
+        },
+        "options": {
+          "googleFileConversion": {
+            "conversion": {
+              "sheetsToFormat": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+            }
+          },
+          "fileName": "={{ $('Start').item.json.store }} - Báo cáo kiểm kê tháng {{ DateTime.fromISO($today).format('MM-yyyy')}}.xlsx"
+        }
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        -128,
+        1072
+      ],
+      "id": "6ddb3abc-c1a5-4b52-acae-ec93e4188e90",
+      "name": "Download file",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "GpJUmnoBmqg9ldSq",
+          "name": "Google Drive account hoang.nv1"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "keep": "lastItems"
+      },
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        384,
+        1072
+      ],
+      "id": "993e6384-b9d7-4c86-a299-7cbe38b54e96",
+      "name": "Limit3"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        -256,
+        1072
+      ],
+      "id": "a04105fc-6763-4009-ac80-b8d110243adc",
+      "name": "Limit5"
+    },
+    {
+      "parameters": {
+        "fieldsToSummarize": {
+          "values": [
+            {
+              "aggregation": "sum",
+              "field": "kiemKe"
+            },
+            {
+              "aggregation": "sum",
+              "field": "tonCuoi"
+            },
+            {
+              "aggregation": "sum",
+              "field": "chenhLech"
+            },
+            {
+              "field": "chenhLech",
+              "includeEmpty": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.summarize",
+      "typeVersion": 1.1,
+      "position": [
+        0,
+        816
+      ],
+      "id": "3cfcd2d8-6783-428f-b3c3-11a98ad5d327",
+      "name": "Summarize"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Lấy summary data\nconst input = $input.first().json;\n\n// Item 1: Tổng số liệu từ summarize\nconst item1 = {\n  MaVatTu: null,\n  TenVatTu: null,\n  dvt: null,\n  TinhTrangHangHoa: null,\n  PhieuKiemKe: null,\n  tonCuoi: input.sum_tonCuoi,\n  kiemKe: input.sum_kiemKe,\n  chenhLech: input.sum_chenhLech,\n  id: null,\n  createdAt: null,\n  updatedAt: null\n};\n\n// Item 2: Chữ ký\nconst item2 = {\n  MaVatTu: 'ĐẠI DIỆN KIỂM KHO',\n  TenVatTu: 'ĐẠI DIỆN KIỂM KÊ',\n  dvt: 'QUẢN LÝ CHI NHÁNH',\n  TinhTrangHangHoa: null,\n  PhieuKiemKe: null,\n  tonCuoi: null,\n  kiemKe: null,\n  chenhLech: 'KIỂM SOÁT NỘI BỘ',\n  id: null,\n  createdAt: null,\n  updatedAt: null\n};\n\nreturn [\n  { json: item1 },\n  { json: item2 }\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        128,
+        816
+      ],
+      "id": "447ddb5c-6f7f-45a0-998f-58508bab12f0",
+      "name": "genSum&Sign"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1N3RqgFnMVJ-i-SlzXA523aVHjyA1dlLVOpdR_Eh9i2Q",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 462606250,
+          "mode": "list",
+          "cachedResultName": "BBKK",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1N3RqgFnMVJ-i-SlzXA523aVHjyA1dlLVOpdR_Eh9i2Q/edit#gid=462606250"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "STT": "={{ $itemIndex + 1 }}",
+            "Mã vật tư": "={{ $json.MaVatTu }}",
+            "Tên vật tư": "={{ $json.TenVatTu }}",
+            "Chênh lệch": "={{ $json.chenhLech }}",
+            "Phiên kiểm kê": "={{ $json.PhieuKiemKe }}",
+            "Đvt": "={{ $json.dvt }}",
+            "Tồn cuối\n phần mềm": "={{ $json.tonCuoi }}",
+            "Kiểm kê\n thực tế": "={{ $json.kiemKe }}"
+          },
+          "matchingColumns": [
+            "CÔNG TY CỔ PHẨN THƯƠNG MẠI DỊCH VỤ PHONG VŨ"
+          ],
+          "schema": [
+            {
+              "id": "STT",
+              "displayName": "STT",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Mã vật tư",
+              "displayName": "Mã vật tư",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Tên vật tư",
+              "displayName": "Tên vật tư",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Đvt",
+              "displayName": "Đvt",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Tồn cuối\n phần mềm",
+              "displayName": "Tồn cuối\n phần mềm",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Kiểm kê\n thực tế",
+              "displayName": "Kiểm kê\n thực tế",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Chênh lệch",
+              "displayName": "Chênh lệch",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Trình trạng hàng hóa",
+              "displayName": "Trình trạng hàng hóa",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Phiên kiểm kê",
+              "displayName": "Phiên kiểm kê",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {
+          "cellFormat": "RAW",
+          "locationDefine": {
+            "values": {
+              "headerRow": 9
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        384,
+        768
+      ],
+      "id": "0d54b70a-f01c-4dcf-9629-a60071f5ebd4",
+      "name": "addDetailsToSheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "MTh9LghqaMKPTAzs",
+          "name": "zalo-chat-bot-hoang.nv1"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        256,
+        768
+      ],
+      "id": "a6dc688c-d566-4575-b466-ab100d0ab369",
+      "name": "Merge"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "dataTableId": {
+          "__rl": true,
+          "value": "PG041wB1h4yGDO7m",
+          "mode": "list",
+          "cachedResultName": "inv_count - details",
+          "cachedResultUrl": "/projects/GTQprNa3RcCSHh8s/datatables/PG041wB1h4yGDO7m"
+        },
+        "returnAll": true
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        -128,
+        752
+      ],
+      "id": "ea86f169-1a86-4e02-ac77-f130716e007c",
+      "name": "getDetails"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        -256,
+        752
+      ],
+      "id": "a62fbd84-42e1-46c0-a74e-fea908397cc1",
+      "name": "Limit"
+    },
+    {
+      "parameters": {
+        "operation": "xlsx",
+        "options": {
+          "range": "A9:I1000",
+          "sheetName": "KetQuaTongHop"
+        }
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1,
+      "position": [
+        128,
+        576
+      ],
+      "id": "41ebf946-3008-4cf7-8d84-e865c81c1aa9",
+      "name": "takeDetailInfo"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": false,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "911c2433-5900-480a-834b-e7fea73ee183",
+              "leftValue": "={{ $json['Ngành hàng'] }}",
+              "rightValue": "Dịch vụ kỹ thuật",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            },
+            {
+              "id": "0636dc18-dcf6-4fcd-91a9-b69a13b18e9b",
+              "leftValue": "={{ $json['Ngành hàng'] }}",
+              "rightValue": "Dịch vụ giá trị gia tăng",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {
+          "ignoreCase": true
+        }
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        256,
+        576
+      ],
+      "id": "29143df9-2615-4926-bb61-024d15ca0bb1",
+      "name": "checkCat"
+    },
+    {
+      "parameters": {
+        "dataTableId": {
+          "__rl": true,
+          "value": "PG041wB1h4yGDO7m",
+          "mode": "list",
+          "cachedResultName": "inv_count - details",
+          "cachedResultUrl": "/projects/GTQprNa3RcCSHh8s/datatables/PG041wB1h4yGDO7m"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "MaVatTu": "={{ $json['Mã sản phẩm'] }}",
+            "TenVatTu": "={{ $json['Tên sản phẩm'] }}",
+            "PhieuKiemKe": "={{ $('genSessionInfo').first().json.session }}",
+            "tonCuoi": "={{ $json['Số lượng tồn'] }}",
+            "kiemKe": "={{ $json['Số lượng kiểm đếm'] }}",
+            "chenhLech": "={{ $json['Số lượng chênh lệch'] }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "MaVatTu",
+              "displayName": "MaVatTu",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "TenVatTu",
+              "displayName": "TenVatTu",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "dvt",
+              "displayName": "dvt",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "tonCuoi",
+              "displayName": "tonCuoi",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "kiemKe",
+              "displayName": "kiemKe",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "chenhLech",
+              "displayName": "chenhLech",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "TinhTrangHangHoa",
+              "displayName": "TinhTrangHangHoa",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "PhieuKiemKe",
+              "displayName": "PhieuKiemKe",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        384,
+        576
+      ],
+      "id": "3969980e-1c85-43f0-ac70-cccaa06e8392",
+      "name": "addDetails"
+    },
+    {
+      "parameters": {
+        "options": {
+          "reset": false
+        }
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        -128,
+        512
+      ],
+      "id": "876e6438-5d36-4974-a3d6-c551fee73a61",
+      "name": "Loop Over Items",
+      "alwaysOutputData": false
+    },
+    {
+      "parameters": {
+        "mode": "chooseBranch",
+        "output": "empty"
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        576,
+        512
+      ],
+      "id": "144629aa-f9ff-44b2-bdca-33321786076a",
+      "name": "Merge1"
+    },
+    {
+      "parameters": {
+        "operation": "xlsx",
+        "options": {
+          "range": "B0:C5",
+          "rawData": false
+        }
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1,
+      "position": [
+        128,
+        448
+      ],
+      "id": "1f36afd7-9ba5-4e30-81e7-262686e659f0",
+      "name": "takeSessionInfo"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Function — Run once for all items\n// Lấy: 1) \"phiên kiểm kê\" từ header dạng KK-xxxx-xxxxx\n//      2) \"Ngày yêu cầu kiểm kê\"\n//      3) \"khu vực kiểm kê\"\n\nconst rows = $input.all().map(it => it.json);\nconst table = rows.map(r => Object.values(r).map(v => String(v ?? '').trim()));\n\nconst norm = s => String(s ?? '')\n  .normalize('NFD').replace(/[\\u0300-\\u036f]/g,'')\n  .toLowerCase().trim();\nconst raw = s => String(s ?? '').trim();\n\n// ===== 1) PHIÊN kiểm kê từ header (KK-xxxx-xxxxx) =====\nlet phien = '';\nif (table.length) {\n  const upTo = Math.min(50, table.length);\n  const lines = [];\n  for (let i = 0; i < upTo; i++) lines.push(raw(table[i].join(' ')));\n  const headerText = lines.join('  ');\n\n  // Cố gắng match KK-xxxx-xxxxx\n  let m = headerText.match(/\\bkk[^0-9]*?(\\d{4})[^0-9]*?(\\d{5})\\b/i);\n  if (m) phien = `KK-${m[1]}-${m[2]}`;\n  \n  if (!phien) {\n    const m2 = headerText.replace(/\\s+/g,'').match(/\\bkk(\\d{9})\\b/i);\n    if (m2) phien = `KK-${m2[1].slice(0,4)}-${m2[1].slice(4)}`;\n  }\n\n  if (!phien) {\n    outer:\n    for (let i = 0; i < upTo; i++) {\n      const row = table[i];\n      for (let j = 0; j < row.length; j++) {\n        const cell = row[j];\n        if (!/kk/i.test(cell)) continue;\n        let digits = (cell.match(/(\\d+)/g) || []).join('');\n        for (let k = j + 1; k < row.length && digits.length < 9; k++) {\n          const tok = row[k];\n          const nums = tok.match(/^\\D*(\\d+)/);\n          if (!nums) break;\n          digits += nums[1];\n        }\n        if (digits.length < 9 && i + 1 < table.length) {\n          for (let k = 0; k < table[i+1].length && digits.length < 9; k++) {\n            const tok = table[i+1][k];\n            const nums = tok.match(/^\\D*(\\d+)/);\n            if (!nums) continue;\n            digits += nums[1];\n          }\n        }\n        if (digits.length >= 9) {\n          digits = digits.slice(0,9);\n          phien = `KK-${digits.slice(0,4)}-${digits.slice(4)}`;\n          break outer;\n        }\n      }\n    }\n  }\n\n  if (!phien) {\n    const compact = headerText.replace(/[^A-Za-z0-9]+/g,'').toLowerCase();\n    const m3 = compact.match(/kk(\\d{9})/i);\n    if (m3) phien = `KK-${m3[1].slice(0,4)}-${m3[1].slice(4)}`;\n  }\n}\n\n// ===== 2) \"Ngày yêu cầu kiểm kê\" + 3) \"khu vực kiểm kê\" =====\nconst tokens = {\n  ngayYC: [\n    'ngay yeu cau kiem ke',\n    'ngay yeu cau',\n    'ngay yc kiem ke',\n    'requested date',\n    'request date',\n    'date requested'\n  ],\n  khu: [\n    'khu vuc kiem ke',\n    'khu vuc',\n    'khu vuc kk',\n    'area'\n  ],\n};\nconst hasToken = (s, list) => list.some(t => norm(s).includes(t));\nconst pickAfterSep = s => {\n  const mm = String(s).match(/[:\\-–]\\s*(.+)$/);\n  return mm ? raw(mm[1]) : '';\n};\nconst rightCell = (vals, j) => {\n  for (let k = j + 1; k < vals.length; k++) { const v = raw(vals[k]); if (v) return v; }\n  return '';\n};\nconst nextRowFirst = (tbl, i) => {\n  if (i + 1 >= tbl.length) return '';\n  const vals = tbl[i + 1];\n  for (let k = 0; k < vals.length; k++) { const v = raw(vals[k]); if (v) return v; }\n  return '';\n};\n\nlet ngayYC = '';\nlet khu = '';\n\n// theo tiêu đề cột\nif (table.length) {\n  const header = table[0].map(raw);\n  const idxBy = lists => {\n    for (let j = 0; j < header.length; j++) if (hasToken(header[j], lists)) return j;\n    return -1;\n  };\n  const colNgayYC = idxBy(tokens.ngayYC);\n  const colKhu    = idxBy(tokens.khu);\n\n  const firstBelow = col => {\n    if (col < 0) return '';\n    for (let i = 1; i < table.length; i++) {\n      const v = raw(table[i][col]); if (v) return v;\n    }\n    return '';\n  };\n  if (!ngayYC) ngayYC = firstBelow(colNgayYC);\n  if (!khu)    khu    = firstBelow(colKhu);\n}\n\n// quét nhãn:giá trị\nif (!ngayYC || !khu) {\n  outer2:\n  for (let i = 0; i < table.length; i++) {\n    const row = table[i];\n    for (let j = 0; j < row.length; j++) {\n      const cell = raw(row[j]);\n      if (!cell) continue;\n      if (!ngayYC && hasToken(cell, tokens.ngayYC)) {\n        ngayYC = pickAfterSep(cell) || rightCell(row, j) || nextRowFirst(table, i);\n      }\n      if (!khu && hasToken(cell, tokens.khu)) {\n        khu = pickAfterSep(cell) || rightCell(row, j) || nextRowFirst(table, i);\n      }\n      if (ngayYC && khu) break outer2;\n    }\n  }\n}\n\n// ===== Output 3 item =====\nreturn [\n  {\n    json: {\n      'date': ngayYC || '',\n      'session': phien || '',\n      'zone': khu || ''\n    }\n  }\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        256,
+        448
+      ],
+      "id": "28ec6933-9562-4684-8d27-8be3c65ad563",
+      "name": "genSessionInfo"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1N3RqgFnMVJ-i-SlzXA523aVHjyA1dlLVOpdR_Eh9i2Q",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 211602655,
+          "mode": "list",
+          "cachedResultName": "DSACH Phiên - khu vực",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1N3RqgFnMVJ-i-SlzXA523aVHjyA1dlLVOpdR_Eh9i2Q/edit#gid=211602655"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Ngày tạo phiên kiểm kê": "={{ $json.date }}",
+            "Mã phiên kiểm kê": "={{ $json.session }}",
+            "Khu vực": "={{ $json.zone }}"
+          },
+          "matchingColumns": [
+            "Lưu ý : Cột \"Khu vực kiểm kê\" - cửa hàng cứ kiểm theo khu vực BIN đã chọn kiểm,  phù hợp với điều kiện riêng của từng cửa hàng. "
+          ],
+          "schema": [
+            {
+              "id": "Ngày tạo phiên kiểm kê",
+              "displayName": "Ngày tạo phiên kiểm kê",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Mã phiên kiểm kê",
+              "displayName": "Mã phiên kiểm kê",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Khu vực",
+              "displayName": "Khu vực",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {
+          "locationDefine": {
+            "values": {
+              "headerRow": 3
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        384,
+        448
+      ],
+      "id": "a462a614-54c6-4241-a081-0ef6a175dfbc",
+      "name": "addSessionInfo",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "MTh9LghqaMKPTAzs",
+          "name": "zalo-chat-bot-hoang.nv1"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "inputSource": "passthrough"
+      },
+      "id": "1f6a839c-f8ae-4fc3-b803-2cd0a7b9304a",
+      "typeVersion": 1.1,
+      "name": "Start",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "position": [
+        -416,
+        272
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://www.googleapis.com/drive/v3/files",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "googleDriveOAuth2Api",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "q",
+              "value": "='{{ $json.folderId }}' in parents and trashed=false"
+            },
+            {
+              "name": "fields",
+              "value": "files(id,name,mimeType,size,createdTime,modifiedTime,webViewLink)"
+            },
+            {
+              "name": "pageSize",
+              "value": "1000"
+            },
+            {
+              "name": "orderBy",
+              "value": "modifiedTime desc"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        -192,
+        272
+      ],
+      "id": "05a6d67f-d94c-4747-a0b2-22ea0e3ecd93",
+      "name": "getFileInfos",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "GpJUmnoBmqg9ldSq",
+          "name": "Google Drive account hoang.nv1"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Lấy response từ HTTP Request\nconst response = $input.first().json;\n\n// Lấy array files\nconst files = response.files || [];\n\n// Tách mỗi file thành 1 item riêng\nreturn files.map(file => ({\n  json: file\n}));"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -32,
+        272
+      ],
+      "id": "4e32a47b-2748-4947-aaf1-0dc288a17e43",
+      "name": "splitFileInfos"
+    },
+    {
+      "parameters": {
+        "operation": "download",
+        "fileId": {
+          "__rl": true,
+          "value": "={{ $json.id }}",
+          "mode": "id"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        0,
+        512
+      ],
+      "id": "58bb4823-1e3a-498d-9c0c-e978d8888381",
+      "name": "downloadFile",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "GpJUmnoBmqg9ldSq",
+          "name": "Google Drive account hoang.nv1"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sortFieldsUi": {
+          "sortField": [
+            {
+              "fieldName": "name"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.sort",
+      "typeVersion": 1,
+      "position": [
+        -256,
+        512
+      ],
+      "id": "d3d5bd28-1ede-48f5-951b-2ae4f9f18ca7",
+      "name": "Sort"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": false,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "c477d24f-f02c-4a8b-be37-b13f08ea61ed",
+              "leftValue": "={{ $json.name }}",
+              "rightValue": "ket_qua_kiem_ke",
+              "operator": {
+                "type": "string",
+                "operation": "notContains"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {
+          "ignoreCase": true
+        }
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        128,
+        272
+      ],
+      "id": "d07b1705-e45b-4934-8dbc-207508564363",
+      "name": "checkFileName"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Mode: Run once for all items\nconst names = $input.all().map(item => item.json.name);\n\n// Tạo YAML format\nconst yaml = names.map(name => `- \"${name}\"`).join('\\n');\n\nreturn [{ json: { yaml, names } }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        0,
+        128
+      ],
+      "id": "49393fcb-7aab-42c8-8769-8a8c873b0654",
+      "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $('Start').first().json['e-mail'] }}",
+        "subject": "LỖI KHI XỬ LÝ FILE KIỂM KÊ",
+        "emailType": "text",
+        "message": "=Hi anh chị,\n\nFile anh chị gửi có file không phải kết quả kiểm kê.\nFile kết quả kiểm kê trong tên phải có chứa \"ket_qua_kiem_ke\".\nAnh chị làm lại giúp em nhé.\n\nList file sai:\n{{ $json.yaml }}",
+        "options": {
+          "appendAttribution": false,
+          "senderName": "Hoàng Học Hỏi"
+        }
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        128,
+        128
+      ],
+      "id": "3c2189a5-e057-43e1-9a3d-a317d01dc2f8",
+      "name": "sendError",
+      "webhookId": "931d13c9-e069-4c53-b847-3875bd644475",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "TOwj33rGKm4cjY0v",
+          "name": "Gmail hoanghochoi1618"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1N3RqgFnMVJ-i-SlzXA523aVHjyA1dlLVOpdR_Eh9i2Q",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 462606250,
+          "mode": "list",
+          "cachedResultName": "BBKK",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1N3RqgFnMVJ-i-SlzXA523aVHjyA1dlLVOpdR_Eh9i2Q/edit#gid=462606250"
+        },
+        "options": {
+          "dataLocationOnSheet": {
+            "values": {
+              "rangeDefinition": "specifyRange",
+              "headerRow": 9,
+              "firstDataRow": 10
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        256,
+        1072
+      ],
+      "id": "26aeaa54-e426-4d0c-82a2-53acb59e0337",
+      "name": "getLastRowDetails",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "MTh9LghqaMKPTAzs",
+          "name": "zalo-chat-bot-hoang.nv1"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1N3RqgFnMVJ-i-SlzXA523aVHjyA1dlLVOpdR_Eh9i2Q",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 211602655,
+          "mode": "list",
+          "cachedResultName": "DSACH Phiên - khu vực",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1N3RqgFnMVJ-i-SlzXA523aVHjyA1dlLVOpdR_Eh9i2Q/edit#gid=211602655"
+        },
+        "options": {
+          "dataLocationOnSheet": {
+            "values": {
+              "rangeDefinition": "specifyRange",
+              "headerRow": 3,
+              "firstDataRow": 4
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        256,
+        1216
+      ],
+      "id": "5fbe30e9-b178-4265-94b6-2f68218c5d59",
+      "name": "getLastRowSession",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "MTh9LghqaMKPTAzs",
+          "name": "zalo-chat-bot-hoang.nv1"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "clear",
+        "documentId": {
+          "__rl": true,
+          "value": "1N3RqgFnMVJ-i-SlzXA523aVHjyA1dlLVOpdR_Eh9i2Q",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 462606250,
+          "mode": "list",
+          "cachedResultName": "BBKK",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1N3RqgFnMVJ-i-SlzXA523aVHjyA1dlLVOpdR_Eh9i2Q/edit#gid=462606250"
+        },
+        "clear": "specificRows",
+        "startIndex": 10,
+        "rowsToDelete": "={{ $json.row_number }}"
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        512,
+        1072
+      ],
+      "id": "93249a89-83bc-40f4-8707-df223e411362",
+      "name": "clearDetails",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "MTh9LghqaMKPTAzs",
+          "name": "zalo-chat-bot-hoang.nv1"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "clear",
+        "documentId": {
+          "__rl": true,
+          "value": "1N3RqgFnMVJ-i-SlzXA523aVHjyA1dlLVOpdR_Eh9i2Q",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 211602655,
+          "mode": "list",
+          "cachedResultName": "DSACH Phiên - khu vực",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1N3RqgFnMVJ-i-SlzXA523aVHjyA1dlLVOpdR_Eh9i2Q/edit#gid=211602655"
+        },
+        "clear": "specificRows",
+        "startIndex": 4,
+        "rowsToDelete": "={{ $json.row_number }}"
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        512,
+        1216
+      ],
+      "id": "4f7ac7a0-00e5-4886-82e5-3ad1451a3748",
+      "name": "clearSessions",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "MTh9LghqaMKPTAzs",
+          "name": "zalo-chat-bot-hoang.nv1"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "deleteRows",
+        "dataTableId": {
+          "__rl": true,
+          "value": "PG041wB1h4yGDO7m",
+          "mode": "list",
+          "cachedResultName": "inv_count - details",
+          "cachedResultUrl": "/projects/GTQprNa3RcCSHh8s/datatables/PG041wB1h4yGDO7m"
+        },
+        "filters": {
+          "conditions": [
+            {
+              "condition": "isNotEmpty"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        256,
+        928
+      ],
+      "id": "787e3d6a-b01a-495e-b246-2580e7c17dfb",
+      "name": "deleteDetails",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "fieldsToSummarize": {
+          "values": [
+            {
+              "field": "name"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.summarize",
+      "typeVersion": 1.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "08a8ce9f-4a03-45e1-bd73-547a9cbba5c5",
+      "name": "Summarize1"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        384,
+        128
+      ],
+      "id": "602640c9-3b79-42fa-9d0c-1b7b16600772",
+      "name": "done"
+    },
+    {
+      "parameters": {
+        "chatId": "5013029624",
+        "text": "={{ $('Start').item.json['e-mail'] }} đã gửi {{ $('Summarize1').first().json.count_name }} file không đúng định dạng!",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        256,
+        128
+      ],
+      "id": "086eb5cf-df66-4ebf-9b99-f5834d942631",
+      "name": "report_invalid",
+      "webhookId": "44f7bda3-2e42-4ba8-985e-b3ca611100cb",
+      "credentials": {
+        "telegramApi": {
+          "id": "yOqJ91F4uxm9OoWc",
+          "name": "n8n reports"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "5013029624",
+        "text": "=Đã xử lý file kiểm kê cho {{ $('Start').item.json.store }}, gửi cho {{ $('Start').item.json['e-mail'] }}, tổng cộng {{ $('Start').item.json.numFile }} files!",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        128,
+        1072
+      ],
+      "id": "8216e87f-fefe-4bfa-b30c-df27ea138d1a",
+      "name": "report1",
+      "webhookId": "44f7bda3-2e42-4ba8-985e-b3ca611100cb",
+      "credentials": {
+        "telegramApi": {
+          "id": "yOqJ91F4uxm9OoWc",
+          "name": "n8n reports"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -400,
+        1360
+      ],
+      "id": "2ab3e91f-49dd-466e-800b-b40e2326a2fd",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "sendTo": "=",
+        "subject": "=BÁO CÁO KIỂM KÊ THÁNG {{ DateTime.fromISO($today).format('MM-yyyy')}} CỦA ",
+        "emailType": "text",
+        "message": "=Hi anh chị,\n\nAnh chị check file đính kèm nhé!",
+        "options": {
+          "appendAttribution": false,
+          "attachmentsUi": {
+            "attachmentsBinary": []
+          },
+          "senderName": "Hoàng Học Hỏi"
+        }
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        -768,
+        1152
+      ],
+      "id": "655ab9ff-bffb-40c0-9c26-5072a6307d35",
+      "name": "Send a message1",
+      "webhookId": "bf6b6c11-0e66-49b3-bd34-5f2d00b0ff59",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "TOwj33rGKm4cjY0v",
+          "name": "Gmail hoanghochoi1618"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $('Start').item.json['e-mail'] }}",
+        "subject": "=BÁO CÁO KIỂM KÊ THÁNG {{ DateTime.fromISO($today).format('MM-yyyy')}} CỦA {{ $('Start').item.json.store }}",
+        "emailType": "text",
+        "message": "=Hi anh chị,\n\nAnh chị check file đính kèm nhé!",
+        "options": {
+          "appendAttribution": false,
+          "attachmentsUi": {
+            "attachmentsBinary": [
+              {}
+            ]
+          },
+          "senderName": "Hoàng Nguyễn"
+        }
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        1072
+      ],
+      "id": "480105da-7446-4fd3-8235-1c6061145cf8",
+      "name": "Send a message3",
+      "webhookId": "bf6b6c11-0e66-49b3-bd34-5f2d00b0ff59",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "mdeJ5Cwz1YxLTzIG",
+          "name": "hoang.nv1"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "sendTo": "=hoang.nv1@phongvu-mna.vn",
+        "subject": "=BÁO CÁO KIỂM KÊ THÁNG {{ DateTime.fromISO($today).format('MM-yyyy')}} CỦA",
+        "emailType": "text",
+        "message": "=Hi anh chị,\n\nAnh chị check file đính kèm nhé!",
+        "options": {
+          "appendAttribution": false,
+          "senderName": "Hoàng Học Hỏi"
+        }
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        -96,
+        1360
+      ],
+      "id": "acd42c3d-1863-4d62-b6a3-34541007ba3e",
+      "name": "Send a message",
+      "webhookId": "bf6b6c11-0e66-49b3-bd34-5f2d00b0ff59",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "mdeJ5Cwz1YxLTzIG",
+          "name": "hoang.nv1"
+        }
+      },
+      "onError": "continueRegularOutput"
+    }
+  ],
+  "pinData": {
+    "Start": [
+      {
+        "json": {
+          "folderId": "1ThBA4A_p_qz_0ebRyk6v2UeL1tbSfe7r",
+          "status": "doing",
+          "row_number": 0,
+          "store": "CP40",
+          "e-mail": "canh.lv@phongvu-mna.vn",
+          "numFile": 31
+        },
+        "pairedItem": {
+          "item": 0
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false,
+    "timeSavedMode": "fixed",
+    "errorWorkflow": "tUGf8pqhOC0yFiUP",
+    "callerPolicy": "workflowsFromSameOwner"
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-02-22T19:17:44.581Z",
+      "createdAt": "2026-02-22T19:17:44.581Z",
+      "role": "workflow:owner",
+      "workflowId": "nBB279CuISsTemRL",
+      "projectId": "GTQprNa3RcCSHh8s"
+    }
+  ],
+  "staticData": null,
+  "tags": [
+    {
+      "updatedAt": "2025-11-08T12:09:40.816Z",
+      "createdAt": "2025-11-08T12:08:49.207Z",
+      "id": "aJR3FZVXiQEfDzcy",
+      "name": "pv.vn"
+    }
+  ],
+  "triggerCount": 0,
+  "updatedAt": "2026-03-21T04:49:06.047Z",
+  "versionId": "bc098301-4d68-419b-8f9c-3595e2421f00"
+}
