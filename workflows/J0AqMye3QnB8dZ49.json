@@ -1,0 +1,1160 @@
+{
+  "active": true,
+  "activeVersion": {
+    "updatedAt": "2026-03-20T18:51:56.125Z",
+    "createdAt": "2026-03-20T18:51:49.440Z",
+    "versionId": "6f3e98f1-45a3-4ab6-b9e3-85fade6b57fb",
+    "workflowId": "J0AqMye3QnB8dZ49",
+    "nodes": [
+      {
+        "parameters": {
+          "rule": {
+            "interval": [
+              {
+                "field": "minutes",
+                "minutesInterval": 30
+              }
+            ]
+          }
+        },
+        "type": "n8n-nodes-base.scheduleTrigger",
+        "typeVersion": 1.3,
+        "position": [
+          -208,
+          240
+        ],
+        "id": "3e8c7af9-52ac-4585-bcc4-6045f99a498f",
+        "name": "1hours"
+      },
+      {
+        "parameters": {
+          "method": "POST",
+          "url": "https://openapi.seatalk.io/auth/app_access_token",
+          "sendHeaders": true,
+          "headerParameters": {
+            "parameters": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          },
+          "sendBody": true,
+          "bodyParameters": {
+            "parameters": [
+              {
+                "name": "app_id",
+                "value": "={{ $json.app_id }}"
+              },
+              {
+                "name": "app_secret",
+                "value": "={{ $json.app_secret }}"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.3,
+        "position": [
+          256,
+          0
+        ],
+        "id": "1da2475e-2dac-41a0-a53d-11f3e8a294ca",
+        "name": "HTTP Request",
+        "retryOnFail": true,
+        "onError": "continueRegularOutput"
+      },
+      {
+        "parameters": {
+          "operation": "update",
+          "dataTableId": {
+            "__rl": true,
+            "value": "sc1dOTktntfbMUel",
+            "mode": "list",
+            "cachedResultName": "seatalk-app-access-token",
+            "cachedResultUrl": "/projects/GTQprNa3RcCSHh8s/datatables/sc1dOTktntfbMUel"
+          },
+          "filters": {
+            "conditions": [
+              {
+                "keyName": "app_id",
+                "keyValue": "={{ $('get_app').first().json.app_id }}"
+              }
+            ]
+          },
+          "columns": {
+            "mappingMode": "defineBelow",
+            "value": {
+              "app_access_token": "={{ $json.app_access_token }}"
+            },
+            "matchingColumns": [],
+            "schema": [
+              {
+                "id": "app_name",
+                "displayName": "app_name",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": true
+              },
+              {
+                "id": "app_id",
+                "displayName": "app_id",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": true
+              },
+              {
+                "id": "app_secret",
+                "displayName": "app_secret",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": true
+              },
+              {
+                "id": "app_access_token",
+                "displayName": "app_access_token",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": false
+              }
+            ],
+            "attemptToConvertTypes": false,
+            "convertFieldsToString": false
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.dataTable",
+        "typeVersion": 1,
+        "position": [
+          448,
+          0
+        ],
+        "id": "373f470a-16da-4a31-9051-14320419fd35",
+        "name": "record-app-infomations"
+      },
+      {
+        "parameters": {
+          "operation": "get",
+          "dataTableId": {
+            "__rl": true,
+            "value": "sc1dOTktntfbMUel",
+            "mode": "list",
+            "cachedResultName": "seatalk-app-access-token",
+            "cachedResultUrl": "/projects/GTQprNa3RcCSHh8s/datatables/sc1dOTktntfbMUel"
+          },
+          "filters": {
+            "conditions": [
+              {
+                "keyName": "app_id",
+                "keyValue": "MTk5MzA1OTkxODcw"
+              }
+            ]
+          },
+          "returnAll": true
+        },
+        "type": "n8n-nodes-base.dataTable",
+        "typeVersion": 1.1,
+        "position": [
+          0,
+          0
+        ],
+        "id": "628a61b7-e735-4b50-8dbd-406d09357cf4",
+        "name": "get_app"
+      },
+      {
+        "parameters": {
+          "method": "POST",
+          "url": "https://openapi.seatalk.io/auth/app_access_token",
+          "sendHeaders": true,
+          "headerParameters": {
+            "parameters": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          },
+          "sendBody": true,
+          "bodyParameters": {
+            "parameters": [
+              {
+                "name": "app_id",
+                "value": "={{ $json.app_id }}"
+              },
+              {
+                "name": "app_secret",
+                "value": "={{ $json.app_secret }}"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.3,
+        "position": [
+          256,
+          240
+        ],
+        "id": "d27169fc-9f25-44c3-8022-3720386de1f9",
+        "name": "HTTP Request1",
+        "retryOnFail": true,
+        "onError": "continueRegularOutput"
+      },
+      {
+        "parameters": {
+          "operation": "update",
+          "dataTableId": {
+            "__rl": true,
+            "value": "sc1dOTktntfbMUel",
+            "mode": "list",
+            "cachedResultName": "seatalk-app-access-token",
+            "cachedResultUrl": "/projects/GTQprNa3RcCSHh8s/datatables/sc1dOTktntfbMUel"
+          },
+          "filters": {
+            "conditions": [
+              {
+                "keyName": "app_id",
+                "keyValue": "={{ $('get_app1').first().json.app_id }}"
+              }
+            ]
+          },
+          "columns": {
+            "mappingMode": "defineBelow",
+            "value": {
+              "app_access_token": "={{ $json.app_access_token }}"
+            },
+            "matchingColumns": [],
+            "schema": [
+              {
+                "id": "app_name",
+                "displayName": "app_name",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": true
+              },
+              {
+                "id": "app_id",
+                "displayName": "app_id",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": true
+              },
+              {
+                "id": "app_secret",
+                "displayName": "app_secret",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": true
+              },
+              {
+                "id": "app_access_token",
+                "displayName": "app_access_token",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": false
+              }
+            ],
+            "attemptToConvertTypes": false,
+            "convertFieldsToString": false
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.dataTable",
+        "typeVersion": 1,
+        "position": [
+          448,
+          240
+        ],
+        "id": "818f2335-dde7-4fc2-a2b2-63e8d9b40dd1",
+        "name": "record-app-infomations1"
+      },
+      {
+        "parameters": {
+          "operation": "get",
+          "dataTableId": {
+            "__rl": true,
+            "value": "sc1dOTktntfbMUel",
+            "mode": "list",
+            "cachedResultName": "seatalk-app-access-token",
+            "cachedResultUrl": "/projects/GTQprNa3RcCSHh8s/datatables/sc1dOTktntfbMUel"
+          },
+          "filters": {
+            "conditions": [
+              {
+                "keyName": "app_id",
+                "keyValue": "NzA0MTM4NzgzMTE5"
+              }
+            ]
+          },
+          "returnAll": true
+        },
+        "type": "n8n-nodes-base.dataTable",
+        "typeVersion": 1.1,
+        "position": [
+          0,
+          240
+        ],
+        "id": "1ae5e501-31bd-4213-ba0d-9cc59e5fa2c3",
+        "name": "get_app1"
+      },
+      {
+        "parameters": {
+          "method": "POST",
+          "url": "https://openapi.seatalk.io/auth/app_access_token",
+          "sendHeaders": true,
+          "headerParameters": {
+            "parameters": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          },
+          "sendBody": true,
+          "bodyParameters": {
+            "parameters": [
+              {
+                "name": "app_id",
+                "value": "={{ $json.app_id }}"
+              },
+              {
+                "name": "app_secret",
+                "value": "={{ $json.app_secret }}"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.3,
+        "position": [
+          256,
+          432
+        ],
+        "id": "79f7cce6-896b-4f41-9f6e-fd6e825b7e47",
+        "name": "HTTP Request2",
+        "retryOnFail": true,
+        "onError": "continueRegularOutput"
+      },
+      {
+        "parameters": {
+          "operation": "update",
+          "dataTableId": {
+            "__rl": true,
+            "value": "sc1dOTktntfbMUel",
+            "mode": "list",
+            "cachedResultName": "seatalk-app-access-token",
+            "cachedResultUrl": "/projects/GTQprNa3RcCSHh8s/datatables/sc1dOTktntfbMUel"
+          },
+          "filters": {
+            "conditions": [
+              {
+                "keyName": "app_id",
+                "keyValue": "={{ $('get_app2').first().json.app_id }}"
+              }
+            ]
+          },
+          "columns": {
+            "mappingMode": "defineBelow",
+            "value": {
+              "app_access_token": "={{ $json.app_access_token }}"
+            },
+            "matchingColumns": [],
+            "schema": [
+              {
+                "id": "app_name",
+                "displayName": "app_name",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": true
+              },
+              {
+                "id": "app_id",
+                "displayName": "app_id",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": true
+              },
+              {
+                "id": "app_secret",
+                "displayName": "app_secret",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": true
+              },
+              {
+                "id": "app_access_token",
+                "displayName": "app_access_token",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": false
+              }
+            ],
+            "attemptToConvertTypes": false,
+            "convertFieldsToString": false
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.dataTable",
+        "typeVersion": 1,
+        "position": [
+          448,
+          432
+        ],
+        "id": "3286b271-444e-4a71-b3d8-cab3c2be67d7",
+        "name": "record-app-infomations2"
+      },
+      {
+        "parameters": {
+          "operation": "get",
+          "dataTableId": {
+            "__rl": true,
+            "value": "sc1dOTktntfbMUel",
+            "mode": "list",
+            "cachedResultName": "seatalk-app-access-token",
+            "cachedResultUrl": "/projects/GTQprNa3RcCSHh8s/datatables/sc1dOTktntfbMUel"
+          },
+          "filters": {
+            "conditions": [
+              {
+                "keyName": "app_id",
+                "keyValue": "NzMwMzg0MzczMjE5"
+              }
+            ]
+          },
+          "returnAll": true
+        },
+        "type": "n8n-nodes-base.dataTable",
+        "typeVersion": 1.1,
+        "position": [
+          0,
+          432
+        ],
+        "id": "b58bc0a8-e71b-4531-94da-9c47b148ffbc",
+        "name": "get_app2"
+      }
+    ],
+    "connections": {
+      "1hours": {
+        "main": [
+          [
+            {
+              "node": "get_app",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "get_app1",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "get_app2",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "HTTP Request": {
+        "main": [
+          [
+            {
+              "node": "record-app-infomations",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "get_app": {
+        "main": [
+          [
+            {
+              "node": "HTTP Request",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "HTTP Request1": {
+        "main": [
+          [
+            {
+              "node": "record-app-infomations1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "get_app1": {
+        "main": [
+          [
+            {
+              "node": "HTTP Request1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "HTTP Request2": {
+        "main": [
+          [
+            {
+              "node": "record-app-infomations2",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "get_app2": {
+        "main": [
+          [
+            {
+              "node": "HTTP Request2",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "authors": "Hoang Nguyen",
+    "name": "Version 6f3e98f1",
+    "description": "",
+    "autosaved": true
+  },
+  "activeVersionId": "6f3e98f1-45a3-4ab6-b9e3-85fade6b57fb",
+  "connections": {
+    "1hours": {
+      "main": [
+        [
+          {
+            "node": "get_app",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "get_app1",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "get_app2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "record-app-infomations",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "get_app": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request1": {
+      "main": [
+        [
+          {
+            "node": "record-app-infomations1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "get_app1": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request2": {
+      "main": [
+        [
+          {
+            "node": "record-app-infomations2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "get_app2": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2026-02-23T02:23:11.350Z",
+  "id": "J0AqMye3QnB8dZ49",
+  "isArchived": false,
+  "meta": null,
+  "name": "reset-access-token-all-bot",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "minutes",
+              "minutesInterval": 30
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        -208,
+        240
+      ],
+      "id": "3e8c7af9-52ac-4585-bcc4-6045f99a498f",
+      "name": "1hours"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://openapi.seatalk.io/auth/app_access_token",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "app_id",
+              "value": "={{ $json.app_id }}"
+            },
+            {
+              "name": "app_secret",
+              "value": "={{ $json.app_secret }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        256,
+        16
+      ],
+      "id": "1da2475e-2dac-41a0-a53d-11f3e8a294ca",
+      "name": "HTTP Request",
+      "retryOnFail": true,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "dataTableId": {
+          "__rl": true,
+          "value": "sc1dOTktntfbMUel",
+          "mode": "list",
+          "cachedResultName": "seatalk-app-access-token",
+          "cachedResultUrl": "/projects/GTQprNa3RcCSHh8s/datatables/sc1dOTktntfbMUel"
+        },
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "app_id",
+              "keyValue": "={{ $('get_app').first().json.app_id }}"
+            }
+          ]
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "app_access_token": "={{ $json.app_access_token }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "app_name",
+              "displayName": "app_name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "app_id",
+              "displayName": "app_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "app_secret",
+              "displayName": "app_secret",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "app_access_token",
+              "displayName": "app_access_token",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        448,
+        16
+      ],
+      "id": "373f470a-16da-4a31-9051-14320419fd35",
+      "name": "record-app-infomations"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "dataTableId": {
+          "__rl": true,
+          "value": "sc1dOTktntfbMUel",
+          "mode": "list",
+          "cachedResultName": "seatalk-app-access-token",
+          "cachedResultUrl": "/projects/GTQprNa3RcCSHh8s/datatables/sc1dOTktntfbMUel"
+        },
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "app_id",
+              "keyValue": "MTk5MzA1OTkxODcw"
+            }
+          ]
+        },
+        "returnAll": true
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1.1,
+      "position": [
+        0,
+        16
+      ],
+      "id": "628a61b7-e735-4b50-8dbd-406d09357cf4",
+      "name": "get_app"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://openapi.seatalk.io/auth/app_access_token",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "app_id",
+              "value": "={{ $json.app_id }}"
+            },
+            {
+              "name": "app_secret",
+              "value": "={{ $json.app_secret }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        256,
+        240
+      ],
+      "id": "d27169fc-9f25-44c3-8022-3720386de1f9",
+      "name": "HTTP Request1",
+      "retryOnFail": true,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "dataTableId": {
+          "__rl": true,
+          "value": "sc1dOTktntfbMUel",
+          "mode": "list",
+          "cachedResultName": "seatalk-app-access-token",
+          "cachedResultUrl": "/projects/GTQprNa3RcCSHh8s/datatables/sc1dOTktntfbMUel"
+        },
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "app_id",
+              "keyValue": "={{ $('get_app1').first().json.app_id }}"
+            }
+          ]
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "app_access_token": "={{ $json.app_access_token }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "app_name",
+              "displayName": "app_name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "app_id",
+              "displayName": "app_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "app_secret",
+              "displayName": "app_secret",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "app_access_token",
+              "displayName": "app_access_token",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        448,
+        240
+      ],
+      "id": "818f2335-dde7-4fc2-a2b2-63e8d9b40dd1",
+      "name": "record-app-infomations1"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "dataTableId": {
+          "__rl": true,
+          "value": "sc1dOTktntfbMUel",
+          "mode": "list",
+          "cachedResultName": "seatalk-app-access-token",
+          "cachedResultUrl": "/projects/GTQprNa3RcCSHh8s/datatables/sc1dOTktntfbMUel"
+        },
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "app_id",
+              "keyValue": "NzA0MTM4NzgzMTE5"
+            }
+          ]
+        },
+        "returnAll": true
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1.1,
+      "position": [
+        0,
+        240
+      ],
+      "id": "1ae5e501-31bd-4213-ba0d-9cc59e5fa2c3",
+      "name": "get_app1"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://openapi.seatalk.io/auth/app_access_token",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "app_id",
+              "value": "={{ $json.app_id }}"
+            },
+            {
+              "name": "app_secret",
+              "value": "={{ $json.app_secret }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        256,
+        432
+      ],
+      "id": "79f7cce6-896b-4f41-9f6e-fd6e825b7e47",
+      "name": "HTTP Request2",
+      "retryOnFail": true,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "dataTableId": {
+          "__rl": true,
+          "value": "sc1dOTktntfbMUel",
+          "mode": "list",
+          "cachedResultName": "seatalk-app-access-token",
+          "cachedResultUrl": "/projects/GTQprNa3RcCSHh8s/datatables/sc1dOTktntfbMUel"
+        },
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "app_id",
+              "keyValue": "={{ $('get_app2').first().json.app_id }}"
+            }
+          ]
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "app_access_token": "={{ $json.app_access_token }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "app_name",
+              "displayName": "app_name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "app_id",
+              "displayName": "app_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "app_secret",
+              "displayName": "app_secret",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "app_access_token",
+              "displayName": "app_access_token",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        448,
+        432
+      ],
+      "id": "3286b271-444e-4a71-b3d8-cab3c2be67d7",
+      "name": "record-app-infomations2"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "dataTableId": {
+          "__rl": true,
+          "value": "sc1dOTktntfbMUel",
+          "mode": "list",
+          "cachedResultName": "seatalk-app-access-token",
+          "cachedResultUrl": "/projects/GTQprNa3RcCSHh8s/datatables/sc1dOTktntfbMUel"
+        },
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "app_id",
+              "keyValue": "NzMwMzg0MzczMjE5"
+            }
+          ]
+        },
+        "returnAll": true
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1.1,
+      "position": [
+        0,
+        432
+      ],
+      "id": "b58bc0a8-e71b-4531-94da-9c47b148ffbc",
+      "name": "get_app2"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-02-23T02:23:11.350Z",
+      "createdAt": "2026-02-23T02:23:11.350Z",
+      "role": "workflow:owner",
+      "workflowId": "J0AqMye3QnB8dZ49",
+      "projectId": "GTQprNa3RcCSHh8s"
+    }
+  ],
+  "staticData": {
+    "node:1hours": {
+      "recurrenceRules": []
+    }
+  },
+  "tags": [
+    {
+      "updatedAt": "2025-12-17T02:41:50.389Z",
+      "createdAt": "2025-12-17T02:41:50.389Z",
+      "id": "tf48o2CcAcmF6X41",
+      "name": "Seatalk app"
+    }
+  ],
+  "triggerCount": 1,
+  "updatedAt": "2026-03-20T18:52:04.409Z",
+  "versionId": "6b500ed4-a86e-4aa3-b4ad-29c6605bed89"
+}
