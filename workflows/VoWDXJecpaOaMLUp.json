@@ -1,0 +1,2841 @@
+{
+  "active": false,
+  "activeVersion": null,
+  "activeVersionId": null,
+  "connections": {
+    "Create folder": {
+      "main": [
+        [
+          {
+            "node": "link folder",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "link folder": {
+      "main": [
+        [
+          {
+            "node": "add link_folder",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Insert receipt",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "get receipt info",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "get image info",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "not message",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "converse to phone",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "get receipt to clear",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "pause noti",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "check-admin1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "restarted noti",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "check-admin",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "arlert!",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "update link join",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript1": {
+      "main": [
+        [
+          {
+            "node": "download images",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Upload file": {
+      "main": [
+        [
+          {
+            "node": "Aggregate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate": {
+      "main": [
+        [
+          {
+            "node": "ending confirm",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "folder confirm": {
+      "main": [
+        []
+      ]
+    },
+    "check phone number": {
+      "main": [
+        [
+          {
+            "node": "export phone number",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Insert image",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "converse to phone": {
+      "main": [
+        [
+          {
+            "node": "find customer info",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "get receipt info1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "phone number error",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "success": {
+      "main": [
+        [
+          {
+            "node": "get receipt to report",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "message error": {
+      "main": [
+        [
+          {
+            "node": "get receipt to report",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "arlert!": {
+      "main": [
+        []
+      ]
+    },
+    "export phone number": {
+      "main": [
+        [
+          {
+            "node": "find customer info",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "message success": {
+      "main": [
+        [
+          {
+            "node": "success",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "message error",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "image sending": {
+      "main": [
+        [
+          {
+            "node": "2sec-2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "info sending": {
+      "main": [
+        [
+          {
+            "node": "2sec-",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "find customer info": {
+      "main": [
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "not message": {
+      "main": [
+        [
+          {
+            "node": "get receipt to report",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "phone number error": {
+      "main": [
+        []
+      ]
+    },
+    "download images": {
+      "main": [
+        [
+          {
+            "node": "Upload file",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "pause noti": {
+      "main": [
+        []
+      ]
+    },
+    "report record": {
+      "main": [
+        [
+          {
+            "node": "2sec",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "report record",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Delete folder": {
+      "main": [
+        [
+          {
+            "node": "2sec",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit": {
+      "main": [
+        [
+          {
+            "node": "update features",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "get update info": {
+      "main": [
+        [
+          {
+            "node": "Limit",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "image?": {
+      "main": [
+        [
+          {
+            "node": "check phone number",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Start": {
+      "main": [
+        [
+          {
+            "node": "image?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "get receipt info": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "get image info": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "update link join": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Insert image": {
+      "main": [
+        [
+          {
+            "node": "get warranty receitp for image",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Insert receipt": {
+      "main": [
+        [
+          {
+            "node": "Create folder",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "get receipt info1": {
+      "main": [
+        [
+          {
+            "node": "image sending",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "get receipt to clear": {
+      "main": [
+        [
+          {
+            "node": "Delete folder",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "get receipt to report": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "clear images memory": {
+      "main": [
+        [
+          {
+            "node": "clear receitp memory",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "clear receitp memory": {
+      "main": [
+        [
+          {
+            "node": "new start",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "get warranty receitp for image": {
+      "main": [
+        [
+          {
+            "node": "Update row(s)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "add link_folder": {
+      "main": [
+        [
+          {
+            "node": "folder confirm",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update row(s)": {
+      "main": [
+        [
+          {
+            "node": "2sec-1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "2sec": {
+      "main": [
+        [
+          {
+            "node": "clear images memory",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "2sec-1": {
+      "main": [
+        [
+          {
+            "node": "save image",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "2sec-2": {
+      "main": [
+        [
+          {
+            "node": "info sending",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "send_manager_info": {
+      "main": [
+        [
+          {
+            "node": "message success",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "check-admin": {
+      "main": [
+        [
+          {
+            "node": "ad-command",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "user-command",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "check-admin1": {
+      "main": [
+        [
+          {
+            "node": "get update info",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "2sec-": {
+      "main": [
+        [
+          {
+            "node": "send_manager_info",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-10-03T07:57:43.574Z",
+  "id": "VoWDXJecpaOaMLUp",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "sub - waranty bot",
+  "nodes": [
+    {
+      "parameters": {
+        "threadId": "={{ $('Start').item.json.threadId }}",
+        "message": "=Sai cú pháp.\nGửi /clear để xóa bộ nhớ tạm và bắt đầu lại hoặc gửi lại.",
+        "threadType": "={{ $('Start').item.json.type }}"
+      },
+      "type": "n8n-nodes-social-zalo.zaloUserInteract",
+      "typeVersion": 1,
+      "position": [
+        992,
+        352
+      ],
+      "id": "eae04bc5-d2a4-457f-8d62-616f8b31bfed",
+      "name": "arlert!",
+      "credentials": {
+        "zaloUserCredentialsApi": {
+          "id": "EuSSrlG1mHpbxBMp",
+          "name": "Zalo Nguyễn Hoàng - 2025-09-29T09:36:18.290Z"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "threadId": "={{ $('Start').item.json.threadId }}",
+        "message": "=Kết thúc. Không gửi tin nhắn đến khách hàng.",
+        "threadType": "={{ $('Start').item.json.type }}"
+      },
+      "type": "n8n-nodes-social-zalo.zaloUserInteract",
+      "typeVersion": 1,
+      "position": [
+        720,
+        352
+      ],
+      "id": "aa12b1db-1fcf-4e15-a56f-a374801955d0",
+      "name": "not message",
+      "credentials": {
+        "zaloUserCredentialsApi": {
+          "id": "EuSSrlG1mHpbxBMp",
+          "name": "Zalo Nguyễn Hoàng - 2025-09-29T09:36:18.290Z"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "10olpnPDUyVPM5ye4bLYgy8xPnCagvYpvUxaFLqEmicM",
+          "mode": "list",
+          "cachedResultName": "warranty report",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/10olpnPDUyVPM5ye4bLYgy8xPnCagvYpvUxaFLqEmicM/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/10olpnPDUyVPM5ye4bLYgy8xPnCagvYpvUxaFLqEmicM/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "name": "={{ $json['name-report'] }}",
+            "receipt": "={{ $json['biennhan-report'] }}",
+            "date": "={{ $json['date-report'] }}"
+          },
+          "matchingColumns": [
+            "receipt"
+          ],
+          "schema": [
+            {
+              "id": "date",
+              "displayName": "date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "name",
+              "displayName": "name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "receipt",
+              "displayName": "receipt",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1424,
+        352
+      ],
+      "id": "85c540d2-9a05-4151-9480-8c2611e286b4",
+      "name": "report record",
+      "retryOnFail": true,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "MTh9LghqaMKPTAzs",
+          "name": "zalo-chat-bot-hoang.nv1"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "4010b0a3-31fa-4ff9-af97-7a5e036c1110",
+              "name": "date-report",
+              "value": "={{ (() => { const v = $json.date ?? Date.now(); const t = (n)=>String(n).padStart(2,'0'); const d = new Date(typeof v==='number' && v<1e12 ? v*1000 : v); return `${t(d.getMonth()+1)}/${t(d.getDate())}/${d.getFullYear()}`; })() }}",
+              "type": "string"
+            },
+            {
+              "id": "fa172b48-f329-4c1b-b2f7-5a8c2cbe1c7e",
+              "name": "biennhan-report",
+              "value": "={{ $json.warranty_receipt }}",
+              "type": "string"
+            },
+            {
+              "id": "915a203d-381e-4762-9321-f20eba2feff2",
+              "name": "name-report",
+              "value": "={{ $json.name }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1312,
+        352
+      ],
+      "id": "ec9e2e4d-9d5c-47a9-b2e9-97070f7e2142",
+      "name": "Edit Fields",
+      "alwaysOutputData": false,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "content": "## Lưu báo cáo",
+        "height": 208,
+        "width": 384,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1168,
+        304
+      ],
+      "typeVersion": 1,
+      "id": "e87b3f89-43ec-4aac-84e9-f25c24dfca29",
+      "name": "Sticky Note4"
+    },
+    {
+      "parameters": {
+        "threadId": "={{ $('Start').item.json.threadId }}",
+        "message": "={{ $json.error }}. Gửi số điện thoại đúng nếu sai hoặc nhắn /khong nếu gặp lỗi khác.",
+        "threadType": "={{ $('Start').item.json.type }}"
+      },
+      "type": "n8n-nodes-social-zalo.zaloUserInteract",
+      "typeVersion": 1,
+      "position": [
+        720,
+        208
+      ],
+      "id": "9e51699a-df6f-4c78-918d-56af61dd2d8e",
+      "name": "phone number error",
+      "credentials": {
+        "zaloUserCredentialsApi": {
+          "id": "EuSSrlG1mHpbxBMp",
+          "name": "Zalo Nguyễn Hoàng - 2025-09-29T09:36:18.290Z"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "threadId": "5499905341129345969",
+        "message": "=Hệ thống đã chạy lại.",
+        "threadType": 1
+      },
+      "type": "n8n-nodes-social-zalo.zaloUserInteract",
+      "typeVersion": 1,
+      "position": [
+        992,
+        208
+      ],
+      "id": "28a950a2-58ef-4b97-af58-5fca7e891ba6",
+      "name": "restarted noti",
+      "credentials": {
+        "zaloUserCredentialsApi": {
+          "id": "EuSSrlG1mHpbxBMp",
+          "name": "Zalo Nguyễn Hoàng - 2025-09-29T09:36:18.290Z"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "folder",
+        "operation": "deleteFolder",
+        "folderNoRootId": {
+          "__rl": true,
+          "value": "={{ $json.link_folder }}",
+          "mode": "url"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        1312,
+        128
+      ],
+      "id": "8b52b7cc-3e64-40c5-8528-52bab215ad9b",
+      "name": "Delete folder",
+      "alwaysOutputData": true,
+      "retryOnFail": true,
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "GpJUmnoBmqg9ldSq",
+          "name": "Google Drive account hoang.nv1"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "threadId": "={{ $('Start').item.json.threadId }}",
+        "message": "=Đã xóa bộ nhớ tạm.\nCó thể bắt đầu biên nhận khác.",
+        "threadType": "={{ $('Start').item.json.type }}"
+      },
+      "type": "n8n-nodes-social-zalo.zaloUserInteract",
+      "typeVersion": 1,
+      "position": [
+        1984,
+        128
+      ],
+      "id": "4ed0286d-3fab-49d4-9c67-499cdbfb98ca",
+      "name": "new start",
+      "credentials": {
+        "zaloUserCredentialsApi": {
+          "id": "EuSSrlG1mHpbxBMp",
+          "name": "Zalo Nguyễn Hoàng - 2025-09-29T09:36:18.290Z"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.data.content }}",
+                    "rightValue": "CP62-",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    },
+                    "id": "5bdf4702-89b2-49f6-84f9-4fef764502b5"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "check bien nhan"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "264e0e64-835a-44e9-ac6f-d020562ebac0",
+                    "leftValue": "={{ $json.data.content }}",
+                    "rightValue": "/done",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "check done"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "75b6b417-6106-4f98-b2b3-2480db4995c8",
+                    "leftValue": "={{ $json.data.content }}",
+                    "rightValue": "/khong",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "khong gui tin nhan"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "8d1cc76a-1b14-4ae0-b5e4-a9f6a0fb0823",
+                    "leftValue": "={{ $json.data.content }}",
+                    "rightValue": "0",
+                    "operator": {
+                      "type": "string",
+                      "operation": "startsWith"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "SDT"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "d6de9962-c9ae-4f85-9d45-f9a5f91ac4f5",
+                    "leftValue": "={{ $json.data.content }}",
+                    "rightValue": "/clear",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "reset"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "b0d26faa-f191-427a-9fa6-bf0260fe1409",
+                    "leftValue": "={{ $json.data.content }}",
+                    "rightValue": "/pause",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "pause noti"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "8c05e346-3b6d-4bca-a3e9-06a83add630d",
+                    "leftValue": "={{ $json.data.content }}",
+                    "rightValue": "/update",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "update noti"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "70517b9e-2a77-431d-a020-38d8fca72cb0",
+                    "leftValue": "={{ $json.data.content }}",
+                    "rightValue": "/restart",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "restarted noti"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "64c92f5b-19a9-4385-bc1e-25007b116f2f",
+                    "leftValue": "={{ $json.data.content }}",
+                    "rightValue": "=/help",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "help"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "023c1dc8-6264-42bb-970c-7354473ca40e",
+                    "leftValue": "",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        336,
+        96
+      ],
+      "id": "2da518c5-bdec-4afd-baf1-d4294d8f4efc",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "threadId": "={{ $('Start').item.json.threadId }}",
+        "message": "=Kết thúc. {{ $json.error }}",
+        "threadType": "={{ $('Start').item.json.type }}"
+      },
+      "type": "n8n-nodes-social-zalo.zaloUserInteract",
+      "typeVersion": 1,
+      "position": [
+        992,
+        64
+      ],
+      "id": "abab154b-7921-40c5-b763-1bfbb01cd128",
+      "name": "message error",
+      "credentials": {
+        "zaloUserCredentialsApi": {
+          "id": "EuSSrlG1mHpbxBMp",
+          "name": "Zalo Nguyễn Hoàng - 2025-09-29T09:36:18.290Z"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## Xóa bộ nhớ tạm, bắt đầu phiên mới",
+        "height": 224,
+        "width": 496,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1616,
+        64
+      ],
+      "typeVersion": 1,
+      "id": "71d1ae66-9369-4150-85f2-24ba39793a32",
+      "name": "Sticky Note6"
+    },
+    {
+      "parameters": {
+        "content": "## Reset section",
+        "height": 224,
+        "width": 288,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1168,
+        64
+      ],
+      "typeVersion": 1,
+      "id": "4de7b279-d38c-46a7-8962-0e5afab1c18b",
+      "name": "Sticky Note7"
+    },
+    {
+      "parameters": {
+        "threadId": "={{ $('Start').item.json.threadId }}",
+        "message": "=Kết thúc. Đã gửi tin nhắn đến khách hàng {{ $('find customer info').item.json.response.zalo_name }} thành công.",
+        "threadType": "={{ $('Start').item.json.type }}"
+      },
+      "type": "n8n-nodes-social-zalo.zaloUserInteract",
+      "typeVersion": 1,
+      "position": [
+        720,
+        -80
+      ],
+      "id": "4388c7b3-2ae5-4e7e-a2f2-53555576f363",
+      "name": "success",
+      "credentials": {
+        "zaloUserCredentialsApi": {
+          "id": "EuSSrlG1mHpbxBMp",
+          "name": "Zalo Nguyễn Hoàng - 2025-09-29T09:36:18.290Z"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "threadId": "5499905341129345969",
+        "message": "=Hệ thống đang tạm dừng để update.",
+        "threadType": 1
+      },
+      "type": "n8n-nodes-social-zalo.zaloUserInteract",
+      "typeVersion": 1,
+      "position": [
+        992,
+        -80
+      ],
+      "id": "1e547b9a-6e2f-419e-8aea-38d424c0a623",
+      "name": "pause noti",
+      "credentials": {
+        "zaloUserCredentialsApi": {
+          "id": "EuSSrlG1mHpbxBMp",
+          "name": "Zalo Nguyễn Hoàng - 2025-09-29T09:36:18.290Z"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "380914b7-1b6a-41a4-946e-6772f89e85f1",
+              "leftValue": "={{ $json.data.content.href }}",
+              "rightValue": "https://zalo.me",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        336,
+        -112
+      ],
+      "id": "c9e7daef-fe0c-4863-8e42-c8ab1d0b6626",
+      "name": "check phone number"
+    },
+    {
+      "parameters": {
+        "keep": "=lastItems"
+      },
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        1440,
+        -112
+      ],
+      "id": "674b5270-56ae-4bba-a141-fb9a78b3ffb7",
+      "name": "Limit"
+    },
+    {
+      "parameters": {
+        "threadId": "5499905341129345969",
+        "message": "=Cập nhật mới ngày {{ $json.date }}:\n{{ $json.features }}",
+        "threadType": 1
+      },
+      "type": "n8n-nodes-social-zalo.zaloUserInteract",
+      "typeVersion": 1,
+      "position": [
+        1552,
+        -112
+      ],
+      "id": "6b6efd39-e852-4026-b8e1-e2f831b941d7",
+      "name": "update features",
+      "credentials": {
+        "zaloUserCredentialsApi": {
+          "id": "EuSSrlG1mHpbxBMp",
+          "name": "Zalo Nguyễn Hoàng - 2025-09-29T09:36:18.290Z"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "15OUMKTyCiw4gmcrVUg7XE2P3YB0wYuhCqurYpPlZJYw",
+          "mode": "list",
+          "cachedResultName": "updates histories",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/15OUMKTyCiw4gmcrVUg7XE2P3YB0wYuhCqurYpPlZJYw/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/15OUMKTyCiw4gmcrVUg7XE2P3YB0wYuhCqurYpPlZJYw/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1328,
+        -112
+      ],
+      "id": "b7ce0f0a-c417-4de5-80cb-8dbcf27c4f1e",
+      "name": "get update info",
+      "retryOnFail": true,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "MTh9LghqaMKPTAzs",
+          "name": "zalo-chat-bot-hoang.nv1"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "97c68112-0011-4137-9f57-93cf4145f0af",
+              "leftValue": "={{ $json.data.content.thumb }}",
+              "rightValue": "CP62-",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        160,
+        -112
+      ],
+      "id": "5f7bcf71-40dd-46e7-94a7-7c6249d53381",
+      "name": "image?"
+    },
+    {
+      "parameters": {
+        "content": "## Nhận và phân loại yêu cầu từ Group & SM",
+        "height": 672,
+        "width": 576
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        16,
+        -160
+      ],
+      "typeVersion": 1,
+      "id": "037391c2-65f8-421e-8c77-0fd3fd67296f",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "content": "## Thông báo kết quả",
+        "height": 672,
+        "width": 224,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        656,
+        -160
+      ],
+      "typeVersion": 1,
+      "id": "3b11d906-5977-4f15-b36c-801c98b85fa7",
+      "name": "Sticky Note5"
+    },
+    {
+      "parameters": {
+        "content": "## Thông báo hệ thống",
+        "height": 672,
+        "width": 224,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        928,
+        -160
+      ],
+      "typeVersion": 1,
+      "id": "904f6f98-35f2-490a-ad6e-022312f734f6",
+      "name": "Sticky Note8"
+    },
+    {
+      "parameters": {
+        "content": "## Update features",
+        "height": 208,
+        "width": 528
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1168,
+        -160
+      ],
+      "typeVersion": 1,
+      "id": "675888be-c4df-4d7f-bca4-e4b739cdf72b",
+      "name": "Sticky Note9"
+    },
+    {
+      "parameters": {
+        "jsCode": "const s = $json?.data?.content?.description;\nlet phone = '';\nif (typeof s === 'string') {\n  try { phone = JSON.parse(s)?.phone || JSON.parse(s)?.caption || ''; } catch {}\n}\nif (!phone) {\n  const m = String(s||'').match(/(\\+?84|0)\\D*\\d{9,10}/);\n  phone = m ? m[0] : '';\n}\nphone = phone.replace(/[^\\d+]/g,'').replace(/^\\+84/,'0');\nreturn { json: { phone } };\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        192,
+        -352
+      ],
+      "id": "1fdd28c2-da44-430f-826f-1cde652cc2c2",
+      "name": "export phone number"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Input: nhiều item có các field như: warranty_receipt, name, link_folder, link_image, link_images[], link, links_line, ...\n// Output: mỗi warranty_receipt -> 1 item, giữ nguyên field của bản ghi đầu tiên, thêm:\n//   - link_images: mảng link đã gom\n//   - link_image_join: chuỗi \"link1,link2,...\"\n//   - count: số link\n\nconst rows = $input.all().map((it,i)=>({\n  json: it.json,\n  i,\n  row_number: Number(String(it.json.row_number ?? i).replace(/[^\\d.-]/g,'')) || i,\n})).sort((a,b)=>a.row_number - b.row_number);\n\nconst norm = v => String(v ?? '').normalize('NFKC').trim();\nconst isUrl = s => /^https?:\\/\\//i.test(String(s||'').trim());\n\nconst groups = new Map(); // key = warranty_receipt\n\nfor (const {json} of rows) {\n  const key = norm(json.warranty_receipt ?? json.waranty_receipt ?? json.receipt ?? json.biennhan);\n  if (!key) continue;\n\n  if (!groups.has(key)) {\n    // giữ NGUYÊN mọi field của bản ghi đầu tiên\n    groups.set(key, { base: { ...json }, links: [], seen: new Set() });\n  }\n  const g = groups.get(key);\n\n  // thu thập mọi nguồn link có thể\n  const candidates = [];\n  if (Array.isArray(json.link_images)) candidates.push(...json.link_images);\n  if (json.link_image) candidates.push(json.link_image);\n  if (json.link) candidates.push(json.link);\n  if (typeof json.links_line === 'string') candidates.push(...json.links_line.split(/[,\\s]+/));\n\n  // dedupe + giữ thứ tự\n  for (const c of candidates) {\n    const s = String(c ?? '').trim();\n    if (isUrl(s) && !g.seen.has(s)) {\n      g.seen.add(s);\n      g.links.push(s);\n    }\n  }\n}\n\n// xuất mỗi nhóm 1 item; giữ nguyên field đầu vào khác\nreturn [...groups.values()].map(({base, links}) => {\n  const out = { ...base };\n  out.link_images = links;\n  out.link_image_join = links.join(',');\n  out.count = links.length;\n  return { json: out };\n});\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1184,
+        -400
+      ],
+      "id": "8d6afc0b-b000-4fca-9540-7373a5a8d0f0",
+      "name": "Code in JavaScript",
+      "alwaysOutputData": true,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineAll",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        1072,
+        -400
+      ],
+      "id": "e8993193-713f-434e-b74c-ee40fcd04fd8",
+      "name": "Merge",
+      "alwaysOutputData": true,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Input: { links_line: \"https://a.jpg, https://b.png, ...\"}\nconst raw = $input.first().json.link_image_join || '';\nconst split = raw\n  .split(/[,\\s]+/)           // phẩy, xuống dòng, khoảng trắng\n  .map(s => s.trim())\n  .filter(Boolean);\n\n// Loại trùng, giữ thứ tự\nconst urls = [...new Set(split)];\n\n// Trả về mỗi item 1 URL\nreturn urls.map((u, i) => ({ json: { url: u, idx: i }}));\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1408,
+        -400
+      ],
+      "id": "9a9ebdef-5cf5-4986-9b28-29150a8443e6",
+      "name": "Code in JavaScript1",
+      "alwaysOutputData": true,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "driveId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "My Drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "={{ $('update link join').item.json.link_folder }}",
+          "mode": "url"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        1632,
+        -400
+      ],
+      "id": "1d84a3c9-5fd9-4151-9507-20c69bf18d17",
+      "name": "Upload file",
+      "retryOnFail": true,
+      "alwaysOutputData": true,
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "GpJUmnoBmqg9ldSq",
+          "name": "Google Drive account hoang.nv1"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "aggregate": "aggregateAllItemData",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        1744,
+        -400
+      ],
+      "id": "66996b50-0c1a-4067-a3b7-d04544513c11",
+      "name": "Aggregate"
+    },
+    {
+      "parameters": {
+        "threadId": "={{ $('update link join').item.json.threadId }}",
+        "message": "=Đã lưu biên nhận số: {{ $('update link join').item.json.warranty_receipt }}\nLink: {{ $('update link join').item.json.link_folder }}\nGửi số điện thoại để gửi ảnh cho khách hàng hoặc nhắn /khong để kết thúc.",
+        "threadType": "={{ $('update link join').item.json.threadType }}"
+      },
+      "type": "n8n-nodes-social-zalo.zaloUserInteract",
+      "typeVersion": 1,
+      "position": [
+        1856,
+        -400
+      ],
+      "id": "ea70107c-7cd7-44e5-86ad-0c8c7945814e",
+      "name": "ending confirm",
+      "credentials": {
+        "zaloUserCredentialsApi": {
+          "id": "EuSSrlG1mHpbxBMp",
+          "name": "Zalo Nguyễn Hoàng - 2025-09-29T09:36:18.290Z"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.url }}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "file"
+            }
+          },
+          "timeout": 15000
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1520,
+        -400
+      ],
+      "id": "938a39aa-ce4a-4fa8-8cc4-da77d837057b",
+      "name": "download images",
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "ed3f10ea-923f-4909-a903-fd1354fd2192",
+              "leftValue": "={{ $json.success }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        544,
+        -432
+      ],
+      "id": "59105b11-c52e-4660-9702-a6d16b389099",
+      "name": "If1"
+    },
+    {
+      "parameters": {
+        "resource": "get",
+        "operation": "findUser",
+        "phoneNumber": "={{ $json.phone }}"
+      },
+      "type": "n8n-nodes-social-zalo.zaloUserInteract",
+      "typeVersion": 1,
+      "position": [
+        384,
+        -432
+      ],
+      "id": "e9392246-12b0-4490-be04-c580787947c6",
+      "name": "find customer info",
+      "credentials": {
+        "zaloUserCredentialsApi": {
+          "id": "EuSSrlG1mHpbxBMp",
+          "name": "Zalo Nguyễn Hoàng - 2025-09-29T09:36:18.290Z"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "f6f0f73b-8775-48d2-bee5-8ae0062a35a5",
+              "name": "phone",
+              "value": "={{ $json.data.content }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        192,
+        -496
+      ],
+      "id": "ba042e06-5f42-4bc7-9750-cb292d429c69",
+      "name": "converse to phone"
+    },
+    {
+      "parameters": {
+        "content": "## Tìm thông tin khách bằng số điện thoại",
+        "height": 368,
+        "width": 896,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        16,
+        -560
+      ],
+      "typeVersion": 1,
+      "id": "8f27f280-be96-4d51-83f3-2019b14e1b92",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "resource": "folder",
+        "name": "={{ $json.warranty_receipt }}",
+        "driveId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "My Drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "12d9Ozr7EF9-AxeZT-A-amSmS3uWTW5Wb",
+          "mode": "list",
+          "cachedResultName": "Bao hanh - CP62",
+          "cachedResultUrl": "https://drive.google.com/drive/folders/12d9Ozr7EF9-AxeZT-A-amSmS3uWTW5Wb"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        1072,
+        -608
+      ],
+      "id": "9a232088-63c8-4535-8381-fe01d3ba40ad",
+      "name": "Create folder",
+      "retryOnFail": true,
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "GpJUmnoBmqg9ldSq",
+          "name": "Google Drive account hoang.nv1"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "81f9c2b1-6ace-4862-8815-5f66c3e57884",
+              "name": "link_folder",
+              "value": "=https://drive.google.com/drive/folders/{{ $json.id }}",
+              "type": "string"
+            },
+            {
+              "id": "598f9900-d000-44ec-b970-49445a71ec90",
+              "name": "warranty_receipt",
+              "value": "={{ $json.name }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1184,
+        -608
+      ],
+      "id": "446b6847-ad70-4722-92a3-1f251784b408",
+      "name": "link folder"
+    },
+    {
+      "parameters": {
+        "threadId": "={{ $('Start').item.json.threadId }}",
+        "message": "=Đã tạo folder lưu trữ.\nBắt đầu gửi ảnh, lưu ý gửi từng ảnh một đến khi có xác nhận đã lưu mới gửi tiếp.",
+        "threadType": "={{ $('Start').item.json.type }}"
+      },
+      "type": "n8n-nodes-social-zalo.zaloUserInteract",
+      "typeVersion": 1,
+      "position": [
+        1408,
+        -608
+      ],
+      "id": "6312e27b-47cb-4e04-a68c-b769c3ad8028",
+      "name": "folder confirm",
+      "credentials": {
+        "zaloUserCredentialsApi": {
+          "id": "EuSSrlG1mHpbxBMp",
+          "name": "Zalo Nguyễn Hoàng - 2025-09-29T09:36:18.290Z"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "92f30a45-71fb-4889-b105-9ec573c076d7",
+              "leftValue": "={{ $json.success }}",
+              "rightValue": "true",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        752,
+        -752
+      ],
+      "id": "80e95a94-38f9-4667-b1e4-2c51819a581a",
+      "name": "message success"
+    },
+    {
+      "parameters": {
+        "threadId": "={{ $('find customer info').item.json.response.uid }}",
+        "message": "=Phong Vũ kính gửi quý khách hình ảnh sản phẩm của biên nhận số: {{ $('get receipt info1').item.json.warranty_receipt }}",
+        "attachmentsUrls": "={{ $json.link_image_join }}"
+      },
+      "type": "n8n-nodes-social-zalo.zaloUserInteract",
+      "typeVersion": 1,
+      "position": [
+        192,
+        -752
+      ],
+      "id": "9a2c22d7-bddb-41c1-ba82-2b847cb98bd0",
+      "name": "image sending",
+      "alwaysOutputData": false,
+      "credentials": {
+        "zaloUserCredentialsApi": {
+          "id": "EuSSrlG1mHpbxBMp",
+          "name": "Zalo Nguyễn Hoàng - 2025-09-29T09:36:18.290Z"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "threadId": "={{ $('find customer info').item.json.response.uid }}",
+        "message": "=Cảm ơn quý khách đã tin tưởng lựa chọn dịch vụ của Phong Vũ.\nĐây là tin nhắn tự động từ hệ thống, nếu cần hỗ trợ, quý khách vui lòng nhắn tin đến Zalo OA: https://zalo.me/phongvu26pdl"
+      },
+      "type": "n8n-nodes-social-zalo.zaloUserInteract",
+      "typeVersion": 1,
+      "position": [
+        416,
+        -752
+      ],
+      "id": "a88831dc-ec38-416c-a22b-fbb86251f806",
+      "name": "info sending",
+      "retryOnFail": false,
+      "credentials": {
+        "zaloUserCredentialsApi": {
+          "id": "EuSSrlG1mHpbxBMp",
+          "name": "Zalo Nguyễn Hoàng - 2025-09-29T09:36:18.290Z"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "threadId": "={{ $('Start').item.json.threadId }}",
+        "message": "Đã lưu ảnh, gửi thêm ảnh hoặc nhắn \"/done\" nếu xong",
+        "threadType": "={{ $('Start').item.json.type }}"
+      },
+      "type": "n8n-nodes-social-zalo.zaloUserInteract",
+      "typeVersion": 1,
+      "position": [
+        1408,
+        -752
+      ],
+      "id": "758d8db5-7ff9-46ea-a680-6ac9a7fdd891",
+      "name": "save image",
+      "credentials": {
+        "zaloUserCredentialsApi": {
+          "id": "EuSSrlG1mHpbxBMp",
+          "name": "Zalo Nguyễn Hoàng - 2025-09-29T09:36:18.290Z"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## Khởi tạo bộ nhớ tạm, thư mục lưu trữ và lưu trữ hình ảnh",
+        "height": 624,
+        "width": 1136,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        928,
+        -816
+      ],
+      "typeVersion": 1,
+      "id": "e34657b7-fd23-4058-9a9f-041cca12f86c",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "## Kiểm tra thông tin biên nhận và gửi cho khách",
+        "height": 224,
+        "width": 896,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        16,
+        -816
+      ],
+      "typeVersion": 1,
+      "id": "e4431317-644a-42b9-be78-5f5754084d07",
+      "name": "Sticky Note3"
+    },
+    {
+      "parameters": {
+        "inputSource": "passthrough"
+      },
+      "id": "66acf6a4-e923-49a4-99ae-01a87c95c8aa",
+      "typeVersion": 1.1,
+      "name": "Start",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "position": [
+        176,
+        208
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "dataTableId": {
+          "__rl": true,
+          "value": "rPgVypE2VLFvjdv5",
+          "mode": "list",
+          "cachedResultName": "warranty_receipt_memory",
+          "cachedResultUrl": "/projects/WAqDK79b9owhbfuS/datatables/rPgVypE2VLFvjdv5"
+        },
+        "returnAll": true
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        960,
+        -464
+      ],
+      "id": "14ad43c1-844a-426e-a3f8-aa9d4052dcea",
+      "name": "get receipt info"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "dataTableId": {
+          "__rl": true,
+          "value": "tk6GLMG4pHF4WpU3",
+          "mode": "list",
+          "cachedResultName": "images_memory",
+          "cachedResultUrl": "/projects/WAqDK79b9owhbfuS/datatables/tk6GLMG4pHF4WpU3"
+        },
+        "returnAll": true
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        960,
+        -336
+      ],
+      "id": "14054109-cb10-41cc-81fc-0e61a5e1c5a4",
+      "name": "get image info"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "dataTableId": {
+          "__rl": true,
+          "value": "rPgVypE2VLFvjdv5",
+          "mode": "list",
+          "cachedResultName": "warranty_receipt_memory",
+          "cachedResultUrl": "/projects/WAqDK79b9owhbfuS/datatables/rPgVypE2VLFvjdv5"
+        },
+        "matchType": "allConditions",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "warranty_receipt",
+              "keyValue": "={{ $json.warranty_receipt }}"
+            }
+          ]
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "name": "={{ $json.name }}",
+            "link_image_join": "={{ $json.link_image_join }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "name",
+              "displayName": "name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "warranty_receipt",
+              "displayName": "warranty_receipt",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "link_folder",
+              "displayName": "link_folder",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "link_image_join",
+              "displayName": "link_image_join",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        }
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        1296,
+        -400
+      ],
+      "id": "db9b26e7-0c53-43e8-9433-b02d7918ff4d",
+      "name": "update link join",
+      "alwaysOutputData": true,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "dataTableId": {
+          "__rl": true,
+          "value": "tk6GLMG4pHF4WpU3",
+          "mode": "list",
+          "cachedResultName": "images_memory",
+          "cachedResultUrl": "/projects/WAqDK79b9owhbfuS/datatables/tk6GLMG4pHF4WpU3"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "name": "={{ $json.data.dName }}",
+            "link_image": "={{ $json.data.content.thumb }}",
+            "threadId": "={{ $('Start').item.json.threadId }}",
+            "threadType": "={{ $json.type }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "name",
+              "displayName": "name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "warranty_receitp",
+              "displayName": "warranty_receitp",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "link_image",
+              "displayName": "link_image",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "threadId",
+              "displayName": "threadId",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "threadType",
+              "displayName": "threadType",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {
+          "optimizeBulk": false
+        }
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        960,
+        -752
+      ],
+      "id": "5e393353-a520-40be-9dbd-6756cd1f0ec3",
+      "name": "Insert image"
+    },
+    {
+      "parameters": {
+        "dataTableId": {
+          "__rl": true,
+          "value": "rPgVypE2VLFvjdv5",
+          "mode": "list",
+          "cachedResultName": "warranty_receipt_memory",
+          "cachedResultUrl": "/projects/WAqDK79b9owhbfuS/datatables/rPgVypE2VLFvjdv5"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "name": "={{ $json.data.dName }}",
+            "warranty_receipt": "={{ $json.data.content }}",
+            "threadId": "={{ $json.threadId }}",
+            "threadType": "={{ $json.type }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "name",
+              "displayName": "name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "warranty_receipt",
+              "displayName": "warranty_receipt",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "link_folder",
+              "displayName": "link_folder",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "link_image_join",
+              "displayName": "link_image_join",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "threadId",
+              "displayName": "threadId",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "threadType",
+              "displayName": "threadType",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        960,
+        -608
+      ],
+      "id": "dddf0acb-55ec-49f1-a37d-b7c3d038e179",
+      "name": "Insert receipt"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "dataTableId": {
+          "__rl": true,
+          "value": "rPgVypE2VLFvjdv5",
+          "mode": "list",
+          "cachedResultName": "warranty_receipt_memory",
+          "cachedResultUrl": "/projects/WAqDK79b9owhbfuS/datatables/rPgVypE2VLFvjdv5"
+        },
+        "returnAll": true
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        80,
+        -752
+      ],
+      "id": "813c3e72-f81c-4cd8-bfbc-2ea62a992145",
+      "name": "get receipt info1"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "dataTableId": {
+          "__rl": true,
+          "value": "rPgVypE2VLFvjdv5",
+          "mode": "list",
+          "cachedResultName": "warranty_receipt_memory",
+          "cachedResultUrl": "/projects/WAqDK79b9owhbfuS/datatables/rPgVypE2VLFvjdv5"
+        },
+        "returnAll": true
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        1200,
+        128
+      ],
+      "id": "7a50d08c-459f-4e89-84fa-ae706699bae5",
+      "name": "get receipt to clear"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "dataTableId": {
+          "__rl": true,
+          "value": "rPgVypE2VLFvjdv5",
+          "mode": "list",
+          "cachedResultName": "warranty_receipt_memory",
+          "cachedResultUrl": "/projects/WAqDK79b9owhbfuS/datatables/rPgVypE2VLFvjdv5"
+        },
+        "returnAll": true
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        1200,
+        352
+      ],
+      "id": "d73afd5b-c735-465c-bc8b-53cae2a66215",
+      "name": "get receipt to report"
+    },
+    {
+      "parameters": {
+        "operation": "deleteRows",
+        "dataTableId": {
+          "__rl": true,
+          "value": "tk6GLMG4pHF4WpU3",
+          "mode": "list",
+          "cachedResultName": "images_memory",
+          "cachedResultUrl": "/projects/WAqDK79b9owhbfuS/datatables/tk6GLMG4pHF4WpU3"
+        },
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "link_image",
+              "condition": "isNotEmpty"
+            }
+          ]
+        },
+        "options": {
+          "dryRun": false
+        }
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        1760,
+        128
+      ],
+      "id": "a2bcbc1a-7ef2-4a2a-9ad8-709062504955",
+      "name": "clear images memory",
+      "alwaysOutputData": true,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "operation": "deleteRows",
+        "dataTableId": {
+          "__rl": true,
+          "value": "rPgVypE2VLFvjdv5",
+          "mode": "list",
+          "cachedResultName": "warranty_receipt_memory",
+          "cachedResultUrl": "/projects/WAqDK79b9owhbfuS/datatables/rPgVypE2VLFvjdv5"
+        },
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "warranty_receipt",
+              "condition": "isNotEmpty"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        1872,
+        128
+      ],
+      "id": "a7752e1d-f03f-408b-b910-e4140751d197",
+      "name": "clear receitp memory",
+      "alwaysOutputData": true,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "dataTableId": {
+          "__rl": true,
+          "value": "rPgVypE2VLFvjdv5",
+          "mode": "list",
+          "cachedResultName": "warranty_receipt_memory",
+          "cachedResultUrl": "/projects/WAqDK79b9owhbfuS/datatables/rPgVypE2VLFvjdv5"
+        }
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        1072,
+        -752
+      ],
+      "id": "df9edd70-90df-493a-a36b-3042ec6910b2",
+      "name": "get warranty receitp for image"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "dataTableId": {
+          "__rl": true,
+          "value": "rPgVypE2VLFvjdv5",
+          "mode": "list",
+          "cachedResultName": "warranty_receipt_memory",
+          "cachedResultUrl": "/projects/WAqDK79b9owhbfuS/datatables/rPgVypE2VLFvjdv5"
+        },
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "warranty_receipt",
+              "keyValue": "={{ $json.warranty_receipt }}"
+            }
+          ]
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "link_folder": "={{ $json.link_folder }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "name",
+              "displayName": "name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "warranty_receipt",
+              "displayName": "warranty_receipt",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "link_folder",
+              "displayName": "link_folder",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "link_image_join",
+              "displayName": "link_image_join",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "threadId",
+              "displayName": "threadId",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        }
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        1296,
+        -608
+      ],
+      "id": "7fc5b1c0-36b0-44e1-a83f-b002389ef2fa",
+      "name": "add link_folder"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "dataTableId": {
+          "__rl": true,
+          "value": "tk6GLMG4pHF4WpU3",
+          "mode": "list",
+          "cachedResultName": "images_memory",
+          "cachedResultUrl": "/projects/WAqDK79b9owhbfuS/datatables/tk6GLMG4pHF4WpU3"
+        },
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "link_image",
+              "keyValue": "={{ $('Insert image').item.json.link_image }}"
+            }
+          ]
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "warranty_receitp": "={{ $json.warranty_receipt }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "name",
+              "displayName": "name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "link_image",
+              "displayName": "link_image",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "warranty_receitp",
+              "displayName": "warranty_receitp",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        }
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        1184,
+        -752
+      ],
+      "id": "b6b3ea61-0041-4d15-9116-5649a71497dd",
+      "name": "Update row(s)"
+    },
+    {
+      "parameters": {
+        "amount": 2
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        1648,
+        128
+      ],
+      "id": "575ad7ed-7bcb-47f4-b5ab-7c650556a807",
+      "name": "2sec",
+      "webhookId": "763a7d9c-8521-4a6c-8115-f53ec7c67f1b"
+    },
+    {
+      "parameters": {
+        "amount": 2
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        1296,
+        -752
+      ],
+      "id": "7372a85f-86b2-43fa-8d27-c46245122b15",
+      "name": "2sec-1",
+      "webhookId": "274dcbbe-9be6-4d87-a38f-a396a7dcce2f"
+    },
+    {
+      "parameters": {
+        "amount": 2
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        304,
+        -752
+      ],
+      "id": "e04d862c-bbcd-42c5-b862-4a33f715b92a",
+      "name": "2sec-2",
+      "webhookId": "a5501853-e418-4f7b-93fb-44d9c77eedac"
+    },
+    {
+      "parameters": {
+        "threadId": "={{ $('find customer info').item.json.response.uid }}",
+        "message": "=Nếu được phục vụ tận tình, quý khách vui lòng để lại đánh giá 5* trên google map tại link: https://maps.app.goo.gl/mFmc33NiheRhGUAa7\nNếu chưa được phục vụ tận tình, quý khách có thể liên hệ quản lý: Hoàng - 0906581906 hoặc Quyền - 0982882820 để phản ánh."
+      },
+      "type": "n8n-nodes-social-zalo.zaloUserInteract",
+      "typeVersion": 1,
+      "position": [
+        640,
+        -752
+      ],
+      "id": "2cf08edb-0d95-4cc7-942f-661489c74e63",
+      "name": "send_manager_info",
+      "retryOnFail": false,
+      "credentials": {
+        "zaloUserCredentialsApi": {
+          "id": "EuSSrlG1mHpbxBMp",
+          "name": "Zalo Nguyễn Hoàng - 2025-09-29T09:36:18.290Z"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "content": "## List lệnh user:\n/help: Gửi list lệnh\n/done: Kết thúc gửi ảnh\n/clear: Xóa dữ liệu đang xử lý và bắt đầu lại.\n/khong: Không gửi tinh nhắn cho khách",
+        "height": 224,
+        "width": 480
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1584,
+        -1136
+      ],
+      "typeVersion": 1,
+      "id": "837b697d-3aac-4d50-b035-4acda8066b30",
+      "name": "Sticky Note10"
+    },
+    {
+      "parameters": {
+        "content": "## List lệnh admin:\n/pause: Tạm dừng bot\n/update: Gửi thông tin updates\n/restart: Chạy lại bot sau khi /pause\n/help: Gửi list lệnh",
+        "height": 224,
+        "width": 480
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1072,
+        -1136
+      ],
+      "typeVersion": 1,
+      "id": "cb5aa206-be49-41be-95bd-1f27b9da07b4",
+      "name": "Sticky Note11"
+    },
+    {
+      "parameters": {
+        "threadId": "={{ $json.data.uidFrom }}",
+        "message": "=List lệnh admin:\n/pause: Tạm dừng bot\n/update: Gửi thông tin updates\n/restart: Chạy lại bot sau khi /pause\n/help: Gửi list lệnh",
+        "threadType": "={{ $json.type }}",
+        "stylesParameter": {
+          "styleValues": [
+            {
+              "len": 16
+            },
+            {
+              "st": "c_db342e",
+              "len": 16
+            }
+          ]
+        },
+        "mentionsParameter": {
+          "mentionValues": [
+            {
+              "uid": "={{ $json.data.uidFrom }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-social-zalo.zaloUserInteract",
+      "typeVersion": 1,
+      "position": [
+        1776,
+        320
+      ],
+      "id": "b5e05ee2-b518-49a0-a68c-b5a41f12d858",
+      "name": "ad-command",
+      "credentials": {
+        "zaloUserCredentialsApi": {
+          "id": "EuSSrlG1mHpbxBMp",
+          "name": "Zalo Nguyễn Hoàng - 2025-09-29T09:36:18.290Z"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "threadId": "={{ $json.data.uidFrom }}",
+        "message": "=List lệnh user:\n/help: Gửi list lệnh\n/done: Kết thúc gửi ảnh\n/clear: Xóa dữ liệu đang xử lý và bắt đầu lại.\n/khong: Không gửi tinh nhắn cho khách",
+        "threadType": "={{ $json.type }}",
+        "stylesParameter": {
+          "styleValues": [
+            {
+              "len": 15
+            },
+            {
+              "st": "c_db342e",
+              "len": 15
+            }
+          ]
+        },
+        "mentionsParameter": {
+          "mentionValues": [
+            {
+              "uid": "={{ $json.data.uidFrom }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-social-zalo.zaloUserInteract",
+      "typeVersion": 1,
+      "position": [
+        1776,
+        464
+      ],
+      "id": "427cfe61-3f6d-4264-9c45-c855e579447d",
+      "name": "user-command",
+      "credentials": {
+        "zaloUserCredentialsApi": {
+          "id": "EuSSrlG1mHpbxBMp",
+          "name": "Zalo Nguyễn Hoàng - 2025-09-29T09:36:18.290Z"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "b7395786-ea0d-4504-9d9a-b429269ef4c1",
+              "leftValue": "={{ $json.data.uidFrom }}",
+              "rightValue": "2976416810845647788",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1648,
+        400
+      ],
+      "id": "c2d6e270-3efe-45e6-846c-5bec64dee5e8",
+      "name": "check-admin"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "b7395786-ea0d-4504-9d9a-b429269ef4c1",
+              "leftValue": "={{ $json.data.uidFrom }}",
+              "rightValue": "2976416810845647788",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1216,
+        -112
+      ],
+      "id": "5c73cb75-c684-4c3b-a4e8-b0ecb5b27d23",
+      "name": "check-admin1"
+    },
+    {
+      "parameters": {
+        "amount": 2
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        528,
+        -752
+      ],
+      "id": "ff6c89f0-b2b5-4ced-848c-443e77b7d816",
+      "name": "2sec-",
+      "webhookId": "a5501853-e418-4f7b-93fb-44d9c77eedac"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1",
+    "callerPolicy": "workflowsFromSameOwner",
+    "errorWorkflow": "80zc32Np6wJfRsoG"
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-02-22T18:06:57.478Z",
+      "createdAt": "2026-02-22T18:06:57.478Z",
+      "role": "workflow:owner",
+      "workflowId": "VoWDXJecpaOaMLUp",
+      "projectId": "GTQprNa3RcCSHh8s"
+    }
+  ],
+  "staticData": null,
+  "tags": [
+    {
+      "updatedAt": "2025-10-07T13:20:09.465Z",
+      "createdAt": "2025-10-07T13:20:09.465Z",
+      "id": "R8JsFVZgS7NoVrt3",
+      "name": "zalo"
+    }
+  ],
+  "triggerCount": 0,
+  "updatedAt": "2026-01-15T14:34:38.074Z",
+  "versionId": "ba14131c-f839-4632-bfda-074944518d3c"
+}
