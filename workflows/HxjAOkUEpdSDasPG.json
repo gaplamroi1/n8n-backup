@@ -1,0 +1,404 @@
+{
+  "active": false,
+  "activeVersion": null,
+  "activeVersionId": null,
+  "connections": {
+    "Gmail Trigger": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Call 'get-sku-grab'": {
+      "main": [
+        []
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "sub - gen price tag print link seatalk",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Call 'get-sku-grab'",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Mark a message as read",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Call sub - send-tele-onl-orders-seatalk",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Call 'cp62-opshub-main-v1'1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "sub - gen price tag print link seatalk": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "createdAt": "2025-09-24T10:56:15.410Z",
+  "id": "HxjAOkUEpdSDasPG",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "get-gmail-messages-hoang.nv1",
+  "nodes": [
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "custom",
+              "cronExpression": "10 * * * * *"
+            }
+          ]
+        },
+        "simple": false,
+        "filters": {
+          "readStatus": "unread"
+        },
+        "options": {
+          "downloadAttachments": true
+        }
+      },
+      "type": "n8n-nodes-base.gmailTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        -800,
+        256
+      ],
+      "id": "82fa9e99-bb80-4576-a3e2-4033ba2cb4ba",
+      "name": "Gmail Trigger",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "mdeJ5Cwz1YxLTzIG",
+          "name": "hoang.nv1"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "HXxG6BeSpM7kZxfs",
+          "mode": "list",
+          "cachedResultUrl": "/workflow/HXxG6BeSpM7kZxfs",
+          "cachedResultName": "sub - get grab sku"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {}
+        },
+        "mode": "each",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.3,
+      "position": [
+        -496,
+        160
+      ],
+      "id": "9a39e7b9-d2dd-4682-857e-474256b28e86",
+      "name": "Call 'get-sku-grab'"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false,
+                  "leftValue": "",
+                  "typeValidation": "loose",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "2cbd6f5b-6181-4be2-bfec-829b087ef3b2",
+                    "leftValue": "={{ $json.subject }}",
+                    "rightValue": "thay đổi giá",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "priceChange"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false,
+                  "leftValue": "",
+                  "typeValidation": "loose",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "27eaaecf-aceb-45a2-b205-417efbc32d00",
+                    "leftValue": "={{ $json.subject }}",
+                    "rightValue": "GFIN-Phong Vũ",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "gfin"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false,
+                  "leftValue": "",
+                  "typeValidation": "loose",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "1e52603e-70fa-4aa2-98a1-1cccbd048834",
+                    "leftValue": "",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "looseTypeValidation": true,
+        "options": {
+          "ignoreCase": true
+        }
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.3,
+      "position": [
+        -672,
+        240
+      ],
+      "id": "ac38b721-9ff5-407d-bad6-bbeba0c74acf",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "UZDcQs2KLNRnNLL6",
+          "mode": "list",
+          "cachedResultUrl": "/workflow/UZDcQs2KLNRnNLL6",
+          "cachedResultName": "cp62-opshub-main-v1"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.3,
+      "position": [
+        -512,
+        512
+      ],
+      "id": "c3e8816f-eac4-4ac0-b96d-04fd2c657684",
+      "name": "Call 'cp62-opshub-main-v1'1"
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "KIVrOZaj2eb6ml0x",
+          "mode": "list",
+          "cachedResultUrl": "/workflow/KIVrOZaj2eb6ml0x",
+          "cachedResultName": "sub-gen-price-tag-print-link-seatalk"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "mode": "each",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.2,
+      "position": [
+        -512,
+        -16
+      ],
+      "name": "sub - gen price tag print link seatalk",
+      "id": "4e2868c3-c071-4933-9331-05f69a9b9004"
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "Qaqhg2i5YelJAm8q",
+          "mode": "list",
+          "cachedResultUrl": "/workflow/Qaqhg2i5YelJAm8q",
+          "cachedResultName": "sub-send-tele-onl-orders-seatalk"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "id": "={{ $('Gmail Trigger').item.json.id }}",
+            "text": "={{ $('Gmail Trigger').item.json.text }}",
+            "from_value": "={{ $('Gmail Trigger').item.json.from.value }}",
+            "subject": "={{ $('Gmail Trigger').item.json.subject }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "subject",
+              "displayName": "subject",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "from_value",
+              "displayName": "from_value",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "text",
+              "displayName": "text",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "mode": "each",
+        "options": {
+          "waitForSubWorkflow": false
+        }
+      },
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.2,
+      "position": [
+        -512,
+        336
+      ],
+      "name": "Call sub - send-tele-onl-orders-seatalk",
+      "id": "7e3c34af-8001-489b-8e04-a7b27e104726"
+    },
+    {
+      "parameters": {
+        "operation": "markAsRead",
+        "messageId": "={{ $json.id }}"
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        -288,
+        160
+      ],
+      "id": "6c2f1868-2080-440c-9ec0-d7da51b18692",
+      "name": "Mark a message as read",
+      "webhookId": "b84a7120-e27f-43b2-8f55-cf82db2c7604",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "mdeJ5Cwz1YxLTzIG",
+          "name": "hoang.nv1"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1",
+    "callerPolicy": "workflowsFromSameOwner",
+    "errorWorkflow": "80zc32Np6wJfRsoG"
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-02-22T18:06:05.608Z",
+      "createdAt": "2026-02-22T18:06:05.608Z",
+      "role": "workflow:owner",
+      "workflowId": "HxjAOkUEpdSDasPG",
+      "projectId": "GTQprNa3RcCSHh8s"
+    }
+  ],
+  "staticData": {
+    "node:Gmail Trigger": {
+      "Gmail Trigger": {
+        "lastTimeChecked": 1769245752,
+        "possibleDuplicates": [
+          "19bef43c95daa4e9"
+        ]
+      }
+    }
+  },
+  "tags": [
+    {
+      "updatedAt": "2025-10-07T13:20:03.468Z",
+      "createdAt": "2025-10-07T13:20:03.468Z",
+      "id": "B0udxU6cGYBEciuM",
+      "name": "gmail"
+    }
+  ],
+  "triggerCount": 1,
+  "updatedAt": "2026-01-20T21:52:26.683Z",
+  "versionId": "2f0d6d5d-d373-4aa6-880a-fdc7d86f3a89"
+}
