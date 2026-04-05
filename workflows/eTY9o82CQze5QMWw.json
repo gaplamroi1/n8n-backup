@@ -1,0 +1,602 @@
+{
+  "active": false,
+  "activeVersion": null,
+  "activeVersionId": null,
+  "connections": {
+    "zalo_input": {
+      "main": [
+        [
+          {
+            "node": "get_sku_and_qty",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "send_results",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "get_sku_and_qty": {
+      "main": [
+        [
+          {
+            "node": "get_sku_inv",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "get_sku_inv": {
+      "main": [
+        [
+          {
+            "node": "isSerial",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "instock_or_not": {
+      "main": [
+        [
+          {
+            "node": "get_oldest_sku",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "get_oldest_sku": {
+      "main": [
+        [
+          {
+            "node": "get_needed_fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "get_needed_fields": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "send_results": {
+      "main": [
+        [
+          {
+            "node": "0,5_second",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "0,5_second": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [],
+        [
+          {
+            "node": "send_error",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "isSerial": {
+      "main": [
+        [
+          {
+            "node": "instock_or_not",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Limit",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit": {
+      "main": [
+        [
+          {
+            "node": "notSerial",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2026-02-22T19:27:39.773Z",
+  "id": "eTY9o82CQze5QMWw",
+  "isArchived": false,
+  "meta": null,
+  "name": "fifo-bot",
+  "nodes": [
+    {
+      "parameters": {
+        "inputSource": "passthrough"
+      },
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -480,
+        48
+      ],
+      "id": "38857016-81c8-4e92-b102-96107f2f1c79",
+      "name": "zalo_input"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        192,
+        0
+      ],
+      "id": "e009cb4b-e0f7-499c-8e23-5d8de39363a8",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {
+        "threadId": "={{ $('zalo_input').item.json.threadId }}",
+        "message": "=p1 SKU {{ $('get_sku_and_qty').item.json.sku }} không đúng hoặc sản phẩm không có tồn kho!",
+        "threadType": "={{ $('zalo_input').item.json.type }}",
+        "mentionsParameter": {
+          "mentionValues": [
+            {
+              "uid": "={{ $('zalo_input').item.json.data.uidFrom }}",
+              "len": 2
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-social-zalo.zaloUserInteract",
+      "typeVersion": 1,
+      "position": [
+        96,
+        96
+      ],
+      "id": "4972826e-4c96-4db1-9770-bf6ec01787fe",
+      "name": "send_error",
+      "credentials": {
+        "zaloUserCredentialsApi": {
+          "id": "I9XYLmeAnDXTStGI",
+          "name": "Zalo Phong Vũ Bình Thạnh - 2025-11-11T02:53:13.517Z"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "// Function Item — Run once for each item\n// Input: $json.data.content = \"sku qty\" (ví dụ \"250900201 2\")\n\nconst s = String($json.data?.content ?? $json.content ?? '').trim();\n\nlet sku = '';\nlet qty = NaN;\n\n// Ưu tiên đúng mẫu \"<sku><space><qty>\"\nconst m = s.match(/^\\s*(\\d+)\\s+(-?\\d+)\\s*$/);\nif (m) {\n  sku = m[1];\n  qty = parseInt(m[2], 10);\n} else {\n  // fallback: tách theo khoảng trắng/ký tự phân cách\n  const parts = s.split(/[\\s,;|]+/).filter(Boolean);\n  if (parts.length >= 2) {\n    sku = parts[0].replace(/\\D/g, '');\n    qty = parseInt(parts[1].replace(/[^\\d-]/g, ''), 10);\n  }\n}\n\n// Luôn trả 1 object; nếu lỗi, trả error để node sau tự xử lý\nif (!sku || !Number.isFinite(qty)) {\n  return { json: { error: 'bad_format', raw: s } };\n}\n\nreturn { json: { sku, qty  } };"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -384,
+        48
+      ],
+      "id": "4c3382d1-a05b-4ca3-83ad-f39d67750612",
+      "name": "get_sku_and_qty"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1f0Xycoy_GMeef9gVZnx-SSPtDQJdM9eN4Z92eZ8ZDEE",
+          "mode": "list",
+          "cachedResultName": "inventory_data",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1f0Xycoy_GMeef9gVZnx-SSPtDQJdM9eN4Z92eZ8ZDEE/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 34713994,
+          "mode": "list",
+          "cachedResultName": "Main",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1f0Xycoy_GMeef9gVZnx-SSPtDQJdM9eN4Z92eZ8ZDEE/edit#gid=34713994"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "Mã sản phẩm",
+              "lookupValue": "={{ $json.sku }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -288,
+        48
+      ],
+      "id": "cddfd877-9423-4b5d-95fb-b48e16ee2d95",
+      "name": "get_sku_inv",
+      "alwaysOutputData": true,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "MTh9LghqaMKPTAzs",
+          "name": "zalo-chat-bot-hoang.nv1"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "f2ff05d5-8fc3-456a-821d-3a106fb32b85",
+              "leftValue": "={{ $json['Mã sản phẩm'] }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "f818e79d-956e-4806-9021-68f5ecd2da0c",
+              "leftValue": "={{ $json['Mã Bin'] }}",
+              "rightValue": "cd.",
+              "operator": {
+                "type": "string",
+                "operation": "notContains"
+              }
+            },
+            {
+              "id": "122678d5-667d-4c80-b599-befe3190f00f",
+              "leftValue": "={{ $json['Mã Bin'] }}",
+              "rightValue": "XL",
+              "operator": {
+                "type": "string",
+                "operation": "notContains"
+              }
+            },
+            {
+              "id": "f479b29c-bb00-4ba5-b533-205e5198b9d3",
+              "leftValue": "={{ $json['Mã Bin'] }}",
+              "rightValue": "LD",
+              "operator": {
+                "type": "string",
+                "operation": "notContains"
+              }
+            },
+            {
+              "id": "018adec0-1dbd-4d39-95db-00b701d227d0",
+              "leftValue": "={{ $json['Mã Bin'] }}",
+              "rightValue": "BG",
+              "operator": {
+                "type": "string",
+                "operation": "notContains"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {
+          "ignoreCase": false
+        }
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -96,
+        48
+      ],
+      "id": "5de2cb6e-7c60-4db1-a3c4-1da4072a864b",
+      "name": "instock_or_not"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Lấy dữ liệu từ bước trước\nconst data = $input.all();\nconst qty = parseInt($('get_sku_and_qty').item.json.qty) || 1;\n\n// Thời gian hiện tại (chỉ lấy ngày, set giờ về 00:00:00)\nconst now = new Date();\nnow.setHours(0, 0, 0, 0);\n\n// Xử lý dữ liệu\nconst processedData = data.map(item => {\n  const json = item.json;\n  \n  // Parse ngày nhập kho\n  let ngayNhapKho = json['Ngày nhập kho'] || json['Ngày_nhập_kho'];\n  \n  if (!ngayNhapKho) {\n    return null;\n  }\n  \n  // Chuyển đổi string thành Date object\n  let nhapKhoDate;\n  if (typeof ngayNhapKho === 'string') {\n    const trimmed = ngayNhapKho.trim();\n    \n    // Kiểm tra format YYYY-MM-DD\n    if (trimmed.match(/^\\d{4}-\\d{1,2}-\\d{1,2}$/)) {\n      const parts = trimmed.split('-');\n      nhapKhoDate = new Date(\n        parseInt(parts[0]), // year\n        parseInt(parts[1]) - 1, // month (0-indexed)\n        parseInt(parts[2]) // day\n      );\n    }\n    // Kiểm tra format DD/MM/YYYY hoặc DD/MM/YYYY HH:mm:ss\n    else if (trimmed.includes('/')) {\n      const parts = trimmed.split(' ')[0].split('/');\n      nhapKhoDate = new Date(\n        parseInt(parts[2]), // year\n        parseInt(parts[1]) - 1, // month (0-indexed)\n        parseInt(parts[0]) // day\n      );\n    }\n    else {\n      return null;\n    }\n  } else {\n    nhapKhoDate = new Date(ngayNhapKho);\n  }\n  \n  // Set giờ về 00:00:00 để chỉ so sánh ngày\n  nhapKhoDate.setHours(0, 0, 0, 0);\n  \n  // Tính diff (milliseconds)\n  const diffMs = now - nhapKhoDate;\n  \n  // Tính diff theo ngày\n  const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));\n  \n  return {\n    ...json,\n    diffMs: diffMs,\n    diffDays: diffDays,\n    ngayNhapKhoFormatted: nhapKhoDate.toISOString().split('T')[0],\n    serial: json['Số Serial'] || json['So_Serial'] || json['Loại Serial']\n  };\n}).filter(item => item !== null && !isNaN(item.diffMs));\n\n// Sắp xếp theo diff giảm dần (thời gian lâu nhất)\nprocessedData.sort((a, b) => b.diffMs - a.diffMs);\n\n// Lấy qty + 1 items\nconst topItems = processedData.slice(0, qty + 1);\n\n// Return kết quả\nreturn topItems.map(item => ({\n  json: item\n}));"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        0,
+        0
+      ],
+      "id": "ec26eb32-c348-4536-a2cf-ec7e6781e2cf",
+      "name": "get_oldest_sku"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "ace64507-bffa-4746-971a-790ae106bfb2",
+              "name": "Mã sản phẩm",
+              "value": "={{ $json['Mã sản phẩm'] }}",
+              "type": "string"
+            },
+            {
+              "id": "13db5459-4317-476a-9818-4756046c2e8b",
+              "name": "Tên sản phẩm",
+              "value": "={{ $json['Tên sản phẩm'] }}",
+              "type": "string"
+            },
+            {
+              "id": "27a82500-f057-46eb-bdf2-7cde1433c311",
+              "name": "Số Serial",
+              "value": "={{ $json['Số Serial'] }}",
+              "type": "string"
+            },
+            {
+              "id": "2a24a630-b63a-4e07-bab2-208528ff7162",
+              "name": "Mã Bin",
+              "value": "={{ $json['Mã Bin'] }}",
+              "type": "string"
+            },
+            {
+              "id": "3bbbba4d-011c-4995-a467-92767dbd6011",
+              "name": "Zone",
+              "value": "={{ $json.Zone }}",
+              "type": "string"
+            },
+            {
+              "id": "279baaae-6188-43ca-9ed7-204de2b83d2e",
+              "name": "Ngày nhập kho",
+              "value": "={{ DateTime.fromJSDate(new Date($json['Ngày nhập kho'])).toFormat(\"dd-MM-yyyy\") }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        96,
+        0
+      ],
+      "id": "a07d2973-4d74-436a-9eb6-a23b0aea8d5d",
+      "name": "get_needed_fields"
+    },
+    {
+      "parameters": {
+        "threadId": "={{ $('zalo_input').first().json.threadId }}",
+        "message": "=p1\nSKU: {{ $json['Mã sản phẩm'] }}\nTên: {{ $json['Tên sản phẩm'] }}\nSerial cần lấy: {{ $json['Số Serial'] }}\nVị trí: {{ $json['Mã Bin'] }}\nLoại BIN: {{ $json.Zone }}\nNgày nhập kho: {{ $json['Ngày nhập kho'] }}",
+        "threadType": "={{ $('zalo_input').first().json.type }}",
+        "mentionsParameter": {
+          "mentionValues": [
+            {
+              "uid": "={{ $('zalo_input').first().json.data.uidFrom }}",
+              "len": 2
+            }
+          ]
+        },
+        "quoteParameter": "="
+      },
+      "type": "n8n-nodes-social-zalo.zaloUserInteract",
+      "typeVersion": 1,
+      "position": [
+        288,
+        0
+      ],
+      "id": "1be75602-5212-43d6-bf03-1dbfcd502a33",
+      "name": "send_results",
+      "credentials": {
+        "zaloUserCredentialsApi": {
+          "id": "I9XYLmeAnDXTStGI",
+          "name": "Zalo Phong Vũ Bình Thạnh - 2025-11-11T02:53:13.517Z"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "amount": 0.5
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        384,
+        0
+      ],
+      "id": "f46e1265-6777-40da-a378-ab578c224be6",
+      "name": "0,5_second",
+      "webhookId": "39f9a258-4a0e-499b-a962-616f4cbb3588"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "553a5ccb-aff3-4f47-a109-1e9b7d6eb300",
+              "leftValue": "={{ $json.row_number }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        0,
+        96
+      ],
+      "id": "67fa1592-caba-4468-a4c4-b62b3060232a",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": false,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "eba1c8a0-3872-4bcb-afbe-51e4443341dc",
+              "leftValue": "={{ $json['Số Serial'] }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {
+          "ignoreCase": true
+        }
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -192,
+        48
+      ],
+      "id": "d2b3781f-cc00-44b7-9eee-1baa13cbb740",
+      "name": "isSerial"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        0,
+        192
+      ],
+      "id": "4ce8992c-9c01-45f3-9b77-75e359afe453",
+      "name": "Limit"
+    },
+    {
+      "parameters": {
+        "threadId": "={{ $('zalo_input').item.json.threadId }}",
+        "message": "=p1 {{ $('get_sku_and_qty').item.json.sku }} {{ $json['Tên sản phẩm'] }}\nKhông quản lý bằng serial, kiểm tra lại.",
+        "threadType": "={{ $('zalo_input').item.json.type }}",
+        "mentionsParameter": {
+          "mentionValues": [
+            {
+              "uid": "={{ $('zalo_input').item.json.data.uidFrom }}",
+              "len": 2
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-social-zalo.zaloUserInteract",
+      "typeVersion": 1,
+      "position": [
+        96,
+        192
+      ],
+      "id": "ad73561e-f745-4906-bf3f-34fa210f918c",
+      "name": "notSerial",
+      "credentials": {
+        "zaloUserCredentialsApi": {
+          "id": "I9XYLmeAnDXTStGI",
+          "name": "Zalo Phong Vũ Bình Thạnh - 2025-11-11T02:53:13.517Z"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-02-22T19:27:39.773Z",
+      "createdAt": "2026-02-22T19:27:39.773Z",
+      "role": "workflow:owner",
+      "workflowId": "eTY9o82CQze5QMWw",
+      "projectId": "GTQprNa3RcCSHh8s"
+    }
+  ],
+  "staticData": null,
+  "tags": [
+    {
+      "updatedAt": "2025-10-07T13:20:09.465Z",
+      "createdAt": "2025-10-07T13:20:09.465Z",
+      "id": "R8JsFVZgS7NoVrt3",
+      "name": "zalo"
+    },
+    {
+      "updatedAt": "2025-11-08T12:09:40.816Z",
+      "createdAt": "2025-11-08T12:08:49.207Z",
+      "id": "aJR3FZVXiQEfDzcy",
+      "name": "pv.vn"
+    }
+  ],
+  "triggerCount": 0,
+  "updatedAt": "2026-02-22T19:28:18.312Z",
+  "versionId": "426d148d-7c36-4af7-bf24-04e6042257b5"
+}
