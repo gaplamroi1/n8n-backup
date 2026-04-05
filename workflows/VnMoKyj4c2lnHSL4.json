@@ -1,0 +1,1601 @@
+{
+  "active": false,
+  "activeVersion": null,
+  "activeVersionId": null,
+  "connections": {
+    "Telegram Trigger": {
+      "main": [
+        [
+          {
+            "node": "Parse Book Input",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse Book Input": {
+      "main": [
+        [
+          {
+            "node": "Get Photo URL",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Photo URL": {
+      "main": [
+        [
+          {
+            "node": "Download Book Cover",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Download Book Cover": {
+      "main": [
+        [
+          {
+            "node": "Upload Cover to Drive",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Upload Cover to Drive": {
+      "main": [
+        [
+          {
+            "node": "Save to Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Save to Google Sheets": {
+      "main": [
+        [
+          {
+            "node": "Search Book Info (Google Books)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Search Book Info (Google Books)": {
+      "main": [
+        [
+          {
+            "node": "Extract Book Info",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract Book Info": {
+      "main": [
+        [
+          {
+            "node": "Generate Script (Groq AI)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generate Script (Groq AI)": {
+      "main": [
+        [
+          {
+            "node": "Extract Script",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract Script": {
+      "main": [
+        [
+          {
+            "node": "Send a text message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait for Approval": {
+      "main": [
+        []
+      ]
+    },
+    "Check Approval": {
+      "main": [
+        [
+          {
+            "node": "Save Approved Script",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Handle Rejection",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Handle Rejection": {
+      "main": [
+        [
+          {
+            "node": "Generate Script (Groq AI)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Save Approved Script": {
+      "main": [
+        [
+          {
+            "node": "Generate Media Search Keywords",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generate Media Search Keywords": {
+      "main": [
+        [
+          {
+            "node": "Parse Keywords",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse Keywords": {
+      "main": [
+        [
+          {
+            "node": "Split Keywords",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Keywords": {
+      "main": [
+        [
+          {
+            "node": "Search Pexels Videos",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Search Pexels Videos": {
+      "main": [
+        [
+          {
+            "node": "Extract Video URLs",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract Video URLs": {
+      "main": [
+        [
+          {
+            "node": "Download Videos",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Download Videos": {
+      "main": [
+        [
+          {
+            "node": "Upload Videos to Drive",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Upload Videos to Drive": {
+      "main": [
+        [
+          {
+            "node": "Aggregate Videos",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate Videos": {
+      "main": [
+        [
+          {
+            "node": "Generate Voiceover (ElevenLabs)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generate Voiceover (ElevenLabs)": {
+      "main": [
+        [
+          {
+            "node": "Upload Voiceover to Drive",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Upload Voiceover to Drive": {
+      "main": [
+        [
+          {
+            "node": "Select Background Music",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Select Background Music": {
+      "main": [
+        [
+          {
+            "node": "Download Music from Drive",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Download Music from Drive": {
+      "main": [
+        [
+          {
+            "node": "Compose Final Video (FFmpeg)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Compose Final Video (FFmpeg)": {
+      "main": [
+        [
+          {
+            "node": "Upload Final Video to Drive",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Upload Final Video to Drive": {
+      "main": [
+        [
+          {
+            "node": "Update Sheet with Video URL",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update Sheet with Video URL": {
+      "main": [
+        [
+          {
+            "node": "Send Completion Notification",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send Completion Notification": {
+      "main": [
+        [
+          {
+            "node": "Update Status to Completed",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send a text message": {
+      "main": [
+        [
+          {
+            "node": "Check Approval",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-11-29T05:26:52.420Z",
+  "id": "VnMoKyj4c2lnHSL4",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Book Affiliate Video Automation",
+  "nodes": [
+    {
+      "parameters": {
+        "updates": [
+          "message"
+        ],
+        "additionalFields": {}
+      },
+      "id": "ea9332bc-e20c-4510-9d6d-4067b30992be",
+      "name": "Telegram Trigger",
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1,
+      "position": [
+        -2864,
+        208
+      ],
+      "webhookId": "{{WEBHOOK_ID}}",
+      "credentials": {
+        "telegramApi": {
+          "id": "PxJ53tcsehzvsjBT",
+          "name": "book-affiliate-bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Parse input từ Telegram message\n// Format: \"Tên sách | Giá | Link affiliate\"\n\nconst message = $input.item.json.message;\nconst text = message.caption || '';\nconst photo = message.photo;\nconst chatId = message.chat.id;\n\n// Split input by delimiter\nconst parts = text.split('|').map(p => p.trim());\n\nif (parts.length < 3) {\n  throw new Error('Format không đúng! Vui lòng gửi: Tên sách | Giá | Link affiliate');\n}\n\n// Generate unique book ID\nconst bookId = 'BOOK_' + Date.now();\n\nreturn {\n  json: {\n    bookId: bookId,\n    bookName: parts[0],\n    price: parts[1],\n    affiliateLink: parts[2],\n    photoFileId: photo ? photo[photo.length - 1].file_id : null,\n    chatId: chatId,\n    timestamp: new Date().toISOString(),\n    status: 'received'\n  }\n};"
+      },
+      "id": "251e8083-484c-4554-8cd3-e24fdac2d8a6",
+      "name": "Parse Book Input",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -2640,
+        208
+      ]
+    },
+    {
+      "parameters": {
+        "url": "=https://api.telegram.org/bot8211778236:AAErQ-k0nxMZk2uKRXoIMSUcTnToGdZ5Os8/getFile?file_id={{$json.photoFileId}}",
+        "options": {}
+      },
+      "id": "f3160ab8-2d8e-4d1a-b683-aceabb247d1d",
+      "name": "Get Photo URL",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -2416,
+        208
+      ]
+    },
+    {
+      "parameters": {
+        "url": "=https://api.telegram.org/file/bot8211778236:AAErQ-k0nxMZk2uKRXoIMSUcTnToGdZ5Os8/{{$json.result.file_path}}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "file"
+            }
+          }
+        }
+      },
+      "id": "98ecdce9-1dbd-4fd2-acf9-fd90c81e4c70",
+      "name": "Download Book Cover",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -2208,
+        208
+      ]
+    },
+    {
+      "parameters": {
+        "name": "={{$('Parse Book Input').item.json.bookId}}_cover.jpg",
+        "driveId": {
+          "__rl": true,
+          "value": "=",
+          "mode": "id"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "1La4rWdctzrn8yWyt130XxqM3ZABLh-8A",
+          "mode": "list",
+          "cachedResultName": "Images",
+          "cachedResultUrl": "https://drive.google.com/drive/folders/1La4rWdctzrn8yWyt130XxqM3ZABLh-8A"
+        },
+        "options": {}
+      },
+      "id": "8ed57a3e-ead9-4bb8-ba8c-d33d110b28e6",
+      "name": "Upload Cover to Drive",
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        -1984,
+        208
+      ],
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "XOVmGIm8iVuG71h0",
+          "name": "Google Drive account hoanghochoi1618"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "authentication": "serviceAccount",
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "=1mDP2ApwqEdaZIyr1g7tpb-o5UghdfF-KAWnu2pu4njY",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Books Database",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Book Name": "={{$('Parse Book Input').item.json.bookName}}",
+            "Price": "={{$('Parse Book Input').item.json.price}}",
+            "Affiliate Link": "={{$('Parse Book Input').item.json.affiliateLink}}",
+            "Status": "Processing",
+            "Book ID (auto)": "={{ $('Parse Book Input').item.json.bookId }}",
+            "Image URl": "={{ $json.webViewLink }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Book ID (auto)",
+              "displayName": "Book ID (auto)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Book Name",
+              "displayName": "Book Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Price",
+              "displayName": "Price",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Affiliate Link",
+              "displayName": "Affiliate Link",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Image URl",
+              "displayName": "Image URl",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Create Date",
+              "displayName": "Create Date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "id": "8bd59046-9186-4659-89f0-c487cf16a895",
+      "name": "Save to Google Sheets",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        -1760,
+        208
+      ],
+      "credentials": {
+        "googleApi": {
+          "id": "I8h84GDoh5lVNvgO",
+          "name": "book-affliate-hoanghochoi1618"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "=https://www.googleapis.com/books/v1/volumes?q={{encodeURIComponent($('Parse Book Input').item.json.bookName)}}",
+        "options": {}
+      },
+      "id": "ac0a6ca2-8350-468e-9fef-4fef85c5d15a",
+      "name": "Search Book Info (Google Books)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -1536,
+        208
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Extract relevant book information từ Google Books API\n\nconst apiResponse = $input.item.json;\nconst bookData = $('Parse Book Input').item.json;\n\nlet bookInfo = {\n  title: bookData.bookName,\n  description: 'Không tìm thấy mô tả',\n  authors: [],\n  categories: [],\n  pageCount: 0,\n  publishedDate: '',\n  language: 'vi'\n};\n\nif (apiResponse.items && apiResponse.items.length > 0) {\n  const firstResult = apiResponse.items[0].volumeInfo;\n  \n  bookInfo = {\n    title: firstResult.title || bookData.bookName,\n    description: firstResult.description || 'Không tìm thấy mô tả',\n    authors: firstResult.authors || [],\n    categories: firstResult.categories || ['General'],\n    pageCount: firstResult.pageCount || 0,\n    publishedDate: firstResult.publishedDate || '',\n    language: firstResult.language || 'vi'\n  };\n}\n\n// Merge với original data\nreturn {\n  json: {\n    ...bookData,\n    bookInfo: bookInfo,\n    category: bookInfo.categories[0] || 'general'\n  }\n};"
+      },
+      "id": "0e1e8ac4-e51f-4f61-ae42-6292328a2b36",
+      "name": "Extract Book Info",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -1328,
+        208
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.groq.com/openai/v1/chat/completions",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "groqApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "model",
+              "value": "llama-3.3-70b-versatile"
+            },
+            {
+              "name": "messages",
+              "value": "={{ [\n  {\n    \"role\": \"system\",\n    \"content\": \"Bạn là chuyên gia viết kịch bản video marketing cho sách. Hãy tạo kịch bản storytelling hấp dẫn, ngắn gọn (60 giây đọc), theo phong cách factory telling (kể chuyện thực tế, cảm xúc). Kịch bản phải bằng tiếng Việt.\"\n  },\n  {\n    \"role\": \"user\",\n    \"content\": \"Viết kịch bản video 60 giây cho sách:\\n\\nTên sách: \" + $json.bookName + \"\\nTác giả: \" + ($json.bookInfo.authors.join(', ') || 'Không rõ') + \"\\nThể loại: \" + $json.category + \"\\nMô tả: \" + $json.bookInfo.description.substring(0, 500) + \"\\n\\nYêu cầu:\\n- Hook đầu 3 giây hút người xem (câu hỏi hoặc tình huống gây tò mò)\\n- Kể 1 câu chuyện/tình huống thực tế liên quan nội dung sách\\n- Giải quyết vấn đề với insights từ sách\\n- Call-to-action cuối (xem link trong bio)\\n- Tổng ~150-200 từ\\n- Giọng điệu: Trò chuyện, chân thành, gần gũi\\n\\nChỉ trả về nội dung kịch bản, không có tiêu đề hay mô tả thêm.\"\n  }\n] }}"
+            },
+            {
+              "name": "temperature",
+              "value": "={{ 0.7 }}"
+            },
+            {
+              "name": "max_tokens",
+              "value": "={{ 500 }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "b6144990-67cb-4077-b8f6-dafd01edb826",
+      "name": "Generate Script (Groq AI)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -2832,
+        608
+      ],
+      "credentials": {
+        "groqApi": {
+          "id": "AxnrsE8TbqxfHXgr",
+          "name": "Groq account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Extract script từ Groq API response\n\nconst response = $input.item.json;\nconst script = response.choices[0].message.content.trim();\n\n// Get previous data\nconst bookData = $('Extract Book Info').item.json;\n\n// Add retry count\nconst retryCount = $input.item.json.retryCount || 0;\n\nreturn {\n  json: {\n    ...bookData,\n    generatedScript: script,\n    scriptLength: script.length,\n    retryCount: retryCount,\n    scriptGeneratedAt: new Date().toISOString()\n  }\n};"
+      },
+      "id": "fd941ce1-2911-4752-b87d-d9a9ec561201",
+      "name": "Extract Script",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -2608,
+        608
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "={{$json.chatId}}",
+        "text": "=📖 *Kịch bản cho sách: {{$json.bookName}}*\\n\\n{{$json.generatedScript}}\n----\n📊 Độ dài: {{$json.scriptLength}} ký tự\n⏱️ Thời lượng ước tính: ~60 giây\\n\\n👇 Vui lòng phê duyệt:",
+        "additionalFields": {}
+      },
+      "id": "c837f455-e1e3-448e-8d6e-446b09ccd60e",
+      "name": "Send Script for Approval",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        -2400,
+        752
+      ],
+      "webhookId": "dcd6ff2d-1259-48d7-af21-40f108885c5f",
+      "credentials": {
+        "telegramApi": {
+          "id": "PxJ53tcsehzvsjBT",
+          "name": "book-affiliate-bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "updates": [
+          "callback_query"
+        ],
+        "additionalFields": {}
+      },
+      "id": "3c6e8dac-4de4-4ca5-b53b-473e87414747",
+      "name": "Wait for Approval",
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1,
+      "position": [
+        -2176,
+        752
+      ],
+      "webhookId": "{{WEBHOOK_ID_2}}",
+      "credentials": {
+        "telegramApi": {
+          "id": "PxJ53tcsehzvsjBT",
+          "name": "book-affiliate-bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 1
+          },
+          "conditions": [
+            {
+              "id": "condition-1",
+              "leftValue": "={{ $json.data.approved }}",
+              "rightValue": "=approve_",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "de233216-60d9-4a15-b9a3-61eca5a8d690",
+      "name": "Check Approval",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        -1952,
+        608
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Handle rejection - increment retry count\n\nconst callbackData = $input.item.json.callback_query.data;\nconst bookId = callbackData.replace('reject_', '');\n\n// Get previous script data từ workflow storage hoặc Sheet\n// Simplified: Just return retry signal\n\nconst retryCount = ($input.item.json.retryCount || 0) + 1;\n\nif (retryCount >= 3) {\n  throw new Error('Đã retry 3 lần. Vui lòng kiểm tra yêu cầu.');\n}\n\nreturn {\n  json: {\n    bookId: bookId,\n    action: 'regenerate',\n    retryCount: retryCount\n  }\n};"
+      },
+      "id": "2dba64cc-4bc5-4ab6-94ad-9f99be2f239a",
+      "name": "Handle Rejection",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -1728,
+        800
+      ]
+    },
+    {
+      "parameters": {
+        "authentication": "serviceAccount",
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "=1mDP2ApwqEdaZIyr1g7tpb-o5UghdfF-KAWnu2pu4njY",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Scripts",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Book ID": "={{ $('Extract Script').item.json.bookId }}",
+            "Script Content": "={{ $('Extract Script').item.json.generatedScript }}",
+            "Approved Date": "={{new Date().toISOString()}}",
+            "row_number": 0
+          },
+          "matchingColumns": [
+            "Book ID"
+          ],
+          "schema": [
+            {
+              "id": "Book ID",
+              "displayName": "Book ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Script Content",
+              "displayName": "Script Content",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Approved Date",
+              "displayName": "Approved Date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Video URL",
+              "displayName": "Video URL",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "id": "41eb647b-cbbe-4791-8e06-750759f14379",
+      "name": "Save Approved Script",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        -1728,
+        400
+      ],
+      "credentials": {
+        "googleApi": {
+          "id": "I8h84GDoh5lVNvgO",
+          "name": "book-affliate-hoanghochoi1618"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.groq.com/openai/v1/chat/completions",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "groqApi",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "model",
+              "value": "llama-3.3-70b-versatile"
+            },
+            {
+              "name": "messages",
+              "value": "={{ [\n  {\n    \"role\": \"system\",\n    \"content\": \"Bạn là chuyên gia phân tích nội dung. Hãy tạo danh sách 5 từ khóa tiếng Anh để tìm kiếm stock videos/images phù hợp với nội dung sách.\"\n  },\n  {\n    \"role\": \"user\",\n    \"content\": \"Sách: \" + $('Extract Book Info').item.json.bookName + \"\\nThể loại: \" + $('Extract Book Info').item.json.bookInfo.categories[0] + \"\\nKịch bản: \" + $json['Script Content'] + \"\\n\\nTạo 5 từ khóa tiếng Anh để tìm stock media. Chỉ trả về danh sách từ khóa, cách nhau bởi dấu phẩy. Ví dụ: success, business people, growth, achievement, teamwork\"\n  }\n] }}"
+            },
+            {
+              "name": "temperature",
+              "value": "={{ 0.5 }}"
+            },
+            {
+              "name": "max_tokens",
+              "value": "={{ 100 }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "728ac724-53ee-4323-986f-2606e464c2c5",
+      "name": "Generate Media Search Keywords",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -2832,
+        1120
+      ],
+      "credentials": {
+        "groqApi": {
+          "id": "AxnrsE8TbqxfHXgr",
+          "name": "Groq account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Extract và parse keywords\n\nconst response = $input.item.json;\nconst keywordsText = response.choices[0].message.content.trim();\nconst keywords = keywordsText.split(',').map(k => k.trim()).filter(k => k.length > 0);\n\nconst bookData = $('Save Approved Script').item.json;\n\nreturn {\n  json: {\n    ...bookData,\n    searchKeywords: keywords\n  }\n};"
+      },
+      "id": "974cc220-61ba-416d-bc2f-a626b41fba39",
+      "name": "Parse Keywords",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -2608,
+        1120
+      ]
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "searchKeywords",
+        "options": {}
+      },
+      "id": "481da80a-aef5-4a03-b6ac-eab0db954a31",
+      "name": "Split Keywords",
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        -2384,
+        1120
+      ]
+    },
+    {
+      "parameters": {
+        "url": "=https://api.pexels.com/videos/search?query={{$json.searchKeywords}}&per_page=2&orientation=portrait",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=K9vIFk6cqjfemikJPbCphLtzQNNT6W7sV5cHiQmZ36aESJtvzPoL8TAD"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "9083be60-2262-4463-8b3e-177f38ecbfe4",
+      "name": "Search Pexels Videos",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -2176,
+        1120
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Extract video URLs từ Pexels response\n\nconst response = $input.item.json;\nconst videos = [];\n\nif (response.videos && response.videos.length > 0) {\n  for (const video of response.videos) {\n    // Get portrait HD video file\n    const hdFile = video.video_files.find(f => \n      f.width === 1080 && f.height === 1920\n    ) || video.video_files.find(f => \n      f.quality === 'hd'\n    ) || video.video_files[0];\n    \n    videos.push({\n      id: video.id,\n      url: hdFile.link,\n      width: hdFile.width,\n      height: hdFile.height,\n      duration: video.duration,\n      keyword: $json.searchKeywords\n    });\n  }\n}\n\nreturn videos.map(v => ({ json: v }));"
+      },
+      "id": "cd57e225-d0b7-47fd-a606-5ed8bfee24cc",
+      "name": "Extract Video URLs",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -1952,
+        1120
+      ]
+    },
+    {
+      "parameters": {
+        "url": "={{$json.url}}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "file"
+            }
+          }
+        }
+      },
+      "id": "d3c08d63-0a1f-4a53-8c70-fd23c55d740f",
+      "name": "Download Videos",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -1728,
+        1120
+      ]
+    },
+    {
+      "parameters": {
+        "name": "=video_{{$json.id}}.mp4",
+        "driveId": {
+          "__rl": true,
+          "value": "=",
+          "mode": "id"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "18vDfkI2YyutZypxfFI3p2A-x7MasJq19",
+          "mode": "list",
+          "cachedResultName": "Videos",
+          "cachedResultUrl": "https://drive.google.com/drive/folders/18vDfkI2YyutZypxfFI3p2A-x7MasJq19"
+        },
+        "options": {}
+      },
+      "id": "f4a16f11-aace-4465-a146-c9bf83ab5e5c",
+      "name": "Upload Videos to Drive",
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        -1504,
+        1120
+      ],
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "XOVmGIm8iVuG71h0",
+          "name": "Google Drive account hoanghochoi1618"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fieldsToAggregate": {
+          "fieldToAggregate": [
+            {}
+          ]
+        },
+        "options": {}
+      },
+      "id": "e77e57ee-718a-4e66-a3fb-01f2be6a31da",
+      "name": "Aggregate Videos",
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        -2848,
+        1520
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.elevenlabs.io/v2.5/text-to-speech/FTYCiQT21H9XQvhRu0ch",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "xi-api-key",
+              "value": "=sk_6b773f54992084a75266309f09eb1b5f92e8bb411bb90bf9"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "text",
+              "value": "={{ $('Save Approved Script').first().json['Script Content'] }}"
+            },
+            {
+              "name": "model_id",
+              "value": "eleven_multilingual_v2"
+            },
+            {
+              "name": "voice_settings",
+              "value": "={{ { \"stability\": 0.5, \"similarity_boost\": 0.75 } }}"
+            }
+          ]
+        },
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "file"
+            }
+          }
+        }
+      },
+      "id": "dd6b707c-6b3e-43ad-a6e0-87d038c61f96",
+      "name": "Generate Voiceover (ElevenLabs)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -2624,
+        1520
+      ]
+    },
+    {
+      "parameters": {
+        "name": "=voiceover_{{ $('Save Approved Script').first().json['Book ID'] }}.mp3",
+        "driveId": {
+          "__rl": true,
+          "value": "=",
+          "mode": "id"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "13NOjkTBqCk6eOj_iUFTnceYtBa2ba_eP",
+          "mode": "list",
+          "cachedResultName": "Audio",
+          "cachedResultUrl": "https://drive.google.com/drive/folders/13NOjkTBqCk6eOj_iUFTnceYtBa2ba_eP"
+        },
+        "options": {}
+      },
+      "id": "0d67e5dd-b9e0-4caf-8e91-d021039844ac",
+      "name": "Upload Voiceover to Drive",
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        -2400,
+        1520
+      ],
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "XOVmGIm8iVuG71h0",
+          "name": "Google Drive account hoanghochoi1618"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Select background music dựa trên category\n\nconst category = $('Save Approved Script').item.json.category || 'general';\n\n// Pre-uploaded music files trên Drive\nconst musicLibrary = {\n  'self-help': {\n    name: 'inspiring-uplifting.mp3',\n    driveId: 'MUSIC_DRIVE_ID_1'\n  },\n  'business': {\n    name: 'corporate-success.mp3',\n    driveId: 'MUSIC_DRIVE_ID_2'\n  },\n  'fiction': {\n    name: 'cinematic-emotional.mp3',\n    driveId: 'MUSIC_DRIVE_ID_3'\n  },\n  'general': {\n    name: 'inspiring-general.mp3',\n    driveId: 'MUSIC_DRIVE_ID_DEFAULT'\n  }\n};\n\nconst selectedMusic = musicLibrary[category] || musicLibrary['general'];\n\nreturn {\n  json: {\n    musicName: selectedMusic.name,\n    musicDriveId: selectedMusic.driveId,\n    category: category\n  }\n};\n\n// NOTE: Cần upload music files trước và update Drive IDs"
+      },
+      "id": "fc8a605a-0676-4960-a363-a3030a32cf4e",
+      "name": "Select Background Music",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -2176,
+        1520
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "download",
+        "fileId": {
+          "__rl": true,
+          "value": "={{$json.musicDriveId}}",
+          "mode": "id"
+        },
+        "options": {}
+      },
+      "id": "698ed9dc-7914-4fa3-ae5c-a51843fc8d57",
+      "name": "Download Music from Drive",
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        -1968,
+        1520
+      ],
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "XOVmGIm8iVuG71h0",
+          "name": "Google Drive account hoanghochoi1618"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "/**\n * VIDEO COMPOSITION với FFmpeg\n * \n * Inputs:\n * - Videos từ Aggregate Videos node\n * - Voiceover từ Upload Voiceover node\n * - Music từ Download Music node\n * \n * Output:\n * - Final video MP4 (1080x1920, 30fps)\n * \n * GIẢI THÍCH:\n * Node này sẽ dùng fluent-ffmpeg để ghép video.\n * Do n8n code node có giới hạn, đây là pseudo-code.\n * Trong thực tế, bạn có thể:\n * 1. Dùng n8n Execute Command node với ffmpeg CLI\n * 2. Hoặc tạo custom node riêng\n * 3. Hoặc call external API/service\n */\n\nconst ffmpeg = require('fluent-ffmpeg');\nconst fs = require('fs');\nconst path = require('path');\n\n// Get data từ previous nodes\nconst videos = $('Aggregate Videos').item.json.data; // Array of video Drive IDs\nconst voiceoverData = $('Upload Voiceover to Drive').item.json;\nconst musicData = $('Download Music from Drive').item.json;\n\n// For simplicity, assume files đã được download về temp folder\n// Trong thực tế, cần download từ Drive về first\n\nconst tempDir = '/tmp/video-composition';\nif (!fs.existsSync(tempDir)) fs.mkdirSync(tempDir, { recursive: true });\n\n// Video settings\nconst OUTPUT_WIDTH = 1080;\nconst OUTPUT_HEIGHT = 1920;\nconst TARGET_DURATION = 60; // seconds\nconst VIDEO_FPS = 30;\n\ntry {\n  // Step 1: Download all videos từ Drive\n  const videoFiles = [];\n  for (let i = 0; i < Math.min(videos.length, 5); i++) {\n    const videoPath = path.join(tempDir, `video_${i}.mp4`);\n    // Download logic here (simplified)\n    videoFiles.push(videoPath);\n  }\n  \n  // Step 2: Create concat file for FFmpeg\n  const concatFile = path.join(tempDir, 'concat.txt');\n  const clipDuration = TARGET_DURATION / videoFiles.length;\n  \n  let concatContent = '';\n  videoFiles.forEach(file => {\n    concatContent += `file '${file}'\\n`;\n    concatContent += `duration ${clipDuration}\\n`;\n  });\n  fs.writeFileSync(concatFile, concatContent);\n  \n  // Step 3: Voiceover và Music paths\n  const voiceoverPath = path.join(tempDir, 'voiceover.mp3');\n  const musicPath = path.join(tempDir, 'music.mp3');\n  // Download logic here\n  \n  // Step 4: FFmpeg composition\n  const outputPath = path.join(tempDir, 'final_video.mp4');\n  \n  await new Promise((resolve, reject) => {\n    ffmpeg()\n      // Video inputs từ concat file\n      .input(concatFile)\n      .inputOptions(['-f', 'concat', '-safe', '0'])\n      \n      // Audio inputs\n      .input(voiceoverPath) // Input 1\n      .input(musicPath)      // Input 2\n      \n      // Complex filter\n      .complexFilter([\n        // Scale video to 1080x1920\n        `[0:v]scale=${OUTPUT_WIDTH}:${OUTPUT_HEIGHT}:force_original_aspect_ratio=increase,crop=${OUTPUT_WIDTH}:${OUTPUT_HEIGHT}[video]`,\n        \n        // Mix audio: voiceover 100%, music 20%\n        '[1:a]volume=1.0[voice]',\n        '[2:a]volume=0.2[music]',\n        '[voice][music]amix=inputs=2:duration=first[audio]'\n      ])\n      \n      // Output options\n      .outputOptions([\n        '-map', '[video]',\n        '-map', '[audio]',\n        '-c:v', 'libx264',\n        '-preset', 'medium',\n        '-crf', '23',\n        '-c:a', 'aac',\n        '-b:a', '128k',\n        '-r', VIDEO_FPS.toString(),\n        '-t', TARGET_DURATION.toString(),\n        '-movflags', '+faststart' // Web optimization\n      ])\n      \n      .output(outputPath)\n      \n      .on('start', (cmd) => {\n        console.log('FFmpeg command:', cmd);\n      })\n      .on('progress', (progress) => {\n        console.log('Processing: ' + progress.percent + '% done');\n      })\n      .on('end', () => {\n        console.log('Video composition completed');\n        resolve();\n      })\n      .on('error', (err) => {\n        console.error('FFmpeg error:', err);\n        reject(err);\n      })\n      .run();\n  });\n  \n  // Step 5: Read final video file\n  const videoBuffer = fs.readFileSync(outputPath);\n  \n  // Step 6: Clean up temp files\n  // fs.unlinkSync(outputPath); // Keep for debugging\n  \n  // Return binary data\n  return {\n    json: {\n      status: 'success',\n      outputPath: outputPath,\n      fileSize: videoBuffer.length,\n      duration: TARGET_DURATION\n    },\n    binary: {\n      data: {\n        data: videoBuffer.toString('base64'),\n        mimeType: 'video/mp4',\n        fileName: `final_${$('Save Approved Script').item.json.bookId}.mp4`\n      }\n    }\n  };\n  \n} catch (error) {\n  console.error('Video composition failed:', error);\n  \n  // Send error notification\n  // ... (Telegram notification logic)\n  \n  throw new Error('Video composition failed: ' + error.message);\n}\n\n/**\n * ALTERNATIVE IMPLEMENTATION:\n * \n * Nếu code node quá phức tạp, có thể:\n * \n * 1. Dùng Execute Command node:\n *    bash -c \"ffmpeg -i video1.mp4 -i voice.mp3 -i music.mp3 \\\n *            -filter_complex '[0:v]scale=1080:1920[v];[1:a]volume=1[a1];[2:a]volume=0.2[a2];[a1][a2]amix[a]' \\\n *            -map '[v]' -map '[a]' output.mp4\"\n * \n * 2. Call external API:\n *    POST https://your-video-service.com/api/compose\n *    Body: { videos: [...], voice: ..., music: ... }\n * \n * 3. Custom Docker service:\n *    Deploy FFmpeg service riêng, n8n gọi qua HTTP\n */"
+      },
+      "id": "c355e64a-1534-47bd-a9aa-94338ca6d808",
+      "name": "Compose Final Video (FFmpeg)",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -1744,
+        1520
+      ],
+      "notes": "This node requires fluent-ffmpeg package. May need custom implementation or external service."
+    },
+    {
+      "parameters": {
+        "name": "=final_{{$('Save Approved Script').item.json.bookId}}_{{new Date().getTime()}}.mp4",
+        "driveId": {
+          "__rl": true,
+          "value": "=1KNFv6Lbk_0AtEN1BAPYzMQfUamKuRkm3/Final",
+          "mode": "id"
+        },
+        "folderId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "root",
+          "cachedResultName": "/ (Root folder)"
+        },
+        "options": {}
+      },
+      "id": "c22b740c-6c00-4b90-a668-fd1311b6f32e",
+      "name": "Upload Final Video to Drive",
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        -1520,
+        1520
+      ],
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "XOVmGIm8iVuG71h0",
+          "name": "Google Drive account hoanghochoi1618"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "authentication": "serviceAccount",
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "=1mDP2ApwqEdaZIyr1g7tpb-o5UghdfF-KAWnu2pu4njY",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Scripts",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Video URL": "={{$json.webViewLink}}",
+            "row_number": 0
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Book ID",
+              "displayName": "Book ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Script Content",
+              "displayName": "Script Content",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Approved Date",
+              "displayName": "Approved Date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Video URL",
+              "displayName": "Video URL",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "id": "22d040c6-3d35-4ed9-8104-d7cb7c143e20",
+      "name": "Update Sheet with Video URL",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        -1296,
+        1520
+      ],
+      "credentials": {
+        "googleApi": {
+          "id": "I8h84GDoh5lVNvgO",
+          "name": "book-affliate-hoanghochoi1618"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{$('Parse Book Input').item.json.chatId}}",
+        "text": "=✅ *Video hoàn thành!*\\n\\n📖 Sách: {{$('Save Approved Script').item.json.bookName}}\\n🎬 Video: {{$json.webViewLink}}\\n📊 Kích thước: {{Math.round($('Compose Final Video (FFmpeg)').item.json.fileSize / 1024 / 1024 * 100) / 100}} MB\\n⏱️ Thời lượng: 60 giây\\n\\n👉 Nhấn nút bên dưới để xem hoặc tải về",
+        "additionalFields": {}
+      },
+      "id": "4836a401-b7a4-4c6d-992b-a0f1d35166e6",
+      "name": "Send Completion Notification",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        -1088,
+        1520
+      ],
+      "webhookId": "dc25dc77-9fdd-4f34-9b7c-25f823037ac5",
+      "credentials": {
+        "telegramApi": {
+          "id": "PxJ53tcsehzvsjBT",
+          "name": "book-affiliate-bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "authentication": "serviceAccount",
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "=1mDP2ApwqEdaZIyr1g7tpb-o5UghdfF-KAWnu2pu4njY",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Books Database",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "row_number": 0,
+            "Status": "Complete"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Book ID (auto)",
+              "displayName": "Book ID (auto)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Book Name",
+              "displayName": "Book Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Price",
+              "displayName": "Price",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Affiliate Link",
+              "displayName": "Affiliate Link",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Imgae URl",
+              "displayName": "Imgae URl",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Create Date",
+              "displayName": "Create Date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "id": "678d4722-9dbf-453d-847c-208e938e8405",
+      "name": "Update Status to Completed",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        -864,
+        1520
+      ],
+      "credentials": {
+        "googleApi": {
+          "id": "I8h84GDoh5lVNvgO",
+          "name": "book-affliate-hoanghochoi1618"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "sendAndWait",
+        "chatId": "={{$json.chatId}}",
+        "message": "=📖 *Kịch bản cho sách: {{$json.bookName}}*\\n\\n{{$json.generatedScript}}\n----\n📊 Độ dài: {{$json.scriptLength}} ký tự\n⏱️ Thời lượng ước tính: ~60 giây\\n\\n👇 Vui lòng phê duyệt:",
+        "approvalOptions": {
+          "values": {
+            "approvalType": "double"
+          }
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        -2368,
+        608
+      ],
+      "id": "88c61ddc-9114-4022-b32b-78efe0ebebae",
+      "name": "Send a text message",
+      "webhookId": "f42fe0e0-ef15-45c3-bccb-26eddab39238",
+      "credentials": {
+        "telegramApi": {
+          "id": "PxJ53tcsehzvsjBT",
+          "name": "book-affiliate-bot"
+        }
+      }
+    }
+  ],
+  "pinData": {
+    "Telegram Trigger": [
+      {
+        "json": {
+          "update_id": 662511978,
+          "message": {
+            "message_id": 4,
+            "from": {
+              "id": 5013029624,
+              "is_bot": false,
+              "first_name": "Nguyen",
+              "last_name": "Leo",
+              "username": "Vagabondthelast",
+              "language_code": "en"
+            },
+            "chat": {
+              "id": 5013029624,
+              "first_name": "Nguyen",
+              "last_name": "Leo",
+              "username": "Vagabondthelast",
+              "type": "private"
+            },
+            "date": 1764590287,
+            "photo": [
+              {
+                "file_id": "AgACAgUAAxkBAAMDaS2CYP9wYK0vAihrvaDlmyPVCPoAAsoLaxvVenBVte19gW3H-DgBAAMCAANzAAM2BA",
+                "file_unique_id": "AQADygtrG9V6cFV4",
+                "file_size": 2329,
+                "width": 90,
+                "height": 90
+              },
+              {
+                "file_id": "AgACAgUAAxkBAAMDaS2CYP9wYK0vAihrvaDlmyPVCPoAAsoLaxvVenBVte19gW3H-DgBAAMCAANtAAM2BA",
+                "file_unique_id": "AQADygtrG9V6cFVy",
+                "file_size": 32523,
+                "width": 320,
+                "height": 320
+              },
+              {
+                "file_id": "AgACAgUAAxkBAAMDaS2CYP9wYK0vAihrvaDlmyPVCPoAAsoLaxvVenBVte19gW3H-DgBAAMCAAN4AAM2BA",
+                "file_unique_id": "AQADygtrG9V6cFV9",
+                "file_size": 95026,
+                "width": 713,
+                "height": 713
+              }
+            ],
+            "caption": "Biến mọi thứ thành tiền | 170000 | https://s.shopee.vn/30gbLdb2fg",
+            "caption_entities": [
+              {
+                "offset": 35,
+                "length": 30,
+                "type": "url"
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "Save Approved Script": [
+      {
+        "json": {
+          "Book ID": "BOOK_1764592232953",
+          "Script Content": "Bạn đã bao giờ cảm thấy thất vọng khi bị từ chối khi bán hàng? Tôi cũng曾经 như vậy. Tôi nhớ như in một lần tôi cố gắng bán hàng cho một khách hàng tiềm năng, nhưng họ từ chối tôi với lý do \"không đủ ngân sách\". Tôi cảm thấy bế tắc và không biết phải làm gì tiếp theo.\n\nNhưng sau đó, tôi đọc được cuốn sách \"Biến mọi thứ thành tiền\" của tác giả Cố Mạn. Cuốn sách này đã giúp tôi tìm ra 38 kỹ năng xử lý từ chối khi bán hàng. Tôi áp dụng những kỹ năng này và thấy được sự thay đổi rõ ràng. Tôi không còn cảm thấy bế tắc khi bị từ chối, mà thay vào đó, tôi biết cách xử lý và thuyết phục khách hàng.\n\nNếu bạn cũng đang gặp phải tình huống tương tự, hãy xem link trong bio để tìm hiểu thêm về cuốn sách này. Bạn sẽ trở thành người bán hàng xuất sắc với 38 kỹ năng xử lý từ chối khi bán hàng. Đừng bỏ lỡ cơ hội này!",
+          "Approved Date": "2025-12-01T12:37:54.346Z",
+          "row_number": 0
+        }
+      }
+    ],
+    "Split Keywords": [
+      {
+        "json": {
+          "searchKeywords": "sales"
+        }
+      },
+      {
+        "json": {
+          "searchKeywords": "business success"
+        }
+      },
+      {
+        "json": {
+          "searchKeywords": "money growth"
+        }
+      },
+      {
+        "json": {
+          "searchKeywords": "marketing strategy"
+        }
+      },
+      {
+        "json": {
+          "searchKeywords": "entrepreneurship"
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-02-22T18:06:54.558Z",
+      "createdAt": "2026-02-22T18:06:54.558Z",
+      "role": "workflow:owner",
+      "workflowId": "VnMoKyj4c2lnHSL4",
+      "projectId": "GTQprNa3RcCSHh8s"
+    }
+  ],
+  "staticData": null,
+  "tags": [
+    {
+      "updatedAt": "2025-11-29T05:26:08.312Z",
+      "createdAt": "2025-11-29T05:26:08.312Z",
+      "id": "jIXwNlU2CrwAYxtl",
+      "name": "automation"
+    },
+    {
+      "updatedAt": "2025-11-29T05:26:08.330Z",
+      "createdAt": "2025-11-29T05:26:08.330Z",
+      "id": "wwBsUtY0cVyLjM0h",
+      "name": "affiliate"
+    },
+    {
+      "updatedAt": "2025-11-29T05:26:08.334Z",
+      "createdAt": "2025-11-29T05:26:08.334Z",
+      "id": "YbQPaeB9WEHbCIHy",
+      "name": "video"
+    },
+    {
+      "updatedAt": "2025-11-29T05:26:08.340Z",
+      "createdAt": "2025-11-29T05:26:08.340Z",
+      "id": "9EFVkERHlhKiXHEn",
+      "name": "mmo"
+    }
+  ],
+  "triggerCount": 0,
+  "updatedAt": "2025-12-01T13:08:13.512Z",
+  "versionId": "3d15276e-f85a-4f3b-a1c9-406a1d2f529c"
+}
