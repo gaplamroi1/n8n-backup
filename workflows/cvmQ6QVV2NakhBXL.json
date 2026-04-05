@@ -1,0 +1,86 @@
+{
+  "active": false,
+  "activeVersion": null,
+  "activeVersionId": null,
+  "connections": {
+    "Google Sheets Trigger": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "createdAt": "2025-10-10T10:17:51.134Z",
+  "id": "cvmQ6QVV2NakhBXL",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "send-zalo-mess-to-customers",
+  "nodes": [
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "documentId": {
+          "__rl": true,
+          "value": "1Cib2YdUvDo2Ki1Rg5OR_QTOrIZsJn3dbeec-3ccEIyI",
+          "mode": "list",
+          "cachedResultName": "HVTC_t10",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1Cib2YdUvDo2Ki1Rg5OR_QTOrIZsJn3dbeec-3ccEIyI/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1Cib2YdUvDo2Ki1Rg5OR_QTOrIZsJn3dbeec-3ccEIyI/edit#gid=0"
+        },
+        "event": "rowAdded",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "01a28f65-7194-486a-9081-234940c64910",
+      "name": "Google Sheets Trigger",
+      "credentials": {
+        "googleSheetsTriggerOAuth2Api": {
+          "id": "D9OdQTNBWpGt5m0U",
+          "name": "zalo-chat-bot-hoang.nv1-trigger"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-02-22T18:07:37.775Z",
+      "createdAt": "2026-02-22T18:07:37.775Z",
+      "role": "workflow:owner",
+      "workflowId": "cvmQ6QVV2NakhBXL",
+      "projectId": "GTQprNa3RcCSHh8s"
+    }
+  ],
+  "staticData": {
+    "node:Google Sheets Trigger": {
+      "documentId": "1Cib2YdUvDo2Ki1Rg5OR_QTOrIZsJn3dbeec-3ccEIyI",
+      "sheetId": 0,
+      "lastIndexChecked": 146
+    }
+  },
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-10-25T02:57:08.874Z",
+  "versionId": "1489d562-0078-44e9-acb8-d56d45d9511d"
+}
