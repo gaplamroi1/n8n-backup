@@ -1,0 +1,56 @@
+{
+  "active": false,
+  "activeVersion": null,
+  "activeVersionId": null,
+  "connections": {},
+  "createdAt": "2025-11-29T08:10:17.230Z",
+  "id": "eQ8cZhDuyeyxmt50",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "My workflow 15",
+  "nodes": [
+    {
+      "parameters": {
+        "updates": [
+          "message"
+        ],
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        0
+      ],
+      "id": "40205480-a9b6-4d49-853d-af42339768e8",
+      "name": "Telegram Trigger",
+      "webhookId": "93a8ef96-b52c-4c27-a1c5-eb8b676798dc",
+      "credentials": {
+        "telegramApi": {
+          "id": "PxJ53tcsehzvsjBT",
+          "name": "book-affiliate-bot"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-02-22T18:07:43.650Z",
+      "createdAt": "2026-02-22T18:07:43.650Z",
+      "role": "workflow:owner",
+      "workflowId": "eQ8cZhDuyeyxmt50",
+      "projectId": "GTQprNa3RcCSHh8s"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-11-29T08:10:17.230Z",
+  "versionId": "b231a20a-e2c0-4c5c-836c-1222b23b1af9"
+}
