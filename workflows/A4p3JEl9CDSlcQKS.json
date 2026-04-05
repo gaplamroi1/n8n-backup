@@ -1,0 +1,30 @@
+{
+  "active": false,
+  "activeVersion": null,
+  "activeVersionId": null,
+  "connections": {},
+  "createdAt": "2025-11-25T10:53:54.635Z",
+  "id": "A4p3JEl9CDSlcQKS",
+  "isArchived": false,
+  "meta": null,
+  "name": "auto-refresh-zalo-node",
+  "nodes": [],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-02-22T18:05:39.608Z",
+      "createdAt": "2026-02-22T18:05:39.608Z",
+      "role": "workflow:owner",
+      "workflowId": "A4p3JEl9CDSlcQKS",
+      "projectId": "GTQprNa3RcCSHh8s"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-11-25T10:53:54.635Z",
+  "versionId": "dd210f38-2df8-4e8f-8c70-c2d18b5f4c89"
+}
