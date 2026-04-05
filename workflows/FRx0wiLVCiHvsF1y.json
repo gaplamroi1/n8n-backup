@@ -1,0 +1,1755 @@
+{
+  "active": false,
+  "activeVersion": null,
+  "activeVersionId": null,
+  "connections": {
+    "token_lark": {
+      "main": [
+        [
+          {
+            "node": "get_tkqc",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "data_ads": {
+      "main": [
+        [
+          {
+            "node": "code_data_ads",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "code_data_ads": {
+      "main": [
+        [
+          {
+            "node": "Loop3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "base_info": {
+      "main": [
+        [
+          {
+            "node": "token_lark",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "get_tkqc": {
+      "main": [
+        [
+          {
+            "node": "code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop3": {
+      "main": [
+        [],
+        [
+          {
+            "node": "status_ad",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If2": {
+      "main": [
+        [
+          {
+            "node": "create_data_ads",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "update_data_ads",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "status_ad": {
+      "main": [
+        [
+          {
+            "node": "check_data_base2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "check_data_base2": {
+      "main": [
+        [
+          {
+            "node": "If2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "create_data_ads": {
+      "main": [
+        [
+          {
+            "node": "Loop3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "update_data_ads": {
+      "main": [
+        [
+          {
+            "node": "Loop3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "API_Ads": {
+      "main": [
+        [
+          {
+            "node": "update_tkqc",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "token_tkqc_die",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "update_tkqc": {
+      "main": [
+        [
+          {
+            "node": "API Campaign",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "code": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "data_campaign": {
+      "main": [
+        [
+          {
+            "node": "code_data_campaign",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "code_data_campaign": {
+      "main": [
+        [
+          {
+            "node": "Loop2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop2": {
+      "main": [
+        [],
+        [
+          {
+            "node": "status_camp",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "create_data_camp",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "update_data_camp",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "status_camp": {
+      "main": [
+        [
+          {
+            "node": "check_data_base",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "check_data_base": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "API TKQC",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "API TKQC": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "check_tkqc": {
+      "main": [
+        [
+          {
+            "node": "API_Ads",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "API Campaign": {
+      "main": [
+        [
+          {
+            "node": "API Ads",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "API Ads": {
+      "main": [
+        [
+          {
+            "node": "API Adset",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "code_date_campaign": {
+      "main": [
+        [
+          {
+            "node": "data_campaign",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "code_date_ads": {
+      "main": [
+        [
+          {
+            "node": "data_ads",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop": {
+      "main": [
+        [],
+        [
+          {
+            "node": "status_adset",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If3": {
+      "main": [
+        [
+          {
+            "node": "create_data_adset",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "update_data_adset",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "check_data_base3": {
+      "main": [
+        [
+          {
+            "node": "If3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "code_date_adset": {
+      "main": [
+        [
+          {
+            "node": "data_adset",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "data_adset": {
+      "main": [
+        [
+          {
+            "node": "code_data_adset",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "code_data_adset": {
+      "main": [
+        [
+          {
+            "node": "Loop",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "status_adset": {
+      "main": [
+        [
+          {
+            "node": "check_data_base3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "create_data_adset": {
+      "main": [
+        [
+          {
+            "node": "Loop",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "update_data_adset": {
+      "main": [
+        [
+          {
+            "node": "Loop",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook Ads": {
+      "main": [
+        [
+          {
+            "node": "code_date_ads",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook Adset": {
+      "main": [
+        [
+          {
+            "node": "code_date_adset",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook campaign": {
+      "main": [
+        [
+          {
+            "node": "code_date_campaign",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "base_info",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook TKQC": {
+      "main": [
+        [
+          {
+            "node": "check_tkqc",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "create_data_camp": {
+      "main": [
+        [
+          {
+            "node": "Loop2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "update_data_camp": {
+      "main": [
+        [
+          {
+            "node": "Loop2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "base_info",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-10-19T06:44:49.509Z",
+  "id": "FRx0wiLVCiHvsF1y",
+  "isArchived": false,
+  "meta": null,
+  "name": "n8n_Template_Fb_Ads_Larksuite_Share",
+  "nodes": [
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://open.larksuite.com/open-apis/auth/v3/app_access_token/internal",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n\"app_id\" : \"{{ $json.app_id }}\",\n\"app_secret\" : \"{{ $json.app_secret }}\" \n}",
+        "options": {}
+      },
+      "id": "71168ea6-c6ab-4ee8-aef6-0f548c5f593b",
+      "name": "token_lark",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        368,
+        288
+      ]
+    },
+    {
+      "parameters": {
+        "url": "=https://graph.facebook.com/v20.0/act_{{ $('Webhook Ads').item.json.body.ID_TKQC }}/insights?access_token={{ $('Webhook Ads').item.json.body.Token_TKQC }}&fields=date_start,created_time,account_name,campaign_name,campaign_id,adset_id,adset_name,ad_id,ad_name,objective,optimization_goal,reach,impressions,frequency,spend,clicks,website_ctr,website_purchase_roas,cpc,ctr,cpm,cpp,conversions,cost_per_conversion,action_values,actions,cost_per_inline_link_click,cost_per_inline_post_engagement,dda_results,purchase_roas&level=ad&breakdowns=&limit=2000&date=today&{{ $json.ketqua }}&time_increment={{ $('Webhook Ads').item.json.body.time_increment }}&date_start=today",
+        "options": {}
+      },
+      "id": "1c901660-d27a-4b10-8dda-67d9f651e2bc",
+      "name": "data_ads",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        3024,
+        1232
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "return items[0].json.data.map(item => {\n  // Chuyển đổi action_values thành dạng từ điển (dictionary)\n  const actionValuesDict = {};\n  if (item.action_values) {\n    for (const av of item.action_values) {\n      const actionType = av.action_type.replace(/\\./g, '_'); // Thay thế dấu . bằng _\n      actionValuesDict[`action_values_${actionType}`] = av.value;\n    }\n  }\n\n  // Chuyển đổi actions thành dạng từ điển\n  const actionsDict = {};\n  if (item.actions) {\n    for (const a of item.actions) {\n      const actionType = a.action_type.replace(/\\./g, '_'); // Thay thế dấu . bằng _\n      actionsDict[`actions_${actionType}`] = a.value;\n    }\n  }\n\n  // Chuyển date_start sang timestamp\n  const timestamp = item.date_start ? new Date(item.date_start).getTime() : 0;\n  const timestamp1 = item.created_time ? new Date(item.created_time).getTime() : 0;\n\n  // Trả về kết quả đã được xử lý\n  return {\n    json: {\n      date_start: timestamp,\n      created_time: timestamp1,\n      account_name: item.account_name || 0,\n      campaign_name: item.campaign_name || 0,\n      campaign_id: item.campaign_id || 0,\n      objective: item.objective || 0,\n      optimization_goal:item.optimization_goal || 0,\n      adset_id: item.adset_id || 0,\n      adset_name: item.adset_name || 0,\n      ad_id: item.ad_id || 0,\n      ad_name: item.ad_name || 0,\n      reach: item.reach || 0,\n      impressions: item.impressions || 0,\n      frequency: item.frequency || 0,\n      spend: item.spend || 0,\n      clicks: item.clicks || 0,\n      ctr: item.ctr || 0,\n      cpc: item.cpc || 0,\n      cpm: item.cpm || 0,\n      cpp: item.cpp || 0,\n      action_values_onsite_web_app_purchase: actionValuesDict.action_values_onsite_web_app_purchase || 0,\n      action_values_onsite_conversion_purchase: actionValuesDict.action_values_onsite_conversion_purchase || 0,\n      action_values_omni_purchase: actionValuesDict.action_values_omni_purchase || 0,\n      action_values_purchase: actionValuesDict.action_values_purchase || 0,\n      action_values_onsite_web_purchase: actionValuesDict.action_values_onsite_web_purchase || 0,\n      action_values_onsite_app_purchase: actionValuesDict.action_values_onsite_app_purchase || 0,\n      action_values_offsite_conversion_fb_pixel_purchase: actionValuesDict.action_values_offsite_conversion_fb_pixel_purchase || 0,\n      actions_link_click: actionsDict.actions_link_click || 0,\n      actions_onsite_web_app_purchase: actionsDict.actions_onsite_web_app_purchase || 0,\n      actions_onsite_conversion_purchase: actionsDict.actions_onsite_conversion_purchase || 0,\n      actions_omni_purchase: actionsDict.actions_omni_purchase || 0,\n      actions_purchase: actionsDict.actions_purchase || 0,\n      actions_onsite_web_purchase: actionsDict.actions_onsite_web_purchase || 0,\n      actions_onsite_app_purchase: actionsDict.actions_onsite_app_purchase || 0,\n      actions_offsite_conversion_fb_pixel_purchase: actionsDict.actions_offsite_conversion_fb_pixel_purchase || 0,\n      actions_post: actionsDict.actions_post || 0,\n      actions_comment: actionsDict.actions_comment || 0,\n      actions_onsite_conversion_messaging_order_created_v2: actionsDict.actions_onsite_conversion_messaging_order_created_v2 || 0,\n      actions_onsite_conversion_total_messaging_connection: actionsDict.actions_onsite_conversion_total_messaging_connection || 0,\n      actions_onsite_conversion_messaging_conversation_replied_7d: actionsDict.actions_onsite_conversion_messaging_conversation_replied_7d || 0,\n      actions_onsite_conversion_messaging_first_reply: actionsDict.actions_onsite_conversion_messaging_first_reply || 0,\n      actions_onsite_conversion_messaging_welcome_message_view: actionsDict.actions_onsite_conversion_messaging_welcome_message_view || 0,\n      actions_onsite_conversion_messaging_conversation_started_7d: actionsDict.actions_onsite_conversion_messaging_conversation_started_7d || 0,\n      actions_onsite_conversion_messaging_block: actionsDict.actions_onsite_conversion_messaging_block || 0,\n      actions_onsite_offsite_conversion_fb_pixel_complete_registration: actionsDict.actions_onsite_offsite_conversion_fb_pixel_complete_registration || 0,\n      actions_onsite_offsite_conversion_fb_pixel_lead: actionsDict.actions_onsite_offsite_conversion_fb_pixel_lead || 0,\n      actions_onsite_onsite_conversion_messaging_conversation_started_7d: actionsDict.onsite_conversion_messaging_conversation_started_7d || 0,\n      actions_onsite_onsite_conversion_messaging_first_reply: actionsDict.onsite_conversion_messaging_first_reply || 0,\n    }\n  };\n});\n"
+      },
+      "id": "f248ce38-8847-47a7-b22e-b57b2c9a7a63",
+      "name": "code_data_ads",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3232,
+        1232
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "10d39c71-ef89-483d-9ecc-5abd757be43b",
+              "name": "base_id",
+              "value": "",
+              "type": "string"
+            },
+            {
+              "id": "99fb7fb9-0513-4216-a1d8-52f8e2cd9b85",
+              "name": "table_id_tkqc",
+              "value": "",
+              "type": "string"
+            },
+            {
+              "id": "0eaa57ec-cfb8-44a5-82c7-28b388abade2",
+              "name": "app_id",
+              "value": "",
+              "type": "string"
+            },
+            {
+              "id": "659641db-04d6-49d3-a872-6e168f2db725",
+              "name": "app_secret",
+              "value": "",
+              "type": "string"
+            },
+            {
+              "id": "56c4c77e-3605-4101-96a1-3db684d330b7",
+              "name": "table_id_campaign",
+              "value": "",
+              "type": "string"
+            },
+            {
+              "id": "e3b0c23b-36d1-48e7-974e-c6317dc23d87",
+              "name": "table_id_ads",
+              "value": "",
+              "type": "string"
+            },
+            {
+              "id": "396f6238-a4f9-41e5-b7c7-d70eedb6bedf",
+              "name": "table_id_tkqc",
+              "value": "",
+              "type": "string"
+            },
+            {
+              "id": "aab95841-92bc-44f2-8b76-61a091553405",
+              "name": "table_id_adset",
+              "value": "",
+              "type": "string"
+            },
+            {
+              "id": "6422ef08-7ef0-43df-ba24-f39bac87bfc7",
+              "name": "time_ranges_since",
+              "value": "",
+              "type": "string"
+            },
+            {
+              "id": "cdf7d7d8-ebec-4a50-8851-d22c7fa22db5",
+              "name": "time_ranges_until",
+              "value": "",
+              "type": "string"
+            },
+            {
+              "id": "99406632-8731-46cc-8640-0ba91b6837e2",
+              "name": "date_preset",
+              "value": "today",
+              "type": "string"
+            },
+            {
+              "id": "b809e3f1-34ac-4612-8e82-b4fce128df50",
+              "name": "time_increment",
+              "value": "1",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "66352339-1391-49aa-b3ce-0474cf9f4115",
+      "name": "base_info",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        112,
+        288
+      ]
+    },
+    {
+      "parameters": {
+        "url": "=https://open.larksuite.com/open-apis/bitable/v1/apps/{{ $('base_info').item.json.base_id }}/tables/{{ $('base_info').item.json.table_id_tkqc }}/records?filter=AND(CurrentValue.[sync] = \"on\",CurrentValue.[status_token] = \"live\")",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $json.app_access_token }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "7597b237-8c9c-4d68-9fd0-e1976ad026b2",
+      "name": "get_tkqc",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        560,
+        288
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Thông tin chỉ số\n  - date_start: ngày lấy số liệu\n  - created_time: thời gian tạo quảng cáo\n  - account_name: tên TKQC\n  - campaign_name: tên chiến dịch\n  - campaign_id: id chiến dịch\n  - adset_id: id nhóm quảng cáo\n  - adset_name: tên nhóm quảng cáo\n  - ad_id: id quảng cáo\n  - ad_name: tên quảng cáo\n  - objective: mục tiêu chiến dịch\n  - optimization_goal: mục tiêu nhóm quảng cáo\n  - reach: tiếp cận\n  - Impressions: số lần hiển thị\n  - Frequency: tần suất\n  - Spend: số tiền chi tiêu\n  - Clicks: số lượt click\n  - ctr\n  - cpc\n  - cpm\n  - cpp\n  - action_values_onsite_web_app_purchase: giá trị hành động mua trên ứng dụng hoặc web\n  - action_values_onsite_conversion_purchase: giá trị hành động chuyển đổi mua hàng\n  - action_values_omni_purchase: giá trị hành động mua hàng đa kênh\n  - action_values_purchase: giá trị hành động mua hàng\n  - action_values_onsite_web_purchase: giá trị hành động mua hàng trên trang web\n  - action_values_onsite_app_purchase: giá trị hành động mua hàng trong ứng dụng\n  - action_values_offsite_conversion_fb_pixel_purchase: giá trị hành động chuyển đổi ngoài trang qua mua hàng bằng pixel Facebook\n  - actions_link_click: hành động nhấp vào liên kết\n  - actions_onsite_web_app_purchase: hành động mua hàng trên trang web hoặc ứng dụng\n  - actions_onsite_conversion_purchase: hành động chuyển đổi và mua hàng\n  - actions_omni_purchase: hành động mua hàng đa kênh\n  - actions_purchase: hành động mua hàng\n  - actions_onsite_web_purchase: hành động mua hàng trên trang web\n  - actions_onsite_app_purchase: hành động mua hàng trong ứng dụng\n  - actions_offsite_conversion_fb_pixel_purchase: hành động chuyển đổi ngoài trang qua mua hàng bằng pixel Facebook\n  - actions_post: hành động bài viết\n  - actions_comment: hành động bình luận\n  - actions_like: Like page\n  - actions_onsite_conversion_messaging_order_created_v2: hành động chuyển đổi tại chỗ: đơn hàng đã tạo thông qua tin nhắn v2\n  - actions_onsite_conversion_total_messaging_connection:  hành động chuyển đổi tại chỗ: tổng số kết nối thông qua tin nhắn\n  - actions_onsite_conversion_messaging_conversation_replied_7d: hành động chuyển đổi trên trang web: cuộc trò chuyện qua tin nhắn được trả lời trong 7 ngày\n  - actions_onsite_conversion_messaging_first_reply:  hành động chuyển đổi tại chỗ: tin nhắn phản hồi đầu tiên\n  - actions_onsite_conversion_messaging_welcome_message_view:  xem tin nhắn chào mừng\n  - actions_onsite_conversion_messaging_conversation_started_7d:  hành động chuyển đổi trên trang web: cuộc trò chuyện qua tin nhắn đã bắt đầu trong 7 ngày\n  - actions_onsite_conversion_messaging_block:  hành động chuyển đổi trên trang web: chặn tin nhắn\n  - actions_onsite_offsite_conversion_fb_pixel_complete_registration: hành động chuyển đổi ngoài trang qua pixel Facebook: hoàn tất đăng ký\n  - actions_onsite_offsite_conversion_fb_pixel_lead: hành động chuyển đổi ngoài trang qua pixel Facebook: lead\n  - actions_onsite_onsite_conversion_messaging_conversation_started_7d: hành động chuyển đổi trên trang web: cuộc trò chuyện qua tin nhắn đã bắt đầu trên trang web trong 7 ngày\n  - actions_onsite_onsite_conversion_messaging_first_reply: hành động chuyển đổi trên trang web: phản hồi đầu tiên trong cuộc trò chuyện qua tin nhắn",
+        "height": 1283,
+        "width": 1071
+      },
+      "id": "7b402561-5513-4ae6-9dc8-7f2ac2882efe",
+      "name": "Sticky Note2",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1040,
+        1008
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Base_info\n- date_preset: today, yesterday, last_3d, last_7d,\n- time_increment: 1\n- time_ranges_since và time_ranges_until nếu tồn tại giá trị thì date_preset sẽ bị hủy bỏ. time_ranges_since và time_ranges_until là lấy giá trị trong khoảng thời gian",
+        "height": 508.4364777213332,
+        "width": 306.65395173513843
+      },
+      "id": "c9f3b6a3-6bb9-49a1-8975-ccbcfdee7369",
+      "name": "Sticky Note5",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "839f5484-db83-4e0f-b183-1b8b987778f8",
+      "name": "Loop3",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        3424,
+        1232
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 1
+          },
+          "conditions": [
+            {
+              "id": "8f6a140c-286f-48b7-b7ea-5ec209166874",
+              "leftValue": "={{ $('check_data_base2').item.json[\"data\"][\"items\"][0][\"record_id\"] }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notExists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "783c6e5d-9386-4a03-9748-207dfa3f1867",
+      "name": "If2",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        4048,
+        1232
+      ]
+    },
+    {
+      "parameters": {
+        "url": "=https://graph.facebook.com/v20.0/{{ $('code_data_ads').item.json[\"ad_id\"] }}?access_token={{ $('Webhook Ads').item.json.body.Token_TKQC }}&fields=status",
+        "options": {}
+      },
+      "id": "47b270df-10c8-4e93-a842-afafc4bf1b08",
+      "name": "status_ad",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        3648,
+        1232
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://open.larksuite.com/open-apis/bitable/v1/apps/{{ $('Webhook Ads').item.json.body.base_id }}/tables/{{ $('Webhook Ads').item.json.body.table_id_ads }}/records/search",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "page_size",
+              "value": "20"
+            },
+            {
+              "name": "user_id_type",
+              "value": "user_id"
+            }
+          ]
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $('Webhook Ads').item.json.body.app_access_token }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"automatic_fields\": false,\n  \"field_names\": [\n    \"date_start\",\n    \"campaign_id\"\n  ],\n  \"filter\": {\n    \"conditions\": [\n      {\n        \"field_name\": \"date_start\",\n        \"operator\": \"is\",\n        \"value\": [\n          \"ExactDate\",\n          \"{{ $('Loop3').item.json.date_start }}\"\n        ]\n      },\n      {\n        \"field_name\": \"ad_id\",\n        \"operator\": \"is\",\n        \"value\": [\n          \"{{ $('Loop3').item.json.ad_id }}\"\n        ]\n      }\n    ],\n    \"conjunction\": \"and\"\n  },\n  \"sort\": [\n    {\n      \"desc\": true,\n      \"field_name\": \"date_start\"\n    }\n  ]\n}\n",
+        "options": {}
+      },
+      "id": "60f5f8c9-e738-4004-b573-c6bbb0e4435c",
+      "name": "check_data_base2",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        3840,
+        1232
+      ],
+      "alwaysOutputData": true,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://open.larksuite.com/open-apis/bitable/v1/apps/{{ $('Webhook Ads').item.json.body.base_id }}/tables/{{ $('Webhook Ads').item.json.body.table_id_ads }}/records",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $('Webhook Ads').item.json.body.app_access_token }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"fields\":\n  { \n    \"date_start\":{{ $('code_data_ads').item.json[\"date_start\"] }},\n    \"account_name\":\"{{ $('code_data_ads').item.json[\"account_name\"].replace(/\"/g, '') }}\",\n    \"id_tkqc\":\"{{ $('Webhook Ads').item.json.body.ID_TKQC }}\",\n    \"campaign_name\":\"{{ $('code_data_ads').item.json[\"campaign_name\"].replace(/\"/g, '') }}\",\n    \"campaign_id\":\"{{ $('code_data_ads').item.json[\"campaign_id\"] }}\",\n    \"objective\":\"{{ $('code_data_ads').item.json[\"objective\"] }}\",\n    \"optimization_goal\":\"{{ $('code_data_ads').item.json[\"optimization_goal\"] }}\",\n    \"adset_id\":\"{{ $('code_data_ads').item.json[\"adset_id\"] }}\",\n    \"adset_name\":\"{{ $('code_data_ads').item.json[\"adset_name\"].replace(/\"/g, '') }}\",\n    \"ad_id\":\"{{ $('code_data_ads').item.json[\"ad_id\"] }}\",\n    \"ad_name\":\"{{ $('code_data_ads').item.json[\"ad_name\"].replace(/\"/g, '') }}\",\n    \"status_ad\":\"{{$('status_ad').item.json[\"status\"]}}\",\n    \"reach\":{{ $('code_data_ads').item.json[\"reach\"] }},\n    \"impressions\":{{ $('code_data_ads').item.json[\"impressions\"] }},\n    \"frequency\":{{ $('code_data_ads').item.json[\"frequency\"] }},\n    \"spend\":{{ $('code_data_ads').item.json[\"spend\"] }},\n    \"clicks\":{{ $('code_data_ads').item.json[\"clicks\"] }},\n    \"ctr\":{{ $('code_data_ads').item.json[\"ctr\"] }},\n    \"cpc\":{{ $('code_data_ads').item.json[\"cpc\"] }},\n    \"cpm\":{{ $('code_data_ads').item.json[\"cpm\"] }},\n    \"cpp\":{{ $('code_data_ads').item.json[\"cpp\"] }},\n    \"comment\":{{ $('code_data_ads').item.json.actions_comment }},\n    \"mua hàng trên web\":{{ $('code_data_ads').item.json.actions_onsite_web_purchase }},\n    \"hoàn tất đăng ký\":{{ $('code_data_ads').item.json.actions_onsite_offsite_conversion_fb_pixel_complete_registration }},\n    \"mua hàng trên meta\":{{ $('code_data_ads').item.json.actions_onsite_conversion_messaging_order_created_v2 }},\n    \"mua hàng\":{{ $('code_data_ads').item.json.actions_purchase }},\n    \"xem tin nhắn chào mừng\":{{ $('code_data_ads').item.json.actions_onsite_conversion_messaging_welcome_message_view }},\n    \"tin nhắn phản hồi đầu tiên\":{{ $('code_data_ads').item.json.actions_onsite_conversion_messaging_first_reply }},\n    \"tin nhắn mới\":{{ $('code_data_ads').item.json.actions_onsite_conversion_total_messaging_connection }}\n}\n}",
+        "options": {}
+      },
+      "id": "80d67fbd-2805-41b5-9631-99544a88a81a",
+      "name": "create_data_ads",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        4272,
+        1152
+      ],
+      "alwaysOutputData": true,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "method": "PUT",
+        "url": "=https://open.larksuite.com/open-apis/bitable/v1/apps/{{ $('Webhook Ads').item.json.body.base_id }}/tables/{{ $('Webhook Ads').item.json.body.table_id_ads }}/records/{{ $('check_data_base2').item.json[\"data\"][\"items\"][0][\"record_id\"] }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $('Webhook Ads').item.json.body.app_access_token }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"fields\":\n  { \n    \"date_start\":{{ $('code_data_ads').item.json[\"date_start\"] }},\n    \"account_name\":\"{{ $('code_data_ads').item.json[\"account_name\"].replace(/\"/g, '') }}\",\n    \"id_tkqc\":\"{{ $('Webhook Ads').item.json.body.ID_TKQC }}\",\n    \"campaign_name\":\"{{ $('code_data_ads').item.json[\"campaign_name\"].replace(/\"/g, '') }}\",\n    \"campaign_id\":\"{{ $('code_data_ads').item.json[\"campaign_id\"] }}\",\n    \"objective\":\"{{ $('code_data_ads').item.json[\"objective\"] }}\",\n    \"optimization_goal\":\"{{ $('code_data_ads').item.json[\"optimization_goal\"] }}\",\n    \"adset_id\":\"{{ $('code_data_ads').item.json[\"adset_id\"] }}\",\n    \"adset_name\":\"{{ $('code_data_ads').item.json[\"adset_name\"].replace(/\"/g, '') }}\",\n    \"ad_id\":\"{{ $('code_data_ads').item.json[\"ad_id\"] }}\",\n    \"ad_name\":\"{{ $('code_data_ads').item.json[\"ad_name\"].replace(/\"/g, '') }}\",\n    \"status_ad\":\"{{$('status_ad').item.json[\"status\"]}}\",\n    \"reach\":{{ $('code_data_ads').item.json[\"reach\"] }},\n    \"impressions\":{{ $('code_data_ads').item.json[\"impressions\"] }},\n    \"frequency\":{{ $('code_data_ads').item.json[\"frequency\"] }},\n    \"spend\":{{ $('code_data_ads').item.json[\"spend\"] }},\n    \"clicks\":{{ $('code_data_ads').item.json[\"clicks\"] }},\n    \"ctr\":{{ $('code_data_ads').item.json[\"ctr\"] }},\n    \"cpc\":{{ $('code_data_ads').item.json[\"cpc\"] }},\n    \"cpm\":{{ $('code_data_ads').item.json[\"cpm\"] }},\n    \"cpp\":{{ $('code_data_ads').item.json[\"cpp\"] }},\n    \"comment\":{{ $('code_data_ads').item.json.actions_comment }},\n    \"mua hàng trên web\":{{ $('code_data_ads').item.json.actions_onsite_web_purchase }},\n    \"hoàn tất đăng ký\":{{ $('code_data_ads').item.json.actions_onsite_offsite_conversion_fb_pixel_complete_registration }},\n    \"mua hàng trên meta\":{{ $('code_data_ads').item.json.actions_onsite_conversion_messaging_order_created_v2 }},\n    \"mua hàng\":{{ $('code_data_ads').item.json.actions_purchase }},\n    \"xem tin nhắn chào mừng\":{{ $('code_data_ads').item.json.actions_onsite_conversion_messaging_welcome_message_view }},\n    \"tin nhắn phản hồi đầu tiên\":{{ $('code_data_ads').item.json.actions_onsite_conversion_messaging_first_reply }},\n    \"tin nhắn mới\":{{ $('code_data_ads').item.json.actions_onsite_conversion_total_messaging_connection }}\n}\n}",
+        "options": {}
+      },
+      "id": "4f71537a-c545-4036-9fc4-1c4ce83ae0c5",
+      "name": "update_data_ads",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        4272,
+        1328
+      ],
+      "alwaysOutputData": true,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "url": "=https://graph.facebook.com/v20.0/act_{{ $('Webhook TKQC').item.json.body.ID_TKQC }}?access_token={{ $json.data.items[0].fields.Token_TKQC }}&fields=account_status,disable_reason,business,business_name,currency,name,spend_cap,amount_spent,balance,funding_source_details,timezone_name,timezone_offset_hours_utc,created_time,is_direct_deals_enabled",
+        "options": {}
+      },
+      "id": "47b89d5a-3f76-4469-a67c-b1cf8428a753",
+      "name": "API_Ads",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1680,
+        688
+      ],
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "method": "PUT",
+        "url": "=https://open.larksuite.com/open-apis/bitable/v1/apps/{{ $('Webhook TKQC').item.json.body.base_id }}/tables/{{ $('Webhook TKQC').item.json.body.table_id_tkqc }}/records/{{ $('check_tkqc').item.json[\"data\"][\"items\"][0][\"record_id\"] }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $('Webhook TKQC').item.json.body.app_access_token }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"fields\":\n  { \n    \"name\":\"{{ $('API_Ads').item.json[\"name\"].replace(/\"/g, '') }}\",\n    \"id_bm\":\"{{ $json.business.id }}\",\n    \"name_bm\":\"{{ $json.business.name }}\",\n    \"status\":\"{{ $('API_Ads').item.json[\"account_status\"] }}\",\n    \"disable_reason\":\"{{ $('API_Ads').item.json[\"disable_reason\"] }}\",\n    \"currency\":\"{{ $('API_Ads').item.json[\"currency\"] }}\",\n    \"balance\":{{ $('API_Ads').item.json[\"balance\"] }},\n    \"payment_card\":\"{{ $('API_Ads').item.json[\"funding_source_details\"][\"display_string\"] }}\",\n    \"timezone\":\"{{ $('API_Ads').item.json[\"timezone_offset_hours_utc\"] }}\",\n    \"status_token\":\"live\"\n}\n}",
+        "options": {}
+      },
+      "id": "cc4883ab-e38a-4ea7-bded-7347b5a01d03",
+      "name": "update_tkqc",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2112,
+        560
+      ],
+      "alwaysOutputData": true,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "method": "PUT",
+        "url": "=https://open.larksuite.com/open-apis/bitable/v1/apps/{{ $('Webhook TKQC').item.json.body.base_id }}/tables/{{ $('Webhook TKQC').item.json.body.table_id_tkqc }}/records/{{ $('check_tkqc').item.json[\"data\"][\"items\"][0][\"record_id\"] }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $('Webhook TKQC').item.json.body.app_access_token }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"fields\":\n  { \n    \"sync\":\"off\",\n    \"status_token\":\"die\"\n  }\n}",
+        "options": {}
+      },
+      "id": "184c043d-8912-4b1f-9283-3081203d0a55",
+      "name": "token_tkqc_die",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2112,
+        768
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Lấy dữ liệu đầu vào\nconst inputData = items[0].json;\n\n// Lọc ra các `ID_TKQC` và `Token_TKQC` từ items\nconst filteredData = inputData.data.items.map(item => {\n    return {\n        ID_TKQC: item.fields.ID_TKQC || null,\n        Token_TKQC: item.fields.Token_TKQC || null,\n    };\n});\n\n// Trả về dữ liệu đã lọc\nreturn filteredData.map(data => ({ json: data }));\n"
+      },
+      "id": "3541e117-a1ae-4947-ba0d-92c51a8420bd",
+      "name": "code",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        784,
+        288
+      ]
+    },
+    {
+      "parameters": {
+        "url": "=https://graph.facebook.com/v20.0/act_{{ $('Webhook campaign').item.json.body.ID_TKQC }}/insights?access_token={{ $('Webhook campaign').item.json.body.Token_TKQC }}&fields=date_start,created_time,account_name,campaign_name,campaign_id,objective,reach,impressions,frequency,spend,clicks,website_ctr,website_purchase_roas,cpc,ctr,cpm,cpp,conversions,cost_per_conversion,action_values,actions,cost_per_inline_link_click,cost_per_inline_post_engagement,dda_results,purchase_roas&level=campaign&breakdowns=&limit=2000&date=today&{{ $json.ketqua }}&time_increment={{ $('Webhook campaign').item.json.body.time_increment }}&date_start=today",
+        "options": {}
+      },
+      "id": "3f8b34a6-1f02-474a-b8b0-d69c1f566271",
+      "name": "data_campaign",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2800,
+        1648
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "return items[0].json.data.map(item => {\n  // Chuyển đổi action_values thành dạng từ điển (dictionary)\n  const actionValuesDict = {};\n  if (item.action_values) {\n    for (const av of item.action_values) {\n      const actionType = av.action_type.replace(/\\./g, '_'); // Thay thế dấu . bằng _\n      actionValuesDict[`action_values_${actionType}`] = av.value;\n    }\n  }\n\n  // Chuyển đổi actions thành dạng từ điển\n  const actionsDict = {};\n  if (item.actions) {\n    for (const a of item.actions) {\n      const actionType = a.action_type.replace(/\\./g, '_'); // Thay thế dấu . bằng _\n      actionsDict[`actions_${actionType}`] = a.value;\n    }\n  }\n\n  // Chuyển date_start sang timestamp\n  const timestamp = item.date_start ? new Date(item.date_start).getTime() : 0;\n  const timestamp1 = item.created_time ? new Date(item.created_time).getTime() : 0;\n\n  // Trả về kết quả đã được xử lý\n  return {\n    json: {\n      date_start: timestamp,\n      created_time: timestamp1,\n      account_name: item.account_name || 0,\n      campaign_name: item.campaign_name || 0,\n      campaign_id: item.campaign_id || 0,\n      objective: item.objective || 0,\n      reach: item.reach || 0,\n      impressions: item.impressions || 0,\n      frequency: item.frequency || 0,\n      spend: item.spend || 0,\n      clicks: item.clicks || 0,\n      ctr: item.ctr || 0,\n      cpc: item.cpc || 0,\n      cpm: item.cpm || 0,\n      cpp: item.cpp || 0,\n      action_values_onsite_web_app_purchase: actionValuesDict.action_values_onsite_web_app_purchase || 0,\n      action_values_onsite_conversion_purchase: actionValuesDict.action_values_onsite_conversion_purchase || 0,\n      action_values_omni_purchase: actionValuesDict.action_values_omni_purchase || 0,\n      action_values_purchase: actionValuesDict.action_values_purchase || 0,\n      action_values_onsite_web_purchase: actionValuesDict.action_values_onsite_web_purchase || 0,\n      action_values_onsite_app_purchase: actionValuesDict.action_values_onsite_app_purchase || 0,\n      action_values_offsite_conversion_fb_pixel_purchase: actionValuesDict.action_values_offsite_conversion_fb_pixel_purchase || 0,\n      actions_link_click: actionsDict.actions_link_click || 0,\n      actions_onsite_web_app_purchase: actionsDict.actions_onsite_web_app_purchase || 0,\n      actions_onsite_conversion_purchase: actionsDict.actions_onsite_conversion_purchase || 0,\n      actions_omni_purchase: actionsDict.actions_omni_purchase || 0,\n      actions_purchase: actionsDict.actions_purchase || 0,\n      actions_onsite_web_purchase: actionsDict.actions_onsite_web_purchase || 0,\n      actions_onsite_app_purchase: actionsDict.actions_onsite_app_purchase || 0,\n      actions_offsite_conversion_fb_pixel_purchase: actionsDict.actions_offsite_conversion_fb_pixel_purchase || 0,\n      actions_post: actionsDict.actions_post || 0,\n      actions_comment: actionsDict.actions_comment || 0,\n      actions_onsite_conversion_messaging_order_created_v2: actionsDict.actions_onsite_conversion_messaging_order_created_v2 || 0,\n      actions_onsite_conversion_total_messaging_connection: actionsDict.actions_onsite_conversion_total_messaging_connection || 0,\n      actions_onsite_conversion_messaging_conversation_replied_7d: actionsDict.actions_onsite_conversion_messaging_conversation_replied_7d || 0,\n      actions_onsite_conversion_messaging_first_reply: actionsDict.actions_onsite_conversion_messaging_first_reply || 0,\n      actions_onsite_conversion_messaging_welcome_message_view: actionsDict.actions_onsite_conversion_messaging_welcome_message_view || 0,\n      actions_onsite_conversion_messaging_conversation_started_7d: actionsDict.actions_onsite_conversion_messaging_conversation_started_7d || 0,\n      actions_onsite_conversion_messaging_block: actionsDict.actions_onsite_conversion_messaging_block || 0,\n      actions_onsite_offsite_conversion_fb_pixel_complete_registration: actionsDict.actions_onsite_offsite_conversion_fb_pixel_complete_registration || 0,\n      actions_onsite_offsite_conversion_fb_pixel_lead: actionsDict.actions_onsite_offsite_conversion_fb_pixel_lead || 0,\n      actions_onsite_onsite_conversion_messaging_conversation_started_7d: actionsDict.onsite_conversion_messaging_conversation_started_7d || 0,\n      actions_onsite_onsite_conversion_messaging_first_reply: actionsDict.onsite_conversion_messaging_first_reply || 0,\n    }\n  };\n});\n"
+      },
+      "id": "0b5252c5-610d-4282-81ad-f37f3af89dcd",
+      "name": "code_data_campaign",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3024,
+        1648
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "9ee0f116-ed81-450e-b930-5a7f1910a396",
+      "name": "Loop2",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        3232,
+        1648
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 1
+          },
+          "conditions": [
+            {
+              "id": "8f6a140c-286f-48b7-b7ea-5ec209166874",
+              "leftValue": "={{ $('check_data_base').item.json[\"data\"][\"items\"][0][\"record_id\"] }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notExists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "4f1fde94-8f17-4b57-9fc8-349a16924fc4",
+      "name": "If",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        3824,
+        1648
+      ]
+    },
+    {
+      "parameters": {
+        "url": "=https://graph.facebook.com/v20.0/{{ $('code_data_campaign').item.json[\"campaign_id\"] }}?access_token={{ $('Webhook campaign').item.json.body.Token_TKQC }}&fields=status",
+        "options": {}
+      },
+      "id": "78609568-d125-4869-9a80-79a4844ba141",
+      "name": "status_camp",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        3424,
+        1648
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://open.larksuite.com/open-apis/bitable/v1/apps/{{ $('Webhook campaign').item.json.body.base_id }}/tables/{{ $('Webhook campaign').item.json.body.table_id_campaign }}/records/search",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "page_size",
+              "value": "20"
+            },
+            {
+              "name": "user_id_type",
+              "value": "user_id"
+            }
+          ]
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $('Webhook campaign').item.json.body.app_access_token }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"automatic_fields\": false,\n  \"field_names\": [\n    \"date_start\",\n    \"campaign_id\"\n  ],\n  \"filter\": {\n    \"conditions\": [\n      {\n        \"field_name\": \"date_start\",\n        \"operator\": \"is\",\n        \"value\": [\n          \"ExactDate\",\n          \"{{ $('Loop2').item.json.date_start }}\"\n        ]\n      },\n      {\n        \"field_name\": \"campaign_id\",\n        \"operator\": \"is\",\n        \"value\": [\n          \"{{ $('Loop2').item.json.campaign_id }}\"\n        ]\n      }\n    ],\n    \"conjunction\": \"and\"\n  },\n  \"sort\": [\n    {\n      \"desc\": true,\n      \"field_name\": \"date_start\"\n    }\n  ]\n}\n",
+        "options": {}
+      },
+      "id": "da4eb05f-fe31-4e39-88a6-f7798cd6515f",
+      "name": "check_data_base",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        3632,
+        1648
+      ],
+      "alwaysOutputData": true,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://open.larksuite.com/open-apis/bitable/v1/apps/{{ $('Webhook campaign').item.json.body.base_id }}/tables/{{ $('Webhook campaign').item.json.body.table_id_campaign }}/records",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $('Webhook campaign').item.json.body.app_access_token }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"fields\":\n  { \n    \"date_start\":{{ $('code_data_campaign').item.json[\"date_start\"] }},\n    \"account_name\":\"{{ $('code_data_campaign').item.json[\"account_name\"].replace(/\"/g, '') }}\",\n    \"id_tkqc\":\"{{ $('Webhook campaign').item.json.body.ID_TKQC }}\",\n    \"campaign_name\":\"{{ $('code_data_campaign').item.json[\"campaign_name\"].replace(/\"/g, '') }}\",\n    \"campaign_id\":\"{{ $('code_data_campaign').item.json[\"campaign_id\"] }}\",\n    \"objective\":\"{{ $('code_data_campaign').item.json[\"objective\"] }}\",\n    \"status_camp\":\"{{$('status_camp').item.json[\"status\"]}}\",\n    \"reach\":{{ $('code_data_campaign').item.json[\"reach\"] }},\n    \"impressions\":{{ $('code_data_campaign').item.json[\"impressions\"] }},\n    \"frequency\":{{ $('code_data_campaign').item.json[\"frequency\"] }},\n    \"spend\":{{ $('code_data_campaign').item.json[\"spend\"] }},\n    \"clicks\":{{ $('code_data_campaign').item.json[\"clicks\"] }},\n    \"ctr\":{{ $('code_data_campaign').item.json[\"ctr\"] }},\n    \"cpc\":{{ $('code_data_campaign').item.json[\"cpc\"] }},\n    \"cpm\":{{ $('code_data_campaign').item.json[\"cpm\"] }},\n    \"cpp\":{{ $('code_data_campaign').item.json[\"cpp\"] }},\n    \"comment\":{{ $('code_data_campaign').item.json.actions_comment }},\n    \"mua hàng trên web\":{{ $('code_data_campaign').item.json.actions_onsite_web_purchase }},\n    \"hoàn tất đăng ký\":{{ $('code_data_campaign').item.json.actions_onsite_offsite_conversion_fb_pixel_complete_registration }},\n    \"mua hàng trên meta\":{{ $('code_data_campaign').item.json.actions_onsite_conversion_messaging_order_created_v2 }},\n    \"mua hàng\":{{ $('code_data_campaign').item.json.actions_purchase }},\n    \"xem tin nhắn chào mừng\":{{ $('code_data_campaign').item.json.actions_onsite_conversion_messaging_welcome_message_view }},\n    \"tin nhắn phản hồi đầu tiên\":{{ $('code_data_campaign').item.json.actions_onsite_conversion_messaging_first_reply }},\n    \"tin nhắn mới\":{{ $('code_data_campaign').item.json.actions_onsite_conversion_total_messaging_connection }}\n}\n}",
+        "options": {}
+      },
+      "id": "9bd845e5-6d6e-41d3-9362-5013aeedb7f5",
+      "name": "create_data_camp",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        4064,
+        1552
+      ],
+      "alwaysOutputData": true,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "method": "PUT",
+        "url": "=https://open.larksuite.com/open-apis/bitable/v1/apps/{{ $('Webhook campaign').item.json.body.base_id }}/tables/{{ $('Webhook campaign').item.json.body.table_id_campaign }}/records/{{ $('check_data_base').item.json[\"data\"][\"items\"][0][\"record_id\"] }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $('Webhook campaign').item.json.body.app_access_token }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"fields\":\n  { \n    \"date_start\":{{ $('code_data_campaign').item.json[\"date_start\"] }},\n    \"account_name\":\"{{ $('code_data_campaign').item.json[\"account_name\"].replace(/\"/g, '') }}\",\n    \"id_tkqc\":\"{{ $('Webhook campaign').item.json.body.ID_TKQC }}\",\n    \"campaign_name\":\"{{ $('code_data_campaign').item.json[\"campaign_name\"].replace(/\"/g, '') }}\",\n    \"campaign_id\":\"{{ $('code_data_campaign').item.json[\"campaign_id\"] }}\",\n    \"objective\":\"{{ $('code_data_campaign').item.json[\"objective\"] }}\",\n    \"status_camp\":\"{{$('status_camp').item.json[\"status\"]}}\",\n    \"reach\":{{ $('code_data_campaign').item.json[\"reach\"] }},\n    \"impressions\":{{ $('code_data_campaign').item.json[\"impressions\"] }},\n    \"frequency\":{{ $('code_data_campaign').item.json[\"frequency\"] }},\n    \"spend\":{{ $('code_data_campaign').item.json[\"spend\"] }},\n    \"clicks\":{{ $('code_data_campaign').item.json[\"clicks\"] }},\n    \"ctr\":{{ $('code_data_campaign').item.json[\"ctr\"] }},\n    \"cpc\":{{ $('code_data_campaign').item.json[\"cpc\"] }},\n    \"cpm\":{{ $('code_data_campaign').item.json[\"cpm\"] }},\n    \"cpp\":{{ $('code_data_campaign').item.json[\"cpp\"] }},\n    \"comment\":{{ $('code_data_campaign').item.json.actions_comment }},\n    \"mua hàng trên web\":{{ $('code_data_campaign').item.json.actions_onsite_web_purchase }},\n    \"hoàn tất đăng ký\":{{ $('code_data_campaign').item.json.actions_onsite_offsite_conversion_fb_pixel_complete_registration }},\n    \"mua hàng trên meta\":{{ $('code_data_campaign').item.json.actions_onsite_conversion_messaging_order_created_v2 }},\n    \"mua hàng\":{{ $('code_data_campaign').item.json.actions_purchase }},\n    \"xem tin nhắn chào mừng\":{{ $('code_data_campaign').item.json.actions_onsite_conversion_messaging_welcome_message_view }},\n    \"tin nhắn phản hồi đầu tiên\":{{ $('code_data_campaign').item.json.actions_onsite_conversion_messaging_first_reply }},\n    \"tin nhắn mới\":{{ $('code_data_campaign').item.json.actions_onsite_conversion_total_messaging_connection }}\n}\n}",
+        "options": {}
+      },
+      "id": "fe2977d4-e495-44bc-b7c4-c45756531769",
+      "name": "update_data_camp",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        4064,
+        1744
+      ],
+      "alwaysOutputData": true,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "6dad6131-a520-41cf-bd8a-520864092727",
+      "name": "Loop Over Items",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        1008,
+        288
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://app.sync.io.vn/webhook/fb-ads-tkqc-lark",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "ID_TKQC",
+              "value": "={{ $('code').item.json.ID_TKQC }}"
+            },
+            {
+              "name": "Token_TKQC",
+              "value": "={{ $json.Token_TKQC }}"
+            },
+            {
+              "name": "base_id",
+              "value": "={{ $('base_info').item.json.base_id }}"
+            },
+            {
+              "name": "table_id_tkqc",
+              "value": "={{ $('base_info').item.json.table_id_tkqc }}"
+            },
+            {
+              "name": "app_id",
+              "value": "={{ $('base_info').item.json.app_id }}"
+            },
+            {
+              "name": "app_secret",
+              "value": "={{ $('base_info').item.json.app_secret }}"
+            },
+            {
+              "name": "table_id_campaign",
+              "value": "={{ $('base_info').item.json.table_id_campaign }}"
+            },
+            {
+              "name": "table_id_ads",
+              "value": "={{ $('base_info').item.json.table_id_ads }}"
+            },
+            {
+              "name": "date_preset",
+              "value": "={{ $('base_info').item.json.date_preset }}"
+            },
+            {
+              "name": "time_increment",
+              "value": "={{ $('base_info').item.json.time_increment }}"
+            },
+            {
+              "name": "app_access_token",
+              "value": "={{ $('token_lark').item.json.app_access_token }}"
+            },
+            {
+              "name": "time_ranges_since",
+              "value": "={{ $('base_info').item.json.time_ranges_since }}"
+            },
+            {
+              "name": "time_ranges_until",
+              "value": "={{ $('base_info').item.json.time_ranges_until }}"
+            },
+            {
+              "name": "table_id_adset",
+              "value": "={{ $('base_info').item.json.table_id_adset }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "4ac9d495-7488-46b1-8ed7-e7ec48e7e35e",
+      "name": "API TKQC",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1232,
+        288
+      ]
+    },
+    {
+      "parameters": {
+        "url": "=https://open.larksuite.com/open-apis/bitable/v1/apps/{{ $json.body.base_id }}/tables/{{ $json.body.table_id_tkqc }}/records/?filter=CurrentValue.[ID_TKQC]=\"{{ $json.body.ID_TKQC }}\"",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $json.body.app_access_token }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "d9d1c3f6-ae97-4b06-9091-c72dc0a1ef88",
+      "name": "check_tkqc",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1440,
+        688
+      ],
+      "alwaysOutputData": true,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://app.sync.io.vn/webhook/fb-ads-campaign-lark",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ $('Webhook TKQC').item.json.body }}",
+        "options": {}
+      },
+      "id": "c25645cd-4700-4baa-a01e-74f3876e002a",
+      "name": "API Campaign",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2320,
+        560
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://app.sync.io.vn/webhook/fb-ads-ads-lark",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ $('Webhook TKQC').item.json.body }}",
+        "options": {}
+      },
+      "id": "8d9d6414-1546-4a02-a6dd-3fcd24880758",
+      "name": "API Ads",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2560,
+        560
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Lấy dữ liệu từ input (node trước đó)\nconst input = items[0].json; // Lấy JSON từ phần tử đầu tiên của input\n\n// Output object để lưu kết quả\nlet output = {};\n\n// Kiểm tra điều kiện và xử lý logic\nif (input.date_preset && input.time_ranges_since && input.time_ranges_until) {\n    output.ketqua = `time_ranges=[{\"since\":\"${input.time_ranges_since}\",\"until\":\"${input.time_ranges_until}\"}]`;\n} else if (input.date_preset && (!input.time_ranges_since || !input.time_ranges_until)) {\n    output.ketqua = `date_preset=${input.date_preset}`;\n} else {\n    output.ketqua = \"Không có điều kiện hợp lệ.\";\n}\n\n// Trả kết quả\nreturn [{ json: output }];\n"
+      },
+      "id": "5d974663-de07-4cdf-9d2f-2123d0dd39cc",
+      "name": "Code",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        368,
+        64
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Lấy dữ liệu từ input (node trước đó)\nconst input = items[0].json.body; // Lấy JSON từ phần tử đầu tiên của input\n\n// Output object để lưu kết quả\nlet output = {};\n\n// Kiểm tra điều kiện và xử lý logic\nif (input.date_preset && input.time_ranges_since && input.time_ranges_until) {\n    output.ketqua = `time_ranges=[{\"since\":\"${input.time_ranges_since}\",\"until\":\"${input.time_ranges_until}\"}]`;\n} else if (input.date_preset && (!input.time_ranges_since || !input.time_ranges_until)) {\n    output.ketqua = `date_preset=${input.date_preset}`;\n} else {\n    output.ketqua = \"Không có điều kiện hợp lệ.\";\n}\n\n// Trả kết quả\nreturn [{ json: output }];\n"
+      },
+      "id": "5d37c4f0-f4f3-4c5b-9608-ed383b63825e",
+      "name": "code_date_campaign",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2560,
+        1648
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Lấy dữ liệu từ input (node trước đó)\nconst input = items[0].json.body; // Lấy JSON từ phần tử đầu tiên của input\n\n// Output object để lưu kết quả\nlet output = {};\n\n// Kiểm tra điều kiện và xử lý logic\nif (input.date_preset && input.time_ranges_since && input.time_ranges_until) {\n    output.ketqua = `time_ranges=[{\"since\":\"${input.time_ranges_since}\",\"until\":\"${input.time_ranges_until}\"}]`;\n} else if (input.date_preset && (!input.time_ranges_since || !input.time_ranges_until)) {\n    output.ketqua = `date_preset=${input.date_preset}`;\n} else {\n    output.ketqua = \"Không có điều kiện hợp lệ.\";\n}\n\n// Trả kết quả\nreturn [{ json: output }];\n"
+      },
+      "id": "56b5157c-ce25-45ab-87a3-5eb2780966bc",
+      "name": "code_date_ads",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2800,
+        1232
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "d9b021e4-e57d-40c6-8e56-10293a22aca0",
+      "name": "Loop",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        3664,
+        784
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 1
+          },
+          "conditions": [
+            {
+              "id": "8f6a140c-286f-48b7-b7ea-5ec209166874",
+              "leftValue": "={{ $('check_data_base3').item.json[\"data\"][\"items\"][0][\"record_id\"] }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notExists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "946562db-385f-40f1-a832-e849c6554a68",
+      "name": "If3",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        4288,
+        784
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://open.larksuite.com/open-apis/bitable/v1/apps/{{ $('Webhook Adset').item.json.body.base_id }}/tables/{{ $('Webhook Adset').item.json.body.table_id_ads }}/records/search",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "page_size",
+              "value": "20"
+            },
+            {
+              "name": "user_id_type",
+              "value": "user_id"
+            }
+          ]
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $('Webhook Adset').item.json.body.app_access_token }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"automatic_fields\": false,\n  \"field_names\": [\n    \"date_start\",\n    \"campaign_id\"\n  ],\n  \"filter\": {\n    \"conditions\": [\n      {\n        \"field_name\": \"date_start\",\n        \"operator\": \"is\",\n        \"value\": [\n          \"ExactDate\",\n          \"{{ $('Loop').item.json.date_start }}\"\n        ]\n      },\n      {\n        \"field_name\": \"adset_id\",\n        \"operator\": \"is\",\n        \"value\": [\n          \"{{ $('Loop').item.json.adset_id }}\"\n        ]\n      }\n    ],\n    \"conjunction\": \"and\"\n  },\n  \"sort\": [\n    {\n      \"desc\": true,\n      \"field_name\": \"date_start\"\n    }\n  ]\n}\n",
+        "options": {}
+      },
+      "id": "e5c13dce-aca0-417a-bd5d-7dbe9d6270db",
+      "name": "check_data_base3",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        4080,
+        784
+      ],
+      "alwaysOutputData": true,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Lấy dữ liệu từ input (node trước đó)\nconst input = items[0].json.body; // Lấy JSON từ phần tử đầu tiên của input\n\n// Output object để lưu kết quả\nlet output = {};\n\n// Kiểm tra điều kiện và xử lý logic\nif (input.date_preset && input.time_ranges_since && input.time_ranges_until) {\n    output.ketqua = `time_ranges=[{\"since\":\"${input.time_ranges_since}\",\"until\":\"${input.time_ranges_until}\"}]`;\n} else if (input.date_preset && (!input.time_ranges_since || !input.time_ranges_until)) {\n    output.ketqua = `date_preset=${input.date_preset}`;\n} else {\n    output.ketqua = \"Không có điều kiện hợp lệ.\";\n}\n\n// Trả kết quả\nreturn [{ json: output }];\n"
+      },
+      "id": "22756399-aa86-40f8-97c7-28ab42d7e527",
+      "name": "code_date_adset",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3024,
+        784
+      ]
+    },
+    {
+      "parameters": {
+        "url": "=https://graph.facebook.com/v20.0/act_{{ $('Webhook Adset').item.json.body.ID_TKQC }}/insights?access_token={{ $('Webhook Adset').item.json.body.Token_TKQC }}&fields=date_start,created_time,account_name,campaign_name,campaign_id,adset_id,adset_name,ad_id,ad_name,objective,optimization_goal,reach,impressions,frequency,spend,clicks,website_ctr,website_purchase_roas,cpc,ctr,cpm,cpp,conversions,cost_per_conversion,action_values,actions,cost_per_inline_link_click,cost_per_inline_post_engagement,dda_results,purchase_roas&level=adset&breakdowns=&limit=2000&date=today&{{ $json.ketqua }}&time_increment={{ $('Webhook Adset').item.json.body.time_increment }}&date_start=today",
+        "options": {}
+      },
+      "id": "e885665c-b53b-454a-8132-8811de5a5b43",
+      "name": "data_adset",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        3264,
+        784
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "return items[0].json.data.map(item => {\n  // Chuyển đổi action_values thành dạng từ điển (dictionary)\n  const actionValuesDict = {};\n  if (item.action_values) {\n    for (const av of item.action_values) {\n      const actionType = av.action_type.replace(/\\./g, '_'); // Thay thế dấu . bằng _\n      actionValuesDict[`action_values_${actionType}`] = av.value;\n    }\n  }\n\n  // Chuyển đổi actions thành dạng từ điển\n  const actionsDict = {};\n  if (item.actions) {\n    for (const a of item.actions) {\n      const actionType = a.action_type.replace(/\\./g, '_'); // Thay thế dấu . bằng _\n      actionsDict[`actions_${actionType}`] = a.value;\n    }\n  }\n\n  // Chuyển date_start sang timestamp\n  const timestamp = item.date_start ? new Date(item.date_start).getTime() : 0;\n  const timestamp1 = item.created_time ? new Date(item.created_time).getTime() : 0;\n\n  // Trả về kết quả đã được xử lý\n  return {\n    json: {\n      date_start: timestamp,\n      created_time: timestamp1,\n      account_name: item.account_name || 0,\n      campaign_name: item.campaign_name || 0,\n      campaign_id: item.campaign_id || 0,\n      objective: item.objective || 0,\n      optimization_goal:item.optimization_goal || 0,\n      adset_id: item.adset_id || 0,\n      adset_name: item.adset_name || 0,\n      reach: item.reach || 0,\n      impressions: item.impressions || 0,\n      frequency: item.frequency || 0,\n      spend: item.spend || 0,\n      clicks: item.clicks || 0,\n      ctr: item.ctr || 0,\n      cpc: item.cpc || 0,\n      cpm: item.cpm || 0,\n      cpp: item.cpp || 0,\n      action_values_onsite_web_app_purchase: actionValuesDict.action_values_onsite_web_app_purchase || 0,\n      action_values_onsite_conversion_purchase: actionValuesDict.action_values_onsite_conversion_purchase || 0,\n      action_values_omni_purchase: actionValuesDict.action_values_omni_purchase || 0,\n      action_values_purchase: actionValuesDict.action_values_purchase || 0,\n      action_values_onsite_web_purchase: actionValuesDict.action_values_onsite_web_purchase || 0,\n      action_values_onsite_app_purchase: actionValuesDict.action_values_onsite_app_purchase || 0,\n      action_values_offsite_conversion_fb_pixel_purchase: actionValuesDict.action_values_offsite_conversion_fb_pixel_purchase || 0,\n      actions_link_click: actionsDict.actions_link_click || 0,\n      actions_onsite_web_app_purchase: actionsDict.actions_onsite_web_app_purchase || 0,\n      actions_onsite_conversion_purchase: actionsDict.actions_onsite_conversion_purchase || 0,\n      actions_omni_purchase: actionsDict.actions_omni_purchase || 0,\n      actions_purchase: actionsDict.actions_purchase || 0,\n      actions_onsite_web_purchase: actionsDict.actions_onsite_web_purchase || 0,\n      actions_onsite_app_purchase: actionsDict.actions_onsite_app_purchase || 0,\n      actions_offsite_conversion_fb_pixel_purchase: actionsDict.actions_offsite_conversion_fb_pixel_purchase || 0,\n      actions_post: actionsDict.actions_post || 0,\n      actions_comment: actionsDict.actions_comment || 0,\n      actions_onsite_conversion_messaging_order_created_v2: actionsDict.actions_onsite_conversion_messaging_order_created_v2 || 0,\n      actions_onsite_conversion_total_messaging_connection: actionsDict.actions_onsite_conversion_total_messaging_connection || 0,\n      actions_onsite_conversion_messaging_conversation_replied_7d: actionsDict.actions_onsite_conversion_messaging_conversation_replied_7d || 0,\n      actions_onsite_conversion_messaging_first_reply: actionsDict.actions_onsite_conversion_messaging_first_reply || 0,\n      actions_onsite_conversion_messaging_welcome_message_view: actionsDict.actions_onsite_conversion_messaging_welcome_message_view || 0,\n      actions_onsite_conversion_messaging_conversation_started_7d: actionsDict.actions_onsite_conversion_messaging_conversation_started_7d || 0,\n      actions_onsite_conversion_messaging_block: actionsDict.actions_onsite_conversion_messaging_block || 0,\n      actions_onsite_offsite_conversion_fb_pixel_complete_registration: actionsDict.actions_onsite_offsite_conversion_fb_pixel_complete_registration || 0,\n      actions_onsite_offsite_conversion_fb_pixel_lead: actionsDict.actions_onsite_offsite_conversion_fb_pixel_lead || 0,\n      actions_onsite_onsite_conversion_messaging_conversation_started_7d: actionsDict.onsite_conversion_messaging_conversation_started_7d || 0,\n      actions_onsite_onsite_conversion_messaging_first_reply: actionsDict.onsite_conversion_messaging_first_reply || 0,\n    }\n  };\n});\n"
+      },
+      "id": "00433f8f-20b2-4695-8f71-d6a8636f582f",
+      "name": "code_data_adset",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3472,
+        784
+      ]
+    },
+    {
+      "parameters": {
+        "url": "=https://graph.facebook.com/v20.0/{{ $('code_data_adset').item.json[\"adset_id\"] }}?access_token={{ $('Webhook Adset').item.json.body.Token_TKQC }}&fields=status",
+        "options": {}
+      },
+      "id": "af4d4650-1034-49b6-9b42-67308c834895",
+      "name": "status_adset",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        3888,
+        784
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://open.larksuite.com/open-apis/bitable/v1/apps/{{ $('Webhook Adset').item.json.body.base_id }}/tables/{{ $('Webhook Adset').item.json.body.table_id_adset }}/records",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $('Webhook Adset').item.json.body.app_access_token }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"fields\":\n  { \n    \"date_start\":{{ $('code_data_adset').item.json[\"date_start\"] }},\n    \"account_name\":\"{{ $('code_data_adset').item.json[\"account_name\"].replace(/\"/g, '') }}\",\n    \"id_tkqc\":\"{{ $('Webhook Adset').item.json.body.ID_TKQC }}\",\n    \"campaign_name\":\"{{ $('code_data_adset').item.json[\"campaign_name\"].replace(/\"/g, '') }}\",\n    \"campaign_id\":\"{{ $('code_data_adset').item.json[\"campaign_id\"] }}\",\n    \"objective\":\"{{ $('code_data_adset').item.json[\"objective\"] }}\",\n    \"optimization_goal\":\"{{ $('code_data_adset').item.json[\"optimization_goal\"] }}\",\n    \"adset_id\":\"{{ $('code_data_adset').item.json[\"adset_id\"] }}\",\n    \"adset_name\":\"{{ $('code_data_adset').item.json[\"adset_name\"].replace(/\"/g, '') }}\",\n    \"status_adset\":\"{{$('status_adset').item.json[\"status\"]}}\",\n    \"reach\":{{ $('code_data_adset').item.json[\"reach\"] }},\n    \"impressions\":{{ $('code_data_adset').item.json[\"impressions\"] }},\n    \"frequency\":{{ $('code_data_adset').item.json[\"frequency\"] }},\n    \"spend\":{{ $('code_data_adset').item.json[\"spend\"] }},\n    \"clicks\":{{ $('code_data_adset').item.json[\"clicks\"] }},\n    \"ctr\":{{ $('code_data_adset').item.json[\"ctr\"] }},\n    \"cpc\":{{ $('code_data_adset').item.json[\"cpc\"] }},\n    \"cpm\":{{ $('code_data_adset').item.json[\"cpm\"] }},\n    \"cpp\":{{ $('code_data_adset').item.json[\"cpp\"] }},\n    \"comment\":{{ $('code_data_adset').item.json.actions_comment }},\n    \"mua hàng trên web\":{{ $('code_data_adset').item.json.actions_onsite_web_purchase }},\n    \"hoàn tất đăng ký\":{{ $('code_data_adset').item.json.actions_onsite_offsite_conversion_fb_pixel_complete_registration }},\n    \"mua hàng trên meta\":{{ $('code_data_adset').item.json.actions_onsite_conversion_messaging_order_created_v2 }},\n    \"mua hàng\":{{ $('code_data_adset').item.json.actions_purchase }},\n    \"xem tin nhắn chào mừng\":{{ $('code_data_adset').item.json.actions_onsite_conversion_messaging_welcome_message_view }},\n    \"tin nhắn phản hồi đầu tiên\":{{ $('code_data_adset').item.json.actions_onsite_conversion_messaging_first_reply }},\n    \"tin nhắn mới\":{{ $('code_data_adset').item.json.actions_onsite_conversion_total_messaging_connection }}\n}\n}",
+        "options": {}
+      },
+      "id": "853d5d2c-1ee2-4e7d-abae-e7163eabd6d0",
+      "name": "create_data_adset",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        4512,
+        704
+      ],
+      "alwaysOutputData": true,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "method": "PUT",
+        "url": "=https://open.larksuite.com/open-apis/bitable/v1/apps/{{ $('Webhook Adset').item.json.body.base_id }}/tables/{{ $('Webhook Adset').item.json.body.table_id_ads }}/records/{{ $('check_data_base3').item.json[\"data\"][\"items\"][0][\"record_id\"] }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $('Webhook Adset').item.json.body.app_access_token }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"fields\":\n  { \n    \"date_start\":{{ $('code_data_adset').item.json[\"date_start\"] }},\n    \"account_name\":\"{{ $('code_data_adset').item.json[\"account_name\"].replace(/\"/g, '') }}\",\n    \"id_tkqc\":\"{{ $('Webhook Adset').item.json.body.ID_TKQC }}\",\n    \"campaign_name\":\"{{ $('code_data_adset').item.json[\"campaign_name\"].replace(/\"/g, '') }}\",\n    \"campaign_id\":\"{{ $('code_data_adset').item.json[\"campaign_id\"] }}\",\n    \"objective\":\"{{ $('code_data_adset').item.json[\"objective\"] }}\",\n    \"optimization_goal\":\"{{ $('code_data_adset').item.json[\"optimization_goal\"] }}\",\n    \"adset_id\":\"{{ $('code_data_adset').item.json[\"adset_id\"] }}\",\n    \"adset_name\":\"{{ $('code_data_adset').item.json[\"adset_name\"].replace(/\"/g, '') }}\",\n    \"status_adset\":\"{{$('status_adset').item.json[\"status\"]}}\",\n    \"reach\":{{ $('code_data_adset').item.json[\"reach\"] }},\n    \"impressions\":{{ $('code_data_adset').item.json[\"impressions\"] }},\n    \"frequency\":{{ $('code_data_adset').item.json[\"frequency\"] }},\n    \"spend\":{{ $('code_data_adset').item.json[\"spend\"] }},\n    \"clicks\":{{ $('code_data_adset').item.json[\"clicks\"] }},\n    \"ctr\":{{ $('code_data_adset').item.json[\"ctr\"] }},\n    \"cpc\":{{ $('code_data_adset').item.json[\"cpc\"] }},\n    \"cpm\":{{ $('code_data_adset').item.json[\"cpm\"] }},\n    \"cpp\":{{ $('code_data_adset').item.json[\"cpp\"] }},\n    \"comment\":{{ $('code_data_adset').item.json.actions_comment }},\n    \"mua hàng trên web\":{{ $('code_data_adset').item.json.actions_onsite_web_purchase }},\n    \"hoàn tất đăng ký\":{{ $('code_data_adset').item.json.actions_onsite_offsite_conversion_fb_pixel_complete_registration }},\n    \"mua hàng trên meta\":{{ $('code_data_adset').item.json.actions_onsite_conversion_messaging_order_created_v2 }},\n    \"mua hàng\":{{ $('code_data_adset').item.json.actions_purchase }},\n    \"xem tin nhắn chào mừng\":{{ $('code_data_adset').item.json.actions_onsite_conversion_messaging_welcome_message_view }},\n    \"tin nhắn phản hồi đầu tiên\":{{ $('code_data_adset').item.json.actions_onsite_conversion_messaging_first_reply }},\n    \"tin nhắn mới\":{{ $('code_data_adset').item.json.actions_onsite_conversion_total_messaging_connection }}\n}\n}",
+        "options": {}
+      },
+      "id": "357f3637-0c5a-4cf1-b477-21d74d3a60f8",
+      "name": "update_data_adset",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        4512,
+        880
+      ],
+      "alwaysOutputData": true,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://app.sync.io.vn/webhook/fb-ads-adser-lark",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ $('Webhook TKQC').item.json.body }}",
+        "options": {}
+      },
+      "id": "29c7926e-8e3a-446a-9067-7ebfe2023078",
+      "name": "API Adset",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2800,
+        560
+      ]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "fb-ads-ads-lark",
+        "options": {}
+      },
+      "id": "c4abf17c-0afc-427b-aaba-6ad207b60d0a",
+      "name": "Webhook Ads",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        2560,
+        1232
+      ],
+      "webhookId": "b7f14e4a-446e-4ce2-a7d2-36506b2462fb"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "fb-ads-adser-lark",
+        "options": {}
+      },
+      "id": "c76fcc23-fc70-43fa-9856-9772d07cd4c9",
+      "name": "Webhook Adset",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        2800,
+        784
+      ],
+      "webhookId": "6b70bd6d-423d-4cdb-924d-b3f8c96e80b4"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "fb-ads-campaign-lark",
+        "options": {}
+      },
+      "id": "18b27721-ebfa-4c15-9bbd-8fa7adc7fe5e",
+      "name": "Webhook campaign",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        2352,
+        1648
+      ],
+      "webhookId": "e0242aa4-7f2d-4598-bf7e-f6d88d57e77e"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "22222222222222222",
+        "options": {}
+      },
+      "id": "d98f2125-a69a-4d6f-a470-a83c768d454d",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -208,
+        288
+      ],
+      "webhookId": "374f2f84-4545-4a4f-b285-6a57c5043715"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "fb-ads-tkqc-lark",
+        "options": {}
+      },
+      "id": "fef05b83-6519-4309-8e9c-5cfc3e29cd3a",
+      "name": "Webhook TKQC",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        1232,
+        688
+      ],
+      "webhookId": "eacd30eb-3e2f-4efd-99ce-63d6b7beff00"
+    },
+    {
+      "parameters": {
+        "content": "## Chú ý\n- Khi clone template thì thay lại link webhook và các link trong node http request. Tương ứng với các màu giống nhau.\n\nVí dụ: Link webhook màu đỏ thì copy rồi thay vào node http request màu đỏ tương ứng.\n\n- Larksuite giới hạn sử dụng API theo tháng cụ thể là 10.000 lượt / 1 tháng với gói starter. Nên bạn chú ý sử dụng để tránh hết lượt dùng API 1 tháng nhé. Bạn có thể kéo dữ liệu 2 tiếng hoặc 5 tiếng hoặc 24 tiếng 1 lần để làm báo cáo.\n\n- Larksuite với gói Pro thì không giới hạn, nếu bạn đăng ký gói Pro của Larksuite thì kéo dữ liệu thoải mái nhé.",
+        "height": 220,
+        "width": 1280
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1600,
+        128
+      ],
+      "id": "ee146cd1-fbf5-4026-9cf6-1b740ee36be1",
+      "name": "Sticky Note10"
+    },
+    {
+      "parameters": {
+        "content": "## ",
+        "height": 660,
+        "width": 220,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1168,
+        240
+      ],
+      "id": "f7ec2ec0-fdfa-481f-a230-b7ce24ec5263",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "## ",
+        "height": 1340,
+        "width": 220,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        2272,
+        512
+      ],
+      "id": "6347b9d8-4f84-4c6a-88a9-2151522d4640",
+      "name": "Sticky Note3"
+    },
+    {
+      "parameters": {
+        "content": "## ",
+        "height": 920,
+        "width": 220,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        2512,
+        512
+      ],
+      "id": "ba7929cc-ef74-4ec4-b282-b31d6a0b767a",
+      "name": "Sticky Note6"
+    },
+    {
+      "parameters": {
+        "content": "## ",
+        "height": 460,
+        "width": 220,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        2752,
+        512
+      ],
+      "id": "c59523aa-2dcf-482c-9624-b4c0eb86c4a8",
+      "name": "Sticky Note8"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "minutes",
+              "minutesInterval": 15
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -208,
+        512
+      ],
+      "id": "17d3006b-62ac-487e-8a62-c97e80237aa1",
+      "name": "Schedule Trigger"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-02-22T18:05:48.210Z",
+      "createdAt": "2026-02-22T18:05:48.210Z",
+      "role": "workflow:owner",
+      "workflowId": "FRx0wiLVCiHvsF1y",
+      "projectId": "GTQprNa3RcCSHh8s"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-10-19T06:44:49.509Z",
+  "versionId": "359ab7b8-d1c8-42a3-86d0-b25a2aad336a"
+}
