@@ -1,0 +1,364 @@
+{
+  "active": false,
+  "activeVersion": null,
+  "activeVersionId": null,
+  "connections": {
+    "checkAllReceipt": {
+      "main": [
+        [
+          {
+            "node": "moreThan60Days",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "setReceipt": {
+      "main": [
+        [
+          {
+            "node": "deleteFolderMoreThan60Days",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "moreThan60Days": {
+      "main": [
+        [
+          {
+            "node": "setReceipt",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Limit",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit": {
+      "main": [
+        [
+          {
+            "node": "getAllReceipt",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Compare Datasets",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "getAllReceipt": {
+      "main": [
+        [
+          {
+            "node": "Compare Datasets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Compare Datasets": {
+      "main": [
+        [
+          {
+            "node": "deleteData",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "checkAllReceipt",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "setReceipt",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2026-02-22T19:15:12.120Z",
+  "id": "9MGEvigf81n046Gm",
+  "isArchived": false,
+  "meta": null,
+  "name": "schedule-clean-warranty-data",
+  "nodes": [
+    {
+      "parameters": {
+        "jsCode": "const fs = require('fs');\nconst path = require('path');\n\nconst baseDir = '/data/app_images';\n\ntry {\n  // Đọc danh sách và lọc folder\n  const dirents = fs.readdirSync(baseDir, { withFileTypes: true });\n  const folders = dirents.filter(d => d.isDirectory()).map(d => d.name);\n\n  const now = Date.now();\n\n  const items = folders.map(name => {\n    const fullPath = path.join(baseDir, name);\n    let stats;\n    try {\n      stats = fs.statSync(fullPath);\n    } catch (err) {\n      // Nếu không thể đọc stats, vẫn trả về minimal info\n      return {\n        json: {\n          folder: name,\n          path: fullPath,\n          createdAt: null,\n          createdAtIso: null,\n          ageDays: null,\n          ageHuman: null,\n          fileCount: null,\n          error: `stat failed: ${err.message}`\n        }\n      };\n    }\n\n    // ưu tiên birthtime, fallback sang ctime hoặc mtime\n    const createdTime = stats.birthtimeMs || stats.ctimeMs || stats.mtimeMs || stats.ino || 0;\n    const createdAtIso = createdTime ? new Date(createdTime).toISOString() : null;\n    const ageMs = createdTime ? (now - createdTime) : null;\n    const ageDays = ageMs != null ? Number((ageMs / (1000 * 60 * 60 * 24)).toFixed(2)) : null;\n\n    // Tạo chuỗi tuổi dễ đọc\n    let ageHuman = null;\n    if (ageMs != null) {\n      const days = Math.floor(ageMs / (1000 * 60 * 60 * 24));\n      const hours = Math.floor((ageMs / (1000 * 60 * 60)) % 24);\n      const minutes = Math.floor((ageMs / (1000 * 60)) % 60);\n      ageHuman = `${days}d ${hours}h ${minutes}m`;\n    }\n\n    // Đếm file (không đệ quy sâu) — nếu muốn đệ quy có thể thay đổi\n    let fileCount = null;\n    try {\n      const inner = fs.readdirSync(fullPath, { withFileTypes: true });\n      fileCount = inner.length;\n    } catch (e) {\n      fileCount = null;\n    }\n\n    return {\n      json: {\n        folder: name,\n        path: fullPath,\n        createdAt: createdTime,\n        createdAtIso,\n        ageDays,\n        ageHuman,\n        fileCount\n      }\n    };\n  });\n\n  // Sắp xếp: mới nhất (creation time lớn) trước. Nếu muốn ngược lại đổi b-a thành a-b\n  items.sort((a, b) => {\n    const ta = a.json.createdAt || 0;\n    const tb = b.json.createdAt || 0;\n    return tb - ta;\n  });\n\n  return items;\n} catch (err) {\n  throw new Error(`Cannot read base directory ${baseDir}: ${err.message}`);\n}\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -48,
+        224
+      ],
+      "id": "45d241c3-a07a-436d-85f8-050ae98794df",
+      "name": "checkAllReceipt"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "d530e786-3028-40ec-927a-902d1569529b",
+              "name": "receipt",
+              "value": "={{ $json.folder }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        304,
+        80
+      ],
+      "id": "9fe57fe3-5331-4ee3-ab63-01d20112e2f4",
+      "name": "setReceipt"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "8fd636bd-accb-4006-acb2-65aac6aa0362",
+              "leftValue": "={{ $json.ageDays }}",
+              "rightValue": 60,
+              "operator": {
+                "type": "number",
+                "operation": "gt"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        80,
+        224
+      ],
+      "id": "8befbf89-fe62-415a-a0cd-29898602a54c",
+      "name": "moreThan60Days"
+    },
+    {
+      "parameters": {
+        "jsCode": "const fs = require('fs');\nconst path = require('path');\n\nconst items = $input.all();\n\nif (!items.length) {\n  throw new Error(\"No input received\");\n}\n\n// Lấy biên nhận từ JSON input\nconst receipt = items[0].json.receipt;\n\nif (!receipt) {\n  throw new Error(\"Missing 'receipt' in input\");\n}\n\n// Thư mục chứa ảnh\nconst baseDir = '/data/app_images';\n\n// Thư mục cần xoá: /data/app_images/<receipt>\nconst targetDir = path.join(baseDir, receipt);\n\n// Kiểm tra tồn tại\nif (fs.existsSync(targetDir)) {\n  fs.rmSync(targetDir, { recursive: true, force: true });\n\n  return [{\n    json: {\n      deleted: true,\n      receipt,\n      path: targetDir\n    }\n  }];\n} else {\n  return [{\n    json: {\n      deleted: false,\n      receipt,\n      message: `Folder does not exist`,\n      path: targetDir\n    }\n  }];\n}\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        464,
+        80
+      ],
+      "id": "d435e0cc-ff3d-41c4-a24a-477daeaa0f1b",
+      "name": "deleteFolderMoreThan60Days"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        304,
+        224
+      ],
+      "id": "77ba0396-557c-41ca-b249-6124da4de859",
+      "name": "Limit"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "dataTableId": {
+          "__rl": true,
+          "value": "PXE9Oag0RTO4nzhk",
+          "mode": "list",
+          "cachedResultName": "app-warranty",
+          "cachedResultUrl": "/projects/WAqDK79b9owhbfuS/datatables/PXE9Oag0RTO4nzhk"
+        },
+        "returnAll": true
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        464,
+        224
+      ],
+      "id": "15833e2c-100a-4e59-b859-7812e8389369",
+      "name": "getAllReceipt"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "b8e80b6b-9388-487d-b959-c3ba7d1fce3b",
+              "name": "receipt",
+              "value": "={{ $json.folder }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        304,
+        368
+      ],
+      "id": "539d586c-db98-48a1-ad25-fab66957f84a",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "mergeByFields": {
+          "values": [
+            {
+              "field1": "receipt",
+              "field2": "receipt"
+            }
+          ]
+        },
+        "fuzzyCompare": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.compareDatasets",
+      "typeVersion": 2.3,
+      "position": [
+        624,
+        256
+      ],
+      "id": "d28125d5-0879-4852-9997-677f4823bb01",
+      "name": "Compare Datasets"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        -176,
+        224
+      ],
+      "id": "8313ba2b-354c-4428-9ee1-e0610414b395",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "operation": "deleteRows",
+        "dataTableId": {
+          "__rl": true,
+          "value": "PXE9Oag0RTO4nzhk",
+          "mode": "list",
+          "cachedResultName": "app-warranty",
+          "cachedResultUrl": "/projects/WAqDK79b9owhbfuS/datatables/PXE9Oag0RTO4nzhk"
+        },
+        "matchType": "allConditions",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "receipt",
+              "keyValue": "={{ $json.receipt }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        928,
+        240
+      ],
+      "id": "19a3f9d8-a0cc-42c2-bfb4-71ddbbb5263a",
+      "name": "deleteData"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "d5c8d514-6ab9-4149-8fb9-8669f52f585e",
+      "name": "When clicking ‘Execute workflow’"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-02-22T19:15:12.120Z",
+      "createdAt": "2026-02-22T19:15:12.120Z",
+      "role": "workflow:owner",
+      "workflowId": "9MGEvigf81n046Gm",
+      "projectId": "GTQprNa3RcCSHh8s"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2026-02-22T19:15:12.120Z",
+  "versionId": "83bc7e5b-3e54-4d08-a52d-ffe3ffe16f54"
+}
