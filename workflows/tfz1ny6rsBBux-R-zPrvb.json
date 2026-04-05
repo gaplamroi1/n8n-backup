@@ -1,0 +1,398 @@
+{
+  "active": false,
+  "activeVersion": null,
+  "activeVersionId": null,
+  "connections": {
+    "On form submission": {
+      "main": [
+        [
+          {
+            "node": "Compression",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "clear_old",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Compression": {
+      "main": [
+        [
+          {
+            "node": "Extract from File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract from File": {
+      "main": [
+        [
+          {
+            "node": "insert_new",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "insert_new": {
+      "main": [
+        [
+          {
+            "node": "Limit",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit": {
+      "main": [
+        [
+          {
+            "node": "Send a text message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2026-02-09T07:22:21.184Z",
+  "id": "tfz1ny6rsBBux-R-zPrvb",
+  "isArchived": true,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "range-plan-update",
+  "nodes": [
+    {
+      "parameters": {
+        "formTitle": "Range plan",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "File",
+              "fieldType": "file"
+            }
+          ]
+        },
+        "options": {
+          "path": "range-plan"
+        }
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.5,
+      "position": [
+        0,
+        0
+      ],
+      "id": "80281d5a-7efc-4caf-a540-afe29e936f94",
+      "name": "On form submission",
+      "webhookId": "fa808e4e-9958-4027-a3bf-0cc6b0e22415"
+    },
+    {
+      "parameters": {
+        "binaryPropertyName": "File"
+      },
+      "type": "n8n-nodes-base.compression",
+      "typeVersion": 1.1,
+      "position": [
+        208,
+        0
+      ],
+      "id": "3dccec87-8d19-4fbe-8259-35886b7c9237",
+      "name": "Compression"
+    },
+    {
+      "parameters": {
+        "binaryPropertyName": "file_0",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1.1,
+      "position": [
+        448,
+        0
+      ],
+      "id": "627f0358-c3ca-4b0a-8b1c-708ec5cae51d",
+      "name": "Extract from File"
+    },
+    {
+      "parameters": {
+        "operation": "clear",
+        "documentId": {
+          "__rl": true,
+          "value": "1jycp8oWgGavy6HObWQW4dp8VxMUrlemhmWMKTPZkNJQ",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1jycp8oWgGavy6HObWQW4dp8VxMUrlemhmWMKTPZkNJQ/edit#gid=0"
+        },
+        "keepFirstRow": true
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        208,
+        -144
+      ],
+      "id": "39c0f6d5-b63f-454d-a89b-62c42ec3cf35",
+      "name": "clear_old",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "MTh9LghqaMKPTAzs",
+          "name": "zalo-chat-bot-hoang.nv1"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1jycp8oWgGavy6HObWQW4dp8VxMUrlemhmWMKTPZkNJQ",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1jycp8oWgGavy6HObWQW4dp8VxMUrlemhmWMKTPZkNJQ/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "sku": "={{ $json.SKU }}",
+            "sku_name": "={{ $json['SKU name'] }}",
+            "branch_id": "={{ $json['Branch ID'] }}",
+            "branch_name": "={{ $json['Branch name'] }}",
+            "subcat_2_id": "={{ $json['Subcat 2 ID'] }}",
+            "subcat_2": "={{ $json.Subcat2 }}",
+            "brand": "={{ $json.Brand }}",
+            "purchase_status": "={{ $json['Purchase status'] }}",
+            "product_listing": "={{ $json['Product listing'] }}",
+            "range": "={{ $json.Range }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "sku",
+              "displayName": "sku",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "sku_name",
+              "displayName": "sku_name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "branch_id",
+              "displayName": "branch_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "branch_name",
+              "displayName": "branch_name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "subcat_2_id",
+              "displayName": "subcat_2_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "subcat_2",
+              "displayName": "subcat_2",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "brand",
+              "displayName": "brand",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "purchase_status",
+              "displayName": "purchase_status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "product_listing",
+              "displayName": "product_listing",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "range",
+              "displayName": "range",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        576,
+        0
+      ],
+      "id": "6cb503d7-39f6-45d3-8ae4-0889befb4e89",
+      "name": "insert_new",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "MTh9LghqaMKPTAzs",
+          "name": "zalo-chat-bot-hoang.nv1"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        704,
+        0
+      ],
+      "id": "0041cbc9-bec8-4e4d-9551-0cb13196b5b5",
+      "name": "Limit"
+    },
+    {
+      "parameters": {
+        "chatId": "5013029624",
+        "text": "=Range plan đã được cập nhật.",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        832,
+        0
+      ],
+      "id": "2b822ff4-d2c7-4b18-8502-f6e6dc3faecb",
+      "name": "Send a text message",
+      "webhookId": "44f7bda3-2e42-4ba8-985e-b3ca611100cb",
+      "credentials": {
+        "telegramApi": {
+          "id": "yOqJ91F4uxm9OoWc",
+          "name": "@culi001"
+        }
+      }
+    }
+  ],
+  "pinData": {
+    "On form submission": [
+      {
+        "json": {
+          "File": [
+            {
+              "filename": "20260210_193340.zip",
+              "mimetype": "application/x-zip-compressed",
+              "size": 444723
+            }
+          ],
+          "submittedAt": "2026-02-11T02:33:52.185+07:00",
+          "formMode": "production"
+        },
+        "binary": {
+          "File": {
+            "mimeType": "application/x-zip-compressed",
+            "fileExtension": "zip",
+            "data": "filesystem-v2",
+            "fileName": "20260210_193340.zip",
+            "id": "filesystem-v2:workflows/tfz1ny6rsBBux-R-zPrvb/executions/temp/binary_data/ddc252a9-aea4-41de-91f5-7db943f65717",
+            "fileSize": "445 kB",
+            "bytes": 444723
+          }
+        },
+        "pairedItem": {
+          "item": 0
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-02-22T18:08:27.075Z",
+      "createdAt": "2026-02-22T18:08:27.075Z",
+      "role": "workflow:owner",
+      "workflowId": "tfz1ny6rsBBux-R-zPrvb",
+      "projectId": "GTQprNa3RcCSHh8s"
+    }
+  ],
+  "staticData": null,
+  "tags": [
+    {
+      "updatedAt": "2026-02-09T07:11:42.210Z",
+      "createdAt": "2026-02-09T07:11:42.210Z",
+      "id": "xYJcmxixfnklJJVn",
+      "name": "openclaw"
+    },
+    {
+      "updatedAt": "2025-12-17T02:41:50.389Z",
+      "createdAt": "2025-12-17T02:41:50.389Z",
+      "id": "tf48o2CcAcmF6X41",
+      "name": "Seatalk app"
+    }
+  ],
+  "triggerCount": 1,
+  "updatedAt": "2026-02-11T18:04:50.953Z",
+  "versionId": "02e74ae1-fb41-4b01-bca8-d02a928be79b"
+}
