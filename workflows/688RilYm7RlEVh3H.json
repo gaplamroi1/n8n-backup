@@ -1,0 +1,401 @@
+{
+  "active": false,
+  "activeVersion": null,
+  "activeVersionId": null,
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Get row(s) in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2026-02-22T19:26:33.933Z",
+  "id": "688RilYm7RlEVh3H",
+  "isArchived": false,
+  "meta": null,
+  "name": "sheet - get_tech_report",
+  "nodes": [
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "documentId": {
+          "__rl": true,
+          "value": "1-W1XE2stYvTST2dyDWrq3yGR9NfX81H7vmAWYwDXkkk",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 37892671,
+          "mode": "list",
+          "cachedResultName": "Câu trả lời biểu mẫu 1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1-W1XE2stYvTST2dyDWrq3yGR9NfX81H7vmAWYwDXkkk/edit#gid=37892671"
+        },
+        "event": "rowAdded",
+        "options": {
+          "dataLocationOnSheet": {
+            "values": {
+              "rangeDefinition": "specifyRange",
+              "headerRow": 2,
+              "firstDataRow": 3
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.googleSheetsTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "1302c1c6-a734-4066-a0f2-c4e2f29322c5",
+      "name": "Google Sheets Trigger",
+      "credentials": {
+        "googleSheetsTriggerOAuth2Api": {
+          "id": "PTTp5TaHF098N5jv",
+          "name": "check-ctkm-hoang.nv1-trigger"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -48,
+        272
+      ],
+      "id": "3660da62-c751-47bb-a727-31035f8f6f2f",
+      "name": "When clicking ‘Execute workflow’",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "operation": "deleteRows",
+        "dataTableId": {
+          "__rl": true,
+          "value": "ghQHpCpapkIZ6ay4",
+          "mode": "list",
+          "cachedResultName": "tech_report",
+          "cachedResultUrl": "/projects/WAqDK79b9owhbfuS/datatables/ghQHpCpapkIZ6ay4"
+        },
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "date",
+              "condition": "isNotEmpty"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        208,
+        272
+      ],
+      "id": "b7ac2152-8126-44d5-a7ee-d2e85da976c4",
+      "name": "Delete row(s)",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": false,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "665b3105-225d-46ae-8f33-9d95f33a6bc1",
+              "leftValue": "={{ $json['Dấu thời gian'] }}",
+              "rightValue": "không tìm thấy",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "ff20004b-e3e8-4aaf-80d7-3e30f39a1b29",
+              "leftValue": "={{ $json['Dấu thời gian'] }}",
+              "rightValue": "dấu thời gian",
+              "operator": {
+                "type": "string",
+                "operation": "notContains"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {
+          "ignoreCase": true
+        }
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        208,
+        160
+      ],
+      "id": "b78b8d39-bcf2-497b-b64c-88bac681ea0c",
+      "name": "If",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1-W1XE2stYvTST2dyDWrq3yGR9NfX81H7vmAWYwDXkkk",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 37892671,
+          "mode": "list",
+          "cachedResultName": "Câu trả lời biểu mẫu 1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1-W1XE2stYvTST2dyDWrq3yGR9NfX81H7vmAWYwDXkkk/edit#gid=37892671"
+        },
+        "options": {
+          "dataLocationOnSheet": {
+            "values": {
+              "rangeDefinition": "specifyRange",
+              "headerRow": 2,
+              "firstDataRow": 3
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        192,
+        400
+      ],
+      "id": "b000cae3-2365-4d66-aa4e-09da9ad0a7ed",
+      "name": "Get row(s) in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "MTh9LghqaMKPTAzs",
+          "name": "zalo-chat-bot-hoang.nv1"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "dataTableId": {
+          "__rl": true,
+          "value": "ghQHpCpapkIZ6ay4",
+          "mode": "list",
+          "cachedResultName": "tech_report",
+          "cachedResultUrl": "/projects/WAqDK79b9owhbfuS/datatables/ghQHpCpapkIZ6ay4"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "date": "={{ (() => { const [m,d,y] = $json['Dấu thời gian'].split(' ')[0].split('/'); return `${d.padStart(2,'0')}/${m.padStart(2,'0')}/${y}` })() }}",
+            "email": "={{ $json['Địa chỉ email'] }}",
+            "employee_code": "={{ $json.MSNV }}",
+            "branch_code": "={{ $json['Mã SR'] }}",
+            "full_name": "={{ $json['Họ và Tên'] }}",
+            "hanh_dong_1": "={{ $json['1'] }}",
+            "hanh_dong_2": "={{ $json['2'] }}",
+            "hanh_dong_3": "={{ $json['3'] }}",
+            "hanh_dong_4": "={{ $json['4'] }}",
+            "hanh_dong_5": "={{ $json['5'] }}",
+            "hanh_dong_6": "={{ $json['6'] }}",
+            "hanh_dong_7": "={{ $json['7'] }}",
+            "timestamp": "={{ $json['Dấu thời gian'] }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "timestamp",
+              "displayName": "timestamp",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "date",
+              "displayName": "date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "email",
+              "displayName": "email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "employee_code",
+              "displayName": "employee_code",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "branch_code",
+              "displayName": "branch_code",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "full_name",
+              "displayName": "full_name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "hanh_dong_1",
+              "displayName": "hanh_dong_1",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "hanh_dong_2",
+              "displayName": "hanh_dong_2",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "hanh_dong_3",
+              "displayName": "hanh_dong_3",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "hanh_dong_4",
+              "displayName": "hanh_dong_4",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "hanh_dong_5",
+              "displayName": "hanh_dong_5",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "hanh_dong_6",
+              "displayName": "hanh_dong_6",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "hanh_dong_7",
+              "displayName": "hanh_dong_7",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        464,
+        0
+      ],
+      "id": "d1ac51b7-6c54-40f9-bb45-6cefbfab0102",
+      "name": "Insert row"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-02-22T19:26:33.933Z",
+      "createdAt": "2026-02-22T19:26:33.933Z",
+      "role": "workflow:owner",
+      "workflowId": "688RilYm7RlEVh3H",
+      "projectId": "GTQprNa3RcCSHh8s"
+    }
+  ],
+  "staticData": null,
+  "tags": [
+    {
+      "updatedAt": "2025-11-08T12:09:40.816Z",
+      "createdAt": "2025-11-08T12:08:49.207Z",
+      "id": "aJR3FZVXiQEfDzcy",
+      "name": "pv.vn"
+    }
+  ],
+  "triggerCount": 0,
+  "updatedAt": "2026-02-22T19:26:56.484Z",
+  "versionId": "b61225d3-f5b7-4efd-957c-a2467034ba3f"
+}
