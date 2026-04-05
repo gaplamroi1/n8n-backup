@@ -1,0 +1,136 @@
+{
+  "active": false,
+  "activeVersion": null,
+  "activeVersionId": null,
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-11-25T13:25:16.481Z",
+  "id": "bJm4xVEqiawIU9B1",
+  "isArchived": false,
+  "meta": null,
+  "name": "get-trending-youtube",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours",
+              "hoursInterval": 6
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        0
+      ],
+      "id": "c0f8f9f7-f802-4cbe-995c-c0bcf04c796e",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "url": "https://www.googleapis.com/youtube/v3/videos",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "key",
+              "value": "AIzaSyCPSacqXGdnELRkKh_wBKpOeItYYSfzYLQ"
+            },
+            {
+              "name": "part",
+              "value": "snippet,statistics"
+            },
+            {
+              "name": "chart",
+              "value": "mostPopular"
+            },
+            {
+              "name": "regionCode",
+              "value": "VN"
+            },
+            {
+              "name": "maxResults",
+              "value": "50"
+            },
+            {
+              "name": "videoCategoryId",
+              "value": "0"
+            }
+          ]
+        },
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        208,
+        0
+      ],
+      "id": "31050d0a-24c9-4b62-a224-fac21ed78ef3",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Đầu vào: 1 item từ HTTP Request, có field \"items\" là mảng video\nconst root = $json;\nconst videos = root.items || [];\n\nconst out = videos.map(v => {\n  const id = v.id;\n  const s = v.snippet || {};\n  const stats = v.statistics || {};\n\n  return {\n    json: {\n      platform: 'youtube',\n      country: 'VN',\n      video_id: id,\n      url: `https://www.youtube.com/watch?v=${id}`,\n      title: s.title || '',\n      channel_title: s.channelTitle || '',\n      published_at: s.publishedAt || '',\n      view_count: Number(stats.viewCount || 0),\n      like_count: Number(stats.likeCount || 0),\n      comment_count: Number(stats.commentCount || 0),\n      tags: (s.tags || []).join(', '),\n      crawled_at: new Date().toISOString(),\n    },\n  };\n});\n\nreturn out;\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        416,
+        0
+      ],
+      "id": "0e80721d-661c-4474-8f17-64a9bba52c82",
+      "name": "Code in JavaScript"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-02-22T18:07:29.140Z",
+      "createdAt": "2026-02-22T18:07:29.140Z",
+      "role": "workflow:owner",
+      "workflowId": "bJm4xVEqiawIU9B1",
+      "projectId": "GTQprNa3RcCSHh8s"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-11-25T13:29:12.364Z",
+  "versionId": "507f1114-62ee-4081-8e3d-58a3d03866f1"
+}
