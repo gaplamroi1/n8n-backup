@@ -1,0 +1,283 @@
+{
+  "active": false,
+  "activeVersion": null,
+  "activeVersionId": null,
+  "connections": {
+    "Switch": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Call 'sub - visitor update'",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [],
+        [
+          {
+            "node": "Gửi tin nhắn",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        []
+      ]
+    },
+    "Zalo Event Trigger": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-11-25T11:33:23.093Z",
+  "id": "gG9SjWpicIXxE1cd",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "get-zalo-message-v1",
+  "nodes": [
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.threadId }}",
+                    "rightValue": "5499905341129345969",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "815cf181-2832-4aa4-82c7-76e032cd5b04"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "warranty"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "a3037259-1661-4c22-bcce-e16f64ac1a6e",
+                    "leftValue": "={{ $json.threadId }}",
+                    "rightValue": "8530406733201064064",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "visitors"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "9ffa34e8-54aa-431b-a776-474d7980db43",
+                    "leftValue": "={{ $json.threadId }}",
+                    "rightValue": "2976416810845647788",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "admin"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "ae7d978a-a145-4d58-a1a9-1cf323ad69a6",
+                    "leftValue": "={{ $json.type }}",
+                    "rightValue": 0,
+                    "operator": {
+                      "type": "number",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "orther"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "e71339f6-59bb-474a-b63b-f9e380c9990e",
+                    "leftValue": "={{ $json.threadId }}",
+                    "rightValue": "4630714439315937185",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "fifo"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.3,
+      "position": [
+        160,
+        -16
+      ],
+      "id": "165b277b-b56d-47b7-b3a0-b58d8937d485",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "N9ZKcrT5ZWEel6Q0",
+          "mode": "list",
+          "cachedResultUrl": "/workflow/N9ZKcrT5ZWEel6Q0",
+          "cachedResultName": "sub - visitor update"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {}
+        },
+        "mode": "each",
+        "options": {
+          "waitForSubWorkflow": true
+        }
+      },
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.3,
+      "position": [
+        448,
+        -144
+      ],
+      "id": "981e8730-4960-4ab7-804a-6de39c282e48",
+      "name": "Call 'sub - visitor update'"
+    },
+    {
+      "parameters": {
+        "threadId": "2976416810845647788",
+        "message": "=Bạn có tin nhắn từ {{ $json.data.dName }}\nNội dung: {{ $json.data.content }}",
+        "attachmentsUrls": "="
+      },
+      "type": "n8n-nodes-social-zalo.zaloUserInteract",
+      "typeVersion": 1,
+      "position": [
+        448,
+        48
+      ],
+      "id": "ee563dfb-304d-40d3-8e94-5f798a1b2fb4",
+      "name": "Gửi tin nhắn",
+      "credentials": {
+        "zaloUserCredentialsApi": {
+          "id": "I9XYLmeAnDXTStGI",
+          "name": "Zalo Phong Vũ Bình Thạnh - 2025-11-11T02:53:13.517Z"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "blockedThreadIds": "4630714439315937185"
+      },
+      "type": "n8n-nodes-social-zalo.zaloUser",
+      "typeVersion": 1,
+      "position": [
+        -64,
+        32
+      ],
+      "id": "a5c579df-7397-43a3-a07e-d1640bdfb2e1",
+      "name": "Zalo Event Trigger",
+      "credentials": {
+        "zaloUserCredentialsApi": {
+          "id": "I9XYLmeAnDXTStGI",
+          "name": "Zalo Phong Vũ Bình Thạnh - 2025-11-11T02:53:13.517Z"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false,
+    "errorWorkflow": "80zc32Np6wJfRsoG"
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-02-22T18:07:52.352Z",
+      "createdAt": "2026-02-22T18:07:52.352Z",
+      "role": "workflow:owner",
+      "workflowId": "gG9SjWpicIXxE1cd",
+      "projectId": "GTQprNa3RcCSHh8s"
+    }
+  ],
+  "staticData": null,
+  "tags": [
+    {
+      "updatedAt": "2025-10-07T13:20:09.465Z",
+      "createdAt": "2025-10-07T13:20:09.465Z",
+      "id": "R8JsFVZgS7NoVrt3",
+      "name": "zalo"
+    }
+  ],
+  "triggerCount": 1,
+  "updatedAt": "2026-01-22T13:53:33.887Z",
+  "versionId": "5102d5f6-69f0-4de6-a585-991d55652eba"
+}
