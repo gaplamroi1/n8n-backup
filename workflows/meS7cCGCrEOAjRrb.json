@@ -1,0 +1,2765 @@
+{
+  "active": false,
+  "activeVersion": null,
+  "activeVersionId": null,
+  "connections": {
+    "data_ads": {
+      "main": [
+        [
+          {
+            "node": "code_data_ads",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "code_data_ads": {
+      "main": [
+        [
+          {
+            "node": "Loop3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "base_info": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop3": {
+      "main": [
+        [],
+        [
+          {
+            "node": "status_ad",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "status_ad": {
+      "main": [
+        [
+          {
+            "node": "Date & Time2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "API_Ads": {
+      "main": [
+        [
+          {
+            "node": "Wait3",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Google Sheets2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "data_campaign": {
+      "main": [
+        [
+          {
+            "node": "code_data_campaign",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "code_data_campaign": {
+      "main": [
+        [
+          {
+            "node": "Loop2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop2": {
+      "main": [
+        [],
+        [
+          {
+            "node": "status_camp",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "status_camp": {
+      "main": [
+        [
+          {
+            "node": "Date & Time",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "API TKQC": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "API Campaign": {
+      "main": [
+        [
+          {
+            "node": "Wait4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "API Ads": {
+      "main": [
+        [
+          {
+            "node": "Wait5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "code_date_campaign": {
+      "main": [
+        [
+          {
+            "node": "data_campaign",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "code_date_ads": {
+      "main": [
+        [
+          {
+            "node": "data_ads",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop": {
+      "main": [
+        [],
+        [
+          {
+            "node": "status_adset",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "code_date_adset": {
+      "main": [
+        [
+          {
+            "node": "data_adset",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "data_adset": {
+      "main": [
+        [
+          {
+            "node": "code_data_adset",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "code_data_adset": {
+      "main": [
+        [
+          {
+            "node": "Loop",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "status_adset": {
+      "main": [
+        [
+          {
+            "node": "Date & Time1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items1": {
+      "main": [
+        [],
+        [
+          {
+            "node": "API TKQC",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets1": {
+      "main": [
+        [
+          {
+            "node": "API Campaign",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets5": {
+      "main": [
+        [
+          {
+            "node": "Loop2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets6": {
+      "main": [
+        [
+          {
+            "node": "Loop3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets7": {
+      "main": [
+        [
+          {
+            "node": "Loop",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook Adset": {
+      "main": [
+        [
+          {
+            "node": "code_date_adset",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook Ads": {
+      "main": [
+        [
+          {
+            "node": "code_date_ads",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook TKQC": {
+      "main": [
+        [
+          {
+            "node": "API_Ads",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook campaign": {
+      "main": [
+        [
+          {
+            "node": "code_date_campaign",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Date & Time": {
+      "main": [
+        [
+          {
+            "node": "Wait2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Date & Time1": {
+      "main": [
+        [
+          {
+            "node": "Wait1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Date & Time2": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "base_info",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets6",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait1": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets7",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait2": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait3": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait4": {
+      "main": [
+        [
+          {
+            "node": "API Ads",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait5": {
+      "main": [
+        [
+          {
+            "node": "API Adset",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-10-19T06:45:35.598Z",
+  "id": "meS7cCGCrEOAjRrb",
+  "isArchived": false,
+  "meta": null,
+  "name": "n8n-Template_Fb_Ads_Google_Sheet_Share",
+  "nodes": [
+    {
+      "parameters": {
+        "url": "=https://graph.facebook.com/v20.0/act_{{ $('Webhook Ads').item.json.body.ID_TKQC }}/insights?access_token={{ $('Webhook Ads').item.json.body.Token_TKQC }}&fields=date_start,created_time,account_name,campaign_name,campaign_id,adset_id,adset_name,ad_id,ad_name,objective,optimization_goal,reach,impressions,frequency,spend,clicks,website_ctr,website_purchase_roas,cpc,ctr,cpm,cpp,conversions,cost_per_conversion,action_values,actions,cost_per_inline_link_click,cost_per_inline_post_engagement,dda_results,purchase_roas&level=ad&breakdowns=&limit=2000&date=today&{{ $json.ketqua }}&time_increment={{ $('Webhook Ads').item.json.body.time_increment }}&date_start=today",
+        "options": {}
+      },
+      "id": "6f67d588-430c-4366-b381-3c7fe12e68ee",
+      "name": "data_ads",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2944,
+        784
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "return items[0].json.data.map(item => {\n  // Chuyển đổi action_values thành dạng từ điển (dictionary)\n  const actionValuesDict = {};\n  if (item.action_values) {\n    for (const av of item.action_values) {\n      const actionType = av.action_type.replace(/\\./g, '_'); // Thay thế dấu . bằng _\n      actionValuesDict[`action_values_${actionType}`] = av.value;\n    }\n  }\n\n  // Chuyển đổi actions thành dạng từ điển\n  const actionsDict = {};\n  if (item.actions) {\n    for (const a of item.actions) {\n      const actionType = a.action_type.replace(/\\./g, '_'); // Thay thế dấu . bằng _\n      actionsDict[`actions_${actionType}`] = a.value;\n    }\n  }\n\n  // Trả về kết quả đã được xử lý\n  return {\n    json: {\n      id: `${item.date_start || 0}|${item.ad_id || 0}`,\n      date_start: item.date_start || 0,\n      created_time: item.created_time || 0,\n      account_name: item.account_name || 0,\n      campaign_name: item.campaign_name || 0,\n      campaign_id: item.campaign_id || 0,\n      objective: item.objective || 0,\n      optimization_goal:item.optimization_goal || 0,\n      adset_id: item.adset_id || 0,\n      adset_name: item.adset_name || 0,\n      ad_id: item.ad_id || 0,\n      ad_name: item.ad_name || 0,\n      reach: item.reach || 0,\n      impressions: item.impressions || 0,\n      frequency: item.frequency || 0,\n      spend: item.spend || 0,\n      clicks: item.clicks || 0,\n      ctr: item.ctr || 0,\n      cpc: item.cpc || 0,\n      cpm: item.cpm || 0,\n      cpp: item.cpp || 0,\n      action_values_onsite_web_app_purchase: actionValuesDict.action_values_onsite_web_app_purchase || 0,\n      action_values_onsite_conversion_purchase: actionValuesDict.action_values_onsite_conversion_purchase || 0,\n      action_values_omni_purchase: actionValuesDict.action_values_omni_purchase || 0,\n      action_values_purchase: actionValuesDict.action_values_purchase || 0,\n      action_values_onsite_web_purchase: actionValuesDict.action_values_onsite_web_purchase || 0,\n      action_values_onsite_app_purchase: actionValuesDict.action_values_onsite_app_purchase || 0,\n      action_values_offsite_conversion_fb_pixel_purchase: actionValuesDict.action_values_offsite_conversion_fb_pixel_purchase || 0,\n      actions_link_click: actionsDict.actions_link_click || 0,\n      actions_onsite_web_app_purchase: actionsDict.actions_onsite_web_app_purchase || 0,\n      actions_onsite_conversion_purchase: actionsDict.actions_onsite_conversion_purchase || 0,\n      actions_omni_purchase: actionsDict.actions_omni_purchase || 0,\n      actions_purchase: actionsDict.actions_purchase || 0,\n      actions_onsite_web_purchase: actionsDict.actions_onsite_web_purchase || 0,\n      actions_onsite_app_purchase: actionsDict.actions_onsite_app_purchase || 0,\n      actions_offsite_conversion_fb_pixel_purchase: actionsDict.actions_offsite_conversion_fb_pixel_purchase || 0,\n      actions_post: actionsDict.actions_post || 0,\n      actions_comment: actionsDict.actions_comment || 0,\n      actions_onsite_conversion_messaging_order_created_v2: actionsDict.actions_onsite_conversion_messaging_order_created_v2 || 0,\n      actions_onsite_conversion_total_messaging_connection: actionsDict.actions_onsite_conversion_total_messaging_connection || 0,\n      actions_onsite_conversion_messaging_conversation_replied_7d: actionsDict.actions_onsite_conversion_messaging_conversation_replied_7d || 0,\n      actions_onsite_conversion_messaging_first_reply: actionsDict.actions_onsite_conversion_messaging_first_reply || 0,\n      actions_onsite_conversion_messaging_welcome_message_view: actionsDict.actions_onsite_conversion_messaging_welcome_message_view || 0,\n      actions_onsite_conversion_messaging_conversation_started_7d: actionsDict.actions_onsite_conversion_messaging_conversation_started_7d || 0,\n      actions_onsite_conversion_messaging_block: actionsDict.actions_onsite_conversion_messaging_block || 0,\n      actions_onsite_offsite_conversion_fb_pixel_complete_registration: actionsDict.actions_onsite_offsite_conversion_fb_pixel_complete_registration || 0,\n      actions_onsite_offsite_conversion_fb_pixel_lead: actionsDict.actions_onsite_offsite_conversion_fb_pixel_lead || 0,\n      actions_onsite_onsite_conversion_messaging_conversation_started_7d: actionsDict.onsite_conversion_messaging_conversation_started_7d || 0,\n      actions_onsite_onsite_conversion_messaging_first_reply: actionsDict.onsite_conversion_messaging_first_reply || 0,\n    }\n  };\n});\n"
+      },
+      "id": "45bfc348-7363-4256-92dc-fd80ec358ae5",
+      "name": "code_data_ads",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3168,
+        784
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "6422ef08-7ef0-43df-ba24-f39bac87bfc7",
+              "name": "time_ranges_since",
+              "value": "",
+              "type": "string"
+            },
+            {
+              "id": "cdf7d7d8-ebec-4a50-8851-d22c7fa22db5",
+              "name": "time_ranges_until",
+              "value": "",
+              "type": "string"
+            },
+            {
+              "id": "99406632-8731-46cc-8640-0ba91b6837e2",
+              "name": "date_preset",
+              "value": "today",
+              "type": "string"
+            },
+            {
+              "id": "b809e3f1-34ac-4612-8e82-b4fce128df50",
+              "name": "time_increment",
+              "value": "1",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "c7fc5b77-339c-4301-b8ef-aa5624d14d0c",
+      "name": "base_info",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        80,
+        272
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Thông tin chỉ số\n  - date_start: ngày lấy số liệu\n  - created_time: thời gian tạo quảng cáo\n  - account_name: tên TKQC\n  - campaign_name: tên chiến dịch\n  - campaign_id: id chiến dịch\n  - adset_id: id nhóm quảng cáo\n  - adset_name: tên nhóm quảng cáo\n  - ad_id: id quảng cáo\n  - ad_name: tên quảng cáo\n  - objective: mục tiêu chiến dịch\n  - optimization_goal: mục tiêu nhóm quảng cáo\n  - reach: tiếp cận\n  - Impressions: số lần hiển thị\n  - Frequency: tần suất\n  - Spend: số tiền chi tiêu\n  - Clicks: số lượt click\n  - ctr\n  - cpc\n  - cpm\n  - cpp\n  - action_values_onsite_web_app_purchase: giá trị hành động mua trên ứng dụng hoặc web\n  - action_values_onsite_conversion_purchase: giá trị hành động chuyển đổi mua hàng\n  - action_values_omni_purchase: giá trị hành động mua hàng đa kênh\n  - action_values_purchase: giá trị hành động mua hàng\n  - action_values_onsite_web_purchase: giá trị hành động mua hàng trên trang web\n  - action_values_onsite_app_purchase: giá trị hành động mua hàng trong ứng dụng\n  - action_values_offsite_conversion_fb_pixel_purchase: giá trị hành động chuyển đổi ngoài trang qua mua hàng bằng pixel Facebook\n  - actions_link_click: hành động nhấp vào liên kết\n  - actions_onsite_web_app_purchase: hành động mua hàng trên trang web hoặc ứng dụng\n  - actions_onsite_conversion_purchase: hành động chuyển đổi và mua hàng\n  - actions_omni_purchase: hành động mua hàng đa kênh\n  - actions_purchase: hành động mua hàng\n  - actions_onsite_web_purchase: hành động mua hàng trên trang web\n  - actions_onsite_app_purchase: hành động mua hàng trong ứng dụng\n  - actions_offsite_conversion_fb_pixel_purchase: hành động chuyển đổi ngoài trang qua mua hàng bằng pixel Facebook\n  - actions_post: hành động bài viết\n  - actions_comment: hành động bình luận\n  - actions_like: Like page\n  - actions_onsite_conversion_messaging_order_created_v2: hành động chuyển đổi tại chỗ: đơn hàng đã tạo thông qua tin nhắn v2\n  - actions_onsite_conversion_total_messaging_connection:  hành động chuyển đổi tại chỗ: tổng số kết nối thông qua tin nhắn\n  - actions_onsite_conversion_messaging_conversation_replied_7d: hành động chuyển đổi trên trang web: cuộc trò chuyện qua tin nhắn được trả lời trong 7 ngày\n  - actions_onsite_conversion_messaging_first_reply:  hành động chuyển đổi tại chỗ: tin nhắn phản hồi đầu tiên\n  - actions_onsite_conversion_messaging_welcome_message_view:  xem tin nhắn chào mừng\n  - actions_onsite_conversion_messaging_conversation_started_7d:  hành động chuyển đổi trên trang web: cuộc trò chuyện qua tin nhắn đã bắt đầu trong 7 ngày\n  - actions_onsite_conversion_messaging_block:  hành động chuyển đổi trên trang web: chặn tin nhắn\n  - actions_onsite_offsite_conversion_fb_pixel_complete_registration: hành động chuyển đổi ngoài trang qua pixel Facebook: hoàn tất đăng ký\n  - actions_onsite_offsite_conversion_fb_pixel_lead: hành động chuyển đổi ngoài trang qua pixel Facebook: lead\n  - actions_onsite_onsite_conversion_messaging_conversation_started_7d: hành động chuyển đổi trên trang web: cuộc trò chuyện qua tin nhắn đã bắt đầu trên trang web trong 7 ngày\n  - actions_onsite_onsite_conversion_messaging_first_reply: hành động chuyển đổi trên trang web: phản hồi đầu tiên trong cuộc trò chuyện qua tin nhắn",
+        "height": 1223,
+        "width": 1071
+      },
+      "id": "612f28a0-9cb6-4221-be35-3171bd05cf22",
+      "name": "Sticky Note2",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        320,
+        960
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Base_info\n- date_preset: today, yesterday, last_3d, last_7d,\n- time_increment: 1\n- time_ranges_since và time_ranges_until nếu tồn tại giá trị thì date_preset sẽ bị hủy bỏ. time_ranges_since và time_ranges_until là lấy giá trị trong khoảng thời gian",
+        "height": 416.54837993585306,
+        "width": 239.68466012877167
+      },
+      "id": "e0eaea7b-6ab1-4536-8015-6d7eb19f7831",
+      "name": "Sticky Note5",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "batchSize": 100,
+        "options": {}
+      },
+      "id": "6fcf8a4a-1c12-4305-a734-21a1cc3295bf",
+      "name": "Loop3",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        3392,
+        784
+      ]
+    },
+    {
+      "parameters": {
+        "url": "=https://graph.facebook.com/v20.0/{{ $('code_data_ads').item.json[\"ad_id\"] }}?access_token={{ $('Webhook Ads').item.json.body.Token_TKQC }}&fields=status",
+        "options": {}
+      },
+      "id": "a9ee4ea7-6150-4ee4-84ec-0780a5732088",
+      "name": "status_ad",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        3600,
+        784
+      ]
+    },
+    {
+      "parameters": {
+        "url": "=https://graph.facebook.com/v20.0/act_{{ $('Webhook TKQC').item.json.body.ID_TKQC }}?access_token={{ $json.body.Token_TKQC }}&fields=account_status,disable_reason,business,business_name,currency,name,spend_cap,amount_spent,balance,funding_source_details,timezone_name,timezone_offset_hours_utc,created_time,is_direct_deals_enabled",
+        "options": {}
+      },
+      "id": "01d3d53c-c2f9-4726-8be3-4fd75424bfb7",
+      "name": "API_Ads",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        960,
+        624
+      ],
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "url": "=https://graph.facebook.com/v20.0/act_{{ $('Webhook campaign').item.json.body.ID_TKQC }}/insights?access_token={{ $('Webhook campaign').item.json.body.Token_TKQC }}&fields=date_start,created_time,account_name,campaign_name,campaign_id,objective,reach,impressions,frequency,spend,clicks,website_ctr,website_purchase_roas,cpc,ctr,cpm,cpp,conversions,cost_per_conversion,action_values,actions,cost_per_inline_link_click,cost_per_inline_post_engagement,dda_results,purchase_roas&level=campaign&breakdowns=&limit=2000&date=today&{{ $json.ketqua }}&time_increment={{ $('Webhook campaign').item.json.body.time_increment }}&date_start=today",
+        "options": {}
+      },
+      "id": "54758312-9b06-44ba-9210-b7d21bd2ba9b",
+      "name": "data_campaign",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2080,
+        1360
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "return items[0].json.data.map(item => {\n  // Chuyển đổi action_values thành dạng từ điển (dictionary)\n  const actionValuesDict = {};\n  if (item.action_values) {\n    for (const av of item.action_values) {\n      const actionType = av.action_type.replace(/\\./g, '_'); // Thay thế dấu . bằng _\n      actionValuesDict[`action_values_${actionType}`] = av.value;\n    }\n  }\n\n  // Chuyển đổi actions thành dạng từ điển\n  const actionsDict = {};\n  if (item.actions) {\n    for (const a of item.actions) {\n      const actionType = a.action_type.replace(/\\./g, '_'); // Thay thế dấu . bằng _\n      actionsDict[`actions_${actionType}`] = a.value;\n    }\n  }\n\n\n  // Trả về kết quả đã được xử lý\n  return {\n    json: {\n      id: `${item.date_start || 0}|${item.campaign_id || 0}`,\n      date_start: item.date_start || 0,\n      created_time: item.created_time || 0,\n      account_name: item.account_name || 0,\n      campaign_name: item.campaign_name || 0,\n      campaign_id: item.campaign_id || 0,\n      objective: item.objective || 0,\n      reach: item.reach || 0,\n      impressions: item.impressions || 0,\n      frequency: item.frequency || 0,\n      spend: item.spend || 0,\n      clicks: item.clicks || 0,\n      ctr: item.ctr || 0,\n      cpc: item.cpc || 0,\n      cpm: item.cpm || 0,\n      cpp: item.cpp || 0,\n      action_values_onsite_web_app_purchase: actionValuesDict.action_values_onsite_web_app_purchase || 0,\n      action_values_onsite_conversion_purchase: actionValuesDict.action_values_onsite_conversion_purchase || 0,\n      action_values_omni_purchase: actionValuesDict.action_values_omni_purchase || 0,\n      action_values_purchase: actionValuesDict.action_values_purchase || 0,\n      action_values_onsite_web_purchase: actionValuesDict.action_values_onsite_web_purchase || 0,\n      action_values_onsite_app_purchase: actionValuesDict.action_values_onsite_app_purchase || 0,\n      action_values_offsite_conversion_fb_pixel_purchase: actionValuesDict.action_values_offsite_conversion_fb_pixel_purchase || 0,\n      actions_link_click: actionsDict.actions_link_click || 0,\n      actions_onsite_web_app_purchase: actionsDict.actions_onsite_web_app_purchase || 0,\n      actions_onsite_conversion_purchase: actionsDict.actions_onsite_conversion_purchase || 0,\n      actions_omni_purchase: actionsDict.actions_omni_purchase || 0,\n      actions_purchase: actionsDict.actions_purchase || 0,\n      actions_onsite_web_purchase: actionsDict.actions_onsite_web_purchase || 0,\n      actions_onsite_app_purchase: actionsDict.actions_onsite_app_purchase || 0,\n      actions_offsite_conversion_fb_pixel_purchase: actionsDict.actions_offsite_conversion_fb_pixel_purchase || 0,\n      actions_post: actionsDict.actions_post || 0,\n      actions_comment: actionsDict.actions_comment || 0,\n      actions_onsite_conversion_messaging_order_created_v2: actionsDict.actions_onsite_conversion_messaging_order_created_v2 || 0,\n      actions_onsite_conversion_total_messaging_connection: actionsDict.actions_onsite_conversion_total_messaging_connection || 0,\n      actions_onsite_conversion_messaging_conversation_replied_7d: actionsDict.actions_onsite_conversion_messaging_conversation_replied_7d || 0,\n      actions_onsite_conversion_messaging_first_reply: actionsDict.actions_onsite_conversion_messaging_first_reply || 0,\n      actions_onsite_conversion_messaging_welcome_message_view: actionsDict.actions_onsite_conversion_messaging_welcome_message_view || 0,\n      actions_onsite_conversion_messaging_conversation_started_7d: actionsDict.actions_onsite_conversion_messaging_conversation_started_7d || 0,\n      actions_onsite_conversion_messaging_block: actionsDict.actions_onsite_conversion_messaging_block || 0,\n      actions_onsite_offsite_conversion_fb_pixel_complete_registration: actionsDict.actions_onsite_offsite_conversion_fb_pixel_complete_registration || 0,\n      actions_onsite_offsite_conversion_fb_pixel_lead: actionsDict.actions_onsite_offsite_conversion_fb_pixel_lead || 0,\n      actions_onsite_onsite_conversion_messaging_conversation_started_7d: actionsDict.onsite_conversion_messaging_conversation_started_7d || 0,\n      actions_onsite_onsite_conversion_messaging_first_reply: actionsDict.onsite_conversion_messaging_first_reply || 0,\n    }\n  };\n});\n"
+      },
+      "id": "8c9de6bf-41e2-44c8-9e5f-6ea3b5d43ccc",
+      "name": "code_data_campaign",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2288,
+        1360
+      ]
+    },
+    {
+      "parameters": {
+        "batchSize": 100,
+        "options": {}
+      },
+      "id": "69e8d9e3-205d-483c-ae74-66921bcf3241",
+      "name": "Loop2",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        2480,
+        1360
+      ]
+    },
+    {
+      "parameters": {
+        "url": "=https://graph.facebook.com/v20.0/{{ $('code_data_campaign').item.json[\"campaign_id\"] }}?access_token={{ $('Webhook campaign').item.json.body.Token_TKQC }}&fields=status",
+        "options": {}
+      },
+      "id": "2edfb8be-0e21-4cde-82bb-b367a5338459",
+      "name": "status_camp",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2720,
+        1360
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://go.n8n.app/webhook/433f0098-170f-4f5a-8aa8-19e3661a31541111",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "ID_TKQC",
+              "value": "={{ $('Google Sheets').item.json.ID_TKQC }}"
+            },
+            {
+              "name": "Token_TKQC",
+              "value": "={{ $('Google Sheets').item.json.Token_TKQC }}"
+            },
+            {
+              "name": "time_increment",
+              "value": "={{ $('base_info').item.json.time_increment }}"
+            },
+            {
+              "name": "time_ranges_since",
+              "value": "={{ $('base_info').item.json.time_ranges_since }}"
+            },
+            {
+              "name": "time_ranges_until",
+              "value": "={{ $('base_info').item.json.time_ranges_until }}"
+            },
+            {
+              "name": "date_preset",
+              "value": "={{ $('base_info').item.json.date_preset }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "3fb50e36-904a-4ec7-8862-99919e05a08e",
+      "name": "API TKQC",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        720,
+        272
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://go.n8n.app/webhook/fb-ads-google-sheet-campaign",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ $('Webhook TKQC').item.json.body }}",
+        "options": {}
+      },
+      "id": "473e383a-a46e-453d-9289-2a93ad3539ef",
+      "name": "API Campaign",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1632,
+        512
+      ],
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://go.n8n.app/webhook/fb-ads-google-sheet-ad",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ $('Webhook TKQC').item.json.body }}",
+        "options": {}
+      },
+      "id": "afc6d941-2eb3-4882-8360-e11b1c2dcac2",
+      "name": "API Ads",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2064,
+        512
+      ],
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "jsCode": "// Lấy dữ liệu từ input (node trước đó)\nconst input = items[0].json; // Lấy JSON từ phần tử đầu tiên của input\n\n// Output object để lưu kết quả\nlet output = {};\n\n// Kiểm tra điều kiện và xử lý logic\nif (input.date_preset && input.time_ranges_since && input.time_ranges_until) {\n    output.ketqua = `time_ranges=[{\"since\":\"${input.time_ranges_since}\",\"until\":\"${input.time_ranges_until}\"}]`;\n} else if (input.date_preset && (!input.time_ranges_since || !input.time_ranges_until)) {\n    output.ketqua = `date_preset=${input.date_preset}`;\n} else {\n    output.ketqua = \"Không có điều kiện hợp lệ.\";\n}\n\n// Trả kết quả\nreturn [{ json: output }];\n"
+      },
+      "id": "506f8c0b-27cb-4315-a09c-a3fe97d61973",
+      "name": "Code",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        288,
+        48
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Lấy dữ liệu từ input (node trước đó)\nconst input = items[0].json.body; // Lấy JSON từ phần tử đầu tiên của input\n\n// Output object để lưu kết quả\nlet output = {};\n\n// Kiểm tra điều kiện và xử lý logic\nif (input.date_preset && input.time_ranges_since && input.time_ranges_until) {\n    output.ketqua = `time_ranges=[{\"since\":\"${input.time_ranges_since}\",\"until\":\"${input.time_ranges_until}\"}]`;\n} else if (input.date_preset && (!input.time_ranges_since || !input.time_ranges_until)) {\n    output.ketqua = `date_preset=${input.date_preset}`;\n} else {\n    output.ketqua = \"Không có điều kiện hợp lệ.\";\n}\n\n// Trả kết quả\nreturn [{ json: output }];\n"
+      },
+      "id": "b29069a9-6d76-4c40-920a-df87bb0638d2",
+      "name": "code_date_campaign",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1840,
+        1360
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Lấy dữ liệu từ input (node trước đó)\nconst input = items[0].json.body; // Lấy JSON từ phần tử đầu tiên của input\n\n// Output object để lưu kết quả\nlet output = {};\n\n// Kiểm tra điều kiện và xử lý logic\nif (input.date_preset && input.time_ranges_since && input.time_ranges_until) {\n    output.ketqua = `time_ranges=[{\"since\":\"${input.time_ranges_since}\",\"until\":\"${input.time_ranges_until}\"}]`;\n} else if (input.date_preset && (!input.time_ranges_since || !input.time_ranges_until)) {\n    output.ketqua = `date_preset=${input.date_preset}`;\n} else {\n    output.ketqua = \"Không có điều kiện hợp lệ.\";\n}\n\n// Trả kết quả\nreturn [{ json: output }];\n"
+      },
+      "id": "87c3f45a-ec75-4469-af5a-ee0f0397da94",
+      "name": "code_date_ads",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2720,
+        784
+      ]
+    },
+    {
+      "parameters": {
+        "batchSize": 100,
+        "options": {}
+      },
+      "id": "d407d2d8-14a1-4a3d-94df-f5c8ad461c54",
+      "name": "Loop",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        2960,
+        1072
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Lấy dữ liệu từ input (node trước đó)\nconst input = items[0].json.body; // Lấy JSON từ phần tử đầu tiên của input\n\n// Output object để lưu kết quả\nlet output = {};\n\n// Kiểm tra điều kiện và xử lý logic\nif (input.date_preset && input.time_ranges_since && input.time_ranges_until) {\n    output.ketqua = `time_ranges=[{\"since\":\"${input.time_ranges_since}\",\"until\":\"${input.time_ranges_until}\"}]`;\n} else if (input.date_preset && (!input.time_ranges_since || !input.time_ranges_until)) {\n    output.ketqua = `date_preset=${input.date_preset}`;\n} else {\n    output.ketqua = \"Không có điều kiện hợp lệ.\";\n}\n\n// Trả kết quả\nreturn [{ json: output }];\n"
+      },
+      "id": "fc88c09d-dbba-4197-b9e3-9a2d339cd99d",
+      "name": "code_date_adset",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2288,
+        1072
+      ]
+    },
+    {
+      "parameters": {
+        "url": "=https://graph.facebook.com/v20.0/act_{{ $('Webhook Adset').item.json.body.ID_TKQC }}/insights?access_token={{ $('Webhook Adset').item.json.body.Token_TKQC }}&fields=date_start,created_time,account_name,campaign_name,campaign_id,adset_id,adset_name,ad_id,ad_name,objective,optimization_goal,reach,impressions,frequency,spend,clicks,website_ctr,website_purchase_roas,cpc,ctr,cpm,cpp,conversions,cost_per_conversion,action_values,actions,cost_per_inline_link_click,cost_per_inline_post_engagement,dda_results,purchase_roas&level=adset&breakdowns=&limit=2000&date=today&{{ $json.ketqua }}&time_increment={{ $('Webhook Adset').item.json.body.time_increment }}&date_start=today",
+        "options": {}
+      },
+      "id": "c68765f6-87aa-4d1d-baf5-89a15ffdf1ce",
+      "name": "data_adset",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2480,
+        1072
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "return items[0].json.data.map(item => {\n  // Chuyển đổi action_values thành dạng từ điển (dictionary)\n  const actionValuesDict = {};\n  if (item.action_values) {\n    for (const av of item.action_values) {\n      const actionType = av.action_type.replace(/\\./g, '_'); // Thay thế dấu . bằng _\n      actionValuesDict[`action_values_${actionType}`] = av.value;\n    }\n  }\n\n  // Chuyển đổi actions thành dạng từ điển\n  const actionsDict = {};\n  if (item.actions) {\n    for (const a of item.actions) {\n      const actionType = a.action_type.replace(/\\./g, '_'); // Thay thế dấu . bằng _\n      actionsDict[`actions_${actionType}`] = a.value;\n    }\n  }\n\n  // Trả về kết quả đã được xử lý\n  return {\n    json: {\n      id: `${item.date_start || 0}|${item.adset_id|| 0}`,\n      date_start: item.date_start || 0,\n      created_time: item.created_time || 0,\n      account_name: item.account_name || 0,\n      campaign_name: item.campaign_name || 0,\n      campaign_id: item.campaign_id || 0,\n      objective: item.objective || 0,\n      optimization_goal:item.optimization_goal || 0,\n      adset_id: item.adset_id || 0,\n      adset_name: item.adset_name || 0,\n      reach: item.reach || 0,\n      impressions: item.impressions || 0,\n      frequency: item.frequency || 0,\n      spend: item.spend || 0,\n      clicks: item.clicks || 0,\n      ctr: item.ctr || 0,\n      cpc: item.cpc || 0,\n      cpm: item.cpm || 0,\n      cpp: item.cpp || 0,\n      action_values_onsite_web_app_purchase: actionValuesDict.action_values_onsite_web_app_purchase || 0,\n      action_values_onsite_conversion_purchase: actionValuesDict.action_values_onsite_conversion_purchase || 0,\n      action_values_omni_purchase: actionValuesDict.action_values_omni_purchase || 0,\n      action_values_purchase: actionValuesDict.action_values_purchase || 0,\n      action_values_onsite_web_purchase: actionValuesDict.action_values_onsite_web_purchase || 0,\n      action_values_onsite_app_purchase: actionValuesDict.action_values_onsite_app_purchase || 0,\n      action_values_offsite_conversion_fb_pixel_purchase: actionValuesDict.action_values_offsite_conversion_fb_pixel_purchase || 0,\n      actions_link_click: actionsDict.actions_link_click || 0,\n      actions_onsite_web_app_purchase: actionsDict.actions_onsite_web_app_purchase || 0,\n      actions_onsite_conversion_purchase: actionsDict.actions_onsite_conversion_purchase || 0,\n      actions_omni_purchase: actionsDict.actions_omni_purchase || 0,\n      actions_purchase: actionsDict.actions_purchase || 0,\n      actions_onsite_web_purchase: actionsDict.actions_onsite_web_purchase || 0,\n      actions_onsite_app_purchase: actionsDict.actions_onsite_app_purchase || 0,\n      actions_offsite_conversion_fb_pixel_purchase: actionsDict.actions_offsite_conversion_fb_pixel_purchase || 0,\n      actions_post: actionsDict.actions_post || 0,\n      actions_comment: actionsDict.actions_comment || 0,\n      actions_onsite_conversion_messaging_order_created_v2: actionsDict.actions_onsite_conversion_messaging_order_created_v2 || 0,\n      actions_onsite_conversion_total_messaging_connection: actionsDict.actions_onsite_conversion_total_messaging_connection || 0,\n      actions_onsite_conversion_messaging_conversation_replied_7d: actionsDict.actions_onsite_conversion_messaging_conversation_replied_7d || 0,\n      actions_onsite_conversion_messaging_first_reply: actionsDict.actions_onsite_conversion_messaging_first_reply || 0,\n      actions_onsite_conversion_messaging_welcome_message_view: actionsDict.actions_onsite_conversion_messaging_welcome_message_view || 0,\n      actions_onsite_conversion_messaging_conversation_started_7d: actionsDict.actions_onsite_conversion_messaging_conversation_started_7d || 0,\n      actions_onsite_conversion_messaging_block: actionsDict.actions_onsite_conversion_messaging_block || 0,\n      actions_onsite_offsite_conversion_fb_pixel_complete_registration: actionsDict.actions_onsite_offsite_conversion_fb_pixel_complete_registration || 0,\n      actions_onsite_offsite_conversion_fb_pixel_lead: actionsDict.actions_onsite_offsite_conversion_fb_pixel_lead || 0,\n      actions_onsite_onsite_conversion_messaging_conversation_started_7d: actionsDict.onsite_conversion_messaging_conversation_started_7d || 0,\n      actions_onsite_onsite_conversion_messaging_first_reply: actionsDict.onsite_conversion_messaging_first_reply || 0,\n    }\n  };\n});\n"
+      },
+      "id": "1fb1442f-218e-4b79-a540-cf5f839cecbe",
+      "name": "code_data_adset",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2720,
+        1072
+      ]
+    },
+    {
+      "parameters": {
+        "url": "=https://graph.facebook.com/v20.0/{{ $('code_data_adset').item.json[\"adset_id\"] }}?access_token={{ $('Webhook Adset').item.json.body.Token_TKQC }}&fields=status",
+        "options": {}
+      },
+      "id": "0ca3d7b2-d13b-4dac-a15d-3067511e275b",
+      "name": "status_adset",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        3184,
+        1072
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://go.n8n.app/webhook/fb-ads-google-sheet-adset",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ $('Webhook TKQC').item.json.body }}",
+        "options": {}
+      },
+      "id": "e3f2c388-b4af-44fc-a75f-9a8da5a6f0ad",
+      "name": "API Adset",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2464,
+        512
+      ],
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1wErq389E1CQfb4MFE8ZTIGRonY8HqS-q0Ciurl6_K_c",
+          "mode": "list",
+          "cachedResultName": "Facebook Ads to Sheet",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1wErq389E1CQfb4MFE8ZTIGRonY8HqS-q0Ciurl6_K_c/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Cấu hình",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1wErq389E1CQfb4MFE8ZTIGRonY8HqS-q0Ciurl6_K_c/edit#gid=0"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "sync",
+              "lookupValue": "on"
+            },
+            {
+              "lookupColumn": "status_token",
+              "lookupValue": "live"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "19f6a34e-6352-4ee0-9c0f-6473b5e30d72",
+      "name": "Google Sheets",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        304,
+        272
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "9ccb24bb-266f-491c-a26a-193f3407ce75",
+      "name": "Loop Over Items1",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        528,
+        272
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1wErq389E1CQfb4MFE8ZTIGRonY8HqS-q0Ciurl6_K_c",
+          "mode": "list",
+          "cachedResultName": "Facebook Ads to Sheet",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1wErq389E1CQfb4MFE8ZTIGRonY8HqS-q0Ciurl6_K_c/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Cấu hình",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1wErq389E1CQfb4MFE8ZTIGRonY8HqS-q0Ciurl6_K_c/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "ID_TKQC": "={{ $('Webhook TKQC').item.json.body.ID_TKQC }}",
+            "name": "={{ $json.name }}",
+            "id_bm": "={{ $json.business.id }}",
+            "name_bm": "={{ $json.business.name }}",
+            "status": "={{ $json.account_status }}",
+            "disable_reason": "={{ $json.disable_reason }}",
+            "currency": "={{ $json.funding_source_details.coupons[0].currency }}",
+            "balance": "={{ $json.balance }}",
+            "payment_card": "={{ $json.funding_source_details.display_string }}",
+            "timezone": "={{ $json.timezone_offset_hours_utc }}"
+          },
+          "matchingColumns": [
+            "ID_TKQC"
+          ],
+          "schema": [
+            {
+              "id": "ID_TKQC",
+              "displayName": "ID_TKQC",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Token_TKQC",
+              "displayName": "Token_TKQC",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "sync",
+              "displayName": "sync",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "status_token",
+              "displayName": "status_token",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "name",
+              "displayName": "name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "id_bm",
+              "displayName": "id_bm",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "name_bm",
+              "displayName": "name_bm",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "status",
+              "displayName": "status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "status_name",
+              "displayName": "status_name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "disable_reason",
+              "displayName": "disable_reason",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "disable_reason_name",
+              "displayName": "disable_reason_name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "currency",
+              "displayName": "currency",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "balance",
+              "displayName": "balance",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "payment_card",
+              "displayName": "payment_card",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "timezone",
+              "displayName": "timezone",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "352028e4-4ba9-48be-a0a4-8b5f2f801292",
+      "name": "Google Sheets1",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        1408,
+        512
+      ],
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1wErq389E1CQfb4MFE8ZTIGRonY8HqS-q0Ciurl6_K_c",
+          "mode": "list",
+          "cachedResultName": "Facebook Ads to Sheet",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1wErq389E1CQfb4MFE8ZTIGRonY8HqS-q0Ciurl6_K_c/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Cấu hình",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1wErq389E1CQfb4MFE8ZTIGRonY8HqS-q0Ciurl6_K_c/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "ID_TKQC": "={{ $('Webhook TKQC').item.json.body.ID_TKQC }}",
+            "sync": "off",
+            "status_token": "die"
+          },
+          "matchingColumns": [
+            "ID_TKQC"
+          ],
+          "schema": [
+            {
+              "id": "ID_TKQC",
+              "displayName": "ID_TKQC",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Token_TKQC",
+              "displayName": "Token_TKQC",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "sync",
+              "displayName": "sync",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "status_token",
+              "displayName": "status_token",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "name",
+              "displayName": "name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "id_bm",
+              "displayName": "id_bm",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "name_bm",
+              "displayName": "name_bm",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "status",
+              "displayName": "status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "status_name",
+              "displayName": "status_name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "disable_reason",
+              "displayName": "disable_reason",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "disable_reason_name",
+              "displayName": "disable_reason_name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "currency",
+              "displayName": "currency",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "balance",
+              "displayName": "balance",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "payment_card",
+              "displayName": "payment_card",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "timezone",
+              "displayName": "timezone",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "d9430ef1-d447-48f1-b710-43c098d162ff",
+      "name": "Google Sheets2",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        1184,
+        752
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "1wErq389E1CQfb4MFE8ZTIGRonY8HqS-q0Ciurl6_K_c",
+          "mode": "list",
+          "cachedResultName": "Facebook Ads to Sheet",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1wErq389E1CQfb4MFE8ZTIGRonY8HqS-q0Ciurl6_K_c/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1334288234,
+          "mode": "list",
+          "cachedResultName": "Campaign",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1wErq389E1CQfb4MFE8ZTIGRonY8HqS-q0Ciurl6_K_c/edit#gid=1334288234"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "ID": "={{ $('code_data_campaign').item.json.id }}",
+            "date_start": "={{ $('code_data_campaign').item.json.date_start }}",
+            "account_name": "={{ $('code_data_campaign').item.json.account_name }}",
+            "id_tkqc": "={{ $('Webhook campaign').item.json.body.ID_TKQC }}",
+            "objective": "={{ $('code_data_campaign').item.json.objective }}",
+            "campaign_name": "={{ $('code_data_campaign').item.json.campaign_name }}",
+            "campaign_id": "={{ $('code_data_campaign').item.json.campaign_id }}",
+            "status_camp": "={{ $('status_camp').item.json.status }}",
+            "reach": "={{ $('code_data_campaign').item.json.reach }}",
+            "impressions": "={{ $('code_data_campaign').item.json.impressions }}",
+            "frequency": "={{ $('code_data_campaign').item.json.frequency }}",
+            "spend": "={{ $('code_data_campaign').item.json.spend }}",
+            "clicks": "={{ $('code_data_campaign').item.json.clicks }}",
+            "ctr": "={{ $('code_data_campaign').item.json.ctr }}",
+            "cpc": "={{ $('code_data_campaign').item.json.cpc }}",
+            "cpm": "={{ $('code_data_campaign').item.json.cpm }}",
+            "cpp": "={{ $('code_data_campaign').item.json.cpp }}",
+            "comment": "={{ $('code_data_campaign').item.json.actions_comment }}",
+            "mua hàng trên web": "={{ $('code_data_campaign').item.json.actions_onsite_web_purchase }}",
+            "hoàn tất đăng ký": "={{ $('code_data_campaign').item.json.actions_onsite_offsite_conversion_fb_pixel_complete_registration }}",
+            "mua hàng trên meta": "={{ $('code_data_campaign').item.json.actions_onsite_conversion_messaging_order_created_v2 }}",
+            "tin nhắn phản hồi đầu tiên": "={{ $('code_data_campaign').item.json.actions_onsite_conversion_messaging_first_reply }}",
+            "tin nhắn mới": "={{ $('code_data_campaign').item.json.actions_onsite_conversion_total_messaging_connection }}",
+            "mua hàng": "={{ $('code_data_campaign').item.json.actions_purchase }}",
+            "xem tin nhắn chào mừng": "={{ $('code_data_campaign').item.json.actions_onsite_conversion_messaging_welcome_message_view }}",
+            "time_update": "={{ $json.currentDate.replace('T', ' ').split(\".\")[0] }}"
+          },
+          "matchingColumns": [
+            "ID"
+          ],
+          "schema": [
+            {
+              "id": "ID",
+              "displayName": "ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "date_start",
+              "displayName": "date_start",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "time_update",
+              "displayName": "time_update",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "account_name",
+              "displayName": "account_name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "id_tkqc",
+              "displayName": "id_tkqc",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "objective",
+              "displayName": "objective",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "campaign_name",
+              "displayName": "campaign_name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "campaign_id",
+              "displayName": "campaign_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "status_camp",
+              "displayName": "status_camp",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "reach",
+              "displayName": "reach",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "impressions",
+              "displayName": "impressions",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "frequency",
+              "displayName": "frequency",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "spend",
+              "displayName": "spend",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "clicks",
+              "displayName": "clicks",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "ctr",
+              "displayName": "ctr",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "cpc",
+              "displayName": "cpc",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "cpm",
+              "displayName": "cpm",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "cpp",
+              "displayName": "cpp",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "comment",
+              "displayName": "comment",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "mua hàng trên web",
+              "displayName": "mua hàng trên web",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "hoàn tất đăng ký",
+              "displayName": "hoàn tất đăng ký",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "mua hàng trên meta",
+              "displayName": "mua hàng trên meta",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "mua hàng",
+              "displayName": "mua hàng",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "xem tin nhắn chào mừng",
+              "displayName": "xem tin nhắn chào mừng",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "tin nhắn phản hồi đầu tiên",
+              "displayName": "tin nhắn phản hồi đầu tiên",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "tin nhắn mới",
+              "displayName": "tin nhắn mới",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "8699ebc0-10d1-433b-82d4-5307ee58257b",
+      "name": "Google Sheets5",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        3408,
+        1360
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "1wErq389E1CQfb4MFE8ZTIGRonY8HqS-q0Ciurl6_K_c",
+          "mode": "list",
+          "cachedResultName": "Facebook Ads to Sheet",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1wErq389E1CQfb4MFE8ZTIGRonY8HqS-q0Ciurl6_K_c/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1571276577,
+          "mode": "list",
+          "cachedResultName": "Ad",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1wErq389E1CQfb4MFE8ZTIGRonY8HqS-q0Ciurl6_K_c/edit#gid=1571276577"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "ID": "={{ $('code_data_ads').item.json.id }}",
+            "date_start": "={{ $('code_data_ads').item.json.date_start }}",
+            "account_name": "={{ $('code_data_ads').item.json.account_name }}",
+            "id_tkqc": "={{ $('Webhook Ads').item.json.body.ID_TKQC }}",
+            "objective": "={{ $('code_data_ads').item.json.objective }}",
+            "campaign_name": "={{ $('code_data_ads').item.json.campaign_name }}",
+            "campaign_id": "={{ $('code_data_ads').item.json.campaign_id }}",
+            "reach": "={{ $('code_data_ads').item.json.reach }}",
+            "impressions": "={{ $('code_data_ads').item.json.impressions }}",
+            "frequency": "={{ $('code_data_ads').item.json.frequency }}",
+            "spend": "={{ $('code_data_ads').item.json.spend }}",
+            "clicks": "={{ $('code_data_ads').item.json.clicks }}",
+            "ctr": "={{ $('code_data_ads').item.json.ctr }}",
+            "cpc": "={{ $('code_data_ads').item.json.cpc }}",
+            "cpm": "={{ $('code_data_ads').item.json.cpm }}",
+            "cpp": "={{ $('code_data_ads').item.json.cpp }}",
+            "comment": "={{ $('code_data_ads').item.json.actions_comment }}",
+            "mua hàng trên web": "={{ $('code_data_ads').item.json.actions_onsite_web_purchase }}",
+            "hoàn tất đăng ký": "={{ $('code_data_ads').item.json.actions_onsite_offsite_conversion_fb_pixel_complete_registration }}",
+            "mua hàng trên meta": "={{ $('code_data_ads').item.json.actions_onsite_conversion_messaging_order_created_v2 }}",
+            "tin nhắn phản hồi đầu tiên": "={{ $('code_data_ads').item.json.actions_onsite_conversion_messaging_first_reply }}",
+            "tin nhắn mới": "={{ $('code_data_ads').item.json.actions_onsite_conversion_total_messaging_connection }}",
+            "mua hàng": "={{ $('code_data_ads').item.json.actions_purchase }}",
+            "xem tin nhắn chào mừng": "={{ $('code_data_ads').item.json.actions_onsite_conversion_messaging_welcome_message_view }}",
+            "optimization_goal": "={{ $('code_data_ads').item.json.optimization_goal }}",
+            "adset_id": "={{ $('code_data_ads').item.json.adset_id }}",
+            "adset_name": "={{ $('code_data_ads').item.json.adset_name }}",
+            "ad_id": "={{ $('code_data_ads').item.json.ad_id }}",
+            "ad_name": "={{ $('code_data_ads').item.json.ad_name }}",
+            "status_ad": "={{ $('status_ad').item.json.status }}",
+            "time_update": "={{ $json.currentDate.replace('T', ' ').split(\".\")[0] }}"
+          },
+          "matchingColumns": [
+            "ID"
+          ],
+          "schema": [
+            {
+              "id": "ID",
+              "displayName": "ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "date_start",
+              "displayName": "date_start",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "time_update",
+              "displayName": "time_update",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "account_name",
+              "displayName": "account_name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "id_tkqc",
+              "displayName": "id_tkqc",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "objective",
+              "displayName": "objective",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "campaign_name",
+              "displayName": "campaign_name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "campaign_id",
+              "displayName": "campaign_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "optimization_goal",
+              "displayName": "optimization_goal",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "adset_id",
+              "displayName": "adset_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "adset_name",
+              "displayName": "adset_name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "ad_id",
+              "displayName": "ad_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "ad_name",
+              "displayName": "ad_name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "status_ad",
+              "displayName": "status_ad",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "reach",
+              "displayName": "reach",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "impressions",
+              "displayName": "impressions",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "frequency",
+              "displayName": "frequency",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "spend",
+              "displayName": "spend",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "clicks",
+              "displayName": "clicks",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "ctr",
+              "displayName": "ctr",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "cpc",
+              "displayName": "cpc",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "cpm",
+              "displayName": "cpm",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "cpp",
+              "displayName": "cpp",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "comment",
+              "displayName": "comment",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "mua hàng trên web",
+              "displayName": "mua hàng trên web",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "hoàn tất đăng ký",
+              "displayName": "hoàn tất đăng ký",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "mua hàng trên meta",
+              "displayName": "mua hàng trên meta",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "mua hàng",
+              "displayName": "mua hàng",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "xem tin nhắn chào mừng",
+              "displayName": "xem tin nhắn chào mừng",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "tin nhắn phản hồi đầu tiên",
+              "displayName": "tin nhắn phản hồi đầu tiên",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "tin nhắn mới",
+              "displayName": "tin nhắn mới",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "a9c65974-0c98-4b69-ae40-8459a64471c8",
+      "name": "Google Sheets6",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        4224,
+        784
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "1wErq389E1CQfb4MFE8ZTIGRonY8HqS-q0Ciurl6_K_c",
+          "mode": "list",
+          "cachedResultName": "Facebook Ads to Sheet",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1wErq389E1CQfb4MFE8ZTIGRonY8HqS-q0Ciurl6_K_c/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1943235917,
+          "mode": "list",
+          "cachedResultName": "Adset",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1wErq389E1CQfb4MFE8ZTIGRonY8HqS-q0Ciurl6_K_c/edit#gid=1943235917"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "ID": "={{ $('code_data_adset').item.json.id }}",
+            "date_start": "={{ $('code_data_adset').item.json.date_start }}",
+            "account_name": "={{ $('code_data_adset').item.json.account_name }}",
+            "id_tkqc": "={{ $('Webhook Adset').item.json.body.ID_TKQC }}",
+            "objective": "={{ $('code_data_adset').item.json.objective }}",
+            "campaign_name": "={{ $('code_data_adset').item.json.campaign_name }}",
+            "campaign_id": "={{ $('code_data_adset').item.json.campaign_id }}",
+            "reach": "={{ $('code_data_adset').item.json.reach }}",
+            "impressions": "={{ $('code_data_adset').item.json.impressions }}",
+            "frequency": "={{ $('code_data_adset').item.json.frequency }}",
+            "spend": "={{ $('code_data_adset').item.json.spend }}",
+            "clicks": "={{ $('code_data_adset').item.json.clicks }}",
+            "ctr": "={{ $('code_data_adset').item.json.ctr }}",
+            "cpc": "={{ $('code_data_adset').item.json.cpc }}",
+            "cpm": "={{ $('code_data_adset').item.json.cpm }}",
+            "cpp": "={{ $('code_data_adset').item.json.cpp }}",
+            "comment": "={{ $('code_data_adset').item.json.actions_comment }}",
+            "mua hàng trên web": "={{ $('code_data_adset').item.json.actions_onsite_web_purchase }}",
+            "hoàn tất đăng ký": "={{ $('code_data_adset').item.json.actions_onsite_offsite_conversion_fb_pixel_complete_registration }}",
+            "mua hàng trên meta": "={{ $('code_data_adset').item.json.actions_onsite_conversion_messaging_order_created_v2 }}",
+            "tin nhắn phản hồi đầu tiên": "={{ $('code_data_adset').item.json.actions_onsite_conversion_messaging_first_reply }}",
+            "tin nhắn mới": "={{ $('code_data_adset').item.json.actions_onsite_conversion_total_messaging_connection }}",
+            "mua hàng": "={{ $('code_data_adset').item.json.actions_purchase }}",
+            "xem tin nhắn chào mừng": "={{ $('code_data_adset').item.json.actions_onsite_conversion_messaging_welcome_message_view }}",
+            "optimization_goal": "={{ $('code_data_adset').item.json.optimization_goal }}",
+            "adset_id": "={{ $('code_data_adset').item.json.adset_id }}",
+            "adset_name": "={{ $('code_data_adset').item.json.adset_name }}",
+            "status_adset": "={{ $('status_adset').item.json.status }}",
+            "time_update": "={{ $json.currentDate.replace('T', ' ').split(\".\")[0] }}"
+          },
+          "matchingColumns": [
+            "ID"
+          ],
+          "schema": [
+            {
+              "id": "ID",
+              "displayName": "ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "date_start",
+              "displayName": "date_start",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "time_update",
+              "displayName": "time_update",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "account_name",
+              "displayName": "account_name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "id_tkqc",
+              "displayName": "id_tkqc",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "objective",
+              "displayName": "objective",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "campaign_name",
+              "displayName": "campaign_name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "campaign_id",
+              "displayName": "campaign_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "optimization_goal",
+              "displayName": "optimization_goal",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "adset_id",
+              "displayName": "adset_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "adset_name",
+              "displayName": "adset_name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "status_adset",
+              "displayName": "status_adset",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "reach",
+              "displayName": "reach",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "impressions",
+              "displayName": "impressions",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "frequency",
+              "displayName": "frequency",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "spend",
+              "displayName": "spend",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "clicks",
+              "displayName": "clicks",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "ctr",
+              "displayName": "ctr",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "cpc",
+              "displayName": "cpc",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "cpm",
+              "displayName": "cpm",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "cpp",
+              "displayName": "cpp",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "comment",
+              "displayName": "comment",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "mua hàng trên web",
+              "displayName": "mua hàng trên web",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "hoàn tất đăng ký",
+              "displayName": "hoàn tất đăng ký",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "mua hàng trên meta",
+              "displayName": "mua hàng trên meta",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "mua hàng",
+              "displayName": "mua hàng",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "xem tin nhắn chào mừng",
+              "displayName": "xem tin nhắn chào mừng",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "tin nhắn phản hồi đầu tiên",
+              "displayName": "tin nhắn phản hồi đầu tiên",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "tin nhắn mới",
+              "displayName": "tin nhắn mới",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "161ddf40-419b-4c67-8149-b9252351bfda",
+      "name": "Google Sheets7",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        3808,
+        1072
+      ]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "ef3a904a-85f3-40e4-a4e9-589ba73f5b88",
+        "options": {}
+      },
+      "id": "37dde51b-ba61-4a14-9304-58d65cbbd0de",
+      "name": "Webhook Adset",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        2064,
+        1072
+      ],
+      "webhookId": "ef3a904a-85f3-40e4-a4e9-589ba73f5b88"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "c7952178-f1e3-4f14-a649-281470a69b6a",
+        "options": {}
+      },
+      "id": "3cf158f8-2e18-4ae2-b42c-04d5d2abe40d",
+      "name": "Webhook Ads",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        2464,
+        784
+      ],
+      "webhookId": "c7952178-f1e3-4f14-a649-281470a69b6a"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "af5eb999-e3c3-4fde-b763-8ceec2476211",
+        "options": {}
+      },
+      "id": "d44b26df-5003-4e23-b77f-6b7b0d58f6e8",
+      "name": "Webhook TKQC",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        720,
+        624
+      ],
+      "webhookId": "af5eb999-e3c3-4fde-b763-8ceec2476211"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "acc9697c-ad09-4247-9cd5-7e3262c56f66",
+        "options": {}
+      },
+      "id": "fa9a6add-6010-48cb-b996-c9dbf0952ce4",
+      "name": "Webhook campaign",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        1632,
+        1360
+      ],
+      "webhookId": "acc9697c-ad09-4247-9cd5-7e3262c56f66"
+    },
+    {
+      "parameters": {
+        "options": {
+          "timezone": "Asia/Ho_Chi_Minh"
+        }
+      },
+      "id": "3d2b0a19-f0a7-4e33-bb18-08cc78f765b2",
+      "name": "Date & Time",
+      "type": "n8n-nodes-base.dateTime",
+      "typeVersion": 2,
+      "position": [
+        2960,
+        1360
+      ]
+    },
+    {
+      "parameters": {
+        "options": {
+          "timezone": "Asia/Ho_Chi_Minh"
+        }
+      },
+      "id": "fc1c8bf9-cf3e-4723-be4b-63e38e90679f",
+      "name": "Date & Time1",
+      "type": "n8n-nodes-base.dateTime",
+      "typeVersion": 2,
+      "position": [
+        3408,
+        1072
+      ]
+    },
+    {
+      "parameters": {
+        "options": {
+          "timezone": "Asia/Ho_Chi_Minh"
+        }
+      },
+      "id": "8aa3525a-b2e6-4a2b-ab81-6892a20ea862",
+      "name": "Date & Time2",
+      "type": "n8n-nodes-base.dateTime",
+      "typeVersion": 2,
+      "position": [
+        3808,
+        784
+      ]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "004f0b7e-43c5-4ade-bd9d-da32cdee7616",
+        "options": {}
+      },
+      "id": "d9e1c639-2d0d-4737-b7ab-60f6ca7238ca",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -160,
+        272
+      ],
+      "webhookId": "004f0b7e-43c5-4ade-bd9d-da32cdee7616"
+    },
+    {
+      "parameters": {
+        "amount": 10
+      },
+      "id": "1a057d68-4dd0-4d6f-87c9-c4b812e39fb5",
+      "name": "Wait",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        4032,
+        784
+      ],
+      "webhookId": "99cdb8bf-09d3-44dd-b06f-482e4bac5fff"
+    },
+    {
+      "parameters": {
+        "amount": 10
+      },
+      "id": "9896b07a-5b83-4e01-823a-1d43d32a5e65",
+      "name": "Wait1",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        3600,
+        1072
+      ],
+      "webhookId": "74d12730-c0d6-425d-bf7a-878177518609"
+    },
+    {
+      "parameters": {
+        "amount": 10
+      },
+      "id": "aa59d07c-b0ab-4375-8170-e0f62fb98a5c",
+      "name": "Wait2",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        3184,
+        1360
+      ],
+      "webhookId": "c9f4e3bb-321a-40d0-bc7b-ba97e16e7a37"
+    },
+    {
+      "parameters": {},
+      "id": "fc388282-3118-4ea3-a034-ac509fb91141",
+      "name": "Wait3",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        1184,
+        512
+      ],
+      "webhookId": "5b33541d-ce6a-4b3d-a111-d4d1144281c9"
+    },
+    {
+      "parameters": {},
+      "id": "8ef297d9-ebb7-49e5-8a12-85143ad6bb49",
+      "name": "Wait4",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        1872,
+        512
+      ],
+      "webhookId": "9af54140-2671-43aa-a3ee-f989c9b51f97"
+    },
+    {
+      "parameters": {},
+      "id": "a7407036-e055-4bc3-b662-04876bf27406",
+      "name": "Wait5",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        2272,
+        512
+      ],
+      "webhookId": "0b6356f0-553f-43be-a1da-c084f8085a9d"
+    },
+    {
+      "parameters": {
+        "content": "## ",
+        "height": 620,
+        "width": 220,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        672,
+        224
+      ],
+      "id": "6724ea5f-1808-408c-9486-ab196ea9a24d",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "## ",
+        "height": 1060,
+        "width": 220,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1568,
+        480
+      ],
+      "id": "59ad51b1-4c6d-42a0-9330-b07054ce063d",
+      "name": "Sticky Note3"
+    },
+    {
+      "parameters": {
+        "content": "## ",
+        "height": 800,
+        "width": 220,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        2000,
+        480
+      ],
+      "id": "5bd5a25e-0845-41aa-8f75-bb596ff40c47",
+      "name": "Sticky Note6"
+    },
+    {
+      "parameters": {
+        "content": "## ",
+        "height": 440,
+        "width": 220,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        2400,
+        480
+      ],
+      "id": "868eb2a5-4980-48c0-9ca2-89331a1d4bd8",
+      "name": "Sticky Note8"
+    },
+    {
+      "parameters": {
+        "content": "## Chú ý\n- Khi clone template thì thay lại link webhook và các link trong node http request. Tương ứng với các màu giống nhau.\n\nVí dụ: Link webhook màu đỏ thì copy rồi thay vào node http request màu đỏ tương ứng.",
+        "width": 1280
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        960,
+        128
+      ],
+      "id": "a7f50c96-5c8e-4110-a004-220489681185",
+      "name": "Sticky Note10"
+    }
+  ],
+  "pinData": {
+    "Webhook Adset": [
+      {
+        "json": {
+          "headers": {
+            "connection": "close",
+            "host": "go.n8n.app",
+            "content-length": "363",
+            "sec-ch-ua-platform": "\"Windows\"",
+            "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+            "sec-ch-ua": "\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"",
+            "content-type": "application/json",
+            "sec-ch-ua-mobile": "?0",
+            "accept": "*/*",
+            "origin": "https://giapducthang.com",
+            "sec-fetch-site": "cross-site",
+            "sec-fetch-mode": "cors",
+            "sec-fetch-dest": "empty",
+            "referer": "https://giapducthang.com/",
+            "accept-encoding": "gzip, deflate, br, zstd",
+            "accept-language": "vi-VN,vi;q=0.9"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "ID_TKQC": "1246666332608018",
+            "Token_TKQC": "EAALglxIZBbrIBO7Faw7naKe5eGYpXRrurOIQrfCCvij2GnHRGkM0ZA99q0NQIuwNPfwrUyt8mnUs2vfFA1L4YnTeqNunbAhK8HY63VGS1OnWl2cLtE8satxK2qQN7Ul1LPm3jKQPgbhMHsXD93aZAIGavlSr5YCaRk9e3zDC9QdRIBeM3Q1PojGlFCS6LrCPPSJaw2LxZBJuOz2j",
+            "time_increment": "1",
+            "time_ranges_since": "",
+            "time_ranges_until": "",
+            "date_preset": "today"
+          },
+          "webhookUrl": "https://go.n8n.app/webhook-test/5582f890-5f06-4331-acf5-3b87910836a9aaaa",
+          "executionMode": "test"
+        }
+      }
+    ],
+    "Webhook Ads": [
+      {
+        "json": {
+          "headers": {
+            "connection": "close",
+            "host": "go.n8n.app",
+            "content-length": "363",
+            "sec-ch-ua-platform": "\"Windows\"",
+            "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+            "sec-ch-ua": "\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"",
+            "content-type": "application/json",
+            "sec-ch-ua-mobile": "?0",
+            "accept": "*/*",
+            "origin": "https://giapducthang.com",
+            "sec-fetch-site": "cross-site",
+            "sec-fetch-mode": "cors",
+            "sec-fetch-dest": "empty",
+            "referer": "https://giapducthang.com/",
+            "accept-encoding": "gzip, deflate, br, zstd",
+            "accept-language": "vi-VN,vi;q=0.9"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "ID_TKQC": "1246666332608018",
+            "Token_TKQC": "EAALglxIZBbrIBO7Faw7naKe5eGYpXRrurOIQrfCCvij2GnHRGkM0ZA99q0NQIuwNPfwrUyt8mnUs2vfFA1L4YnTeqNunbAhK8HY63VGS1OnWl2cLtE8satxK2qQN7Ul1LPm3jKQPgbhMHsXD93aZAIGavlSr5YCaRk9e3zDC9QdRIBeM3Q1PojGlFCS6LrCPPSJaw2LxZBJuOz2j",
+            "time_increment": "1",
+            "time_ranges_since": "",
+            "time_ranges_until": "",
+            "date_preset": "today"
+          },
+          "webhookUrl": "https://go.n8n.app/webhook-test/a0d152a3-5086-446b-857e-882617ba0a8311212",
+          "executionMode": "test"
+        }
+      }
+    ],
+    "Webhook TKQC": [
+      {
+        "json": {
+          "headers": {
+            "connection": "close",
+            "host": "go.n8n.app",
+            "content-length": "363",
+            "sec-ch-ua-platform": "\"Windows\"",
+            "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+            "sec-ch-ua": "\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"",
+            "content-type": "application/json",
+            "sec-ch-ua-mobile": "?0",
+            "accept": "*/*",
+            "origin": "https://giapducthang.com",
+            "sec-fetch-site": "cross-site",
+            "sec-fetch-mode": "cors",
+            "sec-fetch-dest": "empty",
+            "referer": "https://giapducthang.com/",
+            "accept-encoding": "gzip, deflate, br, zstd",
+            "accept-language": "vi-VN,vi;q=0.9"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "ID_TKQC": "1246666332608018",
+            "Token_TKQC": "EAALglxIZBbrIBO7Faw7naKe5eGYpXRrurOIQrfCCvij2GnHRGkM0ZA99q0NQIuwNPfwrUyt8mnUs2vfFA1L4YnTeqNunbAhK8HY63VGS1OnWl2cLtE8satxK2qQN7Ul1LPm3jKQPgbhMHsXD93aZAIGavlSr5YCaRk9e3zDC9QdRIBeM3Q1PojGlFCS6LrCPPSJaw2LxZBJuOz2j",
+            "time_increment": "1",
+            "time_ranges_since": "",
+            "time_ranges_until": "",
+            "date_preset": "today"
+          },
+          "webhookUrl": "https://go.n8n.app/webhook-test/433f0098-170f-4f5a-8aa8-19e3661a31541111",
+          "executionMode": "test"
+        }
+      }
+    ],
+    "Webhook campaign": [
+      {
+        "json": {
+          "headers": {
+            "connection": "close",
+            "host": "go.n8n.app",
+            "content-length": "363",
+            "sec-ch-ua-platform": "\"Windows\"",
+            "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+            "sec-ch-ua": "\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"",
+            "content-type": "application/json",
+            "sec-ch-ua-mobile": "?0",
+            "accept": "*/*",
+            "origin": "https://giapducthang.com",
+            "sec-fetch-site": "cross-site",
+            "sec-fetch-mode": "cors",
+            "sec-fetch-dest": "empty",
+            "referer": "https://giapducthang.com/",
+            "accept-encoding": "gzip, deflate, br, zstd",
+            "accept-language": "vi-VN,vi;q=0.9"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "ID_TKQC": "1246666332608018",
+            "Token_TKQC": "EAALglxIZBbrIBO7Faw7naKe5eGYpXRrurOIQrfCCvij2GnHRGkM0ZA99q0NQIuwNPfwrUyt8mnUs2vfFA1L4YnTeqNunbAhK8HY63VGS1OnWl2cLtE8satxK2qQN7Ul1LPm3jKQPgbhMHsXD93aZAIGavlSr5YCaRk9e3zDC9QdRIBeM3Q1PojGlFCS6LrCPPSJaw2LxZBJuOz2j",
+            "time_increment": "1",
+            "time_ranges_since": "",
+            "time_ranges_until": "",
+            "date_preset": "today"
+          },
+          "webhookUrl": "https://go.n8n.app/webhook-test/fb-ads-google-sheet-campaign",
+          "executionMode": "test"
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-02-22T18:08:06.746Z",
+      "createdAt": "2026-02-22T18:08:06.746Z",
+      "role": "workflow:owner",
+      "workflowId": "meS7cCGCrEOAjRrb",
+      "projectId": "GTQprNa3RcCSHh8s"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-10-19T06:45:35.598Z",
+  "versionId": "3ff91976-6f2a-4f07-8d09-2a64717f638f"
+}
