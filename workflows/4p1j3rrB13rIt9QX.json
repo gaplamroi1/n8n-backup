@@ -1,0 +1,287 @@
+{
+  "active": false,
+  "activeVersion": null,
+  "activeVersionId": null,
+  "connections": {
+    "get_employee": {
+      "main": [
+        [
+          {
+            "node": "get_reports",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "get_reports": {
+      "main": [
+        [
+          {
+            "node": "Date & Time1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Date & Time": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Date & Time1": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "is_work_time": {
+      "main": [
+        [
+          {
+            "node": "get_employee",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Date & Time",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Hourly": {
+      "main": [
+        [
+          {
+            "node": "is_work_time",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-10-19T10:26:02.936Z",
+  "id": "4p1j3rrB13rIt9QX",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "schedule - get_cp62_reports",
+  "nodes": [
+    {
+      "parameters": {
+        "operation": "get",
+        "dataTableId": {
+          "__rl": true,
+          "value": "CnPQNqKpl2R1Jota",
+          "mode": "list",
+          "cachedResultName": "cp62_employee",
+          "cachedResultUrl": "/projects/WAqDK79b9owhbfuS/datatables/CnPQNqKpl2R1Jota"
+        },
+        "returnAll": true
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        32,
+        -64
+      ],
+      "id": "63078031-ab0c-42dc-b3c4-82016e108f39",
+      "name": "get_employee"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "dataTableId": {
+          "__rl": true,
+          "value": "9k6VKPnXkFXc5ajX",
+          "mode": "list",
+          "cachedResultName": "sale_report_10",
+          "cachedResultUrl": "/projects/WAqDK79b9owhbfuS/datatables/9k6VKPnXkFXc5ajX"
+        },
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "email",
+              "keyValue": "={{ $json.email }}"
+            }
+          ]
+        },
+        "returnAll": true
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        160,
+        -64
+      ],
+      "id": "a8ae1bb7-1515-4164-bcd8-03bde14d2f1f",
+      "name": "get_reports"
+    },
+    {
+      "parameters": {
+        "operation": "extractDate",
+        "date": "={{ $json.timestamp }}",
+        "part": "hour",
+        "outputFieldName": "count_hour",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dateTime",
+      "typeVersion": 2,
+      "position": [
+        32,
+        64
+      ],
+      "id": "eff05f8f-818e-4e03-a545-209f85f57c2d",
+      "name": "Date & Time"
+    },
+    {
+      "parameters": {
+        "operation": "extractDate",
+        "date": "={{ $json.createdAt }}",
+        "part": "hour",
+        "outputFieldName": "hour",
+        "options": {
+          "includeInputFields": true
+        }
+      },
+      "type": "n8n-nodes-base.dateTime",
+      "typeVersion": 2,
+      "position": [
+        288,
+        -64
+      ],
+      "id": "33d4ea3f-9a97-4fa4-92cf-30e424b393a8",
+      "name": "Date & Time1"
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "advanced": true,
+        "mergeByFields": {
+          "values": [
+            {
+              "field1": "hour",
+              "field2": "count_hour"
+            }
+          ]
+        },
+        "outputDataFrom": "input1",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        480,
+        0
+      ],
+      "id": "428486f3-3d12-4d37-b98a-90d761f9bda0",
+      "name": "Merge"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "fbe0d895-d0d6-4938-b055-86455376d0da",
+              "leftValue": "={{ $json.Hour }}",
+              "rightValue": 8,
+              "operator": {
+                "type": "number",
+                "operation": "gt"
+              }
+            },
+            {
+              "id": "cb6eceed-46fd-4393-96a3-5e2861b6e3d7",
+              "leftValue": "={{ $json.Hour }}",
+              "rightValue": 23,
+              "operator": {
+                "type": "number",
+                "operation": "lt"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -208,
+        16
+      ],
+      "id": "a31954f2-38e6-40b9-a49b-6afa46aa78db",
+      "name": "is_work_time"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -336,
+        16
+      ],
+      "id": "f6bde65b-6c17-4144-9c3d-71c96f948347",
+      "name": "Hourly"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "Asia/Ho_Chi_Minh",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-02-22T18:18:46.123Z",
+      "createdAt": "2026-02-22T18:18:46.123Z",
+      "role": "workflow:owner",
+      "workflowId": "4p1j3rrB13rIt9QX",
+      "projectId": "GTQprNa3RcCSHh8s"
+    }
+  ],
+  "staticData": {
+    "node:Schedule Trigger": {
+      "recurrenceRules": []
+    },
+    "node:Hourly": {
+      "recurrenceRules": []
+    }
+  },
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-10-25T03:01:47.044Z",
+  "versionId": "51663fec-8b64-4d37-939e-814552dd2013"
+}
