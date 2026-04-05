@@ -1,0 +1,410 @@
+{
+  "active": true,
+  "activeVersion": {
+    "updatedAt": "2026-02-23T02:13:16.645Z",
+    "createdAt": "2026-02-23T02:13:05.789Z",
+    "versionId": "3c5a8017-4855-4e0c-87f7-36ef086ce6d6",
+    "workflowId": "AjFkQBOsUEzftwuB",
+    "nodes": [
+      {
+        "parameters": {
+          "operation": "download",
+          "fileId": {
+            "__rl": true,
+            "value": "1svhUxhHU8455GAp15cApyXDcYGw-GD7f",
+            "mode": "id"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.googleDrive",
+        "typeVersion": 3,
+        "position": [
+          160,
+          0
+        ],
+        "id": "4fa083a7-44a2-41cf-a80a-bb5ef19ba68b",
+        "name": "Download file",
+        "credentials": {
+          "googleDriveOAuth2Api": {
+            "id": "GpJUmnoBmqg9ldSq",
+            "name": "Google Drive account hoang.nv1"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "operation": "xlsx",
+          "options": {
+            "includeEmptyCells": false,
+            "sheetName": "Thông tin"
+          }
+        },
+        "type": "n8n-nodes-base.extractFromFile",
+        "typeVersion": 1,
+        "position": [
+          320,
+          0
+        ],
+        "id": "72bc280e-3be4-48db-bfa8-884a9e1b67ed",
+        "name": "Extract from File"
+      },
+      {
+        "parameters": {
+          "jsCode": "// Input: các item là từng hàng từ Spreadsheet File\nconst rows = $input.all().map(it => it.json);\n\nconst strip = s => String(s ?? '')\n  .normalize('NFD').replace(/[\\u0300-\\u036f]/g,'')  // bỏ dấu\n  .toLowerCase().trim();\n\nconst findEmails = s =>\n  String(s ?? '').match(/[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,}/ig) || [];\n\nconst normEmail = e => {\n  e = String(e).toLowerCase();\n  let [local, domain] = e.split('@');\n  local = (local || '').split('+')[0];\n  if (domain === 'gmail.com' || domain === 'googlemail.com') {\n    local = local.replace(/\\./g,''); domain = 'gmail.com';\n  }\n  return `${local}@${domain}`;\n};\n\nconst STOP = 'danh sach nhan vien stop working';\n\nconst seen = new Set();\nconst out = [];\n\n// duyệt tới trước dòng STOP\nfor (const r of rows) {\n  const vals = Object.values(r);\n  const line = strip(vals.join(' '));\n  if (line.includes(STOP)) break;\n\n  for (const v of vals) {\n    for (const raw of findEmails(v)) {\n      const n = normEmail(raw);\n      if (!seen.has(n)) {\n        seen.add(n);\n        out.push({ json: { email: n } });\n      }\n    }\n  }\n}\n\nreturn out;\n"
+        },
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          480,
+          0
+        ],
+        "id": "1c7bf8c4-ee94-4b4c-9c21-e8c88754d027",
+        "name": "Code in JavaScript"
+      },
+      {
+        "parameters": {
+          "rule": {
+            "interval": [
+              {
+                "daysInterval": 7
+              }
+            ]
+          }
+        },
+        "type": "n8n-nodes-base.scheduleTrigger",
+        "typeVersion": 1.2,
+        "position": [
+          0,
+          0
+        ],
+        "id": "251057ad-ebb5-453c-95d1-d260484f0afd",
+        "name": "Schedule Trigger"
+      },
+      {
+        "parameters": {
+          "operation": "appendOrUpdate",
+          "documentId": {
+            "__rl": true,
+            "value": "1dyLacA4ww2F20SV8aiKZIEKBOoBREQSmXZd32VnK73Q",
+            "mode": "list",
+            "cachedResultName": "telesale_employee",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1dyLacA4ww2F20SV8aiKZIEKBOoBREQSmXZd32VnK73Q/edit?usp=drivesdk"
+          },
+          "sheetName": {
+            "__rl": true,
+            "value": "gid=0",
+            "mode": "list",
+            "cachedResultName": "Sheet1",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1dyLacA4ww2F20SV8aiKZIEKBOoBREQSmXZd32VnK73Q/edit#gid=0"
+          },
+          "columns": {
+            "mappingMode": "defineBelow",
+            "value": {
+              "email": "={{ $json.email }}"
+            },
+            "matchingColumns": [
+              "email"
+            ],
+            "schema": [
+              {
+                "id": "email",
+                "displayName": "email",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              }
+            ],
+            "attemptToConvertTypes": false,
+            "convertFieldsToString": false
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.googleSheets",
+        "typeVersion": 4.7,
+        "position": [
+          640,
+          0
+        ],
+        "id": "2535f50d-612c-4b96-ab89-6007072fb835",
+        "name": "Append or update row in sheet",
+        "credentials": {
+          "googleSheetsOAuth2Api": {
+            "id": "MTh9LghqaMKPTAzs",
+            "name": "zalo-chat-bot-hoang.nv1"
+          }
+        }
+      }
+    ],
+    "connections": {
+      "Download file": {
+        "main": [
+          [
+            {
+              "node": "Extract from File",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Extract from File": {
+        "main": [
+          [
+            {
+              "node": "Code in JavaScript",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Code in JavaScript": {
+        "main": [
+          [
+            {
+              "node": "Append or update row in sheet",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Schedule Trigger": {
+        "main": [
+          [
+            {
+              "node": "Download file",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "authors": "Hoang Nguyen",
+    "name": "Version 3c5a8017",
+    "description": "",
+    "autosaved": true
+  },
+  "activeVersionId": "3c5a8017-4855-4e0c-87f7-36ef086ce6d6",
+  "connections": {
+    "Download file": {
+      "main": [
+        [
+          {
+            "node": "Extract from File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract from File": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "Append or update row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Download file",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2026-02-23T02:13:05.789Z",
+  "id": "AjFkQBOsUEzftwuB",
+  "isArchived": false,
+  "meta": null,
+  "name": "get-telesale-employee",
+  "nodes": [
+    {
+      "parameters": {
+        "operation": "download",
+        "fileId": {
+          "__rl": true,
+          "value": "1svhUxhHU8455GAp15cApyXDcYGw-GD7f",
+          "mode": "id"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        160,
+        0
+      ],
+      "id": "4fa083a7-44a2-41cf-a80a-bb5ef19ba68b",
+      "name": "Download file",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "GpJUmnoBmqg9ldSq",
+          "name": "Google Drive account hoang.nv1"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "xlsx",
+        "options": {
+          "includeEmptyCells": false,
+          "sheetName": "Thông tin"
+        }
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1,
+      "position": [
+        320,
+        0
+      ],
+      "id": "72bc280e-3be4-48db-bfa8-884a9e1b67ed",
+      "name": "Extract from File"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Input: các item là từng hàng từ Spreadsheet File\nconst rows = $input.all().map(it => it.json);\n\nconst strip = s => String(s ?? '')\n  .normalize('NFD').replace(/[\\u0300-\\u036f]/g,'')  // bỏ dấu\n  .toLowerCase().trim();\n\nconst findEmails = s =>\n  String(s ?? '').match(/[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,}/ig) || [];\n\nconst normEmail = e => {\n  e = String(e).toLowerCase();\n  let [local, domain] = e.split('@');\n  local = (local || '').split('+')[0];\n  if (domain === 'gmail.com' || domain === 'googlemail.com') {\n    local = local.replace(/\\./g,''); domain = 'gmail.com';\n  }\n  return `${local}@${domain}`;\n};\n\nconst STOP = 'danh sach nhan vien stop working';\n\nconst seen = new Set();\nconst out = [];\n\n// duyệt tới trước dòng STOP\nfor (const r of rows) {\n  const vals = Object.values(r);\n  const line = strip(vals.join(' '));\n  if (line.includes(STOP)) break;\n\n  for (const v of vals) {\n    for (const raw of findEmails(v)) {\n      const n = normEmail(raw);\n      if (!seen.has(n)) {\n        seen.add(n);\n        out.push({ json: { email: n } });\n      }\n    }\n  }\n}\n\nreturn out;\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        480,
+        0
+      ],
+      "id": "1c7bf8c4-ee94-4b4c-9c21-e8c88754d027",
+      "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "daysInterval": 7
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        0
+      ],
+      "id": "251057ad-ebb5-453c-95d1-d260484f0afd",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "1dyLacA4ww2F20SV8aiKZIEKBOoBREQSmXZd32VnK73Q",
+          "mode": "list",
+          "cachedResultName": "telesale_employee",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1dyLacA4ww2F20SV8aiKZIEKBOoBREQSmXZd32VnK73Q/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1dyLacA4ww2F20SV8aiKZIEKBOoBREQSmXZd32VnK73Q/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "email": "={{ $json.email }}"
+          },
+          "matchingColumns": [
+            "email"
+          ],
+          "schema": [
+            {
+              "id": "email",
+              "displayName": "email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        640,
+        0
+      ],
+      "id": "2535f50d-612c-4b96-ab89-6007072fb835",
+      "name": "Append or update row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "MTh9LghqaMKPTAzs",
+          "name": "zalo-chat-bot-hoang.nv1"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-02-23T02:13:05.789Z",
+      "createdAt": "2026-02-23T02:13:05.789Z",
+      "role": "workflow:owner",
+      "workflowId": "AjFkQBOsUEzftwuB",
+      "projectId": "GTQprNa3RcCSHh8s"
+    }
+  ],
+  "staticData": {
+    "node:Schedule Trigger": {
+      "recurrenceRules": [
+        90
+      ]
+    }
+  },
+  "tags": [
+    {
+      "updatedAt": "2025-11-08T12:09:40.816Z",
+      "createdAt": "2025-11-08T12:08:49.207Z",
+      "id": "aJR3FZVXiQEfDzcy",
+      "name": "pv.vn"
+    }
+  ],
+  "triggerCount": 1,
+  "updatedAt": "2026-02-23T02:13:38.302Z",
+  "versionId": "3c5a8017-4855-4e0c-87f7-36ef086ce6d6"
+}
