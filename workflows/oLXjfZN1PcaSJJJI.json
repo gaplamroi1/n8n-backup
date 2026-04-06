@@ -1,9 +1,9 @@
 {
   "active": true,
   "activeVersion": {
-    "updatedAt": "2026-04-02T07:47:57.027Z",
-    "createdAt": "2026-04-02T07:47:52.664Z",
-    "versionId": "bddc1932-bd6a-4568-ba0e-204e8fa558bb",
+    "updatedAt": "2026-04-06T04:35:36.414Z",
+    "createdAt": "2026-04-06T04:35:02.032Z",
+    "versionId": "48dc2eff-d45d-475f-9b07-f97b50ad0f80",
     "workflowId": "oLXjfZN1PcaSJJJI",
     "nodes": [
       {
@@ -397,7 +397,7 @@
         "typeVersion": 4.4,
         "position": [
           592,
-          544
+          480
         ],
         "id": "e4ed097f-bb22-421a-bc60-24763e0fab9f",
         "name": "registral_request"
@@ -570,7 +570,7 @@
       },
       {
         "parameters": {
-          "jsCode": "const item = $input.first().json;\n\n// Lấy email\nconst email = item.body?.event?.email || \"\";\n\n// Lấy content\nconst content = item.body?.event?.message?.text?.content || \"\";\n\n// Hàm chuyển tiếng Việt có dấu thành không dấu (Bước 1)\nfunction convertToNoAccents(str) {\n  const accents = [\n    { base: 'a', letters: /[àáạảãâầấậẩẫăằắặẳẵ]/g },\n    { base: 'e', letters: /[èéẹẻẽêềếệểễ]/g },\n    { base: 'i', letters: /[ìíịỉĩ]/g },\n    { base: 'o', letters: /[òóọỏõôồốộổỗơờớợởỡ]/g },\n    { base: 'u', letters: /[ùúụủũûừứựửữ]/g },\n    { base: 'y', letters: /[ỳýỵỷỹ]/g },\n    { base: 'd', letters: /[đ]/g },\n  ];\n\n  accents.forEach(acc => {\n    str = str.replace(acc.letters, acc.base);\n  });\n  return str;\n}\n\n// Parse name + code\nlet amount = \"\";\nlet order_code = \"\";\n\n// Kiểm tra nếu chuỗi bắt đầu bằng \"/qr\" hoặc \"qr\"\nif (content.startsWith(\"/qr\") || content.startsWith(\"qr\")) {\n  // Loại bỏ \"/qr\" hoặc \"qr\" và trim khoảng trắng thừa\n  const parts = content.replace(/^\\/?qr\\s*/, \"\").trim();\n  \n  // Tìm vị trí dấu \"/\" đầu tiên (nếu có)\n  const firstSlashIndex = parts.indexOf(\"/\");\n\n  if (firstSlashIndex !== -1) {\n    // Lấy phần trước dấu \"/\" là số tiền\n    amount = parts.slice(0, firstSlashIndex).trim();\n    \n    // Lấy phần còn lại sau dấu \"/\" là order_code\n    order_code = parts.slice(firstSlashIndex + 1).trim();\n    \n    // Bước 1: Chuyển tiếng Việt có dấu thành tiếng Việt không dấu\n    order_code = convertToNoAccents(order_code);\n    \n    // Bước 2: Thay thế các ký tự đặc biệt thành dấu space (giữ lại chữ cái, số, dấu cách và dấu chấm)\n    order_code = order_code.replace(/[^a-zA-Z0-9\\s\\.,]/g, ' ');\n  }\n}\n\n// Trả về 1 item với email, amount và order_code\nreturn [\n  {\n    json: {\n      email,\n      amount,\n      order_code\n    }\n  }\n];"
+          "jsCode": "const item = $input.first().json;\nconst email = item.body?.event?.email || \"\";\nconst content = item.body?.event?.message?.text?.content || \"\";\n\nfunction convertToNoAccents(str) {\n  const accents = [\n    { base: 'a', letters: /[àáạảãâầấậẩẫăằắặẳẵ]/g },\n    { base: 'e', letters: /[èéẹẻẽêềếệểễ]/g },\n    { base: 'i', letters: /[ìíịỉĩ]/g },\n    { base: 'o', letters: /[òóọỏõôồốộổỗơờớợởỡ]/g },\n    { base: 'u', letters: /[ùúụủũûừứựửữ]/g },\n    { base: 'y', letters: /[ỳýỵỷỹ]/g },\n    { base: 'd', letters: /[đ]/g },\n  ];\n  accents.forEach(acc => {\n    str = str.replace(acc.letters, acc.base);\n  });\n  return str;\n}\n\nlet amount = \"\";\nlet order_code = \"\";\n\nif (content.startsWith(\"/qr\") || content.startsWith(\"qr\")) {\n  const parts = content.replace(/^\\/?qr\\s*/, \"\").trim();\n  \n  // Tìm vị trí dấu \"/\", space, \".\" hoặc \",\" đầu tiên\n  const separatorMatch = parts.match(/[\\/\\s.,]/);\n  const separatorIndex = separatorMatch ? parts.indexOf(separatorMatch[0]) : -1;\n\n  if (separatorIndex !== -1) {\n    amount = parts.slice(0, separatorIndex).trim();\n    order_code = parts.slice(separatorIndex + 1).trim();\n    order_code = convertToNoAccents(order_code);\n    order_code = order_code.replace(/[^a-zA-Z0-9\\s]/g, ' ');\n  }\n}\n\nreturn [{ json: { email, amount, order_code } }];"
         },
         "type": "n8n-nodes-base.code",
         "typeVersion": 2,
@@ -902,7 +902,7 @@
         "typeVersion": 1.2,
         "position": [
           752,
-          544
+          480
         ],
         "id": "129ff7ce-dc7f-4a11-851e-16ba565c27a8",
         "name": "interract_report",
@@ -1569,11 +1569,11 @@
       }
     },
     "authors": "Hoang Nguyen",
-    "name": "Version bddc1932",
+    "name": "Version 48dc2eff",
     "description": "",
     "autosaved": true
   },
-  "activeVersionId": "bddc1932-bd6a-4568-ba0e-204e8fa558bb",
+  "activeVersionId": "48dc2eff-d45d-475f-9b07-f97b50ad0f80",
   "connections": {
     "app_id": {
       "main": [
@@ -2469,7 +2469,7 @@
     },
     {
       "parameters": {
-        "jsCode": "const item = $input.first().json;\n\n// Lấy email\nconst email = item.body?.event?.email || \"\";\n\n// Lấy content\nconst content = item.body?.event?.message?.text?.content || \"\";\n\n// Hàm chuyển tiếng Việt có dấu thành không dấu (Bước 1)\nfunction convertToNoAccents(str) {\n  const accents = [\n    { base: 'a', letters: /[àáạảãâầấậẩẫăằắặẳẵ]/g },\n    { base: 'e', letters: /[èéẹẻẽêềếệểễ]/g },\n    { base: 'i', letters: /[ìíịỉĩ]/g },\n    { base: 'o', letters: /[òóọỏõôồốộổỗơờớợởỡ]/g },\n    { base: 'u', letters: /[ùúụủũûừứựửữ]/g },\n    { base: 'y', letters: /[ỳýỵỷỹ]/g },\n    { base: 'd', letters: /[đ]/g },\n  ];\n\n  accents.forEach(acc => {\n    str = str.replace(acc.letters, acc.base);\n  });\n  return str;\n}\n\n// Parse name + code\nlet amount = \"\";\nlet order_code = \"\";\n\n// Kiểm tra nếu chuỗi bắt đầu bằng \"/qr\" hoặc \"qr\"\nif (content.startsWith(\"/qr\") || content.startsWith(\"qr\")) {\n  // Loại bỏ \"/qr\" hoặc \"qr\" và trim khoảng trắng thừa\n  const parts = content.replace(/^\\/?qr\\s*/, \"\").trim();\n  \n  // Tìm vị trí dấu \"/\" đầu tiên (nếu có)\n  const firstSlashIndex = parts.indexOf(\"/\");\n\n  if (firstSlashIndex !== -1) {\n    // Lấy phần trước dấu \"/\" là số tiền\n    amount = parts.slice(0, firstSlashIndex).trim();\n    \n    // Lấy phần còn lại sau dấu \"/\" là order_code\n    order_code = parts.slice(firstSlashIndex + 1).trim();\n    \n    // Bước 1: Chuyển tiếng Việt có dấu thành tiếng Việt không dấu\n    order_code = convertToNoAccents(order_code);\n    \n    // Bước 2: Thay thế các ký tự đặc biệt thành dấu space (giữ lại chữ cái, số, dấu cách và dấu chấm)\n    order_code = order_code.replace(/[^a-zA-Z0-9\\s\\.,]/g, ' ');\n  }\n}\n\n// Trả về 1 item với email, amount và order_code\nreturn [\n  {\n    json: {\n      email,\n      amount,\n      order_code\n    }\n  }\n];"
+        "jsCode": "const item = $input.first().json;\nconst email = item.body?.event?.email || \"\";\nconst content = item.body?.event?.message?.text?.content || \"\";\n\nfunction convertToNoAccents(str) {\n  const accents = [\n    { base: 'a', letters: /[àáạảãâầấậẩẫăằắặẳẵ]/g },\n    { base: 'e', letters: /[èéẹẻẽêềếệểễ]/g },\n    { base: 'i', letters: /[ìíịỉĩ]/g },\n    { base: 'o', letters: /[òóọỏõôồốộổỗơờớợởỡ]/g },\n    { base: 'u', letters: /[ùúụủũûừứựửữ]/g },\n    { base: 'y', letters: /[ỳýỵỷỹ]/g },\n    { base: 'd', letters: /[đ]/g },\n  ];\n  accents.forEach(acc => {\n    str = str.replace(acc.letters, acc.base);\n  });\n  return str;\n}\n\nlet amount = \"\";\nlet order_code = \"\";\n\nif (content.startsWith(\"/qr\") || content.startsWith(\"qr\")) {\n  const parts = content.replace(/^\\/?qr\\s*/, \"\").trim();\n  \n  // Tìm vị trí dấu \"/\", space, \".\" hoặc \",\" đầu tiên\n  const separatorMatch = parts.match(/[\\/\\s.,]/);\n  const separatorIndex = separatorMatch ? parts.indexOf(separatorMatch[0]) : -1;\n\n  if (separatorIndex !== -1) {\n    amount = parts.slice(0, separatorIndex).trim();\n    order_code = parts.slice(separatorIndex + 1).trim();\n    order_code = convertToNoAccents(order_code);\n    order_code = order_code.replace(/[^a-zA-Z0-9\\s]/g, ' ');\n  }\n}\n\nreturn [{ json: { email, amount, order_code } }];"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
@@ -3218,28 +3218,28 @@
     "global": {
       "count": 2,
       "undefined": 1,
-      "hoang.nv1@phongvu-mna.vn": 26,
-      "sang.dta@phongvu-mna.vn": 12,
-      "toan.btq@phongvu-mna.vn": 6,
+      "hoang.nv1@phongvu-mna.vn": 33,
+      "sang.dta@phongvu-mna.vn": 13,
+      "toan.btq@phongvu-mna.vn": 7,
       "hieu.nh@phongvu-mna.vn": 14,
       "an.nt@phongvu-mna.vn": 14,
-      "ban.vt@phongvu-mna.vn": 13,
+      "ban.vt@phongvu-mna.vn": 14,
       "nhut.tm@phongvu-mna.vn": 1,
       "canh.lv@phongvu-mna.vn": 7,
-      "linh.tg@phongvu-mna.vn": 11,
+      "linh.tg@phongvu-mna.vn": 18,
       "quyen.dg@phongvu-mna.vn": 13,
-      "tuyen.ph@phongvu-mna.vn": 4,
+      "tuyen.ph@phongvu-mna.vn": 5,
       "loc.ph@phongvu-mna.vn": 11,
-      "dang.nh@phongvu-mna.vn": 1,
+      "dang.nh@phongvu-mna.vn": 2,
       "thinh.np01@phongvu-mna.vn": 8,
       "tram.ntt@phongvu-mna.vn": 51,
       "hong.mv@phongvu-mna.vn": 2,
-      "thu.hm@phongvu-mna.vn": 19,
-      "tho.lt@phongvu-mna.vn": 4,
+      "thu.hm@phongvu-mna.vn": 22,
+      "tho.lt@phongvu-mna.vn": 5,
       "hieu.ltm@phongvu-mna.vn": 17,
       "hung.bd@phongvu-mna.vn": 2,
       "huy.hm@phongvu-mna.vn": 11,
-      "hai.ltp@phongvu-mna.vn": 6,
+      "hai.ltp@phongvu-mna.vn": 7,
       "tuyen.ltb@phongvu-mna.vn": 1,
       "man.hp@phongvu-mna.vn": 2,
       "lien.vtk01@phongvu-mna.vn": 15,
@@ -3248,9 +3248,10 @@
       "quyen.tv@phongvu-mna.vn": 6,
       "huong.ns@phongvu-mna.vn": 6,
       "long.nd@phongvu-mna.vn": 1,
-      "hong.lc@phongvu-mna.vn": 4,
+      "hong.lc@phongvu-mna.vn": 6,
       "hieu.hv@phongvu-mna.vn": 5,
-      "huy.dv01@phongvu-mna.vn": 1
+      "huy.dv01@phongvu-mna.vn": 1,
+      "dien.nnt01@phongvu-mna.vn": 1
     }
   },
   "tags": [
@@ -3262,6 +3263,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2026-04-03T03:42:45.955Z",
-  "versionId": "175d9db4-ab5e-4388-a952-243801c044c0"
+  "updatedAt": "2026-04-06T04:35:02.031Z",
+  "versionId": "48dc2eff-d45d-475f-9b07-f97b50ad0f80"
 }
