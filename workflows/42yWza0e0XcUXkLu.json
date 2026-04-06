@@ -1,9 +1,9 @@
 {
   "active": true,
   "activeVersion": {
-    "updatedAt": "2026-04-03T09:10:40.976Z",
-    "createdAt": "2026-04-03T08:31:28.488Z",
-    "versionId": "011f0b75-e2e7-4eb3-b348-d9a08752f77c",
+    "updatedAt": "2026-04-06T03:52:42.661Z",
+    "createdAt": "2026-04-06T03:52:29.590Z",
+    "versionId": "c204a0ce-9279-4b34-afc0-6e0136bcceb3",
     "workflowId": "42yWza0e0XcUXkLu",
     "nodes": [
       {
@@ -32,7 +32,7 @@
             "dataLocationOnSheet": {
               "values": {
                 "rangeDefinition": "specifyRangeA1",
-                "range": "A2:R"
+                "range": "A1:R"
               }
             }
           }
@@ -40,7 +40,7 @@
         "type": "n8n-nodes-base.googleSheetsTrigger",
         "typeVersion": 1,
         "position": [
-          -16,
+          -208,
           0
         ],
         "id": "4ca25313-0586-40f0-9ae4-ad1d8ddc5d7a",
@@ -180,10 +180,10 @@
           },
           "sheetName": {
             "__rl": true,
-            "value": 873611416,
+            "value": 120212297,
             "mode": "list",
-            "cachedResultName": "Kết quả - GG form 3",
-            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1kH30kUGYJMXj9QiFPVQjPyg55h4bFyoZkGuP1EHjoXA/edit#gid=873611416"
+            "cachedResultName": "Kết quả - GG form",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1kH30kUGYJMXj9QiFPVQjPyg55h4bFyoZkGuP1EHjoXA/edit#gid=120212297"
           },
           "options": {
             "dataLocationOnSheet": {
@@ -208,8 +208,7 @@
             "id": "MTh9LghqaMKPTAzs",
             "name": "zalo-chat-bot-hoang.nv1"
           }
-        },
-        "disabled": true
+        }
       },
       {
         "parameters": {},
@@ -276,14 +275,19 @@
             }
           ]
         ]
+      },
+      "Get row(s) in sheet": {
+        "main": [
+          []
+        ]
       }
     },
     "authors": "Hoang Nguyen",
-    "name": "Version 011f0b75",
+    "name": "Version c204a0ce",
     "description": "",
-    "autosaved": true
+    "autosaved": false
   },
-  "activeVersionId": "011f0b75-e2e7-4eb3-b348-d9a08752f77c",
+  "activeVersionId": "c204a0ce-9279-4b34-afc0-6e0136bcceb3",
   "connections": {
     "Google Sheets Trigger": {
       "main": [
@@ -305,6 +309,11 @@
             "index": 0
           }
         ]
+      ]
+    },
+    "Get row(s) in sheet": {
+      "main": [
+        []
       ]
     }
   },
@@ -340,7 +349,7 @@
           "dataLocationOnSheet": {
             "values": {
               "rangeDefinition": "specifyRangeA1",
-              "range": "A2:R"
+              "range": "A1:R"
             }
           }
         }
@@ -348,7 +357,7 @@
       "type": "n8n-nodes-base.googleSheetsTrigger",
       "typeVersion": 1,
       "position": [
-        -16,
+        -208,
         0
       ],
       "id": "4ca25313-0586-40f0-9ae4-ad1d8ddc5d7a",
@@ -488,10 +497,10 @@
         },
         "sheetName": {
           "__rl": true,
-          "value": 873611416,
+          "value": 120212297,
           "mode": "list",
-          "cachedResultName": "Kết quả - GG form 3",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1kH30kUGYJMXj9QiFPVQjPyg55h4bFyoZkGuP1EHjoXA/edit#gid=873611416"
+          "cachedResultName": "Kết quả - GG form",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1kH30kUGYJMXj9QiFPVQjPyg55h4bFyoZkGuP1EHjoXA/edit#gid=120212297"
         },
         "options": {
           "dataLocationOnSheet": {
@@ -516,8 +525,7 @@
           "id": "MTh9LghqaMKPTAzs",
           "name": "zalo-chat-bot-hoang.nv1"
         }
-      },
-      "disabled": true
+      }
     },
     {
       "parameters": {},
@@ -581,7 +589,7 @@
     "node:Google Sheets Trigger": {
       "documentId": "1kH30kUGYJMXj9QiFPVQjPyg55h4bFyoZkGuP1EHjoXA",
       "sheetId": 120212297,
-      "lastIndexChecked": 3136
+      "lastIndexChecked": 3279
     }
   },
   "tags": [
@@ -593,6 +601,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2026-04-03T09:10:37.934Z",
-  "versionId": "011f0b75-e2e7-4eb3-b348-d9a08752f77c"
+  "updatedAt": "2026-04-06T03:52:30.253Z",
+  "versionId": "c204a0ce-9279-4b34-afc0-6e0136bcceb3"
 }
