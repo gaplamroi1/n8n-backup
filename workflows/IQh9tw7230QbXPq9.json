@@ -1,9 +1,9 @@
 {
   "active": true,
   "activeVersion": {
-    "updatedAt": "2026-03-21T07:35:09.361Z",
-    "createdAt": "2026-03-21T07:35:04.817Z",
-    "versionId": "bb6489af-1b2f-4268-a86f-e053b2d99547",
+    "updatedAt": "2026-04-08T10:44:08.368Z",
+    "createdAt": "2026-04-08T10:44:05.366Z",
+    "versionId": "00581268-a2a6-453b-be0b-f571f6279765",
     "workflowId": "IQh9tw7230QbXPq9",
     "nodes": [
       {
@@ -2939,6 +2939,7 @@
         ],
         "id": "473d54f6-2fff-4357-bec9-8ee39376ca81",
         "name": "get_mrt",
+        "retryOnFail": true,
         "credentials": {
           "googleSheetsOAuth2Api": {
             "id": "MTh9LghqaMKPTAzs",
@@ -5516,11 +5517,11 @@
       }
     },
     "authors": "Hoang Nguyen",
-    "name": "Version bb6489af",
+    "name": "Version 00581268",
     "description": "",
     "autosaved": true
   },
-  "activeVersionId": "bb6489af-1b2f-4268-a86f-e053b2d99547",
+  "activeVersionId": "00581268-a2a6-453b-be0b-f571f6279765",
   "connections": {
     "Webhook": {
       "main": [
@@ -9476,6 +9477,7 @@
       ],
       "id": "473d54f6-2fff-4357-bec9-8ee39376ca81",
       "name": "get_mrt",
+      "retryOnFail": true,
       "credentials": {
         "googleSheetsOAuth2Api": {
           "id": "MTh9LghqaMKPTAzs",
@@ -11036,239 +11038,7 @@
       "name": "oos_logging"
     }
   ],
-  "pinData": {
-    "HTTP Request": [
-      {
-        "json": {
-          "code": 0,
-          "next_cursor": "",
-          "group": {
-            "group_name": "TEST BOT",
-            "group_settings": {
-              "chat_history_for_new_members": "disabled",
-              "can_notify_with_at_all": true,
-              "can_view_member_list": true
-            },
-            "group_user_total": 1,
-            "group_bot_total": 2,
-            "group_system_account_total": 0,
-            "group_user_list": [
-              {
-                "seatalk_id": "9214333551",
-                "employee_code": "e_6mv57e5u",
-                "email": "hoang.nv1@phongvu-mna.vn"
-              }
-            ],
-            "group_bot_list": [
-              "9181269675",
-              "9265166433"
-            ],
-            "group_system_account_list": []
-          }
-        },
-        "pairedItem": {
-          "item": 0
-        }
-      }
-    ],
-    "Gmail Trigger": [
-      {
-        "json": {
-          "id": "19c97ae6c9e64f35",
-          "threadId": "19c97ae6c9e64f35",
-          "labelIds": [
-            "UNREAD",
-            "IMPORTANT",
-            "CATEGORY_FORUMS",
-            "INBOX"
-          ],
-          "sizeEstimate": 26236,
-          "headers": {
-            "delivered-to": "Delivered-To: hoang.nv1@phongvu-mna.vn",
-            "received": "Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])\r\n        by mx.google.com with SMTPS id 00721157ae682-79876c8e55dsor3523767b3.15.2026.02.25.18.01.54\r\n        for <quanlysr@phongvu.vn>\r\n        (Google Transport Security);\r\n        Wed, 25 Feb 2026 18:01:54 -0800 (PST)",
-            "x-forwarded-encrypted": "X-Forwarded-Encrypted: i=1; AJvYcCUzQZMW3U3MOn0EKOmeKPuS7bFVbD5N4eSRuecStVdTlAHopOqAkm9JceQOom7+jGr3PNZVdhKejw==@phongvu.vn",
-            "x-received": "X-Received: by 2002:a05:690e:1b50:b0:649:f272:4e71 with SMTP id\r\n 956f58d0204a3-64c78e5829fmr12853355d50.61.1772071313396; Wed, 25 Feb 2026\r\n 18:01:53 -0800 (PST)",
-            "arc-seal": "ARC-Seal: i=1; a=rsa-sha256; t=1772071314; cv=none;\r\n        d=google.com; s=arc-20240605;\r\n        b=bAJ7AAI7Wxn7Sj5tes0L4HkgaOTxLdHSLSqtvTfCRlKxvNQGkrgvDHtxNkhi0QB/Nv\r\n         bE4e7vS11+3L/mJbl0PAOuV1KAquUKVO59cgcnb8ylA1HWbSgQkAmmVBu31jFPoNT0Q0\r\n         Xq0rp54exknl7aOa0ZkPtdFYTwib6J5JRTTiAjPVloScM4INYtjJ/U3uPC5K2rq9WHYO\r\n         xqz0GCOt10ZmWORK3w64fx9B0ygcwncGz5eCMXy6ZBBR3xDk858cqEtZX9Yw6l3sYAK1\r\n         5SI4m/dDOIlUU854OSfLN/HcYIrDNTRnpXigBcsKJh8aazICTx3D3uioO8YVekgOtTaU\r\n         vtgQ==",
-            "arc-message-signature": "ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;\r\n        h=cc:to:subject:message-id:date:from:mime-version:dkim-signature;\r\n        bh=7UvTRjq1ZltkWlfaP8K/yI2X2vXEQAS5jOb3Klhpvj4=;\r\n        fh=pjoYmlYlDfQ7m8hIH0HbU2S138hzAx+RrOAWkCB7IWA=;\r\n        b=FKgww30c6RxyXWSdiMK0JTuX043BmBJVnLov9NuMv1ih+84BwlCFG9eMTyvG74BO8w\r\n         MJZ4n/+8Wd2bt2T1mDowpjo7XbVJxTGRteOszOgoQ654OwRJ/sdvCe3hEt1TuoiFm2lX\r\n         cq+iuAUS2zlWU8zgwjKJ5uz226MAkW1tUZK+BrFQkXjMVX8UlGmAExupg2vGPqGp7Slh\r\n         BYjdFzsaIDSl6Gb84UTsZIiBAxcw6NbhZewrKUem+G3MONqXqU7645MMeZcGiPKEfbdZ\r\n         RVFB4juhSeExzh/wcOqKx1z2b38U0uPeqZ93F2wYvxg3GQSTToADSMqQkKe8OcAJC/sW\r\n         I8Wg==;\r\n        darn=phongvu.vn",
-            "arc-authentication-results": "ARC-Authentication-Results: i=1; mx.google.com; arc=none",
-            "return-path": "Return-Path: <quanlysr.hcm+bncBCRK5QMD6YKBBE6T73GAMGQEYRIGGQY@phongvu.vn>",
-            "received-spf": "Received-SPF: pass (google.com: domain of hrtraining@phongvu.vn designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;",
-            "authentication-results": "Authentication-Results: mx.google.com;\r\n       dkim=pass header.i=@phongvu.vn header.s=google header.b=G80fNrJT;\r\n       arc=pass (i=3 spf=pass spfdomain=phongvu.vn dkim=pass dkdomain=phongvu.vn dmarc=pass fromdomain=phongvu.vn);\r\n       spf=pass (google.com: domain of quanlysr.hcm+bncbcrk5qmd6ykbbe6t73gamgqeyriggqy@phongvu.vn designates 209.85.220.69 as permitted sender) smtp.mailfrom=quanlysr.hcm+bncBCRK5QMD6YKBBE6T73GAMGQEYRIGGQY@phongvu.vn;\r\n       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=phongvu.vn;\r\n       dara=neutral header.i=@phongvu-mna.vn",
-            "dkim-signature": "DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;\r\n        d=phongvu.vn; s=google; t=1772071316; x=1772676116; darn=phongvu-mna.vn;\r\n        h=list-unsubscribe:list-archive:list-help:list-post:list-id\r\n         :mailing-list:precedence:x-original-authentication-results\r\n         :x-original-sender:cc:to:subject:message-id:date:from:mime-version\r\n         :from:to:cc:subject:date:message-id:reply-to;\r\n        bh=5kOQ8aGxFlhO2jiV7QtswLw20G0IviQkk6fi2qONSQI=;\r\n        b=G80fNrJTugcty2+PNhhQmQTZ0+2BFnS+DDxdaCkCHKmpfApy75s2MMCCna+acXt7p4\r\n         g4SZKntmphMFrAeCJpXRZd1/xYCeO6ScWjoBEp+U+TKNyxhuVpfwVpgwk0xaCTdCP7Dk\r\n         wIAMlcG+xYutRjWI4In0tkePZFGPhPRANcw6pluhrpcnpO0nBGVSp75vGw5PHahz6DyF\r\n         kT7QvBz4A0PByiuKIQ9DZGlHKziwJ7xC7lF/KnPDSuWjHOzW7IETW35elsmZLIeCvFP6\r\n         ESQYcODYOu3EPKGMekmMDt14GrjiJLf4vjMWSQH4xHMfiUCwubqoJgUsJLkO3yj7h6Ly\r\n         x9bA==",
-            "x-google-dkim-signature": "X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;\r\n        d=1e100.net; s=20230601; t=1772071316; x=1772676116;\r\n        h=list-unsubscribe:list-archive:list-help:list-post\r\n         :x-spam-checked-in-group:list-id:mailing-list:precedence\r\n         :x-original-authentication-results:x-original-sender:cc:to:subject\r\n         :message-id:date:from:mime-version:x-gm-gg:x-beenthere:x-beenthere\r\n         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;\r\n        bh=5kOQ8aGxFlhO2jiV7QtswLw20G0IviQkk6fi2qONSQI=;\r\n        b=BAZfsaC8GaKdQtrEi+CQzJh1M0TewX7XcH7+58xnw8CV9XNlVxvx7BiieTdE95l+7t\r\n         qKFr1iWO5d04ik6IR9ia3Hc3BBLheLA2zZs2wImbmKAhLiq4QrcrVWtSkmAsVOotO5Lc\r\n         KtbyfsT6QetzPFinyr6plrrTDILQx/z39zbicF1B276ZWevbYkbxKKl92/RQxaaSg7Bh\r\n         U8xlVSoU8AWwP9VC0oFEG+OCbZtN3FpUpOxs2/STDUobMdhYxf78DeaLAaJQIWjC7nBd\r\n         SQFCni7YKJrkZCwwlfH4nStZbQvxdi1vMcZc7kBRyNIN27aXFv5085ZMVe/2fmv8D0wt\r\n         vs3A==",
-            "x-gm-message-state": "X-Gm-Message-State: AOJu0YzB8CZDBzIEQ3nq7psEg2SW0XZSl/ahgb2FpVEZp2Iy4ZPw32RQ\r\n\tOMSXLlhDHxWHxu2Vkewt4fvwcKaQCr5u1FIZwyoxGWcFVNdcgWf/l/jY5wrtLfskQjg=",
-            "x-beenthere": "X-BeenThere: quanlysr@phongvu.vn; h=\"AV1CL+F0px4TgkLwX4eqGjOvjHLE2EtqkfkTtbZm0yC/PTZgKg==\"",
-            "x-gm-gg": "X-Gm-Gg: ATEYQzyGDZcN7kddbx6uk2VR4kbXlv+JHlB/OebfbLUxdEe+tiKr8nAPPMm7Rf483Fu\r\n\tFasS7VTGZ/h201B7wtLqOntOMv31+86DHQDoBbUnC9uPifFxuEYP35lDD+4l/TJMf1xBB/3FMXw\r\n\ty3lmAR/qCBQRwhErmhAs0dn220cKhKPc67Rsf9lktMnsNW+3jD7v2dxdUf5LDdvo8YaGUUer/od\r\n\tEOWeuM7ns/aqzZ81OzfkVf2dc/JgsCWZ0uNPpFVVkO++v+sInv1GPA7daYG4w1wnhAuI1dD/vAG\r\n\tZf3ZPlwPrIOD2o6TgicljqfWnOFwWR+I7jN3fcj9",
-            "mime-version": "MIME-Version: 1.0",
-            "from": "From: TRAINING AND DEVELOPMENT <hrtraining@phongvu.vn>",
-            "date": "Date: Thu, 26 Feb 2026 09:00:00 +0700",
-            "x-gm-features": "X-Gm-Features: AaiRm53L_HqXqls1UfzDHMLN8DKaejNGCw-0s6UUBHZMfcOis_S47EAZj_kM4vk",
-            "message-id": "Message-ID: <CAJ9MtwoZfzWfHEAF4PGhLq6BC79GOqcxB7DLKtR8Sb41sngAyg@mail.gmail.com>",
-            "subject": "Subject: =?UTF-8?B?W1RDUFYgLSBTSE9XUk9PTV0gVOG7lE5HIEjhu6JQIEzhu5ZJIFRV4bqmTiAxKzIgVEjDgQ==?=\r\n\t=?UTF-8?B?TkcgMDIvMjAyNg==?=",
-            "to": "To: =?UTF-8?B?UXVhbiBMw70gU2hvd3Jvb20gTWnhu4FuIELhuq9j?= <quanlysr.mba@phongvu.vn>, \r\n\t=?UTF-8?B?UXXhuqNuIEzDvSBTaG93cm9vbSBNaeG7gW4gTmFt?= <quanlysr.mna@phongvu.vn>, \r\n\t=?UTF-8?B?UXXhuqNuIEzDvSBTUiBIQ00tQkQ=?= <quanlysr.hcm@phongvu.vn>, \r\n\t=?UTF-8?B?UXXhuqNuIEzDvSBTaG93cm9vbSBNVFI=?= <quanlysr.mtr@phongvu.vn>",
-            "cc": "Cc: Regional Manager <quanlymien@phongvu.vn>, \r\n\t=?UTF-8?B?VHLGsOG7n25nIGPhu61hIGjDoG5nIChTdG9yZSBNYW5hZ2Vycyk=?= <quanlysr@phongvu.vn>, \r\n\t=?UTF-8?B?Q2hpIFRy4bqnbiBQaMawxqFuZw==?= <chi.tp@phongvu.vn>, \r\n\t=?UTF-8?B?xJDDoG8gdOG6oW8gJiBQaMOhdCB0cmnhu4NuIChUcmFpbmluZyAmIERldmVsb3BtZW50?= <daotao_phattrien@phongvu.vn>",
-            "content-type": "Content-Type: multipart/alternative; boundary=\"00000000000026e97e064bb08118\"",
-            "x-original-sender": "X-Original-Sender: hrtraining@phongvu.vn",
-            "x-original-authentication-results": "X-Original-Authentication-Results: mx.google.com;       dkim=pass\r\n header.i=@phongvu.vn header.s=google header.b=lCl14RRm;       arc=pass (i=1);\r\n       spf=pass (google.com: domain of hrtraining@phongvu.vn designates\r\n 209.85.220.41 as permitted sender) smtp.mailfrom=hrtraining@phongvu.vn;\r\n       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=phongvu.vn;\r\n       dara=neutral header.i=@phongvu.vn",
-            "precedence": "Precedence: list",
-            "mailing-list": "Mailing-list: list quanlysr.hcm@phongvu.vn; contact quanlysr.hcm+owners@phongvu.vn",
-            "list-id": "List-ID: <quanlysr.hcm.phongvu.vn>",
-            "x-spam-checked-in-group": "X-Spam-Checked-In-Group: quanlysr@phongvu.vn",
-            "x-google-group-id": "X-Google-Group-Id: 135840780510",
-            "list-post": "List-Post: <https://groups.google.com/a/phongvu.vn/group/quanlysr.hcm/post>, <mailto:quanlysr.hcm@phongvu.vn>",
-            "list-help": "List-Help: <https://support.google.com/a/phongvu.vn/bin/topic.py?topic=25838>, <mailto:quanlysr.hcm+help@phongvu.vn>",
-            "list-archive": "List-Archive: <https://groups.google.com/a/phongvu.vn/group/quanlysr.hcm/>",
-            "list-unsubscribe": "List-Unsubscribe: <mailto:googlegroups-manage+135840780510+unsubscribe@googlegroups.com>,\r\n <https://groups.google.com/a/phongvu.vn/group/quanlysr.hcm/subscribe>"
-          },
-          "html": "<div dir=\"ltr\"><div><div><div><font face=\"tahoma, sans-serif\"><b><i><span lang=\"EN-US\" style=\"font-size:14pt;color:black\">Dear các Anh/Chị Quản lý Showroom,</span></i></b><br></font></div><div><br></div></div><div><span lang=\"EN-US\"><div><span lang=\"EN-US\"><span lang=\"EN-US\" style=\"font-family:Tahoma,sans-serif;color:rgb(29,33,41)\">Phòng Đào Tạo</span><span lang=\"EN-US\" style=\"font-family:Tahoma,sans-serif;color:black\"> Phong Vũ gửi đến các anh tổng hợp các lỗi vi phạm TIÊU CHUẨN PHỤC VỤ tại showroom <b><i>Tuần 1+2 </i></b></span><b style=\"font-family:&quot;Times New Roman&quot;,serif\"><i><span lang=\"EN-US\" style=\"font-family:Tahoma,sans-serif;color:black\">Tháng 02/2026</span></i></b><br></span></div><div><span lang=\"EN-US\"><div><b style=\"font-family:&quot;Times New Roman&quot;,serif\"><i><span lang=\"EN-US\" style=\"font-family:Tahoma,sans-serif;color:black\"><br></span></i></b></div><div><blockquote style=\"margin:0px 0px 0px 40px;border:none;padding:0px\"><div><div><span lang=\"EN-US\" style=\"color:rgb(0,0,0);font-family:Wingdings\">Ø<span style=\"font-variant-numeric:normal;font-variant-east-asian:normal;font-variant-alternates:normal;font-kerning:auto;font-feature-settings:normal;font-stretch:normal;line-height:normal;font-family:&quot;Times New Roman&quot;\">  </span></span><u style=\"color:rgb(0,0,0);font-family:&quot;Times New Roman&quot;,serif\"></u><b style=\"color:rgb(0,0,0);font-family:&quot;Times New Roman&quot;,serif\"><i><span lang=\"EN-US\" style=\"font-family:Tahoma,sans-serif\">Phản hồi vi phạm </span></i></b><span lang=\"EN-US\" style=\"color:rgb(0,0,0);font-family:Tahoma,sans-serif\"><span lang=\"EN-US\"><b><i>Tuần 1+2 </i></b></span><b style=\"color:rgb(34,34,34);font-family:&quot;Times New Roman&quot;,serif\"><i><span lang=\"EN-US\" style=\"font-family:Tahoma,sans-serif;color:black\">Tháng 02/2026</span></i></b> <b><i>: </i></b><b><i><a href=\"https://docs.google.com/spreadsheets/d/1qfZMbGd88BqA_aqmFtKwK9jTCnYlW9UWjcyjrX3DnVM/edit?usp=sharing\" target=\"_blank\">TẠI ĐÂY</a></i></b></span></div></div></blockquote><div><br></div></div><div><div><p style=\"margin-right:0cm;margin-left:0cm;font-family:&quot;Times New Roman&quot;,serif;margin-bottom:12pt\"><span lang=\"EN-US\" style=\"font-family:Tahoma,sans-serif;color:black\">Anh/chị vui lòng:</span></p><p style=\"margin-right:0cm;margin-left:0cm;font-family:&quot;Times New Roman&quot;,serif;margin-bottom:12pt\"><span lang=\"EN-US\" style=\"font-family:Tahoma,sans-serif;color:black\">-<span style=\"font-variant-numeric:normal;font-variant-east-asian:normal;font-variant-alternates:normal;font-kerning:auto;font-feature-settings:normal;font-stretch:normal;line-height:normal;font-family:&quot;Times New Roman&quot;\">       </span></span><u></u><span lang=\"EN-US\" style=\"font-family:Tahoma,sans-serif;color:black\">Điền đầy đủ thông tin tại các mục: Đối tượng vi phạm lỗi/ Mã số NV/ Vị trí/ Phản hồi từ đơn vị vi phạm lỗi</span></p><p style=\"margin-right:0cm;margin-left:0cm;font-family:&quot;Times New Roman&quot;,serif;margin-bottom:12pt\"><span lang=\"EN-US\" style=\"font-family:Tahoma,sans-serif;color:black\">-<span style=\"font-variant-numeric:normal;font-variant-east-asian:normal;font-variant-alternates:normal;font-kerning:auto;font-feature-settings:normal;font-stretch:normal;line-height:normal;font-family:&quot;Times New Roman&quot;\">       </span></span><u></u><span lang=\"EN-US\" style=\"font-family:Tahoma,sans-serif;color:black\">Cột Phản hồi từ đơn vị vi phạm lỗi: </span></p></div><blockquote style=\"margin:0px 0px 0px 40px;border:none;padding:0px\"><div><p style=\"margin-right:0cm;margin-left:0cm;font-family:&quot;Times New Roman&quot;,serif;margin-bottom:12pt\"><span lang=\"EN-US\" style=\"font-family:Symbol;color:black\">·<span style=\"font-variant-numeric:normal;font-variant-east-asian:normal;font-variant-alternates:normal;font-kerning:auto;font-feature-settings:normal;font-stretch:normal;line-height:normal;font-family:&quot;Times New Roman&quot;\">       </span></span><u></u><i><span lang=\"EN-US\" style=\"font-family:Tahoma,sans-serif;color:black\">Nếu đồng ý lỗi điền “Ghi nhận lỗi” </span></i></p></div><div><p style=\"margin-right:0cm;margin-left:0cm;font-family:&quot;Times New Roman&quot;,serif;margin-bottom:12pt\"><span lang=\"EN-US\" style=\"font-family:Symbol;color:black\">·<span style=\"font-variant-numeric:normal;font-variant-east-asian:normal;font-variant-alternates:normal;font-kerning:auto;font-feature-settings:normal;font-stretch:normal;line-height:normal;font-family:&quot;Times New Roman&quot;\">       </span></span><u></u><i><span lang=\"EN-US\" style=\"font-family:Tahoma,sans-serif;color:black\">Nếu không đồng ý lỗi điền “Không ghi nhận lỗi” và giải trình lý do chi tiết kèm hình ảnh/video làm chứng</span></i></p></div></blockquote><div><p style=\"margin-right:0cm;margin-left:36pt;font-family:&quot;Times New Roman&quot;,serif;margin-bottom:12pt\"><span lang=\"EN-US\" style=\"font-family:Tahoma,sans-serif;color:black\"></span></p></div><div><p style=\"margin-right:0cm;margin-left:36pt;font-family:&quot;Times New Roman&quot;,serif;margin-bottom:12pt\"><span lang=\"EN-US\" style=\"font-family:Tahoma,sans-serif;color:black\">Anh vui lòng xem và phản hồi về lỗi vi phạm <span style=\"background:yellow\"><b>trước 21</b></span></span><b><span lang=\"EN-US\" style=\"font-family:Tahoma,sans-serif;color:rgb(29,33,41);background:yellow\">h00 </span><span lang=\"EN-US\" style=\"font-family:Tahoma,sans-serif;color:black;background:yellow\">ngày 28</span><span lang=\"EN-US\" style=\"font-family:Tahoma,sans-serif;color:black;background:yellow\">/02/2026</span></b><span lang=\"EN-US\" style=\"font-family:Tahoma,sans-serif;color:rgb(29,33,41)\">.</span><span lang=\"EN-US\" style=\"font-family:Tahoma,sans-serif;color:black\"> Sau </span><span lang=\"EN-US\" style=\"font-family:Tahoma,sans-serif;color:rgb(29,33,41)\">thời gian trên Phòng đào tạo sẽ đóng và không ghi nhận thêm bất cứ phản hồi nào</span><span lang=\"EN-US\" style=\"font-family:Tahoma,sans-serif;color:black\"> <u></u><u></u></span></p><div><span class=\"gmail_signature_prefix\"><p style=\"margin-right:0cm;margin-left:0cm;font-family:&quot;Times New Roman&quot;,serif;margin-bottom:12pt\"><span lang=\"EN-US\" style=\"font-family:Tahoma,sans-serif;color:rgb(29,33,41)\">Kính đề nghị TP/TBP đọc kỹ tất cả những lưu ý trên đây để thực hiện, và thường xuyên nhắc nhở nhân viên tuân thủ đúng quy định TIÊU CHUẨN PHỤC VỤ TẠI SHOWROOM.</span></p></span></div><p style=\"margin-right:0cm;margin-left:0cm;margin-bottom:12pt\"><font color=\"#888888\"><i>Trân trọng, </i></font></p><p style=\"margin-right:0cm;margin-left:0cm;margin-bottom:12pt\">PHÒNG ĐÀO TẠO VÀ PHÁT TRIỂN.</p></div></div></span></div></span></div></div><div><div dir=\"ltr\" class=\"gmail_signature\" data-smartmail=\"gmail_signature\"><div dir=\"ltr\"><img src=\"https://ci3.googleusercontent.com/mail-sig/AIorK4zgVpg5M-O3lJHY8Y_AsNy7pQzZIDQQV1XjrOsDoD1DsjjdplauAWvMUU0r-TFQB_0okYEyaEaHi62T\"><br></div></div></div></div>\n\n<p></p>\n\nTo unsubscribe from this group and stop receiving emails from it, send an email to <a href=\"mailto:quanlysr.hcm+unsubscribe@phongvu.vn\">quanlysr.hcm+unsubscribe@phongvu.vn</a>.<br />\n",
-          "text": "*Dear các Anh/Chị Quản lý Showroom,*\n\nPhòng Đào Tạo Phong Vũ gửi đến các anh tổng hợp các lỗi vi\nphạm TIÊU CHUẨN PHỤC VỤ tại showroom *Tuần 1+2 **Tháng 02/2026*\n\nØ  *Phản hồi vi phạm **Tuần 1+2 **Tháng 02/2026* *: **TẠI ĐÂY\n<https://docs.google.com/spreadsheets/d/1qfZMbGd88BqA_aqmFtKwK9jTCnYlW9UWjcyjrX3DnVM/edit?usp=sharing>*\n\n\nAnh/chị vui lòng:\n\n-       Điền đầy đủ thông tin tại các mục: Đối tượng vi phạm lỗi/ Mã số NV/\nVị trí/ Phản hồi từ đơn vị vi phạm lỗi\n\n-       Cột Phản hồi từ đơn vị vi phạm lỗi:\n\n·       *Nếu đồng ý lỗi điền “Ghi nhận lỗi” *\n\n·       *Nếu không đồng ý lỗi điền “Không ghi nhận lỗi” và giải trình lý do\nchi tiết kèm hình ảnh/video làm chứng*\n\nAnh vui lòng xem và phản hồi về lỗi vi phạm *trước 21**h00 ngày 28/02/2026*.\n Sau thời gian trên Phòng đào tạo sẽ đóng và không ghi nhận thêm bất cứ\nphản hồi nào\n\nKính đề nghị TP/TBP đọc kỹ tất cả những lưu ý trên đây để thực hiện, và\nthường xuyên nhắc nhở nhân viên tuân thủ đúng quy\nđịnh TIÊU CHUẨN PHỤC VỤ TẠI SHOWROOM.\n\n*Trân trọng, *\n\nPHÒNG ĐÀO TẠO VÀ PHÁT TRIỂN.\n\nTo unsubscribe from this group and stop receiving emails from it, send an email to quanlysr.hcm+unsubscribe@phongvu.vn.\n",
-          "textAsHtml": "<p>*Dear c&aacute;c Anh/Ch&#x1ECB; Qu&#x1EA3;n l&yacute; Showroom,*</p><p>Ph&ograve;ng &Dstrok;&agrave;o T&#x1EA1;o Phong V&utilde; g&#x1EED;i &dstrok;&#x1EBF;n c&aacute;c anh t&#x1ED5;ng h&#x1EE3;p c&aacute;c l&#x1ED7;i vi<br/>ph&#x1EA1;m TI&Ecirc;U CHU&#x1EA8;N PH&#x1EE4;C V&#x1EE4; t&#x1EA1;i showroom *Tu&#x1EA7;n 1+2 **Th&aacute;ng 02/2026*</p><p>&Oslash;  *Ph&#x1EA3;n h&#x1ED3;i vi ph&#x1EA1;m **Tu&#x1EA7;n 1+2 **Th&aacute;ng 02/2026* *: **T&#x1EA0;I &Dstrok;&Acirc;Y<br/>&lt;<a href=\"https://docs.google.com/spreadsheets/d/1qfZMbGd88BqA_aqmFtKwK9jTCnYlW9UWjcyjrX3DnVM/edit?usp=sharing\">https://docs.google.com/spreadsheets/d/1qfZMbGd88BqA_aqmFtKwK9jTCnYlW9UWjcyjrX3DnVM/edit?usp=sharing</a>&gt;*</p><p>Anh/ch&#x1ECB; vui l&ograve;ng:</p><p>-       &Dstrok;i&#x1EC1;n &dstrok;&#x1EA7;y &dstrok;&#x1EE7; th&ocirc;ng tin t&#x1EA1;i c&aacute;c m&#x1EE5;c: &Dstrok;&#x1ED1;i t&#x1B0;&#x1EE3;ng vi ph&#x1EA1;m l&#x1ED7;i/ M&atilde; s&#x1ED1; NV/<br/>V&#x1ECB; tr&iacute;/ Ph&#x1EA3;n h&#x1ED3;i t&#x1EEB; &dstrok;&#x1A1;n v&#x1ECB; vi ph&#x1EA1;m l&#x1ED7;i</p><p>-       C&#x1ED9;t Ph&#x1EA3;n h&#x1ED3;i t&#x1EEB; &dstrok;&#x1A1;n v&#x1ECB; vi ph&#x1EA1;m l&#x1ED7;i:</p><p>&middot;       *N&#x1EBF;u &dstrok;&#x1ED3;ng &yacute; l&#x1ED7;i &dstrok;i&#x1EC1;n &ldquo;Ghi nh&#x1EAD;n l&#x1ED7;i&rdquo; *</p><p>&middot;       *N&#x1EBF;u kh&ocirc;ng &dstrok;&#x1ED3;ng &yacute; l&#x1ED7;i &dstrok;i&#x1EC1;n &ldquo;Kh&ocirc;ng ghi nh&#x1EAD;n l&#x1ED7;i&rdquo; v&agrave; gi&#x1EA3;i tr&igrave;nh l&yacute; do<br/>chi ti&#x1EBF;t k&egrave;m h&igrave;nh &#x1EA3;nh/video l&agrave;m ch&#x1EE9;ng*</p><p>Anh vui l&ograve;ng xem v&agrave; ph&#x1EA3;n h&#x1ED3;i v&#x1EC1; l&#x1ED7;i vi ph&#x1EA1;m *tr&#x1B0;&#x1EDB;c 21**h00 ng&agrave;y 28/02/2026*.<br/> Sau th&#x1EDD;i gian tr&ecirc;n Ph&ograve;ng &dstrok;&agrave;o t&#x1EA1;o s&#x1EBD; &dstrok;&oacute;ng v&agrave; kh&ocirc;ng ghi nh&#x1EAD;n th&ecirc;m b&#x1EA5;t c&#x1EE9;<br/>ph&#x1EA3;n h&#x1ED3;i n&agrave;o</p><p>K&iacute;nh &dstrok;&#x1EC1; ngh&#x1ECB; TP/TBP &dstrok;&#x1ECD;c k&#x1EF9; t&#x1EA5;t c&#x1EA3; nh&#x1EEF;ng l&#x1B0;u &yacute; tr&ecirc;n &dstrok;&acirc;y &dstrok;&#x1EC3; th&#x1EF1;c hi&#x1EC7;n, v&agrave;<br/>th&#x1B0;&#x1EDD;ng xuy&ecirc;n nh&#x1EAF;c nh&#x1EDF; nh&acirc;n vi&ecirc;n tu&acirc;n th&#x1EE7; &dstrok;&uacute;ng quy<br/>&dstrok;&#x1ECB;nh TI&Ecirc;U CHU&#x1EA8;N PH&#x1EE4;C V&#x1EE4; T&#x1EA0;I SHOWROOM.</p><p>*Tr&acirc;n tr&#x1ECD;ng, *</p><p>PH&Ograve;NG &Dstrok;&Agrave;O T&#x1EA0;O V&Agrave; PH&Aacute;T TRI&#x1EC2;N.</p><p>To unsubscribe from this group and stop receiving emails from it, send an email to <a href=\"mailto:quanlysr.hcm+unsubscribe@phongvu.vn\">quanlysr.hcm+unsubscribe@phongvu.vn</a>.</p>",
-          "subject": "[TCPV - SHOWROOM] TỔNG HỢP LỖI TUẦN 1+2 THÁNG 02/2026",
-          "date": "2026-02-26T02:00:00.000Z",
-          "to": {
-            "value": [
-              {
-                "address": "quanlysr.mba@phongvu.vn",
-                "name": "Quan Lý Showroom Miền Bắc"
-              },
-              {
-                "address": "quanlysr.mna@phongvu.vn",
-                "name": "Quản Lý Showroom Miền Nam"
-              },
-              {
-                "address": "quanlysr.hcm@phongvu.vn",
-                "name": "Quản Lý SR HCM-BD"
-              },
-              {
-                "address": "quanlysr.mtr@phongvu.vn",
-                "name": "Quản Lý Showroom MTR"
-              }
-            ],
-            "html": "<span class=\"mp_address_group\"><span class=\"mp_address_name\">Quan L&#xFD; Showroom Mi&#x1EC1;n B&#x1EAF;c</span> &lt;<a href=\"mailto:quanlysr.mba@phongvu.vn\" class=\"mp_address_email\">quanlysr.mba@phongvu.vn</a>&gt;</span>, <span class=\"mp_address_group\"><span class=\"mp_address_name\">Qu&#x1EA3;n L&#xFD; Showroom Mi&#x1EC1;n Nam</span> &lt;<a href=\"mailto:quanlysr.mna@phongvu.vn\" class=\"mp_address_email\">quanlysr.mna@phongvu.vn</a>&gt;</span>, <span class=\"mp_address_group\"><span class=\"mp_address_name\">Qu&#x1EA3;n L&#xFD; SR HCM-BD</span> &lt;<a href=\"mailto:quanlysr.hcm@phongvu.vn\" class=\"mp_address_email\">quanlysr.hcm@phongvu.vn</a>&gt;</span>, <span class=\"mp_address_group\"><span class=\"mp_address_name\">Qu&#x1EA3;n L&#xFD; Showroom MTR</span> &lt;<a href=\"mailto:quanlysr.mtr@phongvu.vn\" class=\"mp_address_email\">quanlysr.mtr@phongvu.vn</a>&gt;</span>",
-            "text": "\"Quan Lý Showroom Miền Bắc\" <quanlysr.mba@phongvu.vn>, \"Quản Lý Showroom Miền Nam\" <quanlysr.mna@phongvu.vn>, \"Quản Lý SR HCM-BD\" <quanlysr.hcm@phongvu.vn>, \"Quản Lý Showroom MTR\" <quanlysr.mtr@phongvu.vn>"
-          },
-          "from": {
-            "value": [
-              {
-                "address": "hrtraining@phongvu.vn",
-                "name": "TRAINING AND DEVELOPMENT"
-              }
-            ],
-            "html": "<span class=\"mp_address_group\"><span class=\"mp_address_name\">TRAINING AND DEVELOPMENT</span> &lt;<a href=\"mailto:hrtraining@phongvu.vn\" class=\"mp_address_email\">hrtraining@phongvu.vn</a>&gt;</span>",
-            "text": "\"TRAINING AND DEVELOPMENT\" <hrtraining@phongvu.vn>"
-          },
-          "cc": {
-            "value": [
-              {
-                "address": "quanlymien@phongvu.vn",
-                "name": "Regional Manager"
-              },
-              {
-                "address": "quanlysr@phongvu.vn",
-                "name": "Trưởng cửa hàng (Store Managers)"
-              },
-              {
-                "address": "chi.tp@phongvu.vn",
-                "name": "Chi Trần Phương"
-              },
-              {
-                "address": "daotao_phattrien@phongvu.vn",
-                "name": "Đào tạo & Phát triển (Training & Development"
-              }
-            ],
-            "html": "<span class=\"mp_address_group\"><span class=\"mp_address_name\">Regional Manager</span> &lt;<a href=\"mailto:quanlymien@phongvu.vn\" class=\"mp_address_email\">quanlymien@phongvu.vn</a>&gt;</span>, <span class=\"mp_address_group\"><span class=\"mp_address_name\">Tr&#x1B0;&#x1EDF;ng c&#x1EED;a h&#xE0;ng (Store Managers)</span> &lt;<a href=\"mailto:quanlysr@phongvu.vn\" class=\"mp_address_email\">quanlysr@phongvu.vn</a>&gt;</span>, <span class=\"mp_address_group\"><span class=\"mp_address_name\">Chi Tr&#x1EA7;n Ph&#x1B0;&#x1A1;ng</span> &lt;<a href=\"mailto:chi.tp@phongvu.vn\" class=\"mp_address_email\">chi.tp@phongvu.vn</a>&gt;</span>, <span class=\"mp_address_group\"><span class=\"mp_address_name\">&#x110;&#xE0;o t&#x1EA1;o &#x26; Ph&#xE1;t tri&#x1EC3;n (Training &#x26; Development</span> &lt;<a href=\"mailto:daotao_phattrien@phongvu.vn\" class=\"mp_address_email\">daotao_phattrien@phongvu.vn</a>&gt;</span>",
-            "text": "\"Regional Manager\" <quanlymien@phongvu.vn>, \"Trưởng cửa hàng (Store Managers)\" <quanlysr@phongvu.vn>, \"Chi Trần Phương\" <chi.tp@phongvu.vn>, \"Đào tạo & Phát triển (Training & Development\" <daotao_phattrien@phongvu.vn>"
-          },
-          "messageId": "<CAJ9MtwoZfzWfHEAF4PGhLq6BC79GOqcxB7DLKtR8Sb41sngAyg@mail.gmail.com>"
-        },
-        "pairedItem": {
-          "item": 0
-        }
-      },
-      {
-        "json": {
-          "id": "19c97add4b15bbfa",
-          "threadId": "19c97add4b15bbfa",
-          "labelIds": [
-            "UNREAD",
-            "CATEGORY_UPDATES",
-            "INBOX"
-          ],
-          "sizeEstimate": 13875,
-          "headers": {
-            "delivered-to": "Delivered-To: hoang.nv1@phongvu-mna.vn",
-            "received": "Received: from e233-54.smtp-out.ap-southeast-1.amazonses.com (e233-54.smtp-out.ap-southeast-1.amazonses.com. [23.251.233.54])\r\n        by mx.google.com with ESMTPS id d2e1a72fcca58-82739fc7b94si1350540b3a.27.2026.02.25.18.01.15\r\n        for <hoang.nv1@phongvu-mna.vn>\r\n        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);\r\n        Wed, 25 Feb 2026 18:01:17 -0800 (PST)",
-            "x-received": "X-Received: by 2002:a05:6a00:1949:b0:81f:49cc:ea11 with SMTP id d2e1a72fcca58-826daa83a56mr15586118b3a.65.1772071277867;\r\n        Wed, 25 Feb 2026 18:01:17 -0800 (PST)",
-            "arc-seal": "ARC-Seal: i=1; a=rsa-sha256; t=1772071277; cv=none;\r\n        d=google.com; s=arc-20240605;\r\n        b=h+7UlhmArz57CTwfZSQMO/eJMNSInJFEt9SnBfJ6Z3I+7u55aYevKZ08iWvhw7EscK\r\n         0Q3ZXCI267iWtmjtMTxW+jsDkz3ldh3QM8nAgL93XHi2DZc1s52/DKfwJI4gPH9ksj6R\r\n         LQJsdBdMtm0pfFPKrAv9LKWcKoDBD82H7/8PSWH27Xuf/R1EDVyvAUtT0TCMzeoxkV9q\r\n         gxLABc3ZxQcI1y3jv4xTTdITV8A/Whzgbq8SzB1TfHyqCtW8AmT8QgwMOOo+P6o2eRdy\r\n         R0wYjBKhWr+Qv4jp0fjWTuKA/t1ntQy7N6zZ968KFQKjA5Do0WK/re7lFiRUfOLUeMrk\r\n         YXPg==",
-            "arc-message-signature": "ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;\r\n        h=feedback-id:date:mime-version:message-id:subject:to:from\r\n         :dkim-signature:dkim-signature;\r\n        bh=ZvxZ+JGRnnRhLFZeEs/+1LSByBGAC5sauvTMc74BVqU=;\r\n        fh=eKjQZlZxeyeGJdcL8y7yW9FLMdEjNGyakDhZkazwh7I=;\r\n        b=Ntgrg3FvEMx8B/0fVNjp+wc/UPJyjZ1Teo+pvu0GxaA2tAXJwuxJzw+8BngVPAxb46\r\n         H3zGQAzddqj1Wk79tQEGCOfLvvf4mfu02dTLFQGF+rz3OxIYUJGTu673HkZwoVz+hLXa\r\n         6ZyvRCWS8DkZ7AC8hK7OTliW5vKKhpQfXNLHy0zK6rxR7Ev9hB6LCkszuEOtHCaLGiTi\r\n         FuSNGNGHc7mzX1kV4yuLJIqcy3JCD0Wfi8Wy6wwzX2AEsyIV4AyQvSj/wyF7vuyeFsXo\r\n         vtdYyWvUHh453FBasL39AHj6XCee9ReWz83a/2HIHDJ4e7c0c/TkeMCn4V2pHJs1QsFb\r\n         +vvg==;\r\n        dara=google.com",
-            "arc-authentication-results": "ARC-Authentication-Results: i=1; mx.google.com;\r\n       dkim=pass header.i=@gitiho.com header.s=g6jcohupgneqh6mmshat4mxcqk32xcwv header.b=QrIJtNd1;\r\n       dkim=pass header.i=@amazonses.com header.s=pd64dbxfdcqqbvadj6zks7h7qe3c33ao header.b=Z2uidKUf;\r\n       spf=pass (google.com: domain of 010e019c97adc9e5-adfadeee-0f33-4dcf-93d5-087a0d7e7337-000000@noti.gitiho.com designates 23.251.233.54 as permitted sender) smtp.mailfrom=010e019c97adc9e5-adfadeee-0f33-4dcf-93d5-087a0d7e7337-000000@noti.gitiho.com;\r\n       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=gitiho.com",
-            "return-path": "Return-Path: <010e019c97adc9e5-adfadeee-0f33-4dcf-93d5-087a0d7e7337-000000@noti.gitiho.com>",
-            "received-spf": "Received-SPF: pass (google.com: domain of 010e019c97adc9e5-adfadeee-0f33-4dcf-93d5-087a0d7e7337-000000@noti.gitiho.com designates 23.251.233.54 as permitted sender) client-ip=23.251.233.54;",
-            "authentication-results": "Authentication-Results: mx.google.com;\r\n       dkim=pass header.i=@gitiho.com header.s=g6jcohupgneqh6mmshat4mxcqk32xcwv header.b=QrIJtNd1;\r\n       dkim=pass header.i=@amazonses.com header.s=pd64dbxfdcqqbvadj6zks7h7qe3c33ao header.b=Z2uidKUf;\r\n       spf=pass (google.com: domain of 010e019c97adc9e5-adfadeee-0f33-4dcf-93d5-087a0d7e7337-000000@noti.gitiho.com designates 23.251.233.54 as permitted sender) smtp.mailfrom=010e019c97adc9e5-adfadeee-0f33-4dcf-93d5-087a0d7e7337-000000@noti.gitiho.com;\r\n       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=gitiho.com",
-            "dkim-signature": "DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;\r\n\ts=pd64dbxfdcqqbvadj6zks7h7qe3c33ao; d=amazonses.com; t=1772071275;\r\n\th=From:To:Subject:Message-ID:MIME-Version:Date:Content-Type:Feedback-ID;\r\n\tbh=5ARf2VMDVppfFNw6EfU+Jqpt1JQkH4i8k609Ba5+Fa8=;\r\n\tb=Z2uidKUfjcozqatKrLKPYDM7pupbUkax5nb5MfgeZV6e7yue17WsasvSw9QDBZ4H\r\n\teYow63Q+8LQHnWE7beXxqCUfD5I+NLZl02C2giMH5n2hHVZcNNBmXs++VqBk60BtXUB\r\n\tN/LyIy8GmGl6+9zpsnY+ge9UWkQTks968tsLga7w=",
-            "from": "From: Gitiho Support <hotro@gitiho.com>",
-            "to": "To: \r\n\t=?utf-8?Q?Nguy=E1=BB=85n_V=C4=83n_Ho=C3=A0ng?= <hoang.nv1@phongvu-mna.vn>",
-            "subject": "Subject: V/v: =?utf-8?Q?H=E1=BB=87_th=E1=BB=91ng_=C4=91=C3=A0o?=\r\n =?utf-8?Q?_t=E1=BA=A1o?= PHONG =?utf-8?Q?V=C5=A8_v=E1=BB=ABa?= assign cho\r\n =?utf-8?Q?b=E1=BA=A1n_=C4=91=E1=BB=A3t?= thi:  Marathon\r\n =?utf-8?Q?Ki=E1=BA=BFn_th=E1=BB=A9c?= Q1 - D14.02.26",
-            "message-id": "Message-ID: <010e019c97adc9e5-adfadeee-0f33-4dcf-93d5-087a0d7e7337-000000@ap-southeast-1.amazonses.com>",
-            "mime-version": "MIME-Version: 1.0",
-            "date": "Date: Thu, 26 Feb 2026 02:01:14 +0000",
-            "content-type": "Content-Type: multipart/alternative; boundary=URQd9JUx",
-            "feedback-id": "Feedback-ID: ::1.ap-southeast-1.dMH9vrPP3I+7hPqkpHwRvXhzLadcKLkHtiW/HvAcAck=:AmazonSES",
-            "x-ses-outgoing": "X-SES-Outgoing: 2026.02.26-23.251.233.54"
-          },
-          "html": "<!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 4.0 Transitional//EN\" \"http://www.w3.org/TR/REC-html40/loose.dtd\">\n<html><body style=\"box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; -webkit-text-size-adjust: none; background-color: #ffffff; color: #718096; height: 100%; line-height: 1.4; margin: 0; padding: 0; width: 100% !important;\">\n<div style=\"box-sizing: border-box; position: relative; min-width: 320px; margin: 0 auto; font-family: Helvetica, sans-serif; padding: 20px 0; background: #F0F3F6;\">\n    <div style=\"box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; background: #fff; color: #5f6368; max-width: 600px; margin: 0 auto;\">\n        <div style=\"box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; padding: 15px;\">\n            <div style=\"box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; width: 100%; background-color: #fff;\">\n                <div style=\"box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; display: block; padding: 3px 0; text-align: center;\">\n                    <p style=\"box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; font-size: 16px; line-height: 1.5em; margin-top: 0; text-align: center;\">\n                                                    <a href=\"https://gk0y7136.r.ap-southeast-1.awstrack.me/L0/https:%2F%2Fdaotao.phongvu.vn/1/010e019c97adc9e5-adfadeee-0f33-4dcf-93d5-087a0d7e7337-000000/iP8XNz89dERz4WMeEYl2SpXzUmo=252\" title=\"PHONG VŨ\" style=\"box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; color: #3869d4;\">\n                                <img src=\"https://daotao.phongvu.vn/images/biz_avatar/2023/05/53c7e4a86330fd07a21bb154cb418da6.jpeg\" style=\"box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; max-width: 100%; border: none; height: 60px;\">\n                            </a>\n                                            </p>\n                </div>\n            </div>\n\n            \n            <p style=\"box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; font-size: 16px; line-height: 1.5em; margin-top: 0; text-align: left;\">Kính gửi: Nguyễn Văn Hoàng,</p>\n<p style=\"box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; font-size: 16px; line-height: 1.5em; margin-top: 0; text-align: left;\">Phòng Đào Tạo và Phát Triển PHONG VŨ vừa phân cho bạn bài test:</p>\n<p style=\"box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; font-size: 16px; line-height: 1.5em; margin-top: 0; text-align: left;\"></p>\n<ul style=\"box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; line-height: 1.4; text-align: left;\"><li style=\"box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative;\">Marathon Kiến thức Q1 - D14.02.26</li></ul>\n<p style=\"box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; font-size: 16px; line-height: 1.5em; margin-top: 0; text-align: left;\">Bạn vui lòng truy cập link dưới đây để cùng đồng nghiệp khác hoàn thành bài test.</p>\n<p style=\"box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; font-size: 16px; line-height: 1.5em; margin-top: 0; text-align: center;\"><a style=\"box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; font-size: 14px; border: 1px solid #D91B5C; border-radius: 5px; background-color: #D91B5C; text-decoration: none; padding: 8px 15px; color: #fff;\" href=\"https://gk0y7136.r.ap-southeast-1.awstrack.me/L0/https:%2F%2Fdaotao.phongvu.vn%2Fmy-examination/1/010e019c97adc9e5-adfadeee-0f33-4dcf-93d5-087a0d7e7337-000000/pPIm18S-VfpOcLxZOMuCoHC5CD8=252\">Vào bài đợt thi của tôi</a></p>\n<p style=\"box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; font-size: 16px; line-height: 1.5em; margin-top: 0; text-align: left;\">Trân trọng,</p>\n\n            <br>\n            <div style=\"box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; border: 1px solid #b2b2b2; width: 75%; margin: 16px auto 8px auto;\"></div>\n            <div style=\"box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; width: 100%; overflow: hidden; text-align: center;\">\n                <h4 style=\"box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; text-transform: uppercase; font-size: 14px; margin-bottom: 10px;\">PHONG VŨ</h4>\n            </div>\n        </div>\n    </div>\n</div>\n\n<img alt=\"\" src=\"https://gk0y7136.r.ap-southeast-1.awstrack.me/I0/010e019c97adc9e5-adfadeee-0f33-4dcf-93d5-087a0d7e7337-000000/jnJZqrO2tMykwWctYjcyXOs59JY=252\" style=\"display: none; width: 1px; height: 1px;\">\n</body></html>",
-          "text": "[Gitiho](https://gitiho.com)\n\nKính gửi: Nguyễn Văn Hoàng,Phòng Đào Tạo và Phát Triển PHONG VŨ vừa phân cho bạn bài test:Marathon Kiến thức Q1 - D14.02.26Bạn vui lòng truy cập link dưới đây để cùng đồng nghiệp khác hoàn thành bài test.Vào bài đợt thi của tôiTrân trọng,\n\n© 2026 Gitiho. All rights reserved.\n",
-          "textAsHtml": "<p>[Gitiho](<a href=\"https://gitiho.com\">https://gitiho.com</a>)</p><p>K&iacute;nh g&#x1EED;i: Nguy&#x1EC5;n V&abreve;n Ho&agrave;ng,Ph&ograve;ng &Dstrok;&agrave;o T&#x1EA1;o v&agrave; Ph&aacute;t Tri&#x1EC3;n PHONG V&Utilde; v&#x1EEB;a ph&acirc;n cho b&#x1EA1;n b&agrave;i test:Marathon Ki&#x1EBF;n th&#x1EE9;c Q1 - D14.02.26B&#x1EA1;n vui l&ograve;ng truy c&#x1EAD;p link d&#x1B0;&#x1EDB;i &dstrok;&acirc;y &dstrok;&#x1EC3; c&ugrave;ng &dstrok;&#x1ED3;ng nghi&#x1EC7;p kh&aacute;c ho&agrave;n th&agrave;nh b&agrave;i test.V&agrave;o b&agrave;i &dstrok;&#x1EE3;t thi c&#x1EE7;a t&ocirc;iTr&acirc;n tr&#x1ECD;ng,</p><p>&copy; 2026 Gitiho. All rights reserved.</p>",
-          "subject": "V/v: Hệ thống đào tạo PHONG VŨ vừa assign cho bạn đợt thi:  Marathon Kiến thức Q1 - D14.02.26",
-          "date": "2026-02-26T02:01:14.000Z",
-          "to": {
-            "value": [
-              {
-                "address": "hoang.nv1@phongvu-mna.vn",
-                "name": "Nguyễn Văn Hoàng"
-              }
-            ],
-            "html": "<span class=\"mp_address_group\"><span class=\"mp_address_name\">Nguy&#x1EC5;n V&#x103;n Ho&#xE0;ng</span> &lt;<a href=\"mailto:hoang.nv1@phongvu-mna.vn\" class=\"mp_address_email\">hoang.nv1@phongvu-mna.vn</a>&gt;</span>",
-            "text": "\"Nguyễn Văn Hoàng\" <hoang.nv1@phongvu-mna.vn>"
-          },
-          "from": {
-            "value": [
-              {
-                "address": "hotro@gitiho.com",
-                "name": "Gitiho Support"
-              }
-            ],
-            "html": "<span class=\"mp_address_group\"><span class=\"mp_address_name\">Gitiho Support</span> &lt;<a href=\"mailto:hotro@gitiho.com\" class=\"mp_address_email\">hotro@gitiho.com</a>&gt;</span>",
-            "text": "\"Gitiho Support\" <hotro@gitiho.com>"
-          },
-          "messageId": "<010e019c97adc9e5-adfadeee-0f33-4dcf-93d5-087a0d7e7337-000000@ap-southeast-1.amazonses.com>"
-        },
-        "pairedItem": {
-          "item": 1
-        }
-      }
-    ],
-    "daily_check": [
-      {
-        "json": {
-          "timestamp": "2026-03-12T17:30:06.007+07:00",
-          "Readable date": "March 12th 2026, 5:30:06 pm",
-          "Readable time": "5:30:06 pm",
-          "Day of week": "Thursday",
-          "Year": "2026",
-          "Month": "March",
-          "Day of month": "12",
-          "Hour": "17",
-          "Minute": "30",
-          "Second": "06",
-          "Timezone": "Asia/Ho_Chi_Minh (UTC+07:00)"
-        },
-        "pairedItem": {
-          "item": 0
-        }
-      }
-    ]
-  },
+  "pinData": {},
   "settings": {
     "executionOrder": "v1",
     "binaryMode": "separate",
@@ -11295,9 +11065,10 @@
     },
     "node:Gmail Trigger": {
       "Gmail Trigger": {
-        "lastTimeChecked": 1775562090,
+        "lastTimeChecked": 1775645511,
         "possibleDuplicates": [
-          "19d67bf742b9d74e"
+          "19d6cb8ef1a6026c",
+          "19d6ca5439dd80e1"
         ]
       }
     }
@@ -11311,6 +11082,6 @@
     }
   ],
   "triggerCount": 4,
-  "updatedAt": "2026-03-21T07:35:04.814Z",
-  "versionId": "bb6489af-1b2f-4268-a86f-e053b2d99547"
+  "updatedAt": "2026-04-08T10:44:25.230Z",
+  "versionId": "00581268-a2a6-453b-be0b-f571f6279765"
 }
