@@ -1,9 +1,9 @@
 {
   "active": true,
   "activeVersion": {
-    "updatedAt": "2026-04-06T09:04:04.120Z",
-    "createdAt": "2026-04-06T09:04:01.813Z",
-    "versionId": "5d9de282-5728-4fb7-a00a-1cbc4da32a7d",
+    "updatedAt": "2026-04-08T19:33:08.051Z",
+    "createdAt": "2026-04-08T19:33:06.305Z",
+    "versionId": "261c7e1a-1106-44ad-8a1e-27fa6eb8c06e",
     "workflowId": "NhGSEu3UGlV98edt",
     "nodes": [
       {
@@ -249,7 +249,7 @@
         "credentials": {
           "githubApi": {
             "id": "psfcNOALnYhUqBQc",
-            "name": "GitHub 2"
+            "name": "nnajifazal651-commits"
           }
         }
       },
@@ -283,7 +283,7 @@
         "credentials": {
           "githubApi": {
             "id": "psfcNOALnYhUqBQc",
-            "name": "GitHub 2"
+            "name": "nnajifazal651-commits"
           }
         }
       },
@@ -382,7 +382,7 @@
         "credentials": {
           "githubApi": {
             "id": "psfcNOALnYhUqBQc",
-            "name": "GitHub 2"
+            "name": "nnajifazal651-commits"
           }
         },
         "continueOnFail": true
@@ -723,11 +723,11 @@
       }
     },
     "authors": "Hoang Nguyen",
-    "name": "Version 5d9de282",
+    "name": "Version 261c7e1a",
     "description": "",
     "autosaved": true
   },
-  "activeVersionId": "5d9de282-5728-4fb7-a00a-1cbc4da32a7d",
+  "activeVersionId": "261c7e1a-1106-44ad-8a1e-27fa6eb8c06e",
   "connections": {
     "n8n": {
       "main": [
@@ -1204,7 +1204,7 @@
       "credentials": {
         "githubApi": {
           "id": "psfcNOALnYhUqBQc",
-          "name": "GitHub 2"
+          "name": "nnajifazal651-commits"
         }
       }
     },
@@ -1238,7 +1238,7 @@
       "credentials": {
         "githubApi": {
           "id": "psfcNOALnYhUqBQc",
-          "name": "GitHub 2"
+          "name": "nnajifazal651-commits"
         }
       }
     },
@@ -1337,7 +1337,7 @@
       "credentials": {
         "githubApi": {
           "id": "psfcNOALnYhUqBQc",
-          "name": "GitHub 2"
+          "name": "nnajifazal651-commits"
         }
       },
       "continueOnFail": true
@@ -1482,6 +1482,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2026-04-06T09:04:01.811Z",
-  "versionId": "5d9de282-5728-4fb7-a00a-1cbc4da32a7d"
+  "updatedAt": "2026-04-08T19:33:06.304Z",
+  "versionId": "261c7e1a-1106-44ad-8a1e-27fa6eb8c06e"
 }
