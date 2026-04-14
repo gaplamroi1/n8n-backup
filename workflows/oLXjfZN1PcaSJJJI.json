@@ -1,9 +1,9 @@
 {
   "active": true,
   "activeVersion": {
-    "updatedAt": "2026-04-06T04:35:36.414Z",
-    "createdAt": "2026-04-06T04:35:02.032Z",
-    "versionId": "48dc2eff-d45d-475f-9b07-f97b50ad0f80",
+    "updatedAt": "2026-04-14T11:42:49.803Z",
+    "createdAt": "2026-04-14T11:42:48.147Z",
+    "versionId": "cc18a3e7-a583-4a72-9317-4ed70876e29a",
     "workflowId": "oLXjfZN1PcaSJJJI",
     "nodes": [
       {
@@ -30,7 +30,7 @@
         "typeVersion": 1,
         "position": [
           -64,
-          -544
+          -624
         ],
         "id": "88e96534-65b1-44a7-95ff-d2bf6ffdd41c",
         "name": "get_app_info"
@@ -54,7 +54,7 @@
         "typeVersion": 3.4,
         "position": [
           -208,
-          -544
+          -624
         ],
         "id": "eb0857dc-1b09-4d21-ae3b-af0785dae889",
         "name": "app_id"
@@ -1211,7 +1211,7 @@
         "typeVersion": 2.1,
         "position": [
           -224,
-          128
+          160
         ],
         "id": "b21c95af-018c-44d3-bb35-bddc8447e822",
         "name": "seatalk_bot",
@@ -1243,6 +1243,98 @@
           }
         },
         "disabled": true
+      },
+      {
+        "parameters": {
+          "operation": "update",
+          "dataTableId": {
+            "__rl": true,
+            "value": "oyXKvWj5mW6M5dIX",
+            "mode": "list",
+            "cachedResultName": "phongvu-employee",
+            "cachedResultUrl": "/projects/GTQprNa3RcCSHh8s/datatables/oyXKvWj5mW6M5dIX"
+          },
+          "matchType": "allConditions",
+          "filters": {
+            "conditions": [
+              {
+                "keyName": "email",
+                "keyValue": "={{ $json.body.event.email }}"
+              }
+            ]
+          },
+          "columns": {
+            "mappingMode": "defineBelow",
+            "value": {
+              "employee_code": "={{ $json.body.event.employee_code }}",
+              "email": "={{ $json.body.event.email }}"
+            },
+            "matchingColumns": [],
+            "schema": [
+              {
+                "id": "email",
+                "displayName": "email",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": false
+              },
+              {
+                "id": "name",
+                "displayName": "name",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": true
+              },
+              {
+                "id": "store",
+                "displayName": "store",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": true
+              },
+              {
+                "id": "qr_countt",
+                "displayName": "qr_countt",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "number",
+                "readOnly": false,
+                "removed": true
+              },
+              {
+                "id": "employee_code",
+                "displayName": "employee_code",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": false
+              }
+            ],
+            "attemptToConvertTypes": false,
+            "convertFieldsToString": false
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.dataTable",
+        "typeVersion": 1.1,
+        "position": [
+          -208,
+          -480
+        ],
+        "id": "809b982c-3f0f-49a2-891d-27f8f4e26934",
+        "name": "update_employee_info"
       }
     ],
     "connections": {
@@ -1563,17 +1655,22 @@
               "node": "Switch",
               "type": "main",
               "index": 0
+            },
+            {
+              "node": "update_employee_info",
+              "type": "main",
+              "index": 0
             }
           ]
         ]
       }
     },
     "authors": "Hoang Nguyen",
-    "name": "Version 48dc2eff",
+    "name": "Version cc18a3e7",
     "description": "",
-    "autosaved": true
+    "autosaved": false
   },
-  "activeVersionId": "48dc2eff-d45d-475f-9b07-f97b50ad0f80",
+  "activeVersionId": "cc18a3e7-a583-4a72-9317-4ed70876e29a",
   "connections": {
     "app_id": {
       "main": [
@@ -1892,6 +1989,11 @@
             "node": "Switch",
             "type": "main",
             "index": 0
+          },
+          {
+            "node": "update_employee_info",
+            "type": "main",
+            "index": 0
           }
         ]
       ]
@@ -1929,7 +2031,7 @@
       "typeVersion": 1,
       "position": [
         -64,
-        -544
+        -624
       ],
       "id": "88e96534-65b1-44a7-95ff-d2bf6ffdd41c",
       "name": "get_app_info"
@@ -1953,7 +2055,7 @@
       "typeVersion": 3.4,
       "position": [
         -208,
-        -544
+        -624
       ],
       "id": "eb0857dc-1b09-4d21-ae3b-af0785dae889",
       "name": "app_id"
@@ -3110,7 +3212,7 @@
       "typeVersion": 2.1,
       "position": [
         -224,
-        128
+        160
       ],
       "id": "b21c95af-018c-44d3-bb35-bddc8447e822",
       "name": "seatalk_bot",
@@ -3142,6 +3244,98 @@
         }
       },
       "disabled": true
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "dataTableId": {
+          "__rl": true,
+          "value": "oyXKvWj5mW6M5dIX",
+          "mode": "list",
+          "cachedResultName": "phongvu-employee",
+          "cachedResultUrl": "/projects/GTQprNa3RcCSHh8s/datatables/oyXKvWj5mW6M5dIX"
+        },
+        "matchType": "allConditions",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "email",
+              "keyValue": "={{ $json.body.event.email }}"
+            }
+          ]
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "employee_code": "={{ $json.body.event.employee_code }}",
+            "email": "={{ $json.body.event.email }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "email",
+              "displayName": "email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "name",
+              "displayName": "name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "store",
+              "displayName": "store",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "qr_countt",
+              "displayName": "qr_countt",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "employee_code",
+              "displayName": "employee_code",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1.1,
+      "position": [
+        -208,
+        -480
+      ],
+      "id": "809b982c-3f0f-49a2-891d-27f8f4e26934",
+      "name": "update_employee_info"
     }
   ],
   "pinData": {
@@ -3220,40 +3414,41 @@
       "undefined": 1,
       "hoang.nv1@phongvu-mna.vn": 33,
       "sang.dta@phongvu-mna.vn": 17,
-      "toan.btq@phongvu-mna.vn": 11,
+      "toan.btq@phongvu-mna.vn": 12,
       "hieu.nh@phongvu-mna.vn": 22,
-      "an.nt@phongvu-mna.vn": 23,
+      "an.nt@phongvu-mna.vn": 24,
       "ban.vt@phongvu-mna.vn": 23,
       "nhut.tm@phongvu-mna.vn": 3,
       "canh.lv@phongvu-mna.vn": 7,
-      "linh.tg@phongvu-mna.vn": 29,
-      "quyen.dg@phongvu-mna.vn": 27,
+      "linh.tg@phongvu-mna.vn": 31,
+      "quyen.dg@phongvu-mna.vn": 29,
       "tuyen.ph@phongvu-mna.vn": 8,
       "loc.ph@phongvu-mna.vn": 15,
       "dang.nh@phongvu-mna.vn": 3,
       "thinh.np01@phongvu-mna.vn": 10,
       "tram.ntt@phongvu-mna.vn": 69,
       "hong.mv@phongvu-mna.vn": 2,
-      "thu.hm@phongvu-mna.vn": 26,
-      "tho.lt@phongvu-mna.vn": 7,
-      "hieu.ltm@phongvu-mna.vn": 29,
+      "thu.hm@phongvu-mna.vn": 28,
+      "tho.lt@phongvu-mna.vn": 9,
+      "hieu.ltm@phongvu-mna.vn": 30,
       "hung.bd@phongvu-mna.vn": 2,
       "huy.hm@phongvu-mna.vn": 14,
       "hai.ltp@phongvu-mna.vn": 17,
       "tuyen.ltb@phongvu-mna.vn": 1,
       "man.hp@phongvu-mna.vn": 2,
-      "lien.vtk01@phongvu-mna.vn": 21,
+      "lien.vtk01@phongvu-mna.vn": 24,
       "nghia.dh@phongvu-mna.vn": 1,
-      "anh.vtn@phongvu-mna.vn": 1,
+      "anh.vtn@phongvu-mna.vn": 2,
       "quyen.tv@phongvu-mna.vn": 6,
       "huong.ns@phongvu-mna.vn": 6,
       "long.nd@phongvu-mna.vn": 2,
-      "hong.lc@phongvu-mna.vn": 9,
+      "hong.lc@phongvu-mna.vn": 11,
       "hieu.hv@phongvu-mna.vn": 12,
       "huy.dv01@phongvu-mna.vn": 1,
       "dien.nnt01@phongvu-mna.vn": 2,
       "hao.nn01@phongvu-mna.vn": 3,
-      "thanh.pm@phongvu-mna.vn": 5
+      "thanh.pm@phongvu-mna.vn": 6,
+      "khoa.pd01@phongvu-mna.vn": 2
     }
   },
   "tags": [
@@ -3265,6 +3460,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2026-04-06T04:35:02.031Z",
-  "versionId": "48dc2eff-d45d-475f-9b07-f97b50ad0f80"
+  "updatedAt": "2026-04-14T11:42:48.145Z",
+  "versionId": "cc18a3e7-a583-4a72-9317-4ed70876e29a"
 }
