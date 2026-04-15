@@ -1,9 +1,9 @@
 {
   "active": true,
   "activeVersion": {
-    "updatedAt": "2026-04-06T05:27:43.345Z",
-    "createdAt": "2026-04-06T05:09:16.457Z",
-    "versionId": "0d4826f6-d3fa-481f-bb22-d0e9b00b3917",
+    "updatedAt": "2026-04-15T03:09:59.734Z",
+    "createdAt": "2026-04-15T03:09:56.079Z",
+    "versionId": "24d17520-bacd-40d3-bb4a-3333c4515f1e",
     "workflowId": "YJb3I9N6Bi7VeLur",
     "nodes": [
       {
@@ -548,7 +548,8 @@
             "id": "MTh9LghqaMKPTAzs",
             "name": "zalo-chat-bot-hoang.nv1"
           }
-        }
+        },
+        "onError": "continueRegularOutput"
       },
       {
         "parameters": {
@@ -671,11 +672,11 @@
       }
     },
     "authors": "Hoang Nguyen",
-    "name": "Version 0d4826f6",
+    "name": "Version 24d17520",
     "description": "",
     "autosaved": true
   },
-  "activeVersionId": "0d4826f6-d3fa-481f-bb22-d0e9b00b3917",
+  "activeVersionId": "24d17520-bacd-40d3-bb4a-3333c4515f1e",
   "connections": {
     "getMainDoc": {
       "main": [
@@ -1329,7 +1330,8 @@
           "id": "MTh9LghqaMKPTAzs",
           "name": "zalo-chat-bot-hoang.nv1"
         }
-      }
+      },
+      "onError": "continueRegularOutput"
     },
     {
       "parameters": {
@@ -1346,11 +1348,35 @@
       "webhookId": "450e522c-db67-4087-a519-90268a8c74db"
     }
   ],
-  "pinData": {},
+  "pinData": {
+    "Schedule Trigger": [
+      {
+        "json": {
+          "timestamp": "2026-04-15T10:00:25.004+07:00",
+          "Readable date": "April 15th 2026, 10:00:25 am",
+          "Readable time": "10:00:25 am",
+          "Day of week": "Wednesday",
+          "Year": "2026",
+          "Month": "April",
+          "Day of month": "15",
+          "Hour": "10",
+          "Minute": "00",
+          "Second": "25",
+          "Timezone": "Asia/Ho_Chi_Minh (UTC+07:00)"
+        },
+        "pairedItem": {
+          "item": 0
+        }
+      }
+    ]
+  },
   "settings": {
     "executionOrder": "v1",
     "binaryMode": "separate",
-    "availableInMCP": false
+    "availableInMCP": false,
+    "timeSavedMode": "fixed",
+    "errorWorkflow": "tUGf8pqhOC0yFiUP",
+    "callerPolicy": "workflowsFromSameOwner"
   },
   "shared": [
     {
@@ -1368,6 +1394,6 @@
   },
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2026-04-06T05:09:16.455Z",
-  "versionId": "0d4826f6-d3fa-481f-bb22-d0e9b00b3917"
+  "updatedAt": "2026-04-15T03:10:46.155Z",
+  "versionId": "24d17520-bacd-40d3-bb4a-3333c4515f1e"
 }
