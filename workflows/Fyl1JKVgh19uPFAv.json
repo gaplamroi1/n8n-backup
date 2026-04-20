@@ -1,0 +1,1618 @@
+{
+  "active": false,
+  "activeVersion": null,
+  "activeVersionId": null,
+  "connections": {
+    "upsert_ccd_log": {
+      "main": [
+        [
+          {
+            "node": "send_ccd",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "send_ccd": {
+      "main": [
+        [
+          {
+            "node": "update_ccd_log",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "set_date": {
+      "main": [
+        [
+          {
+            "node": "assign",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "update_ccd_log": {
+      "main": [
+        [
+          {
+            "node": "get_sale_info",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "get_sale_info": {
+      "main": [
+        [
+          {
+            "node": "create_ccd_log",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ccd_or_mrt": {
+      "main": [
+        [
+          {
+            "node": "upsert_ccd_log",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "upsert_mrt_log",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "upsert_mrt_log": {
+      "main": [
+        [
+          {
+            "node": "send_mrt",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "update_mrt_log": {
+      "main": [
+        [
+          {
+            "node": "get_all_employee",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "get_all_employee": {
+      "main": [
+        [
+          {
+            "node": "create_mrt_log",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "send_mrt": {
+      "main": [
+        [
+          {
+            "node": "update_mrt_log",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "assign": {
+      "main": [
+        [
+          {
+            "node": "ccd_or_mrt",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gmail Trigger": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "set_date",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "remind_hourly": {
+      "main": [
+        [
+          {
+            "node": "get_daily_log",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "set_date_check",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "get_daily_log": {
+      "main": [
+        [
+          {
+            "node": "Switch1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch1": {
+      "main": [
+        [
+          {
+            "node": "Limit",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Limit1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "check_ccd_not_done": {
+      "main": [
+        [
+          {
+            "node": "get_seatalk_id",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "join_name_ccd": {
+      "main": [
+        [
+          {
+            "node": "send_ccd_not_done",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "check_mrt_not_done": {
+      "main": [
+        [
+          {
+            "node": "get_seatalk_id1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "join_name_mrt": {
+      "main": [
+        [
+          {
+            "node": "send_mrt_not_done",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit": {
+      "main": [
+        [
+          {
+            "node": "check_ccd_not_done",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit1": {
+      "main": [
+        [
+          {
+            "node": "check_mrt_not_done",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "get_seatalk_id": {
+      "main": [
+        [
+          {
+            "node": "join_name_ccd",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "get_seatalk_id1": {
+      "main": [
+        [
+          {
+            "node": "join_name_mrt",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2026-04-19T17:01:41.717Z",
+  "id": "Fyl1JKVgh19uPFAv",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "workshop demo",
+  "nodes": [
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "filters": {}
+      },
+      "type": "n8n-nodes-base.gmailTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        0,
+        0
+      ],
+      "id": "01c25934-5ec0-4401-a023-0490be02f171",
+      "name": "Gmail Trigger",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "mdeJ5Cwz1YxLTzIG",
+          "name": "hoang.nv1"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## Báo có bài test mới",
+        "height": 480,
+        "width": 736
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        320,
+        -192
+      ],
+      "typeVersion": 1,
+      "id": "475c2eaa-1427-4d71-9f0f-0592c57f8766",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "operation": "upsert",
+        "dataTableId": {
+          "__rl": true,
+          "value": "81jFNYFMALN0MQjA",
+          "mode": "list",
+          "cachedResultName": "training-announcement-log",
+          "cachedResultUrl": "/projects/GTQprNa3RcCSHh8s/datatables/81jFNYFMALN0MQjA"
+        },
+        "matchType": "allConditions",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "date",
+              "keyValue": "={{ $('set_date').first().json.date}}"
+            },
+            {
+              "keyName": "subject",
+              "keyValue": "={{ $json.subject }}"
+            }
+          ]
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "subject": "={{ $json.subject }}",
+            "date": "={{ $('set_date').first().json.date}}",
+            "test": "ccd"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "date",
+              "displayName": "date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "subject",
+              "displayName": "subject",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "test",
+              "displayName": "test",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "status",
+              "displayName": "status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "allDone",
+              "displayName": "allDone",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "reportLastday",
+              "displayName": "reportLastday",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        384,
+        -144
+      ],
+      "id": "bb717e53-209e-4a9b-92bb-ca00d03da89e",
+      "name": "upsert_ccd_log"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://openapi.seatalk.io/messaging/v2/group_chat",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $('get_app_info').first().json.app_access_token }}"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"group_id\":\"{{ $('set_group_info').first().json.group_training }}\",\n    \"message\":{\n        \"tag\":\"interactive_message\",\n        \"interactive_message\":{\n            \"elements\":[\n                {\n                    \"element_type\":\"title\",\n                    \"title\":{\n                        \"text\":\"QUẢN LÝ VÀ BÁN HÀNG CÓ BÀI TEST CẦN CÂU DEAL {{ $('set_date').first().json.date }}\"\n                    }\n                },\n                {\n                    \"element_type\":\"description\",\n                    \"description\":{\n                        \"format\": 1,\n                        \"text\":\"<mention-tag target=\\\"seatalk://user?id=0\\\"/> Bấm Làm Bài để truy cập link làm bài.\\nSau khi làm xong bấm Hoàn Thành để ghi nhận báo cáo\"\n                    }\n                },\n                {\n                    \"element_type\": \"button\",\n                    \"button\": {\n                        \"button_type\": \"redirect\",\n                        \"text\": \"Làm Bài\",\n                        \"desktop_link\": {\n                            \"type\": \"web\",\n                            \"path\": \"https://daotao.phongvu.vn/my-examination\"\n                        },\n                        \"mobile_link\": {\n                            \"type\": \"web\",\n                            \"path\": \"https://daotao.phongvu.vn/my-examination\"\n                        }\n                    }\n                },\n                {\n                    \"element_type\":\"button\",\n                    \"button\":{\n                        \"button_type\":\"callback\",\n                        \"text\":\"Hoàn Thành\",\n                        \"value\":\"done_ccd\"\n                    }\n                }\n            ]\n        }\n    }\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        512,
+        -144
+      ],
+      "id": "89527b83-cef6-45be-aefb-3fd57144d993",
+      "name": "send_ccd"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "072a56d6-19ad-4026-8480-fdce9898a143",
+              "name": "date",
+              "value": "={{ \n    DateTime\n      .fromISO(\n        $json.date,\n        { zone: 'Asia/Ho_Chi_Minh' }\n      )\n      .toFormat('dd/MM/yyyy')\n  }}",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        384,
+        0
+      ],
+      "id": "ff0a35c3-36cc-4d74-8523-8a200d93da95",
+      "name": "set_date"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "dataTableId": {
+          "__rl": true,
+          "value": "81jFNYFMALN0MQjA",
+          "mode": "list",
+          "cachedResultName": "training-announcement-log",
+          "cachedResultUrl": "/projects/GTQprNa3RcCSHh8s/datatables/81jFNYFMALN0MQjA"
+        },
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "subject",
+              "keyValue": "={{ $('ccd_or_mrt').first().json.subject }}"
+            }
+          ]
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "status": "sent"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "date",
+              "displayName": "date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "subject",
+              "displayName": "subject",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "test",
+              "displayName": "test",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "status",
+              "displayName": "status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "allDone",
+              "displayName": "allDone",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "reportLastday",
+              "displayName": "reportLastday",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        640,
+        -144
+      ],
+      "id": "1d2494ae-889f-4c70-b639-a95a810a4238",
+      "name": "update_ccd_log"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "dataTableId": {
+          "__rl": true,
+          "value": "QpxIohOBxfgdnxrO",
+          "mode": "list",
+          "cachedResultName": "cp62_employee",
+          "cachedResultUrl": "/projects/GTQprNa3RcCSHh8s/datatables/QpxIohOBxfgdnxrO"
+        },
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "title",
+              "keyValue": "Sale"
+            },
+            {
+              "keyName": "title",
+              "keyValue": "SM"
+            },
+            {
+              "keyName": "title",
+              "keyValue": "DSM"
+            }
+          ]
+        },
+        "returnAll": true
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        768,
+        -144
+      ],
+      "id": "0cc722ed-4058-4a7d-be87-937c95181d82",
+      "name": "get_sale_info"
+    },
+    {
+      "parameters": {
+        "operation": "upsert",
+        "dataTableId": {
+          "__rl": true,
+          "value": "a52MsX2R5gSxaONV",
+          "mode": "list",
+          "cachedResultName": "ccd_log",
+          "cachedResultUrl": "/projects/GTQprNa3RcCSHh8s/datatables/a52MsX2R5gSxaONV"
+        },
+        "matchType": "allConditions",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "date",
+              "keyValue": "={{ $('set_date').first().json.date}}"
+            },
+            {
+              "keyName": "email",
+              "keyValue": "={{ $('get_sale_info').item.json.email }}"
+            }
+          ]
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "date": "={{ $('set_date').first().json.date}}",
+            "email": "={{ $('get_sale_info').item.json.email }}",
+            "fullName": "={{ $('get_sale_info').item.json.name}}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "date",
+              "displayName": "date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "email",
+              "displayName": "email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "fullName",
+              "displayName": "fullName",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "checkCcd",
+              "displayName": "checkCcd",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "ccdPoint",
+              "displayName": "ccdPoint",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        896,
+        -144
+      ],
+      "id": "4d834572-7b13-4ff4-a24c-6589d1681dc9",
+      "name": "create_ccd_log"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": false,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "88987bf1-767f-4e7b-9f26-da29a94208af",
+              "leftValue": "={{ $json.subject }}",
+              "rightValue": "DEAL",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {
+          "ignoreCase": true
+        }
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        640,
+        0
+      ],
+      "id": "293aa878-6ed5-4278-8b3f-f1fdc22dbdcf",
+      "name": "ccd_or_mrt"
+    },
+    {
+      "parameters": {
+        "operation": "upsert",
+        "dataTableId": {
+          "__rl": true,
+          "value": "81jFNYFMALN0MQjA",
+          "mode": "list",
+          "cachedResultName": "training-announcement-log",
+          "cachedResultUrl": "/projects/GTQprNa3RcCSHh8s/datatables/81jFNYFMALN0MQjA"
+        },
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "subject",
+              "keyValue": "={{ $json.subject }}"
+            }
+          ]
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "subject": "={{ $json.subject }}",
+            "date": "={{ $('set_date').first().json.date}}",
+            "test": "mrt"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "date",
+              "displayName": "date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "subject",
+              "displayName": "subject",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "test",
+              "displayName": "test",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "status",
+              "displayName": "status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "allDone",
+              "displayName": "allDone",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "reportLastday",
+              "displayName": "reportLastday",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        384,
+        144
+      ],
+      "id": "ef2c7726-911c-446d-aca6-a280d0706277",
+      "name": "upsert_mrt_log"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "dataTableId": {
+          "__rl": true,
+          "value": "81jFNYFMALN0MQjA",
+          "mode": "list",
+          "cachedResultName": "training-announcement-log",
+          "cachedResultUrl": "/projects/GTQprNa3RcCSHh8s/datatables/81jFNYFMALN0MQjA"
+        },
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "subject",
+              "keyValue": "={{ $('ccd_or_mrt').first().json.subject }}"
+            }
+          ]
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "status": "sent"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "date",
+              "displayName": "date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "subject",
+              "displayName": "subject",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "test",
+              "displayName": "test",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "status",
+              "displayName": "status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "allDone",
+              "displayName": "allDone",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "reportLastday",
+              "displayName": "reportLastday",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        640,
+        144
+      ],
+      "id": "f777b49f-e21f-4d77-a520-63a9fcb9e18b",
+      "name": "update_mrt_log"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "dataTableId": {
+          "__rl": true,
+          "value": "QpxIohOBxfgdnxrO",
+          "mode": "list",
+          "cachedResultName": "cp62_employee",
+          "cachedResultUrl": "/projects/GTQprNa3RcCSHh8s/datatables/QpxIohOBxfgdnxrO"
+        }
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        768,
+        144
+      ],
+      "id": "32e95b73-cbcb-4b56-9f1e-3ddb05675c87",
+      "name": "get_all_employee"
+    },
+    {
+      "parameters": {
+        "operation": "upsert",
+        "dataTableId": {
+          "__rl": true,
+          "value": "KO0MvARc6QDSIbif",
+          "mode": "list",
+          "cachedResultName": "mrt_log",
+          "cachedResultUrl": "/projects/GTQprNa3RcCSHh8s/datatables/KO0MvARc6QDSIbif"
+        },
+        "matchType": "allConditions",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "date",
+              "keyValue": "={{ $('set_date').first().json.date}}"
+            },
+            {
+              "keyName": "email",
+              "keyValue": "={{ $json.email }}"
+            }
+          ]
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "email": "={{ $json.email }}",
+            "fullName": "={{ $json.name }}",
+            "date": "={{ $('set_date').first().json.date}}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "date",
+              "displayName": "date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "email",
+              "displayName": "email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "fullName",
+              "displayName": "fullName",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "checkMrt",
+              "displayName": "checkMrt",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "mrtPoint",
+              "displayName": "mrtPoint",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        896,
+        144
+      ],
+      "id": "916ce663-0293-4291-90bc-925e4b2e1669",
+      "name": "create_mrt_log"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://openapi.seatalk.io/messaging/v2/group_chat",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $('get_app_info').first().json.app_access_token }}"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"group_id\":\"{{ $('set_group_info').first().json.group_training }}\",\n    \"message\":{\n        \"tag\":\"interactive_message\",\n        \"interactive_message\":{\n            \"elements\":[\n                {\n                    \"element_type\":\"title\",\n                    \"title\":{\n                        \"text\":\"TẤT CẢ NHÂN SỰ CÓ BÀI MARATHON KIẾN THỨC - {{ $('set_date').first().json.date }}\"\n                    }\n                },\n                {\n                    \"element_type\":\"description\",\n                    \"description\":{\n                        \"format\": 1,\n                        \"text\":\"<mention-tag target=\\\"seatalk://user?id=0\\\"/> Bấm Làm Bài để truy cập link làm bài.\\nSau khi làm xong bấm Hoàn Thành để ghi nhận báo cáo\"\n                    }\n                },\n                {\n                    \"element_type\": \"button\",\n                    \"button\": {\n                        \"button_type\": \"redirect\",\n                        \"text\": \"Làm Bài\",\n                        \"desktop_link\": {\n                            \"type\": \"web\",\n                            \"path\": \"https://daotao.phongvu.vn/my-examination\"\n                        },\n                        \"mobile_link\": {\n                            \"type\": \"web\",\n                            \"path\": \"https://daotao.phongvu.vn/my-examination\"\n                        }\n                    }\n                },\n                {\n                    \"element_type\":\"button\",\n                    \"button\":{\n                        \"button_type\":\"callback\",\n                        \"text\":\"Hoàn Thành\",\n                        \"value\":\"done_mrt\"\n                    }\n                }\n            ]\n        }\n    }\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        512,
+        144
+      ],
+      "id": "e39694b0-8461-4a44-918a-b7474af5e2e4",
+      "name": "send_mrt"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": false,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "22467915-89af-4966-a2c5-5f7404991f59",
+              "leftValue": "={{ $json.subject }}",
+              "rightValue": "assign",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {
+          "ignoreCase": true
+        }
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        512,
+        0
+      ],
+      "id": "c82ca694-3ac3-4cf8-b051-b250c04fed56",
+      "name": "assign"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "leftValue": "",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "41ca3e77-5a94-4a9d-ba9f-f22d35c4577b"
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.4,
+      "position": [
+        160,
+        0
+      ],
+      "id": "a7aefe28-bdd9-432a-a49a-a92f217bd452",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "=0 12-17 * * *"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        0,
+        704
+      ],
+      "id": "99b0101e-5d62-4b20-878b-511dbc466d8c",
+      "name": "remind_hourly"
+    },
+    {
+      "parameters": {
+        "content": "## Kiểm tra mỗi 1h ai chưa làm test",
+        "height": 480,
+        "width": 1104,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -48,
+        560
+      ],
+      "typeVersion": 1,
+      "id": "504a3583-a416-4f20-bcea-e1bc97cfecaa",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "dataTableId": {
+          "__rl": true,
+          "value": "81jFNYFMALN0MQjA",
+          "mode": "list",
+          "cachedResultName": "training-announcement-log",
+          "cachedResultUrl": "/projects/GTQprNa3RcCSHh8s/datatables/81jFNYFMALN0MQjA"
+        },
+        "matchType": "allConditions",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "allDone",
+              "condition": "neq",
+              "keyValue": "true"
+            },
+            {
+              "keyName": "date",
+              "keyValue": "={{ $('set_date_check').first().json.date }}"
+            }
+          ]
+        },
+        "returnAll": true
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        128,
+        784
+      ],
+      "id": "c15a8add-9ae8-4639-857f-60105d5690a2",
+      "name": "get_daily_log",
+      "alwaysOutputData": false
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "072a56d6-19ad-4026-8480-fdce9898a143",
+              "name": "date",
+              "value": "={{ \n  DateTime\n    .fromISO($json.timestamp, { zone: 'Asia/Ho_Chi_Minh' })\n    .toFormat('dd/MM/yyyy') \n}}",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        128,
+        624
+      ],
+      "id": "1dfab5f5-1433-4ef9-baed-6785b0ad783e",
+      "name": "set_date_check"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.test }}",
+                    "rightValue": "ccd",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "6e3642c0-8067-4ec2-957e-eda3ee6abb1e"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "ccd_remind"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "a71266a7-656e-4e48-8932-cab6d4492cf9",
+                    "leftValue": "={{ $json.test }}",
+                    "rightValue": "mrt",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "mrt_remind"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.4,
+      "position": [
+        256,
+        784
+      ],
+      "id": "24b5f757-9533-4bda-8d82-b40d756ca01b",
+      "name": "Switch1"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "dataTableId": {
+          "__rl": true,
+          "value": "a52MsX2R5gSxaONV",
+          "mode": "list",
+          "cachedResultName": "ccd_log",
+          "cachedResultUrl": "/projects/GTQprNa3RcCSHh8s/datatables/a52MsX2R5gSxaONV"
+        },
+        "matchType": "allConditions",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "date",
+              "keyValue": "={{ $('set_date_check').first().json.date }}"
+            },
+            {
+              "keyName": "checkCcd",
+              "condition": "neq",
+              "keyValue": "done_ccd"
+            }
+          ]
+        },
+        "returnAll": true
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        512,
+        704
+      ],
+      "id": "4cf2eb02-d290-4521-833f-08e852b9e531",
+      "name": "check_ccd_not_done",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "jsCode": "// Lấy toàn bộ item input\nconst items = $input.all();\n\n// Gom các mention-tag\nconst mentions = items\n  .map(item => item.json.seatalk_id)\n  .filter(id => id)\n  .map(\n    id => `<mention-tag target=\\\\\\\"seatalk://user?id=${id}\\\\\\\"/>`\n  );\n\n// Ghép thành 1 chuỗi xuống dòng (SeaTalk parse tốt nhất)\nconst content = mentions.join(' - ');\n\n// Trả ra 1 item\nreturn [\n  {\n    json: {\n      content,\n    },\n  },\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        768,
+        704
+      ],
+      "id": "d0e473dc-da9b-4fa4-89a7-5bd39bf19679",
+      "name": "join_name_ccd"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "dataTableId": {
+          "__rl": true,
+          "value": "KO0MvARc6QDSIbif",
+          "mode": "list",
+          "cachedResultName": "mrt_log",
+          "cachedResultUrl": "/projects/GTQprNa3RcCSHh8s/datatables/KO0MvARc6QDSIbif"
+        },
+        "matchType": "allConditions",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "date",
+              "keyValue": "={{ $('set_date_check').first().json.date }}"
+            },
+            {
+              "keyName": "checkMrt",
+              "condition": "neq",
+              "keyValue": "done_mrt"
+            }
+          ]
+        },
+        "returnAll": true
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        512,
+        864
+      ],
+      "id": "b6365d5a-fcf2-4462-bc69-b042c1b5161d",
+      "name": "check_mrt_not_done",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "jsCode": "// Lấy toàn bộ item input\nconst items = $input.all();\n\n// Gom các mention-tag\nconst mentions = items\n  .map(item => item.json.seatalk_id)\n  .filter(id => id)\n  .map(\n    id => `<mention-tag target=\\\\\\\"seatalk://user?id=${id}\\\\\\\"/>`\n  );\n\n// Ghép thành 1 chuỗi xuống dòng (SeaTalk parse tốt nhất)\nconst content = mentions.join(' - ');\n\n// Trả ra 1 item\nreturn [\n  {\n    json: {\n      content,\n    },\n  },\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        768,
+        864
+      ],
+      "id": "8e6e36f2-b7a6-4998-bbc7-e18e7eca2fa4",
+      "name": "join_name_mrt"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://openapi.seatalk.io/messaging/v2/group_chat",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $('get_app_info').first().json.app_access_token }}"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"group_id\":\"{{ $('set_group_info').first().json.group_training }}\",\n    \"message\":{\n        \"tag\":\"interactive_message\",\n        \"interactive_message\":{\n            \"elements\":[\n                {\n                    \"element_type\":\"title\",\n                    \"title\":{\n                        \"text\":\"DANH SÁCH NHÂN SỰ CHƯA HOÀN THÀNH CẦN CÂU DEAL NGÀY {{ $('set_date_check').first().json.date }}:\"\n                    }\n                },\n                {\n                    \"element_type\":\"description\",\n                    \"description\":{\n                        \"format\": 1,\n                        \"text\":\"{{ $json.content }}\"\n                    }\n                },\n                {\n                    \"element_type\": \"button\",\n                    \"button\": {\n                        \"button_type\": \"redirect\",\n                        \"text\": \"Làm Ngay\",\n                        \"desktop_link\": {\n                            \"type\": \"web\",\n                            \"path\": \"https://daotao.phongvu.vn/my-examination\"\n                        },\n                        \"mobile_link\": {\n                            \"type\": \"web\",\n                            \"path\": \"https://daotao.phongvu.vn/my-examination\"\n                        }\n                    }\n                },\n                {\n                    \"element_type\":\"button\",\n                    \"button\":{\n                        \"button_type\":\"callback\",\n                        \"text\":\"Hoàn Thành\",\n                        \"value\":\"done_ccd\"\n                    }\n                }\n            ]\n        }\n    }\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        896,
+        704
+      ],
+      "id": "530ee3cc-0362-473d-9754-da132705a4ac",
+      "name": "send_ccd_not_done"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://openapi.seatalk.io/messaging/v2/group_chat",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $('get_app_info').first().json.app_access_token }}"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"group_id\":\"{{ $('set_group_info').first().json.group_training }}\",\n    \"message\":{\n        \"tag\":\"interactive_message\",\n        \"interactive_message\":{\n            \"elements\":[\n                {\n                    \"element_type\":\"title\",\n                    \"title\":{\n                        \"text\":\"DANH SÁCH NHÂN SỰ CHƯA HOÀN THÀNH MARATHON KIẾN THỨC NGÀY {{ $('set_date_check').first().json.date }}:\"\n                    }\n                },\n                {\n                    \"element_type\":\"description\",\n                    \"description\":{\n                        \"format\": 1,\n                        \"text\":\"{{ $json.content }}\"\n                    }\n                },\n                {\n                    \"element_type\": \"button\",\n                    \"button\": {\n                        \"button_type\": \"redirect\",\n                        \"text\": \"Làm Ngay\",\n                        \"desktop_link\": {\n                            \"type\": \"web\",\n                            \"path\": \"https://daotao.phongvu.vn/my-examination\"\n                        },\n                        \"mobile_link\": {\n                            \"type\": \"web\",\n                            \"path\": \"https://daotao.phongvu.vn/my-examination\"\n                        }\n                    }\n                },\n                {\n                    \"element_type\":\"button\",\n                    \"button\":{\n                        \"button_type\":\"callback\",\n                        \"text\":\"Hoàn Thành\",\n                        \"value\":\"done_mrt\"\n                    }\n                }\n            ]\n        }\n    }\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        896,
+        864
+      ],
+      "id": "5942a797-ebb1-4199-bf7b-d29b7f8e7dcd",
+      "name": "send_mrt_not_done"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        384,
+        704
+      ],
+      "id": "bec26904-1834-40a6-835b-cde6c4c49971",
+      "name": "Limit"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        384,
+        864
+      ],
+      "id": "98e7edc4-4e7a-4469-8c14-d8bac8c48244",
+      "name": "Limit1"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "dataTableId": {
+          "__rl": true,
+          "value": "QpxIohOBxfgdnxrO",
+          "mode": "list",
+          "cachedResultName": "cp62_employee",
+          "cachedResultUrl": "/projects/GTQprNa3RcCSHh8s/datatables/QpxIohOBxfgdnxrO"
+        },
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "email",
+              "keyValue": "={{ $json.email }}"
+            }
+          ]
+        },
+        "returnAll": true
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        640,
+        704
+      ],
+      "id": "8bb87eb5-5993-4344-9ff9-36ec8baf2a5e",
+      "name": "get_seatalk_id"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "dataTableId": {
+          "__rl": true,
+          "value": "QpxIohOBxfgdnxrO",
+          "mode": "list",
+          "cachedResultName": "cp62_employee",
+          "cachedResultUrl": "/projects/GTQprNa3RcCSHh8s/datatables/QpxIohOBxfgdnxrO"
+        },
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "email",
+              "keyValue": "={{ $json.email }}"
+            }
+          ]
+        },
+        "returnAll": true
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        640,
+        864
+      ],
+      "id": "fb26e903-880d-4a16-8f7e-43c55c64408b",
+      "name": "get_seatalk_id1"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-04-19T17:01:41.717Z",
+      "createdAt": "2026-04-19T17:01:41.717Z",
+      "role": "workflow:owner",
+      "workflowId": "Fyl1JKVgh19uPFAv",
+      "projectId": "GTQprNa3RcCSHh8s"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2026-04-19T17:07:45.486Z",
+  "versionId": "f755534f-29ab-40b6-aaa8-bb3be42519a4"
+}
