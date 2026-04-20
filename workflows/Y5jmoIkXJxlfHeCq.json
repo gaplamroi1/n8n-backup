@@ -1,9 +1,9 @@
 {
   "active": true,
   "activeVersion": {
-    "updatedAt": "2026-03-28T09:45:30.478Z",
-    "createdAt": "2026-03-28T09:45:29.050Z",
-    "versionId": "be48749b-ea46-4d30-a05b-22ce4bc1e5f4",
+    "updatedAt": "2026-04-20T02:09:20.718Z",
+    "createdAt": "2026-04-20T02:06:49.474Z",
+    "versionId": "68c7a555-6dce-49a1-aa49-85b668ebf265",
     "workflowId": "Y5jmoIkXJxlfHeCq",
     "nodes": [
       {
@@ -618,14 +618,15 @@
         "parameters": {
           "modelId": {
             "__rl": true,
-            "value": "te/gpt-5.2",
-            "mode": "id"
+            "value": "cx/gpt-5.4",
+            "mode": "list",
+            "cachedResultName": "CX/GPT-5.4"
           },
           "responses": {
             "values": [
               {
                 "role": "system",
-                "content": "bạn là assistant của tôi"
+                "content": "trả lời đúng chữ \"Xin chào\""
               },
               {
                 "content": "=hello"
@@ -645,8 +646,8 @@
         "name": "Message a model",
         "credentials": {
           "openAiApi": {
-            "id": "THsMsFfcQVRArFz5",
-            "name": "tokeneco"
+            "id": "UO3LgXIUj4eQocVW",
+            "name": "9router"
           }
         }
       }
@@ -858,11 +859,11 @@
       }
     },
     "authors": "Hoang Nguyen",
-    "name": "Version be48749b",
+    "name": "Version 68c7a555",
     "description": "",
     "autosaved": false
   },
-  "activeVersionId": "be48749b-ea46-4d30-a05b-22ce4bc1e5f4",
+  "activeVersionId": "68c7a555-6dce-49a1-aa49-85b668ebf265",
   "connections": {
     "Mark tele orders as read": {
       "main": [
@@ -1689,14 +1690,15 @@
       "parameters": {
         "modelId": {
           "__rl": true,
-          "value": "te/gpt-5.2",
-          "mode": "id"
+          "value": "cx/gpt-5.4",
+          "mode": "list",
+          "cachedResultName": "CX/GPT-5.4"
         },
         "responses": {
           "values": [
             {
               "role": "system",
-              "content": "bạn là assistant của tôi"
+              "content": "trả lời đúng chữ \"Xin chào\""
             },
             {
               "content": "=hello"
@@ -1716,8 +1718,8 @@
       "name": "Message a model",
       "credentials": {
         "openAiApi": {
-          "id": "THsMsFfcQVRArFz5",
-          "name": "tokeneco"
+          "id": "UO3LgXIUj4eQocVW",
+          "name": "9router"
         }
       }
     }
@@ -1828,6 +1830,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2026-03-28T09:45:29.048Z",
-  "versionId": "be48749b-ea46-4d30-a05b-22ce4bc1e5f4"
+  "updatedAt": "2026-04-20T02:06:49.472Z",
+  "versionId": "68c7a555-6dce-49a1-aa49-85b668ebf265"
 }
