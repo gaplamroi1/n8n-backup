@@ -11031,8 +11031,8 @@
       "type": "n8n-nodes-base.dataTable",
       "typeVersion": 1.1,
       "position": [
-        688,
-        528
+        624,
+        480
       ],
       "id": "34a03116-4fcb-4d4f-869a-8cf9b7066b14",
       "name": "oos_logging"
@@ -11065,9 +11065,10 @@
     },
     "node:Gmail Trigger": {
       "Gmail Trigger": {
-        "lastTimeChecked": 1776586399,
+        "lastTimeChecked": 1776684234,
         "possibleDuplicates": [
-          "19da4cd28c89d1bf"
+          "19daaa20585bc3dd",
+          "19daa98439ccf0d8"
         ]
       }
     }
@@ -11081,6 +11082,6 @@
     }
   ],
   "triggerCount": 4,
-  "updatedAt": "2026-04-08T10:44:25.230Z",
-  "versionId": "00581268-a2a6-453b-be0b-f571f6279765"
+  "updatedAt": "2026-04-19T17:01:09.171Z",
+  "versionId": "cd994536-8baa-441c-8752-09ddbc62e444"
 }
