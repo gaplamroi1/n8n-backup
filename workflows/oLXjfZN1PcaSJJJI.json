@@ -1,9 +1,9 @@
 {
   "active": true,
   "activeVersion": {
-    "updatedAt": "2026-04-14T11:42:49.803Z",
-    "createdAt": "2026-04-14T11:42:48.147Z",
-    "versionId": "cc18a3e7-a583-4a72-9317-4ed70876e29a",
+    "updatedAt": "2026-04-24T08:19:37.184Z",
+    "createdAt": "2026-04-24T08:18:45.790Z",
+    "versionId": "771d9d00-ef42-40c1-8ea6-14d6bd3a9513",
     "workflowId": "oLXjfZN1PcaSJJJI",
     "nodes": [
       {
@@ -29,8 +29,8 @@
         "type": "n8n-nodes-base.dataTable",
         "typeVersion": 1,
         "position": [
-          -64,
-          -624
+          -384,
+          -656
         ],
         "id": "88e96534-65b1-44a7-95ff-d2bf6ffdd41c",
         "name": "get_app_info"
@@ -53,8 +53,8 @@
         "type": "n8n-nodes-base.set",
         "typeVersion": 3.4,
         "position": [
-          -208,
-          -624
+          -528,
+          -656
         ],
         "id": "eb0857dc-1b09-4d21-ae3b-af0785dae889",
         "name": "app_id"
@@ -1210,7 +1210,7 @@
         "type": "n8n-nodes-base.webhook",
         "typeVersion": 2.1,
         "position": [
-          -224,
+          -384,
           160
         ],
         "id": "b21c95af-018c-44d3-bb35-bddc8447e822",
@@ -1230,8 +1230,8 @@
         "type": "n8n-nodes-base.webhook",
         "typeVersion": 2.1,
         "position": [
-          -528,
-          288
+          -704,
+          656
         ],
         "id": "0db07e82-4624-45bc-9099-0269c1f9c847",
         "name": "Webhook",
@@ -1330,11 +1330,47 @@
         "type": "n8n-nodes-base.dataTable",
         "typeVersion": 1.1,
         "position": [
-          -208,
-          -480
+          -528,
+          -512
         ],
         "id": "809b982c-3f0f-49a2-891d-27f8f4e26934",
         "name": "update_employee_info"
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": false,
+              "leftValue": "",
+              "typeValidation": "loose",
+              "version": 3
+            },
+            "conditions": [
+              {
+                "id": "7bcf960f-da8c-4b25-9e51-8c2911827914",
+                "leftValue": "={{ $json.body.event.email }}",
+                "rightValue": "phongvu",
+                "operator": {
+                  "type": "string",
+                  "operation": "contains"
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "looseTypeValidation": true,
+          "options": {
+            "ignoreCase": true
+          }
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.3,
+        "position": [
+          -224,
+          160
+        ],
+        "id": "325f952e-34a9-4e62-b9c9-7869de60277a",
+        "name": "If1"
       }
     ],
     "connections": {
@@ -1652,12 +1688,23 @@
               "index": 0
             },
             {
-              "node": "Switch",
+              "node": "update_employee_info",
               "type": "main",
               "index": 0
             },
             {
-              "node": "update_employee_info",
+              "node": "If1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "If1": {
+        "main": [
+          [
+            {
+              "node": "Switch",
               "type": "main",
               "index": 0
             }
@@ -1666,11 +1713,11 @@
       }
     },
     "authors": "Hoang Nguyen",
-    "name": "Version cc18a3e7",
+    "name": "Version 771d9d00",
     "description": "",
-    "autosaved": false
+    "autosaved": true
   },
-  "activeVersionId": "cc18a3e7-a583-4a72-9317-4ed70876e29a",
+  "activeVersionId": "771d9d00-ef42-40c1-8ea6-14d6bd3a9513",
   "connections": {
     "app_id": {
       "main": [
@@ -1986,12 +2033,23 @@
             "index": 0
           },
           {
-            "node": "Switch",
+            "node": "update_employee_info",
             "type": "main",
             "index": 0
           },
           {
-            "node": "update_employee_info",
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "Switch",
             "type": "main",
             "index": 0
           }
@@ -2030,8 +2088,8 @@
       "type": "n8n-nodes-base.dataTable",
       "typeVersion": 1,
       "position": [
-        -64,
-        -624
+        -384,
+        -656
       ],
       "id": "88e96534-65b1-44a7-95ff-d2bf6ffdd41c",
       "name": "get_app_info"
@@ -2054,8 +2112,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        -208,
-        -624
+        -528,
+        -656
       ],
       "id": "eb0857dc-1b09-4d21-ae3b-af0785dae889",
       "name": "app_id"
@@ -3211,7 +3269,7 @@
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2.1,
       "position": [
-        -224,
+        -384,
         160
       ],
       "id": "b21c95af-018c-44d3-bb35-bddc8447e822",
@@ -3231,8 +3289,8 @@
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2.1,
       "position": [
-        -528,
-        288
+        -704,
+        656
       ],
       "id": "0db07e82-4624-45bc-9099-0269c1f9c847",
       "name": "Webhook",
@@ -3331,11 +3389,47 @@
       "type": "n8n-nodes-base.dataTable",
       "typeVersion": 1.1,
       "position": [
-        -208,
-        -480
+        -528,
+        -512
       ],
       "id": "809b982c-3f0f-49a2-891d-27f8f4e26934",
       "name": "update_employee_info"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": false,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "7bcf960f-da8c-4b25-9e51-8c2911827914",
+              "leftValue": "={{ $json.body.event.email }}",
+              "rightValue": "phongvu",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {
+          "ignoreCase": true
+        }
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        -224,
+        160
+      ],
+      "id": "325f952e-34a9-4e62-b9c9-7869de60277a",
+      "name": "If1"
     }
   ],
   "pinData": {
@@ -3412,16 +3506,16 @@
     "global": {
       "count": 2,
       "undefined": 1,
-      "hoang.nv1@phongvu-mna.vn": 35,
+      "hoang.nv1@phongvu-mna.vn": 36,
       "sang.dta@phongvu-mna.vn": 19,
       "toan.btq@phongvu-mna.vn": 13,
-      "hieu.nh@phongvu-mna.vn": 32,
+      "hieu.nh@phongvu-mna.vn": 33,
       "an.nt@phongvu-mna.vn": 34,
-      "ban.vt@phongvu-mna.vn": 33,
+      "ban.vt@phongvu-mna.vn": 34,
       "nhut.tm@phongvu-mna.vn": 3,
-      "canh.lv@phongvu-mna.vn": 11,
-      "linh.tg@phongvu-mna.vn": 43,
-      "quyen.dg@phongvu-mna.vn": 40,
+      "canh.lv@phongvu-mna.vn": 12,
+      "linh.tg@phongvu-mna.vn": 46,
+      "quyen.dg@phongvu-mna.vn": 41,
       "tuyen.ph@phongvu-mna.vn": 10,
       "loc.ph@phongvu-mna.vn": 16,
       "dang.nh@phongvu-mna.vn": 4,
@@ -3429,14 +3523,14 @@
       "tram.ntt@phongvu-mna.vn": 84,
       "hong.mv@phongvu-mna.vn": 3,
       "thu.hm@phongvu-mna.vn": 34,
-      "tho.lt@phongvu-mna.vn": 15,
-      "hieu.ltm@phongvu-mna.vn": 40,
+      "tho.lt@phongvu-mna.vn": 16,
+      "hieu.ltm@phongvu-mna.vn": 42,
       "hung.bd@phongvu-mna.vn": 2,
       "huy.hm@phongvu-mna.vn": 20,
-      "hai.ltp@phongvu-mna.vn": 25,
+      "hai.ltp@phongvu-mna.vn": 26,
       "tuyen.ltb@phongvu-mna.vn": 1,
       "man.hp@phongvu-mna.vn": 2,
-      "lien.vtk01@phongvu-mna.vn": 36,
+      "lien.vtk01@phongvu-mna.vn": 37,
       "nghia.dh@phongvu-mna.vn": 1,
       "anh.vtn@phongvu-mna.vn": 4,
       "quyen.tv@phongvu-mna.vn": 10,
@@ -3450,12 +3544,15 @@
       "thanh.pm@phongvu-mna.vn": 10,
       "khoa.pd01@phongvu-mna.vn": 3,
       "tuan.hnq@phongvu-mna.vn": 1,
-      "vu.nl@phongvu-mna.vn": 1,
-      "hung.nm02@phongvu-mna.vn": 10,
+      "vu.nl@phongvu-mna.vn": 3,
+      "hung.nm02@phongvu-mna.vn": 14,
       "huong.htk@phongvu-mna.vn": 1,
-      "ngan.ttk01@phongvu-mna.vn": 4,
-      "nguyen.nh@phongvu-mna.vn": 3,
-      "thao.htt@phongvu-mna.vn": 2
+      "ngan.ttk01@phongvu-mna.vn": 5,
+      "nguyen.nh@phongvu-mna.vn": 4,
+      "thao.htt@phongvu-mna.vn": 3,
+      "chinh.ltd01@phongvu-mna.vn": 1,
+      "phong.lq@phongvu-mna.vn": 1,
+      "khanh.px@phongvu-mna.vn": 1
     }
   },
   "tags": [
@@ -3467,6 +3564,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2026-04-14T11:42:48.145Z",
-  "versionId": "cc18a3e7-a583-4a72-9317-4ed70876e29a"
+  "updatedAt": "2026-04-24T08:18:45.789Z",
+  "versionId": "771d9d00-ef42-40c1-8ea6-14d6bd3a9513"
 }
