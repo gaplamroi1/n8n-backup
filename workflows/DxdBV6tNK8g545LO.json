@@ -1,9 +1,9 @@
 {
   "active": true,
   "activeVersion": {
-    "updatedAt": "2026-03-28T08:03:47.477Z",
-    "createdAt": "2026-03-25T10:23:14.463Z",
-    "versionId": "f28779ae-5e85-4a21-8482-a6177ef3aa71",
+    "updatedAt": "2026-04-28T07:17:39.177Z",
+    "createdAt": "2026-04-28T07:17:36.314Z",
+    "versionId": "460c4b16-6409-4e1a-94a6-4aa781c61d52",
     "workflowId": "DxdBV6tNK8g545LO",
     "nodes": [
       {
@@ -25,6 +25,7 @@
         "id": "7f938cd1-e127-468d-83d0-b3a2134205cd",
         "name": "Get many messages",
         "webhookId": "55095519-7b3a-4145-bef3-10e6915e24b1",
+        "retryOnFail": true,
         "credentials": {
           "gmailOAuth2": {
             "id": "ffOqNpYKMyS4cfS8",
@@ -937,11 +938,11 @@
       }
     },
     "authors": "Hoang Nguyen",
-    "name": "Version f28779ae",
+    "name": "Version 460c4b16",
     "description": "",
     "autosaved": true
   },
-  "activeVersionId": "f28779ae-5e85-4a21-8482-a6177ef3aa71",
+  "activeVersionId": "460c4b16-6409-4e1a-94a6-4aa781c61d52",
   "connections": {
     "Get many messages": {
       "main": [
@@ -1208,6 +1209,7 @@
       "id": "7f938cd1-e127-468d-83d0-b3a2134205cd",
       "name": "Get many messages",
       "webhookId": "55095519-7b3a-4145-bef3-10e6915e24b1",
+      "retryOnFail": true,
       "credentials": {
         "gmailOAuth2": {
           "id": "ffOqNpYKMyS4cfS8",
@@ -1878,7 +1880,43 @@
       "name": "chat1"
     }
   ],
-  "pinData": {},
+  "pinData": {
+    "Gmail Trigger": [
+      {
+        "json": {
+          "id": "19dd2f11fde1c001",
+          "threadId": "19dd2f11fde1c001",
+          "snippet": "Bạn đã nhận được một yêu cầu xử lý . Vui lòng đăng nhập hệ thống https://cc.phongvu.vn để xử lý Ticket: 2604709077 Loại phiếu: Kế toán - Thanh toán Phòng ban xử lý: SR Nguyễn Thị Minh Khai - Quận 3 Nội",
+          "payload": {
+            "mimeType": "text/html"
+          },
+          "sizeEstimate": 15087,
+          "historyId": "5262850",
+          "internalDate": "1777360506000",
+          "labels": [
+            {
+              "id": "INBOX",
+              "name": "INBOX"
+            },
+            {
+              "id": "CATEGORY_FORUMS",
+              "name": "CATEGORY_FORUMS"
+            },
+            {
+              "id": "UNREAD",
+              "name": "UNREAD"
+            }
+          ],
+          "From": "cskh.ticket@phongvu.vn",
+          "Subject": "Xử lý CSKH-Ticket - [Phòng ban xử lý: SR Nguyễn Thị Minh Khai - Quận 3 - Mã ticket: 2604709077]",
+          "To": "quanlysr.cp01@phongvu.vn"
+        },
+        "pairedItem": {
+          "item": 0
+        }
+      }
+    ]
+  },
   "settings": {
     "executionOrder": "v1",
     "binaryMode": "separate",
@@ -1899,9 +1937,10 @@
   "staticData": {
     "node:Gmail Trigger": {
       "Gmail Trigger": {
-        "lastTimeChecked": 1777289032,
+        "lastTimeChecked": 1777371632,
         "possibleDuplicates": [
-          "19dceae7fd322c4f"
+          "19dd39aeaa923f13",
+          "19dd3980401fb49f"
         ]
       }
     }
@@ -1915,6 +1954,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2026-03-25T10:23:16.806Z",
-  "versionId": "f28779ae-5e85-4a21-8482-a6177ef3aa71"
+  "updatedAt": "2026-04-28T07:17:36.312Z",
+  "versionId": "460c4b16-6409-4e1a-94a6-4aa781c61d52"
 }
