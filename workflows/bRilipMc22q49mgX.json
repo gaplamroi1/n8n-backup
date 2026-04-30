@@ -1,9 +1,9 @@
 {
   "active": true,
   "activeVersion": {
-    "updatedAt": "2026-04-17T11:10:23.922Z",
-    "createdAt": "2026-04-17T11:10:19.640Z",
-    "versionId": "125d6729-4ea1-47b1-bcfb-96645bdc763b",
+    "updatedAt": "2026-04-30T05:14:35.347Z",
+    "createdAt": "2026-04-30T05:14:28.034Z",
+    "versionId": "f356bbc2-d5a0-4905-a8ea-0021bb939756",
     "workflowId": "bRilipMc22q49mgX",
     "nodes": [
       {
@@ -889,7 +889,7 @@
               {
                 "id": "fc56ca5f-cf28-4842-95d8-1bbc17e82a59",
                 "name": "msg",
-                "value": "=Đã cập nhật tồn kho mới. Tổng cộng: {{ $('Summarize').first().json['count_Số_Serial'] }} serial.",
+                "value": "=Đã cập nhật tồn kho mới. Tổng cộng: {{ $('Summarize').item.json.count_serial_number }} serial.",
                 "type": "string"
               }
             ]
@@ -1604,6 +1604,7 @@
         ],
         "id": "8fedf623-7292-4885-a6c1-338ac8b1567a",
         "name": "update_company_inv1",
+        "retryOnFail": true,
         "credentials": {
           "googleSheetsOAuth2Api": {
             "id": "MTh9LghqaMKPTAzs",
@@ -2364,11 +2365,11 @@
       }
     },
     "authors": "Hoang Nguyen",
-    "name": "Version 125d6729",
+    "name": "Version f356bbc2",
     "description": "",
     "autosaved": true
   },
-  "activeVersionId": "125d6729-4ea1-47b1-bcfb-96645bdc763b",
+  "activeVersionId": "f356bbc2-d5a0-4905-a8ea-0021bb939756",
   "connections": {
     "On form submission": {
       "main": [
@@ -3596,7 +3597,7 @@
             {
               "id": "fc56ca5f-cf28-4842-95d8-1bbc17e82a59",
               "name": "msg",
-              "value": "=Đã cập nhật tồn kho mới. Tổng cộng: {{ $('Summarize').first().json['count_Số_Serial'] }} serial.",
+              "value": "=Đã cập nhật tồn kho mới. Tổng cộng: {{ $('Summarize').item.json.count_serial_number }} serial.",
               "type": "string"
             }
           ]
@@ -4311,6 +4312,7 @@
       ],
       "id": "8fedf623-7292-4885-a6c1-338ac8b1567a",
       "name": "update_company_inv1",
+      "retryOnFail": true,
       "credentials": {
         "googleSheetsOAuth2Api": {
           "id": "MTh9LghqaMKPTAzs",
@@ -4741,37 +4743,37 @@
           "headers": {
             "host": "n8n.hoanghochoi.com",
             "user-agent": "python-requests/2.32.5",
-            "content-length": "1234890",
+            "content-length": "818858",
             "accept": "*/*",
             "accept-encoding": "gzip, br",
             "cdn-loop": "cloudflare; loops=1",
-            "cf-connecting-ip": "14.187.137.188",
+            "cf-connecting-ip": "115.77.190.147",
             "cf-ipcountry": "VN",
-            "cf-ray": "9ed7b4af5fdc1075-HKG",
+            "cf-ray": "9f43fb53aa4fdb9c-SIN",
             "cf-visitor": "{\"scheme\":\"https\"}",
-            "cf-warp-tag-id": "0deb849f-cc35-4623-83e7-bc063230ef24",
+            "cf-warp-tag-id": "64666a11-6840-40d6-aa69-b9a8baf96a24",
             "connection": "keep-alive",
-            "content-type": "multipart/form-data; boundary=a7413861a40f91e5d9408a070d6143be",
-            "x-forwarded-for": "14.187.137.188",
+            "content-type": "multipart/form-data; boundary=10db1411e0b4018182653938637769d4",
+            "x-forwarded-for": "115.77.190.147",
             "x-forwarded-proto": "https"
           },
           "params": {},
           "query": {},
           "body": {
-            "skill_name": "sales-automation"
+            "skill_name": "inventory-automation"
           },
           "webhookUrl": "https://n8n.hoanghochoi.com/webhook/culi-automation",
           "executionMode": "production"
         },
         "binary": {
           "File0": {
-            "mimeType": "application/zip",
-            "fileExtension": "zip",
+            "mimeType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            "fileExtension": "xlsx",
             "data": "filesystem-v2",
-            "fileName": "20260417_013738.zip",
-            "id": "filesystem-v2:workflows/bRilipMc22q49mgX/executions/temp/binary_data/4f9a1490-fb6a-4193-a247-a14cbeed778c",
-            "fileSize": "1.23 MB",
-            "bytes": 1234597
+            "fileName": "Bang_ke_ton_kho_theo_serial_den_ngay_hien_tai_2026_04_30_30042026100013.xlsx",
+            "id": "filesystem-v2:workflows/bRilipMc22q49mgX/executions/temp/binary_data/7464c791-fab2-497f-b179-ba159d346e55",
+            "fileSize": "818 kB",
+            "bytes": 818453
           }
         },
         "pairedItem": {
@@ -4800,6 +4802,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 3,
-  "updatedAt": "2026-04-17T11:10:19.638Z",
-  "versionId": "125d6729-4ea1-47b1-bcfb-96645bdc763b"
+  "updatedAt": "2026-04-30T05:14:28.032Z",
+  "versionId": "f356bbc2-d5a0-4905-a8ea-0021bb939756"
 }
