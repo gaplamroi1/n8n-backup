@@ -1,9 +1,9 @@
 {
   "active": true,
   "activeVersion": {
-    "updatedAt": "2026-04-24T08:19:37.184Z",
-    "createdAt": "2026-04-24T08:18:45.790Z",
-    "versionId": "771d9d00-ef42-40c1-8ea6-14d6bd3a9513",
+    "updatedAt": "2026-04-30T07:25:54.860Z",
+    "createdAt": "2026-04-30T07:25:52.757Z",
+    "versionId": "eb77b8aa-bc7a-4de8-8b3a-7fcbe8afbde8",
     "workflowId": "oLXjfZN1PcaSJJJI",
     "nodes": [
       {
@@ -802,8 +802,8 @@
         "type": "n8n-nodes-base.httpRequest",
         "typeVersion": 4.4,
         "position": [
-          1488,
-          192
+          1504,
+          112
         ],
         "id": "a31f332f-2418-4da4-b2f7-dedf5d7551aa",
         "name": "send_qr"
@@ -1181,8 +1181,8 @@
         "type": "n8n-nodes-base.dataTable",
         "typeVersion": 1.1,
         "position": [
-          1792,
-          192
+          1808,
+          112
         ],
         "id": "3359bc40-e31a-484c-9be0-7cd022f26be4",
         "name": "upsert_count"
@@ -1194,8 +1194,8 @@
         "type": "n8n-nodes-base.code",
         "typeVersion": 2,
         "position": [
-          1648,
-          192
+          1664,
+          112
         ],
         "id": "28a8a804-6780-4a03-bad7-613ef2bff95d",
         "name": "user_count"
@@ -1371,6 +1371,37 @@
         ],
         "id": "325f952e-34a9-4e62-b9c9-7869de60277a",
         "name": "If1"
+      },
+      {
+        "parameters": {
+          "method": "POST",
+          "url": "https://openapi.seatalk.io/messaging/v2/single_chat",
+          "sendHeaders": true,
+          "headerParameters": {
+            "parameters": [
+              {
+                "name": "Authorization",
+                "value": "=Bearer {{ $('get_app_info').first().json.app_access_token }}"
+              },
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          },
+          "sendBody": true,
+          "specifyBody": "json",
+          "jsonBody": "={\n    \"employee_code\": \"{{ $('seatalk_bot').first().json.body.event.employee_code }}\",\n    \"message\": {\n        \"tag\": \"text\",\n        \"text\": {\n            \"format\": 1,\n            \"content\": \"Số tài khoản: {{ $('get_account').first().json.account }}\\nTên tài khoản: CTY CO PHAN THUONG MAI DV PHONG VU\\nSố tiền: {{ $('parse_qr_info').first().json.amount }}\\nNội dung: {{ $('parse_qr_info').first().json.order_code }} {{ $('take_user').item.json.store }}\\nNgân hàng TMCP Công thương Việt Nam\"\n        }\n    },\n    \"usable_platform\": \"all\"\n}",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.4,
+        "position": [
+          1504,
+          272
+        ],
+        "id": "39aa2402-3d16-42be-87b6-6028b8190903",
+        "name": "send_text"
       }
     ],
     "connections": {
@@ -1591,6 +1622,11 @@
               "node": "send_qr",
               "type": "main",
               "index": 0
+            },
+            {
+              "node": "send_text",
+              "type": "main",
+              "index": 0
             }
           ]
         ]
@@ -1713,11 +1749,11 @@
       }
     },
     "authors": "Hoang Nguyen",
-    "name": "Version 771d9d00",
+    "name": "Version eb77b8aa",
     "description": "",
     "autosaved": true
   },
-  "activeVersionId": "771d9d00-ef42-40c1-8ea6-14d6bd3a9513",
+  "activeVersionId": "eb77b8aa-bc7a-4de8-8b3a-7fcbe8afbde8",
   "connections": {
     "app_id": {
       "main": [
@@ -1934,6 +1970,11 @@
         [
           {
             "node": "send_qr",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "send_text",
             "type": "main",
             "index": 0
           }
@@ -2861,8 +2902,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.4,
       "position": [
-        1488,
-        192
+        1504,
+        112
       ],
       "id": "a31f332f-2418-4da4-b2f7-dedf5d7551aa",
       "name": "send_qr"
@@ -3240,8 +3281,8 @@
       "type": "n8n-nodes-base.dataTable",
       "typeVersion": 1.1,
       "position": [
-        1792,
-        192
+        1808,
+        112
       ],
       "id": "3359bc40-e31a-484c-9be0-7cd022f26be4",
       "name": "upsert_count"
@@ -3253,8 +3294,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        1648,
-        192
+        1664,
+        112
       ],
       "id": "28a8a804-6780-4a03-bad7-613ef2bff95d",
       "name": "user_count"
@@ -3430,6 +3471,37 @@
       ],
       "id": "325f952e-34a9-4e62-b9c9-7869de60277a",
       "name": "If1"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://openapi.seatalk.io/messaging/v2/single_chat",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $('get_app_info').first().json.app_access_token }}"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"employee_code\": \"{{ $('seatalk_bot').first().json.body.event.employee_code }}\",\n    \"message\": {\n        \"tag\": \"text\",\n        \"text\": {\n            \"format\": 1,\n            \"content\": \"Số tài khoản: {{ $('get_account').first().json.account }}\\nTên tài khoản: CTY CO PHAN THUONG MAI DV PHONG VU\\nSố tiền: {{ $('parse_qr_info').first().json.amount }}\\nNội dung: {{ $('parse_qr_info').first().json.order_code }} {{ $('take_user').item.json.store }}\\nNgân hàng TMCP Công thương Việt Nam\"\n        }\n    },\n    \"usable_platform\": \"all\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        1504,
+        272
+      ],
+      "id": "39aa2402-3d16-42be-87b6-6028b8190903",
+      "name": "send_text"
     }
   ],
   "pinData": {
@@ -3506,7 +3578,7 @@
     "global": {
       "count": 2,
       "undefined": 1,
-      "hoang.nv1@phongvu-mna.vn": 36,
+      "hoang.nv1@phongvu-mna.vn": 39,
       "sang.dta@phongvu-mna.vn": 19,
       "toan.btq@phongvu-mna.vn": 16,
       "hieu.nh@phongvu-mna.vn": 38,
@@ -3515,8 +3587,8 @@
       "nhut.tm@phongvu-mna.vn": 3,
       "canh.lv@phongvu-mna.vn": 12,
       "linh.tg@phongvu-mna.vn": 52,
-      "quyen.dg@phongvu-mna.vn": 47,
-      "tuyen.ph@phongvu-mna.vn": 13,
+      "quyen.dg@phongvu-mna.vn": 51,
+      "tuyen.ph@phongvu-mna.vn": 14,
       "loc.ph@phongvu-mna.vn": 16,
       "dang.nh@phongvu-mna.vn": 9,
       "thinh.np01@phongvu-mna.vn": 19,
@@ -3532,28 +3604,28 @@
       "man.hp@phongvu-mna.vn": 2,
       "lien.vtk01@phongvu-mna.vn": 38,
       "nghia.dh@phongvu-mna.vn": 1,
-      "anh.vtn@phongvu-mna.vn": 4,
+      "anh.vtn@phongvu-mna.vn": 6,
       "quyen.tv@phongvu-mna.vn": 12,
-      "huong.ns@phongvu-mna.vn": 10,
+      "huong.ns@phongvu-mna.vn": 11,
       "long.nd@phongvu-mna.vn": 6,
       "hong.lc@phongvu-mna.vn": 12,
-      "hieu.hv@phongvu-mna.vn": 15,
+      "hieu.hv@phongvu-mna.vn": 18,
       "huy.dv01@phongvu-mna.vn": 1,
       "dien.nnt01@phongvu-mna.vn": 2,
       "hao.nn01@phongvu-mna.vn": 11,
       "thanh.pm@phongvu-mna.vn": 12,
       "khoa.pd01@phongvu-mna.vn": 3,
-      "tuan.hnq@phongvu-mna.vn": 2,
+      "tuan.hnq@phongvu-mna.vn": 3,
       "vu.nl@phongvu-mna.vn": 3,
       "hung.nm02@phongvu-mna.vn": 26,
       "huong.htk@phongvu-mna.vn": 1,
-      "ngan.ttk01@phongvu-mna.vn": 17,
+      "ngan.ttk01@phongvu-mna.vn": 18,
       "nguyen.nh@phongvu-mna.vn": 7,
       "thao.htt@phongvu-mna.vn": 3,
       "chinh.ltd01@phongvu-mna.vn": 8,
       "phong.lq@phongvu-mna.vn": 4,
       "khanh.px@phongvu-mna.vn": 1,
-      "quang.tm@phongvu-mna.vn": 7,
+      "quang.tm@phongvu-mna.vn": 8,
       "duy.mk@phongvu-mna.vn": 2,
       "nam.nv@phongvu-mna.vn": 2,
       "tuan.tt02@phongvu-mna.vn": 1,
@@ -3569,6 +3641,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2026-04-24T08:18:45.789Z",
-  "versionId": "771d9d00-ef42-40c1-8ea6-14d6bd3a9513"
+  "updatedAt": "2026-04-30T07:25:52.756Z",
+  "versionId": "eb77b8aa-bc7a-4de8-8b3a-7fcbe8afbde8"
 }
