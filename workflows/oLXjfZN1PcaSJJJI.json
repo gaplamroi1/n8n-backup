@@ -1,9 +1,9 @@
 {
   "active": true,
   "activeVersion": {
-    "updatedAt": "2026-04-30T07:25:54.860Z",
-    "createdAt": "2026-04-30T07:25:52.757Z",
-    "versionId": "eb77b8aa-bc7a-4de8-8b3a-7fcbe8afbde8",
+    "updatedAt": "2026-05-04T09:27:46.203Z",
+    "createdAt": "2026-05-04T09:27:41.252Z",
+    "versionId": "22d55768-cc96-4657-b2d7-a431b47881bd",
     "workflowId": "oLXjfZN1PcaSJJJI",
     "nodes": [
       {
@@ -775,7 +775,8 @@
           192
         ],
         "id": "71a7c8a5-711b-4bc9-8125-20e5a6c1dad4",
-        "name": "download_image"
+        "name": "download_image",
+        "retryOnFail": true
       },
       {
         "parameters": {
@@ -1749,11 +1750,11 @@
       }
     },
     "authors": "Hoang Nguyen",
-    "name": "Version eb77b8aa",
+    "name": "Version 22d55768",
     "description": "",
     "autosaved": true
   },
-  "activeVersionId": "eb77b8aa-bc7a-4de8-8b3a-7fcbe8afbde8",
+  "activeVersionId": "22d55768-cc96-4657-b2d7-a431b47881bd",
   "connections": {
     "app_id": {
       "main": [
@@ -2875,7 +2876,8 @@
         192
       ],
       "id": "71a7c8a5-711b-4bc9-8125-20e5a6c1dad4",
-      "name": "download_image"
+      "name": "download_image",
+      "retryOnFail": true
     },
     {
       "parameters": {
@@ -3511,38 +3513,38 @@
           "headers": {
             "host": "n8n.hoanghochoi.com",
             "user-agent": "Go-http-client/1.1",
-            "content-length": "440",
+            "content-length": "427",
             "accept-encoding": "gzip, br",
             "cdn-loop": "cloudflare; loops=1",
-            "cf-connecting-ip": "143.92.74.164",
+            "cf-connecting-ip": "143.92.74.131",
             "cf-ipcountry": "SG",
-            "cf-ray": "9e5e06503b2c5880-SIN",
+            "cf-ray": "9f66761cdbb6ef70-SIN",
             "cf-visitor": "{\"scheme\":\"https\"}",
-            "cf-warp-tag-id": "e29be3d2-4ed5-4153-bf34-97fbb2b7e165",
+            "cf-warp-tag-id": "64666a11-6840-40d6-aa69-b9a8baf96a24",
             "connection": "keep-alive",
             "content-type": "application/json",
-            "signature": "2416f038f2daae1cb9e92d7a70885d9595f7a5cfe98066e5ebb7f1960b00f7ae",
-            "x-event-user-jwt": "eyJhbGciOiJFZERTQSIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjp7ImVtYWlsIjoiaG9hbmcubnYxQHBob25ndnUtbW5hLnZuIiwiYXBwX2lkIjoiTnpNd016ZzBNemN6TWpFNSJ9LCJpc3MiOiJTZWF0YWxrIFNPUCIsImV4cCI6MTc3NTExNDAwMCwibmJmIjoxNzc1MTEzOTQwLCJpYXQiOjE3NzUxMTM5NDAsImp0aSI6IjVmZTQ1MDVhLWIyMWUtNDM2OS1iZjJlLWI1NGEzMGI5NGNmOSJ9.GyliGQhXKGWhsouuWqMhR-RijUIn9mfLLMH0qKoX3LdLJyhezqcgJr2ISI1GsTiR4yRJrucD8a9-kQ9Z0TWEAA",
-            "x-forwarded-for": "143.92.74.164",
+            "signature": "99c1b23c928be61ae4ea2c7219f569a6277b65c1d21d1e6053da4451d627d393",
+            "x-event-user-jwt": "eyJhbGciOiJFZERTQSIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjp7ImVtYWlsIjoiaGFvLm5uMDFAcGhvbmd2dS1tbmEudm4iLCJhcHBfaWQiOiJOek13TXpnME16Y3pNakU1In0sImlzcyI6IlNlYXRhbGsgU09QIiwiZXhwIjoxNzc3ODg2ODIwLCJuYmYiOjE3Nzc4ODY3NjAsImlhdCI6MTc3Nzg4Njc2MCwianRpIjoiODY1ODU2OTUtYTJkYy00ZjFmLThlOTMtNTRmODg3OTgzOTZlIn0.IK5kfmFmF8yDgEsiiK7JikRHA91dWkf9mdjI_vrGQU5U7kA4yWyHkCexLssbb3kYRqxZC-MdTnjJpGXJEXAeAQ",
+            "x-forwarded-for": "143.92.74.131",
             "x-forwarded-proto": "https"
           },
           "params": {},
           "query": {},
           "body": {
-            "event_id": "c50e2e6e-1d02-4c8e-a8de-c1e1a8bec8a0",
+            "event_id": "17a1a913-9671-432c-9139-e69194b999e9",
             "event_type": "message_from_bot_subscriber",
-            "timestamp": 1775113940,
+            "timestamp": 1777886760,
             "app_id": "NzMwMzg0MzczMjE5",
             "event": {
-              "seatalk_id": "9214333551",
-              "employee_code": "e_6mv57e5u",
-              "email": "hoang.nv1@phongvu-mna.vn",
+              "seatalk_id": "9277795484",
+              "employee_code": "e_k2usn8yy",
+              "email": "hao.nn01@phongvu-mna.vn",
               "message": {
-                "message_id": "u7YirumAclDtSUjP41Nhy80BvXNAhNTu2uDw3edUCReM_TO40WdbRPOz",
+                "message_id": "u7YirumAclDtSUjP41NhyFSdvXNAhNTmcBPjDpmV1hOmslL3_yy56ahc",
                 "quoted_message_id": "",
                 "tag": "text",
                 "text": {
-                  "content": "qr 10000/chuyển tiền cho Phong Vũ"
+                  "content": "/qr 3439000/26050438392670"
                 },
                 "thread_id": ""
               }
@@ -3581,55 +3583,55 @@
       "hoang.nv1@phongvu-mna.vn": 39,
       "sang.dta@phongvu-mna.vn": 19,
       "toan.btq@phongvu-mna.vn": 17,
-      "hieu.nh@phongvu-mna.vn": 39,
+      "hieu.nh@phongvu-mna.vn": 43,
       "an.nt@phongvu-mna.vn": 41,
       "ban.vt@phongvu-mna.vn": 39,
       "nhut.tm@phongvu-mna.vn": 3,
       "canh.lv@phongvu-mna.vn": 12,
       "linh.tg@phongvu-mna.vn": 56,
       "quyen.dg@phongvu-mna.vn": 51,
-      "tuyen.ph@phongvu-mna.vn": 14,
-      "loc.ph@phongvu-mna.vn": 17,
+      "tuyen.ph@phongvu-mna.vn": 15,
+      "loc.ph@phongvu-mna.vn": 19,
       "dang.nh@phongvu-mna.vn": 9,
       "thinh.np01@phongvu-mna.vn": 19,
-      "tram.ntt@phongvu-mna.vn": 90,
+      "tram.ntt@phongvu-mna.vn": 93,
       "hong.mv@phongvu-mna.vn": 3,
       "thu.hm@phongvu-mna.vn": 37,
       "tho.lt@phongvu-mna.vn": 17,
-      "hieu.ltm@phongvu-mna.vn": 52,
-      "hung.bd@phongvu-mna.vn": 2,
+      "hieu.ltm@phongvu-mna.vn": 53,
+      "hung.bd@phongvu-mna.vn": 4,
       "huy.hm@phongvu-mna.vn": 27,
       "hai.ltp@phongvu-mna.vn": 31,
       "tuyen.ltb@phongvu-mna.vn": 1,
       "man.hp@phongvu-mna.vn": 2,
-      "lien.vtk01@phongvu-mna.vn": 41,
+      "lien.vtk01@phongvu-mna.vn": 42,
       "nghia.dh@phongvu-mna.vn": 1,
-      "anh.vtn@phongvu-mna.vn": 8,
-      "quyen.tv@phongvu-mna.vn": 12,
+      "anh.vtn@phongvu-mna.vn": 9,
+      "quyen.tv@phongvu-mna.vn": 16,
       "huong.ns@phongvu-mna.vn": 11,
       "long.nd@phongvu-mna.vn": 7,
       "hong.lc@phongvu-mna.vn": 12,
       "hieu.hv@phongvu-mna.vn": 18,
       "huy.dv01@phongvu-mna.vn": 1,
       "dien.nnt01@phongvu-mna.vn": 2,
-      "hao.nn01@phongvu-mna.vn": 11,
-      "thanh.pm@phongvu-mna.vn": 12,
+      "hao.nn01@phongvu-mna.vn": 13,
+      "thanh.pm@phongvu-mna.vn": 14,
       "khoa.pd01@phongvu-mna.vn": 3,
-      "tuan.hnq@phongvu-mna.vn": 5,
+      "tuan.hnq@phongvu-mna.vn": 6,
       "vu.nl@phongvu-mna.vn": 3,
-      "hung.nm02@phongvu-mna.vn": 31,
+      "hung.nm02@phongvu-mna.vn": 32,
       "huong.htk@phongvu-mna.vn": 1,
-      "ngan.ttk01@phongvu-mna.vn": 24,
+      "ngan.ttk01@phongvu-mna.vn": 25,
       "nguyen.nh@phongvu-mna.vn": 7,
       "thao.htt@phongvu-mna.vn": 3,
-      "chinh.ltd01@phongvu-mna.vn": 9,
+      "chinh.ltd01@phongvu-mna.vn": 14,
       "phong.lq@phongvu-mna.vn": 4,
       "khanh.px@phongvu-mna.vn": 1,
       "quang.tm@phongvu-mna.vn": 9,
       "duy.mk@phongvu-mna.vn": 2,
       "nam.nv@phongvu-mna.vn": 4,
       "tuan.tt02@phongvu-mna.vn": 1,
-      "hoa.nt@phongvu-mna.vn": 1,
+      "hoa.nt@phongvu-mna.vn": 3,
       "thoa.ntm@phongvu-mna.vn": 1
     }
   },
@@ -3642,6 +3644,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2026-04-30T07:25:52.756Z",
-  "versionId": "eb77b8aa-bc7a-4de8-8b3a-7fcbe8afbde8"
+  "updatedAt": "2026-05-04T09:27:41.250Z",
+  "versionId": "22d55768-cc96-4657-b2d7-a431b47881bd"
 }
