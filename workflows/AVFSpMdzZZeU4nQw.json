@@ -5,7 +5,7 @@
   "connections": {},
   "createdAt": "2026-04-08T08:17:56.482Z",
   "id": "AVFSpMdzZZeU4nQw",
-  "isArchived": false,
+  "isArchived": true,
   "meta": {
     "templateCredsSetupCompleted": true
   },
@@ -28,6 +28,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2026-04-10T08:41:16.755Z",
-  "versionId": "b1863b1d-bcba-4750-907d-9ba78b4e58d9"
+  "updatedAt": "2026-05-04T08:44:54.130Z",
+  "versionId": "1cf8cb89-a573-4d85-ab6b-7882daa6197a"
 }
