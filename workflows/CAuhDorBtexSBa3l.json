@@ -1,9 +1,9 @@
 {
   "active": true,
   "activeVersion": {
-    "updatedAt": "2026-02-23T02:17:45.335Z",
-    "createdAt": "2026-02-23T02:16:25.130Z",
-    "versionId": "1b61b564-c7a7-41ef-94eb-f58ea8581b48",
+    "updatedAt": "2026-05-04T08:09:22.146Z",
+    "createdAt": "2026-05-04T08:08:55.462Z",
+    "versionId": "583f07dd-18e2-4e4c-a01f-b1d027ead76a",
     "workflowId": "CAuhDorBtexSBa3l",
     "nodes": [
       {
@@ -32,7 +32,7 @@
         "type": "n8n-nodes-base.googleSheetsTrigger",
         "typeVersion": 1,
         "position": [
-          -128,
+          -192,
           224
         ],
         "id": "28e23a88-6b2a-4c5a-ba05-e9617ef82c9d",
@@ -94,7 +94,7 @@
         "type": "n8n-nodes-base.googleSheets",
         "typeVersion": 4.7,
         "position": [
-          96,
+          208,
           224
         ],
         "id": "c5d7f4f9-4dc2-4dda-94d4-4571ae162f22",
@@ -253,11 +253,22 @@
         "type": "n8n-nodes-base.dataTable",
         "typeVersion": 1,
         "position": [
-          320,
+          432,
           224
         ],
         "id": "d6b1d434-a908-49d1-9042-7caf44047789",
         "name": "Upsert row(s)"
+      },
+      {
+        "parameters": {},
+        "type": "n8n-nodes-base.limit",
+        "typeVersion": 1,
+        "position": [
+          16,
+          224
+        ],
+        "id": "cf79d32e-2bf8-45b4-a3d2-c5910fcce010",
+        "name": "Limit"
       }
     ],
     "connections": {
@@ -265,7 +276,7 @@
         "main": [
           [
             {
-              "node": "get_employee",
+              "node": "Limit",
               "type": "main",
               "index": 0
             }
@@ -293,20 +304,31 @@
             }
           ]
         ]
+      },
+      "Limit": {
+        "main": [
+          [
+            {
+              "node": "get_employee",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
       }
     },
     "authors": "Hoang Nguyen",
-    "name": "Version 1b61b564",
+    "name": "Version 583f07dd",
     "description": "",
     "autosaved": true
   },
-  "activeVersionId": "1b61b564-c7a7-41ef-94eb-f58ea8581b48",
+  "activeVersionId": "583f07dd-18e2-4e4c-a01f-b1d027ead76a",
   "connections": {
     "Google Sheets Trigger": {
       "main": [
         [
           {
-            "node": "get_employee",
+            "node": "Limit",
             "type": "main",
             "index": 0
           }
@@ -331,6 +353,17 @@
             "node": "Merge",
             "type": "main",
             "index": 1
+          }
+        ]
+      ]
+    },
+    "Limit": {
+      "main": [
+        [
+          {
+            "node": "get_employee",
+            "type": "main",
+            "index": 0
           }
         ]
       ]
@@ -368,7 +401,7 @@
       "type": "n8n-nodes-base.googleSheetsTrigger",
       "typeVersion": 1,
       "position": [
-        -128,
+        -192,
         224
       ],
       "id": "28e23a88-6b2a-4c5a-ba05-e9617ef82c9d",
@@ -430,7 +463,7 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.7,
       "position": [
-        96,
+        208,
         224
       ],
       "id": "c5d7f4f9-4dc2-4dda-94d4-4571ae162f22",
@@ -589,11 +622,22 @@
       "type": "n8n-nodes-base.dataTable",
       "typeVersion": 1,
       "position": [
-        320,
+        432,
         224
       ],
       "id": "d6b1d434-a908-49d1-9042-7caf44047789",
       "name": "Upsert row(s)"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        16,
+        224
+      ],
+      "id": "cf79d32e-2bf8-45b4-a3d2-c5910fcce010",
+      "name": "Limit"
     }
   ],
   "pinData": {},
@@ -615,11 +659,17 @@
     "node:Google Sheets Trigger": {
       "documentId": "1AVb-6GibcYXPyRp9tI36vOgq_6BL2wCL3i5dbn9d0Sg",
       "sheetId": 0,
-      "lastRevision": 19,
-      "lastRevisionLink": "https://docs.google.com/spreadsheets/export?id=1AVb-6GibcYXPyRp9tI36vOgq_6BL2wCL3i5dbn9d0Sg&revision=19&exportFormat=xlsx"
+      "lastRevision": 44,
+      "lastRevisionLink": "https://docs.google.com/spreadsheets/export?id=1AVb-6GibcYXPyRp9tI36vOgq_6BL2wCL3i5dbn9d0Sg&revision=44&exportFormat=xlsx"
     }
   },
   "tags": [
+    {
+      "updatedAt": "2026-02-22T19:25:48.964Z",
+      "createdAt": "2026-02-22T19:25:48.964Z",
+      "id": "eafg8h8piujdlV6P",
+      "name": "pv-opshub-app"
+    },
     {
       "updatedAt": "2025-11-08T12:09:40.816Z",
       "createdAt": "2025-11-08T12:08:49.207Z",
@@ -631,15 +681,9 @@
       "createdAt": "2025-12-17T02:41:50.389Z",
       "id": "tf48o2CcAcmF6X41",
       "name": "Seatalk app"
-    },
-    {
-      "updatedAt": "2026-02-22T19:25:48.964Z",
-      "createdAt": "2026-02-22T19:25:48.964Z",
-      "id": "eafg8h8piujdlV6P",
-      "name": "pv-opshub-app"
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2026-02-23T07:49:02.019Z",
-  "versionId": "1b61b564-c7a7-41ef-94eb-f58ea8581b48"
+  "updatedAt": "2026-05-04T08:08:55.461Z",
+  "versionId": "583f07dd-18e2-4e4c-a01f-b1d027ead76a"
 }
