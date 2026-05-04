@@ -1,9 +1,9 @@
 {
   "active": true,
   "activeVersion": {
-    "updatedAt": "2026-04-12T03:22:18.000Z",
-    "createdAt": "2026-04-12T03:22:06.117Z",
-    "versionId": "a747aa01-536c-4dda-bf28-f91d0fff285c",
+    "updatedAt": "2026-05-04T03:32:56.026Z",
+    "createdAt": "2026-05-04T03:32:53.593Z",
+    "versionId": "10b17850-064c-4bbe-b931-9ea1d9a2ba67",
     "workflowId": "GkOK5IXtVQ5pEALO",
     "nodes": [
       {
@@ -20,7 +20,7 @@
         "type": "n8n-nodes-base.scheduleTrigger",
         "typeVersion": 1.2,
         "position": [
-          -928,
+          -1008,
           64
         ],
         "id": "97830d88-fb32-43fa-b6c3-aefa7a8c6afc",
@@ -48,7 +48,7 @@
         "type": "n8n-nodes-base.googleSheets",
         "typeVersion": 4.7,
         "position": [
-          400,
+          320,
           288
         ],
         "id": "966905af-8c7a-4efe-936f-86981f13780a",
@@ -243,7 +243,7 @@
         "type": "n8n-nodes-base.googleSheets",
         "typeVersion": 4.7,
         "position": [
-          -272,
+          -352,
           288
         ],
         "id": "af69cab7-e7ae-4283-a8ca-97bb01ea7720",
@@ -276,7 +276,7 @@
         "type": "n8n-nodes-base.googleSheets",
         "typeVersion": 4.7,
         "position": [
-          -416,
+          -496,
           64
         ],
         "id": "7b2c8b85-1e19-4bce-8f76-6ed0a44be15e",
@@ -296,7 +296,7 @@
         "type": "n8n-nodes-base.splitInBatches",
         "typeVersion": 3,
         "position": [
-          288,
+          272,
           64
         ],
         "id": "70de7155-72c4-4f11-b7c5-905ed5dc72e3",
@@ -326,7 +326,7 @@
         "type": "n8n-nodes-base.executeWorkflow",
         "typeVersion": 1.3,
         "position": [
-          480,
+          400,
           64
         ],
         "id": "5f865ffa-1fe5-4274-b6ee-39305478184f",
@@ -341,7 +341,7 @@
         "type": "n8n-nodes-base.executeWorkflowTrigger",
         "typeVersion": 1.1,
         "position": [
-          -928,
+          -1008,
           288
         ],
         "id": "13c450da-b0b7-437b-b280-7c67c25b44ca",
@@ -365,7 +365,7 @@
         "type": "n8n-nodes-base.sort",
         "typeVersion": 1,
         "position": [
-          -400,
+          -480,
           288
         ],
         "id": "8e7b03a6-fd4c-4789-95cf-1ba442d1f43e",
@@ -393,7 +393,7 @@
         "type": "n8n-nodes-base.googleDrive",
         "typeVersion": 3,
         "position": [
-          0,
+          -80,
           288
         ],
         "id": "0bf7c3e2-cf73-48ec-83cd-37f0b2aa774a",
@@ -411,7 +411,7 @@
         "type": "n8n-nodes-base.limit",
         "typeVersion": 1,
         "position": [
-          -144,
+          -224,
           288
         ],
         "id": "cddd23ba-c775-4f51-93bd-cb74225f1572",
@@ -436,7 +436,7 @@
         "type": "n8n-nodes-base.gmail",
         "typeVersion": 2.1,
         "position": [
-          144,
+          64,
           288
         ],
         "id": "40bceed8-1b9e-4156-bcd6-a556badc0f4c",
@@ -473,7 +473,7 @@
         "type": "n8n-nodes-base.set",
         "typeVersion": 3.4,
         "position": [
-          0,
+          16,
           0
         ],
         "id": "01e322aa-e196-4df3-8548-3feed09e31ec",
@@ -502,7 +502,7 @@
         "type": "n8n-nodes-base.set",
         "typeVersion": 3.4,
         "position": [
-          0,
+          16,
           128
         ],
         "id": "3f296d14-4e39-4843-83ec-7b8ee72799b2",
@@ -536,7 +536,7 @@
         "type": "n8n-nodes-base.if",
         "typeVersion": 2.2,
         "position": [
-          -144,
+          -112,
           64
         ],
         "id": "332e46e9-f13e-4ab9-9a13-01e3a4b5f460",
@@ -549,7 +549,7 @@
         "type": "n8n-nodes-base.code",
         "typeVersion": 2,
         "position": [
-          -288,
+          -240,
           64
         ],
         "id": "751adf84-fd05-4022-b537-65362f163091",
@@ -571,7 +571,7 @@
         "type": "n8n-nodes-base.googleBigQuery",
         "typeVersion": 2.1,
         "position": [
-          -800,
+          -880,
           288
         ],
         "id": "3f51d79d-c339-4547-b0b6-de18731856fd",
@@ -582,7 +582,8 @@
             "id": "MobroXPII5JrGVTH",
             "name": "Google Service Account promocheck vu.nt1"
           }
-        }
+        },
+        "onError": "continueRegularOutput"
       },
       {
         "parameters": {
@@ -591,7 +592,7 @@
         "type": "n8n-nodes-base.code",
         "typeVersion": 2,
         "position": [
-          -672,
+          -752,
           288
         ],
         "id": "a63cfe18-0a55-468a-8490-446e443f2cbe",
@@ -653,7 +654,7 @@
         "type": "n8n-nodes-base.if",
         "typeVersion": 2.2,
         "position": [
-          -544,
+          -624,
           288
         ],
         "id": "21570e5f-fb27-447f-9e1e-e6d7903af2bb",
@@ -675,7 +676,7 @@
         "type": "n8n-nodes-base.noOp",
         "typeVersion": 1,
         "position": [
-          -400,
+          -480,
           416
         ],
         "id": "15243ffb-45e8-4b29-8f49-9fa4809c3b14",
@@ -757,7 +758,7 @@
         "type": "n8n-nodes-base.dataTable",
         "typeVersion": 1,
         "position": [
-          272,
+          192,
           288
         ],
         "id": "5431f0be-3697-46f4-a9fd-b3eaa613aa89",
@@ -785,7 +786,7 @@
         "type": "n8n-nodes-base.dataTable",
         "typeVersion": 1,
         "position": [
-          -800,
+          -880,
           64
         ],
         "id": "5a5e37d6-e9ea-435d-8e71-23707c9de560",
@@ -802,7 +803,7 @@
         "type": "n8n-nodes-base.gmail",
         "typeVersion": 2.1,
         "position": [
-          -672,
+          -752,
           64
         ],
         "id": "e37ac650-d1d0-41cd-be66-30e466ca0ebe",
@@ -891,13 +892,46 @@
         "type": "n8n-nodes-base.dataTable",
         "typeVersion": 1,
         "position": [
-          -544,
+          -624,
           64
         ],
         "id": "97da1c6c-8ac9-42d3-8de5-9c510aab0aeb",
         "name": "updateMailStatus",
         "alwaysOutputData": true,
         "onError": "continueRegularOutput"
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 3
+            },
+            "conditions": [
+              {
+                "id": "663ed590-cc39-41b5-9282-a886fb11b669",
+                "leftValue": "={{ $json['Mã SR'] }}",
+                "rightValue": "CP",
+                "operator": {
+                  "type": "string",
+                  "operation": "startsWith"
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.3,
+        "position": [
+          -368,
+          64
+        ],
+        "id": "6f8391c1-88f3-4d83-a5ea-8920654db5bd",
+        "name": "If"
       }
     ],
     "connections": {
@@ -939,7 +973,7 @@
         "main": [
           [
             {
-              "node": "createMailList",
+              "node": "If",
               "type": "main",
               "index": 0
             }
@@ -1157,14 +1191,25 @@
             }
           ]
         ]
+      },
+      "If": {
+        "main": [
+          [
+            {
+              "node": "createMailList",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
       }
     },
     "authors": "Hoang Nguyen",
-    "name": "Version a747aa01",
+    "name": "Version 10b17850",
     "description": "",
     "autosaved": true
   },
-  "activeVersionId": "a747aa01-536c-4dda-bf28-f91d0fff285c",
+  "activeVersionId": "10b17850-064c-4bbe-b931-9ea1d9a2ba67",
   "connections": {
     "Schedule Trigger": {
       "main": [
@@ -1204,7 +1249,7 @@
       "main": [
         [
           {
-            "node": "createMailList",
+            "node": "If",
             "type": "main",
             "index": 0
           }
@@ -1422,6 +1467,17 @@
           }
         ]
       ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "createMailList",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2026-02-22T19:38:29.063Z",
@@ -1444,7 +1500,7 @@
       "type": "n8n-nodes-base.scheduleTrigger",
       "typeVersion": 1.2,
       "position": [
-        -928,
+        -1008,
         64
       ],
       "id": "97830d88-fb32-43fa-b6c3-aefa7a8c6afc",
@@ -1472,7 +1528,7 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.7,
       "position": [
-        400,
+        320,
         288
       ],
       "id": "966905af-8c7a-4efe-936f-86981f13780a",
@@ -1667,7 +1723,7 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.7,
       "position": [
-        -272,
+        -352,
         288
       ],
       "id": "af69cab7-e7ae-4283-a8ca-97bb01ea7720",
@@ -1700,7 +1756,7 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.7,
       "position": [
-        -416,
+        -496,
         64
       ],
       "id": "7b2c8b85-1e19-4bce-8f76-6ed0a44be15e",
@@ -1720,7 +1776,7 @@
       "type": "n8n-nodes-base.splitInBatches",
       "typeVersion": 3,
       "position": [
-        288,
+        272,
         64
       ],
       "id": "70de7155-72c4-4f11-b7c5-905ed5dc72e3",
@@ -1750,7 +1806,7 @@
       "type": "n8n-nodes-base.executeWorkflow",
       "typeVersion": 1.3,
       "position": [
-        480,
+        400,
         64
       ],
       "id": "5f865ffa-1fe5-4274-b6ee-39305478184f",
@@ -1765,7 +1821,7 @@
       "type": "n8n-nodes-base.executeWorkflowTrigger",
       "typeVersion": 1.1,
       "position": [
-        -928,
+        -1008,
         288
       ],
       "id": "13c450da-b0b7-437b-b280-7c67c25b44ca",
@@ -1789,7 +1845,7 @@
       "type": "n8n-nodes-base.sort",
       "typeVersion": 1,
       "position": [
-        -400,
+        -480,
         288
       ],
       "id": "8e7b03a6-fd4c-4789-95cf-1ba442d1f43e",
@@ -1817,7 +1873,7 @@
       "type": "n8n-nodes-base.googleDrive",
       "typeVersion": 3,
       "position": [
-        0,
+        -80,
         288
       ],
       "id": "0bf7c3e2-cf73-48ec-83cd-37f0b2aa774a",
@@ -1835,7 +1891,7 @@
       "type": "n8n-nodes-base.limit",
       "typeVersion": 1,
       "position": [
-        -144,
+        -224,
         288
       ],
       "id": "cddd23ba-c775-4f51-93bd-cb74225f1572",
@@ -1860,7 +1916,7 @@
       "type": "n8n-nodes-base.gmail",
       "typeVersion": 2.1,
       "position": [
-        144,
+        64,
         288
       ],
       "id": "40bceed8-1b9e-4156-bcd6-a556badc0f4c",
@@ -1897,7 +1953,7 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        0,
+        16,
         0
       ],
       "id": "01e322aa-e196-4df3-8548-3feed09e31ec",
@@ -1926,7 +1982,7 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        0,
+        16,
         128
       ],
       "id": "3f296d14-4e39-4843-83ec-7b8ee72799b2",
@@ -1960,7 +2016,7 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        -144,
+        -112,
         64
       ],
       "id": "332e46e9-f13e-4ab9-9a13-01e3a4b5f460",
@@ -1973,7 +2029,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -288,
+        -240,
         64
       ],
       "id": "751adf84-fd05-4022-b537-65362f163091",
@@ -1995,7 +2051,7 @@
       "type": "n8n-nodes-base.googleBigQuery",
       "typeVersion": 2.1,
       "position": [
-        -800,
+        -880,
         288
       ],
       "id": "3f51d79d-c339-4547-b0b6-de18731856fd",
@@ -2006,7 +2062,8 @@
           "id": "MobroXPII5JrGVTH",
           "name": "Google Service Account promocheck vu.nt1"
         }
-      }
+      },
+      "onError": "continueRegularOutput"
     },
     {
       "parameters": {
@@ -2015,7 +2072,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -672,
+        -752,
         288
       ],
       "id": "a63cfe18-0a55-468a-8490-446e443f2cbe",
@@ -2077,7 +2134,7 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        -544,
+        -624,
         288
       ],
       "id": "21570e5f-fb27-447f-9e1e-e6d7903af2bb",
@@ -2099,7 +2156,7 @@
       "type": "n8n-nodes-base.noOp",
       "typeVersion": 1,
       "position": [
-        -400,
+        -480,
         416
       ],
       "id": "15243ffb-45e8-4b29-8f49-9fa4809c3b14",
@@ -2181,7 +2238,7 @@
       "type": "n8n-nodes-base.dataTable",
       "typeVersion": 1,
       "position": [
-        272,
+        192,
         288
       ],
       "id": "5431f0be-3697-46f4-a9fd-b3eaa613aa89",
@@ -2209,7 +2266,7 @@
       "type": "n8n-nodes-base.dataTable",
       "typeVersion": 1,
       "position": [
-        -800,
+        -880,
         64
       ],
       "id": "5a5e37d6-e9ea-435d-8e71-23707c9de560",
@@ -2226,7 +2283,7 @@
       "type": "n8n-nodes-base.gmail",
       "typeVersion": 2.1,
       "position": [
-        -672,
+        -752,
         64
       ],
       "id": "e37ac650-d1d0-41cd-be66-30e466ca0ebe",
@@ -2315,13 +2372,46 @@
       "type": "n8n-nodes-base.dataTable",
       "typeVersion": 1,
       "position": [
-        -544,
+        -624,
         64
       ],
       "id": "97da1c6c-8ac9-42d3-8de5-9c510aab0aeb",
       "name": "updateMailStatus",
       "alwaysOutputData": true,
       "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "663ed590-cc39-41b5-9282-a886fb11b669",
+              "leftValue": "={{ $json['Mã SR'] }}",
+              "rightValue": "CP",
+              "operator": {
+                "type": "string",
+                "operation": "startsWith"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        -368,
+        64
+      ],
+      "id": "6f8391c1-88f3-4d83-a5ea-8920654db5bd",
+      "name": "If"
     }
   ],
   "pinData": {},
@@ -2362,6 +2452,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2026-04-21T09:20:40.394Z",
-  "versionId": "461cafda-7727-442a-8bc4-9587f9ec0d65"
+  "updatedAt": "2026-05-04T03:32:53.592Z",
+  "versionId": "10b17850-064c-4bbe-b931-9ea1d9a2ba67"
 }
