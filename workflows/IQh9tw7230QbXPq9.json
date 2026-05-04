@@ -1,9 +1,9 @@
 {
   "active": true,
   "activeVersion": {
-    "updatedAt": "2026-04-08T10:44:08.368Z",
-    "createdAt": "2026-04-08T10:44:05.366Z",
-    "versionId": "00581268-a2a6-453b-be0b-f571f6279765",
+    "updatedAt": "2026-05-04T08:38:57.847Z",
+    "createdAt": "2026-04-19T17:01:09.174Z",
+    "versionId": "cd994536-8baa-441c-8752-09ddbc62e444",
     "workflowId": "IQh9tw7230QbXPq9",
     "nodes": [
       {
@@ -4493,8 +4493,8 @@
         "type": "n8n-nodes-base.dataTable",
         "typeVersion": 1.1,
         "position": [
-          688,
-          528
+          624,
+          480
         ],
         "id": "34a03116-4fcb-4d4f-869a-8cf9b7066b14",
         "name": "oos_logging"
@@ -5517,11 +5517,11 @@
       }
     },
     "authors": "Hoang Nguyen",
-    "name": "Version 00581268",
+    "name": "Version cd994536",
     "description": "",
     "autosaved": true
   },
-  "activeVersionId": "00581268-a2a6-453b-be0b-f571f6279765",
+  "activeVersionId": "cd994536-8baa-441c-8752-09ddbc62e444",
   "connections": {
     "Webhook": {
       "main": [
@@ -11065,9 +11065,9 @@
     },
     "node:Gmail Trigger": {
       "Gmail Trigger": {
-        "lastTimeChecked": 1777808789,
+        "lastTimeChecked": 1777889347,
         "possibleDuplicates": [
-          "19deda95742db90a"
+          "19df2771e33c18bf"
         ]
       }
     }
@@ -11081,6 +11081,6 @@
     }
   ],
   "triggerCount": 4,
-  "updatedAt": "2026-04-19T17:01:09.171Z",
+  "updatedAt": "2026-05-04T08:47:48.556Z",
   "versionId": "cd994536-8baa-441c-8752-09ddbc62e444"
 }
