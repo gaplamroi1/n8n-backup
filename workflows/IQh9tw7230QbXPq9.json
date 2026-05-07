@@ -1,9 +1,9 @@
 {
   "active": true,
   "activeVersion": {
-    "updatedAt": "2026-05-04T08:38:57.847Z",
-    "createdAt": "2026-04-19T17:01:09.174Z",
-    "versionId": "cd994536-8baa-441c-8752-09ddbc62e444",
+    "updatedAt": "2026-05-07T11:02:03.227Z",
+    "createdAt": "2026-05-07T11:01:27.367Z",
+    "versionId": "33c971d5-9a01-4cf7-b7de-840fbe78d98c",
     "workflowId": "IQh9tw7230QbXPq9",
     "nodes": [
       {
@@ -144,7 +144,7 @@
         "parameters": {
           "content": "## Báo có bài test mới",
           "height": 480,
-          "width": 736
+          "width": 900
         },
         "type": "n8n-nodes-base.stickyNote",
         "position": [
@@ -722,7 +722,7 @@
         "type": "n8n-nodes-base.dataTable",
         "typeVersion": 1,
         "position": [
-          1200,
+          1376,
           752
         ],
         "id": "fc1498e6-26c2-4f0c-8508-3ba82688629b",
@@ -1077,7 +1077,7 @@
         "type": "n8n-nodes-base.dataTable",
         "typeVersion": 1,
         "position": [
-          1200,
+          1376,
           1040
         ],
         "id": "94b2bf64-0c9c-4d78-a7fa-fe0b60e78860",
@@ -2251,6 +2251,7 @@
         ],
         "id": "2b1d69bc-088c-4e26-a471-e16571975d6e",
         "name": "get_ccd",
+        "retryOnFail": true,
         "credentials": {
           "googleSheetsOAuth2Api": {
             "id": "MTh9LghqaMKPTAzs",
@@ -3172,7 +3173,7 @@
             "conditions": [
               {
                 "keyName": "date",
-                "keyValue": "={{ $('get_log').first().json.date }}"
+                "keyValue": "={{ $json.date }}"
               }
             ]
           },
@@ -3333,7 +3334,7 @@
         "type": "n8n-nodes-base.dataTable",
         "typeVersion": 1,
         "position": [
-          1360,
+          1376,
           1936
         ],
         "id": "815c3225-3689-4fa2-8ffe-68ed94cfb845",
@@ -4498,6 +4499,74 @@
         ],
         "id": "34a03116-4fcb-4d4f-869a-8cf9b7066b14",
         "name": "oos_logging"
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 3
+            },
+            "conditions": [
+              {
+                "id": "515e217e-58f4-4c5e-b56c-55cf63c4adff",
+                "leftValue": "={{ $json.is_working }}",
+                "rightValue": 0,
+                "operator": {
+                  "type": "boolean",
+                  "operation": "true",
+                  "singleValue": true
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.3,
+        "position": [
+          1216,
+          752
+        ],
+        "id": "ce3da07d-61cd-42b3-b30c-81cb5ed1a4ae",
+        "name": "If3"
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 3
+            },
+            "conditions": [
+              {
+                "id": "515e217e-58f4-4c5e-b56c-55cf63c4adff",
+                "leftValue": "={{ $json.is_working }}",
+                "rightValue": 0,
+                "operator": {
+                  "type": "boolean",
+                  "operation": "true",
+                  "singleValue": true
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.3,
+        "position": [
+          1216,
+          1040
+        ],
+        "id": "ac015bad-f6a7-4b70-a415-735c070db180",
+        "name": "If4"
       }
     ],
     "connections": {
@@ -4634,7 +4703,7 @@
         "main": [
           [
             {
-              "node": "create_ccd_log",
+              "node": "If3",
               "type": "main",
               "index": 0
             }
@@ -4674,7 +4743,7 @@
         "main": [
           [
             {
-              "node": "create_mrt_log",
+              "node": "If4",
               "type": "main",
               "index": 0
             }
@@ -5514,14 +5583,36 @@
             }
           ]
         ]
+      },
+      "If3": {
+        "main": [
+          [
+            {
+              "node": "create_ccd_log",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "If4": {
+        "main": [
+          [
+            {
+              "node": "create_mrt_log",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
       }
     },
     "authors": "Hoang Nguyen",
-    "name": "Version cd994536",
+    "name": "Version 33c971d5",
     "description": "",
     "autosaved": true
   },
-  "activeVersionId": "cd994536-8baa-441c-8752-09ddbc62e444",
+  "activeVersionId": "33c971d5-9a01-4cf7-b7de-840fbe78d98c",
   "connections": {
     "Webhook": {
       "main": [
@@ -5656,7 +5747,7 @@
       "main": [
         [
           {
-            "node": "create_ccd_log",
+            "node": "If3",
             "type": "main",
             "index": 0
           }
@@ -5696,7 +5787,7 @@
       "main": [
         [
           {
-            "node": "create_mrt_log",
+            "node": "If4",
             "type": "main",
             "index": 0
           }
@@ -6536,6 +6627,28 @@
           }
         ]
       ]
+    },
+    "If3": {
+      "main": [
+        [
+          {
+            "node": "create_ccd_log",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If4": {
+      "main": [
+        [
+          {
+            "node": "create_mrt_log",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2026-02-22T19:46:26.992Z",
@@ -6682,7 +6795,7 @@
       "parameters": {
         "content": "## Báo có bài test mới",
         "height": 480,
-        "width": 736
+        "width": 900
       },
       "type": "n8n-nodes-base.stickyNote",
       "position": [
@@ -7260,7 +7373,7 @@
       "type": "n8n-nodes-base.dataTable",
       "typeVersion": 1,
       "position": [
-        1200,
+        1376,
         752
       ],
       "id": "fc1498e6-26c2-4f0c-8508-3ba82688629b",
@@ -7615,7 +7728,7 @@
       "type": "n8n-nodes-base.dataTable",
       "typeVersion": 1,
       "position": [
-        1200,
+        1376,
         1040
       ],
       "id": "94b2bf64-0c9c-4d78-a7fa-fe0b60e78860",
@@ -8789,6 +8902,7 @@
       ],
       "id": "2b1d69bc-088c-4e26-a471-e16571975d6e",
       "name": "get_ccd",
+      "retryOnFail": true,
       "credentials": {
         "googleSheetsOAuth2Api": {
           "id": "MTh9LghqaMKPTAzs",
@@ -9710,7 +9824,7 @@
           "conditions": [
             {
               "keyName": "date",
-              "keyValue": "={{ $('get_log').first().json.date }}"
+              "keyValue": "={{ $json.date }}"
             }
           ]
         },
@@ -9871,7 +9985,7 @@
       "type": "n8n-nodes-base.dataTable",
       "typeVersion": 1,
       "position": [
-        1360,
+        1376,
         1936
       ],
       "id": "815c3225-3689-4fa2-8ffe-68ed94cfb845",
@@ -11036,6 +11150,74 @@
       ],
       "id": "34a03116-4fcb-4d4f-869a-8cf9b7066b14",
       "name": "oos_logging"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "515e217e-58f4-4c5e-b56c-55cf63c4adff",
+              "leftValue": "={{ $json.is_working }}",
+              "rightValue": 0,
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        1216,
+        752
+      ],
+      "id": "ce3da07d-61cd-42b3-b30c-81cb5ed1a4ae",
+      "name": "If3"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "515e217e-58f4-4c5e-b56c-55cf63c4adff",
+              "leftValue": "={{ $json.is_working }}",
+              "rightValue": 0,
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        1216,
+        1040
+      ],
+      "id": "ac015bad-f6a7-4b70-a415-735c070db180",
+      "name": "If4"
     }
   ],
   "pinData": {},
@@ -11065,10 +11247,9 @@
     },
     "node:Gmail Trigger": {
       "Gmail Trigger": {
-        "lastTimeChecked": 1778067998,
+        "lastTimeChecked": 1778150114,
         "possibleDuplicates": [
-          "19dfd1d2d1f47403",
-          "19dfcf398197be73"
+          "19e02018aab15f06"
         ]
       }
     }
@@ -11082,6 +11263,6 @@
     }
   ],
   "triggerCount": 4,
-  "updatedAt": "2026-05-04T08:47:48.556Z",
-  "versionId": "cd994536-8baa-441c-8752-09ddbc62e444"
+  "updatedAt": "2026-05-07T11:02:34.988Z",
+  "versionId": "33c971d5-9a01-4cf7-b7de-840fbe78d98c"
 }
