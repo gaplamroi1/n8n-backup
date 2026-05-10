@@ -1,9 +1,9 @@
 {
   "active": true,
   "activeVersion": {
-    "updatedAt": "2026-05-08T10:51:58.723Z",
-    "createdAt": "2026-05-08T10:51:55.714Z",
-    "versionId": "148cf9d3-27da-4c43-aae1-74e46e75085d",
+    "updatedAt": "2026-05-09T12:25:34.287Z",
+    "createdAt": "2026-05-09T12:25:21.288Z",
+    "versionId": "6654512a-d7da-472c-bd56-93f60609d7e3",
     "workflowId": "oLXjfZN1PcaSJJJI",
     "nodes": [
       {
@@ -975,7 +975,7 @@
               {
                 "id": "0d28144a-c2b6-408c-a358-a9104c80d867",
                 "name": "quick_link",
-                "value": "=https://api.vietqr.io/image/970415-{{ $('get_account').first().json.account }}-u9AjLCM.jpg?accountName=CTY%20CO%20PHAN%20THUONG%20MAI%20DV%20PHONG%20VU&amount={{ $('parse_qr_info').first().json.amount }}&addInfo={{ $('parse_qr_info').first().json.order_code }}%20{{ $('take_user').item.json.store }}",
+                "value": "=https://api.vietqr.io/image/970415-{{ $('get_account').first().json.account }}-u9AjLCM.jpg?accountName=CTY%20CO%20PHAN%20THUONG%20MAI%20DV%20PHONG%20VU&amount={{ $('parse_qr_info').first().json.amount }}&addInfo={{ $('parse_qr_info').first().json.order_code }}%20{{ $('take_user').item.json.store }} BOT",
                 "type": "string"
               }
             ]
@@ -1750,11 +1750,11 @@
       }
     },
     "authors": "Hoang Nguyen",
-    "name": "Version 148cf9d3",
+    "name": "Version 6654512a",
     "description": "",
     "autosaved": true
   },
-  "activeVersionId": "148cf9d3-27da-4c43-aae1-74e46e75085d",
+  "activeVersionId": "6654512a-d7da-472c-bd56-93f60609d7e3",
   "connections": {
     "app_id": {
       "main": [
@@ -3076,7 +3076,7 @@
             {
               "id": "0d28144a-c2b6-408c-a358-a9104c80d867",
               "name": "quick_link",
-              "value": "=https://api.vietqr.io/image/970415-{{ $('get_account').first().json.account }}-u9AjLCM.jpg?accountName=CTY%20CO%20PHAN%20THUONG%20MAI%20DV%20PHONG%20VU&amount={{ $('parse_qr_info').first().json.amount }}&addInfo={{ $('parse_qr_info').first().json.order_code }}%20{{ $('take_user').item.json.store }}",
+              "value": "=https://api.vietqr.io/image/970415-{{ $('get_account').first().json.account }}-u9AjLCM.jpg?accountName=CTY%20CO%20PHAN%20THUONG%20MAI%20DV%20PHONG%20VU&amount={{ $('parse_qr_info').first().json.amount }}&addInfo={{ $('parse_qr_info').first().json.order_code }}%20{{ $('take_user').item.json.store }} BOT",
               "type": "string"
             }
           ]
@@ -3516,35 +3516,35 @@
             "content-length": "427",
             "accept-encoding": "gzip, br",
             "cdn-loop": "cloudflare; loops=1",
-            "cf-connecting-ip": "143.92.74.131",
+            "cf-connecting-ip": "202.181.91.192",
             "cf-ipcountry": "SG",
-            "cf-ray": "9f66761cdbb6ef70-SIN",
+            "cf-ray": "9f90a5e35849fceb-SIN",
             "cf-visitor": "{\"scheme\":\"https\"}",
             "cf-warp-tag-id": "64666a11-6840-40d6-aa69-b9a8baf96a24",
             "connection": "keep-alive",
             "content-type": "application/json",
-            "signature": "99c1b23c928be61ae4ea2c7219f569a6277b65c1d21d1e6053da4451d627d393",
-            "x-event-user-jwt": "eyJhbGciOiJFZERTQSIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjp7ImVtYWlsIjoiaGFvLm5uMDFAcGhvbmd2dS1tbmEudm4iLCJhcHBfaWQiOiJOek13TXpnME16Y3pNakU1In0sImlzcyI6IlNlYXRhbGsgU09QIiwiZXhwIjoxNzc3ODg2ODIwLCJuYmYiOjE3Nzc4ODY3NjAsImlhdCI6MTc3Nzg4Njc2MCwianRpIjoiODY1ODU2OTUtYTJkYy00ZjFmLThlOTMtNTRmODg3OTgzOTZlIn0.IK5kfmFmF8yDgEsiiK7JikRHA91dWkf9mdjI_vrGQU5U7kA4yWyHkCexLssbb3kYRqxZC-MdTnjJpGXJEXAeAQ",
-            "x-forwarded-for": "143.92.74.131",
+            "signature": "9d447ef123c457eaeb92016e9861f01a6e0480465786fd23f26e662b044170fd",
+            "x-event-user-jwt": "eyJhbGciOiJFZERTQSIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjp7ImVtYWlsIjoibG9uZy5uZEBwaG9uZ3Z1LW1uYS52biIsImFwcF9pZCI6Ik56TXdNemcwTXpjek1qRTUifSwiaXNzIjoiU2VhdGFsayBTT1AiLCJleHAiOjE3NzgzMjkxNzksIm5iZiI6MTc3ODMyOTExOSwiaWF0IjoxNzc4MzI5MTE5LCJqdGkiOiI4NjE2ZThlNS00ZmU1LTQwMzMtOWZlMS1hYWY2OTkzOWFkZmMifQ.0UEr0RCOgQJ7Wm9bE-HCjsvLxVJUDpjvP3iQrNOPVcIHE2J2wcd4EUJQBHFLa3zCp5vRPUxIKuAjVjXgRBd7Ag",
+            "x-forwarded-for": "202.181.91.192",
             "x-forwarded-proto": "https"
           },
           "params": {},
           "query": {},
           "body": {
-            "event_id": "17a1a913-9671-432c-9139-e69194b999e9",
+            "event_id": "f9fb5b95-69a3-4890-b581-9b4d54e5a510",
             "event_type": "message_from_bot_subscriber",
-            "timestamp": 1777886760,
+            "timestamp": 1778329119,
             "app_id": "NzMwMzg0MzczMjE5",
             "event": {
-              "seatalk_id": "9277795484",
-              "employee_code": "e_k2usn8yy",
-              "email": "hao.nn01@phongvu-mna.vn",
+              "seatalk_id": "9206492076",
+              "employee_code": "e_yps7378q",
+              "email": "long.nd@phongvu-mna.vn",
               "message": {
-                "message_id": "u7YirumAclDtSUjP41NhyFSdvXNAhNTmcBPjDpmV1hOmslL3_yy56ahc",
+                "message_id": "u7YirumAclDtSUjP41NhyDUfvXNAhNTmcyPn8oeNueL8dBISa0Tsm4sn",
                 "quoted_message_id": "",
                 "tag": "text",
                 "text": {
-                  "content": "/qr 3439000/26050438392670"
+                  "content": "/qr 2898000/ 26050931932920"
                 },
                 "thread_id": ""
               }
@@ -3585,51 +3585,51 @@
       "toan.btq@phongvu-mna.vn": 19,
       "hieu.nh@phongvu-mna.vn": 46,
       "an.nt@phongvu-mna.vn": 42,
-      "ban.vt@phongvu-mna.vn": 41,
+      "ban.vt@phongvu-mna.vn": 42,
       "nhut.tm@phongvu-mna.vn": 3,
       "canh.lv@phongvu-mna.vn": 12,
-      "linh.tg@phongvu-mna.vn": 65,
-      "quyen.dg@phongvu-mna.vn": 51,
+      "linh.tg@phongvu-mna.vn": 66,
+      "quyen.dg@phongvu-mna.vn": 52,
       "tuyen.ph@phongvu-mna.vn": 17,
-      "loc.ph@phongvu-mna.vn": 19,
+      "loc.ph@phongvu-mna.vn": 20,
       "dang.nh@phongvu-mna.vn": 10,
-      "thinh.np01@phongvu-mna.vn": 19,
-      "tram.ntt@phongvu-mna.vn": 104,
+      "thinh.np01@phongvu-mna.vn": 20,
+      "tram.ntt@phongvu-mna.vn": 105,
       "hong.mv@phongvu-mna.vn": 3,
-      "thu.hm@phongvu-mna.vn": 37,
+      "thu.hm@phongvu-mna.vn": 39,
       "tho.lt@phongvu-mna.vn": 19,
       "hieu.ltm@phongvu-mna.vn": 73,
       "hung.bd@phongvu-mna.vn": 5,
       "huy.hm@phongvu-mna.vn": 32,
-      "hai.ltp@phongvu-mna.vn": 33,
+      "hai.ltp@phongvu-mna.vn": 34,
       "tuyen.ltb@phongvu-mna.vn": 1,
       "man.hp@phongvu-mna.vn": 2,
-      "lien.vtk01@phongvu-mna.vn": 48,
+      "lien.vtk01@phongvu-mna.vn": 53,
       "nghia.dh@phongvu-mna.vn": 1,
       "anh.vtn@phongvu-mna.vn": 13,
       "quyen.tv@phongvu-mna.vn": 18,
       "huong.ns@phongvu-mna.vn": 11,
-      "long.nd@phongvu-mna.vn": 10,
+      "long.nd@phongvu-mna.vn": 11,
       "hong.lc@phongvu-mna.vn": 12,
       "hieu.hv@phongvu-mna.vn": 22,
       "huy.dv01@phongvu-mna.vn": 1,
       "dien.nnt01@phongvu-mna.vn": 2,
-      "hao.nn01@phongvu-mna.vn": 18,
-      "thanh.pm@phongvu-mna.vn": 16,
+      "hao.nn01@phongvu-mna.vn": 19,
+      "thanh.pm@phongvu-mna.vn": 17,
       "khoa.pd01@phongvu-mna.vn": 3,
-      "tuan.hnq@phongvu-mna.vn": 15,
+      "tuan.hnq@phongvu-mna.vn": 16,
       "vu.nl@phongvu-mna.vn": 3,
-      "hung.nm02@phongvu-mna.vn": 43,
+      "hung.nm02@phongvu-mna.vn": 45,
       "huong.htk@phongvu-mna.vn": 3,
-      "ngan.ttk01@phongvu-mna.vn": 33,
-      "nguyen.nh@phongvu-mna.vn": 7,
+      "ngan.ttk01@phongvu-mna.vn": 35,
+      "nguyen.nh@phongvu-mna.vn": 8,
       "thao.htt@phongvu-mna.vn": 3,
       "chinh.ltd01@phongvu-mna.vn": 22,
       "phong.lq@phongvu-mna.vn": 11,
       "khanh.px@phongvu-mna.vn": 1,
-      "quang.tm@phongvu-mna.vn": 19,
+      "quang.tm@phongvu-mna.vn": 21,
       "duy.mk@phongvu-mna.vn": 3,
-      "nam.nv@phongvu-mna.vn": 6,
+      "nam.nv@phongvu-mna.vn": 8,
       "tuan.tt02@phongvu-mna.vn": 1,
       "hoa.nt@phongvu-mna.vn": 5,
       "thoa.ntm@phongvu-mna.vn": 2,
@@ -3646,6 +3646,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2026-05-08T10:51:55.713Z",
-  "versionId": "148cf9d3-27da-4c43-aae1-74e46e75085d"
+  "updatedAt": "2026-05-09T12:25:21.287Z",
+  "versionId": "6654512a-d7da-472c-bd56-93f60609d7e3"
 }
