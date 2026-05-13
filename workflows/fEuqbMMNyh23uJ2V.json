@@ -1,9 +1,9 @@
 {
   "active": true,
   "activeVersion": {
-    "updatedAt": "2026-02-26T08:47:42.563Z",
-    "createdAt": "2026-02-26T08:47:36.011Z",
-    "versionId": "62f840ad-9560-46a5-ae86-c7d5c62a64e1",
+    "updatedAt": "2026-05-13T08:49:41.671Z",
+    "createdAt": "2026-03-07T02:06:57.240Z",
+    "versionId": "0ec1f906-22eb-4ebc-89f7-e6b1eaa51bed",
     "workflowId": "fEuqbMMNyh23uJ2V",
     "nodes": [
       {
@@ -142,26 +142,6 @@
       },
       {
         "parameters": {
-          "sortFieldsUi": {
-            "sortField": [
-              {
-                "fieldName": "import_date"
-              }
-            ]
-          },
-          "options": {}
-        },
-        "type": "n8n-nodes-base.sort",
-        "typeVersion": 1,
-        "position": [
-          0,
-          0
-        ],
-        "id": "c01c9145-8de3-4fd5-8988-632725138911",
-        "name": "Sort"
-      },
-      {
-        "parameters": {
           "multipleMethods": true,
           "httpMethod": [
             "POST"
@@ -216,7 +196,7 @@
         "main": [
           [
             {
-              "node": "Sort",
+              "node": "get_needed_fields",
               "type": "main",
               "index": 0
             }
@@ -224,17 +204,6 @@
           [
             {
               "node": "getInvByBin",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "Sort": {
-        "main": [
-          [
-            {
-              "node": "get_needed_fields",
               "type": "main",
               "index": 0
             }
@@ -256,7 +225,7 @@
         "main": [
           [
             {
-              "node": "Sort",
+              "node": "get_needed_fields",
               "type": "main",
               "index": 0
             }
@@ -276,11 +245,11 @@
       }
     },
     "authors": "Hoang Nguyen",
-    "name": "Version 62f840ad",
+    "name": "Version 0ec1f906",
     "description": "",
     "autosaved": true
   },
-  "activeVersionId": "62f840ad-9560-46a5-ae86-c7d5c62a64e1",
+  "activeVersionId": "0ec1f906-22eb-4ebc-89f7-e6b1eaa51bed",
   "connections": {
     "getInvBySerial": {
       "main": [
@@ -525,41 +494,7 @@
       "webhookId": "9000b3c2-d770-476d-b4d8-6157872222f0"
     }
   ],
-  "pinData": {
-    "sort": [
-      {
-        "json": {
-          "headers": {
-            "host": "n8n.hoanghochoi.com",
-            "user-agent": "Dart/3.10 (dart:io)",
-            "content-length": "54",
-            "accept-encoding": "gzip, br",
-            "cdn-loop": "cloudflare; loops=1",
-            "cf-connecting-ip": "115.77.190.147",
-            "cf-ipcountry": "VN",
-            "cf-ray": "9d819ba6cb7ca742-SIN",
-            "cf-visitor": "{\"scheme\":\"https\"}",
-            "cf-warp-tag-id": "e29be3d2-4ed5-4153-bf34-97fbb2b7e165",
-            "connection": "keep-alive",
-            "content-type": "application/json",
-            "x-forwarded-for": "115.77.190.147",
-            "x-forwarded-proto": "https"
-          },
-          "params": {},
-          "query": {},
-          "body": {
-            "text": "2P412914EGPP",
-            "user": "son.dh@phongvu-mna.vn"
-          },
-          "webhookUrl": "https://n8n.hoanghochoi.com/webhook/pva-sort",
-          "executionMode": "production"
-        },
-        "pairedItem": {
-          "item": 0
-        }
-      }
-    ]
-  },
+  "pinData": {},
   "settings": {
     "executionOrder": "v1",
     "binaryMode": "separate",
@@ -580,6 +515,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 2,
-  "updatedAt": "2026-03-07T02:06:57.239Z",
+  "updatedAt": "2026-05-13T08:49:40.404Z",
   "versionId": "0ec1f906-22eb-4ebc-89f7-e6b1eaa51bed"
 }
