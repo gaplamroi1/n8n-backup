@@ -1,9 +1,9 @@
 {
   "active": true,
   "activeVersion": {
-    "updatedAt": "2026-05-09T12:25:34.287Z",
-    "createdAt": "2026-05-09T12:25:21.288Z",
-    "versionId": "6654512a-d7da-472c-bd56-93f60609d7e3",
+    "updatedAt": "2026-05-15T08:17:35.210Z",
+    "createdAt": "2026-05-15T08:17:33.846Z",
+    "versionId": "aa55e4c3-7f64-4cab-971d-5877b6aa34c0",
     "workflowId": "oLXjfZN1PcaSJJJI",
     "nodes": [
       {
@@ -956,7 +956,7 @@
           },
           "sendBody": true,
           "specifyBody": "json",
-          "jsonBody": "={\n    \"employee_code\": \"{{ $('seatalk_bot').first().json.body.event.employee_code }}\",\n    \"message\": {\n        \"tag\": \"text\",\n        \"text\": {\n            \"format\": 1,\n            \"content\": \"Tạo QR thanh toán bằng cách gửi thông tin theo mẫu bên dưới nhé.\\n\\n**/qr** -> Chỉ lấy QR\\n**/qr <số tiền>** -> Lấy QR có sẵn số tiền, nội dung: CPxx\\n**/qr <Số tiền>/<Mã đơn hàng>** -> Lấy QR có sẵn số tiền, nội dung <mã đơn hàng> CPxx\\n\\nVD: /qr 50000/260321123456\"\n        }\n    },\n    \"usable_platform\": \"all\"\n}",
+          "jsonBody": "={\n    \"employee_code\": \"{{ $('seatalk_bot').first().json.body.event.employee_code }}\",\n    \"message\": {\n        \"tag\": \"text\",\n        \"text\": {\n            \"format\": 1,\n            \"content\": \"Tạo QR thanh toán bằng cách gửi thông tin theo mẫu bên dưới nhé.\\n\\n**qr** -> Chỉ lấy QR\\n**qr <số tiền>** -> Lấy QR có sẵn số tiền, nội dung: CPxx\\n**qr <Số tiền> <Mã đơn hàng>** -> Lấy QR có sẵn số tiền, nội dung <mã đơn hàng> CPxx\\n\\nVD: /qr 50000/260321123456\"\n        }\n    },\n    \"usable_platform\": \"all\"\n}",
           "options": {}
         },
         "type": "n8n-nodes-base.httpRequest",
@@ -1392,7 +1392,7 @@
           },
           "sendBody": true,
           "specifyBody": "json",
-          "jsonBody": "={\n    \"employee_code\": \"{{ $('seatalk_bot').first().json.body.event.employee_code }}\",\n    \"message\": {\n        \"tag\": \"text\",\n        \"text\": {\n            \"format\": 1,\n            \"content\": \"**Số tiền: {{ $('parse_qr_info').first().json.amount }}**\\n**Nội dung: {{ $('parse_qr_info').first().json.order_code }} {{ $('take_user').item.json.store }}**\\nTên tài khoản: CTY CO PHAN THUONG MAI DV PHONG VU\\n**Số tài khoản: {{ $('get_account').first().json.account }}**\\nNgân hàng TMCP Công thương Việt Nam - VietinBank\\nTại CN2 - HCM\"\n        }\n    },\n    \"usable_platform\": \"all\"\n}",
+          "jsonBody": "={\n    \"employee_code\": \"{{ $('seatalk_bot').first().json.body.event.employee_code }}\",\n    \"message\": {\n        \"tag\": \"text\",\n        \"text\": {\n            \"format\": 1,\n            \"content\": \"**Số tiền: {{ $('parse_qr_info').first().json.amount }}**\\n**Nội dung: {{ $('parse_qr_info').first().json.order_code }} {{ $('take_user').item.json.store }} BOT**\\nTên tài khoản: CTY CO PHAN THUONG MAI DV PHONG VU\\n**Số tài khoản: {{ $('get_account').first().json.account }}**\\nNgân hàng TMCP Công thương Việt Nam - VietinBank\\nTại CN2 - HCM\"\n        }\n    },\n    \"usable_platform\": \"all\"\n}",
           "options": {}
         },
         "type": "n8n-nodes-base.httpRequest",
@@ -1482,7 +1482,13 @@
               "index": 0
             }
           ],
-          []
+          [
+            {
+              "node": "get_user",
+              "type": "main",
+              "index": 0
+            }
+          ]
         ]
       },
       "save_user_info": {
@@ -1750,11 +1756,11 @@
       }
     },
     "authors": "Hoang Nguyen",
-    "name": "Version 6654512a",
+    "name": "Version aa55e4c3",
     "description": "",
     "autosaved": true
   },
-  "activeVersionId": "6654512a-d7da-472c-bd56-93f60609d7e3",
+  "activeVersionId": "aa55e4c3-7f64-4cab-971d-5877b6aa34c0",
   "connections": {
     "app_id": {
       "main": [
@@ -1832,7 +1838,13 @@
             "index": 0
           }
         ],
-        []
+        [
+          {
+            "node": "get_user",
+            "type": "main",
+            "index": 0
+          }
+        ]
       ]
     },
     "save_user_info": {
@@ -3057,7 +3069,7 @@
         },
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={\n    \"employee_code\": \"{{ $('seatalk_bot').first().json.body.event.employee_code }}\",\n    \"message\": {\n        \"tag\": \"text\",\n        \"text\": {\n            \"format\": 1,\n            \"content\": \"Tạo QR thanh toán bằng cách gửi thông tin theo mẫu bên dưới nhé.\\n\\n**/qr** -> Chỉ lấy QR\\n**/qr <số tiền>** -> Lấy QR có sẵn số tiền, nội dung: CPxx\\n**/qr <Số tiền>/<Mã đơn hàng>** -> Lấy QR có sẵn số tiền, nội dung <mã đơn hàng> CPxx\\n\\nVD: /qr 50000/260321123456\"\n        }\n    },\n    \"usable_platform\": \"all\"\n}",
+        "jsonBody": "={\n    \"employee_code\": \"{{ $('seatalk_bot').first().json.body.event.employee_code }}\",\n    \"message\": {\n        \"tag\": \"text\",\n        \"text\": {\n            \"format\": 1,\n            \"content\": \"Tạo QR thanh toán bằng cách gửi thông tin theo mẫu bên dưới nhé.\\n\\n**qr** -> Chỉ lấy QR\\n**qr <số tiền>** -> Lấy QR có sẵn số tiền, nội dung: CPxx\\n**qr <Số tiền> <Mã đơn hàng>** -> Lấy QR có sẵn số tiền, nội dung <mã đơn hàng> CPxx\\n\\nVD: /qr 50000/260321123456\"\n        }\n    },\n    \"usable_platform\": \"all\"\n}",
         "options": {}
       },
       "type": "n8n-nodes-base.httpRequest",
@@ -3493,7 +3505,7 @@
         },
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={\n    \"employee_code\": \"{{ $('seatalk_bot').first().json.body.event.employee_code }}\",\n    \"message\": {\n        \"tag\": \"text\",\n        \"text\": {\n            \"format\": 1,\n            \"content\": \"**Số tiền: {{ $('parse_qr_info').first().json.amount }}**\\n**Nội dung: {{ $('parse_qr_info').first().json.order_code }} {{ $('take_user').item.json.store }}**\\nTên tài khoản: CTY CO PHAN THUONG MAI DV PHONG VU\\n**Số tài khoản: {{ $('get_account').first().json.account }}**\\nNgân hàng TMCP Công thương Việt Nam - VietinBank\\nTại CN2 - HCM\"\n        }\n    },\n    \"usable_platform\": \"all\"\n}",
+        "jsonBody": "={\n    \"employee_code\": \"{{ $('seatalk_bot').first().json.body.event.employee_code }}\",\n    \"message\": {\n        \"tag\": \"text\",\n        \"text\": {\n            \"format\": 1,\n            \"content\": \"**Số tiền: {{ $('parse_qr_info').first().json.amount }}**\\n**Nội dung: {{ $('parse_qr_info').first().json.order_code }} {{ $('take_user').item.json.store }} BOT**\\nTên tài khoản: CTY CO PHAN THUONG MAI DV PHONG VU\\n**Số tài khoản: {{ $('get_account').first().json.account }}**\\nNgân hàng TMCP Công thương Việt Nam - VietinBank\\nTại CN2 - HCM\"\n        }\n    },\n    \"usable_platform\": \"all\"\n}",
         "options": {}
       },
       "type": "n8n-nodes-base.httpRequest",
@@ -3580,35 +3592,35 @@
     "global": {
       "count": 2,
       "undefined": 1,
-      "hoang.nv1@phongvu-mna.vn": 48,
+      "hoang.nv1@phongvu-mna.vn": 50,
       "sang.dta@phongvu-mna.vn": 34,
-      "toan.btq@phongvu-mna.vn": 22,
-      "hieu.nh@phongvu-mna.vn": 50,
-      "an.nt@phongvu-mna.vn": 49,
-      "ban.vt@phongvu-mna.vn": 45,
+      "toan.btq@phongvu-mna.vn": 23,
+      "hieu.nh@phongvu-mna.vn": 51,
+      "an.nt@phongvu-mna.vn": 50,
+      "ban.vt@phongvu-mna.vn": 46,
       "nhut.tm@phongvu-mna.vn": 3,
       "canh.lv@phongvu-mna.vn": 12,
       "linh.tg@phongvu-mna.vn": 68,
-      "quyen.dg@phongvu-mna.vn": 53,
+      "quyen.dg@phongvu-mna.vn": 54,
       "tuyen.ph@phongvu-mna.vn": 19,
-      "loc.ph@phongvu-mna.vn": 21,
+      "loc.ph@phongvu-mna.vn": 22,
       "dang.nh@phongvu-mna.vn": 10,
       "thinh.np01@phongvu-mna.vn": 22,
-      "tram.ntt@phongvu-mna.vn": 115,
+      "tram.ntt@phongvu-mna.vn": 118,
       "hong.mv@phongvu-mna.vn": 3,
-      "thu.hm@phongvu-mna.vn": 43,
-      "tho.lt@phongvu-mna.vn": 25,
-      "hieu.ltm@phongvu-mna.vn": 75,
+      "thu.hm@phongvu-mna.vn": 44,
+      "tho.lt@phongvu-mna.vn": 26,
+      "hieu.ltm@phongvu-mna.vn": 76,
       "hung.bd@phongvu-mna.vn": 5,
-      "huy.hm@phongvu-mna.vn": 33,
+      "huy.hm@phongvu-mna.vn": 34,
       "hai.ltp@phongvu-mna.vn": 35,
       "tuyen.ltb@phongvu-mna.vn": 1,
       "man.hp@phongvu-mna.vn": 2,
-      "lien.vtk01@phongvu-mna.vn": 58,
+      "lien.vtk01@phongvu-mna.vn": 61,
       "nghia.dh@phongvu-mna.vn": 1,
-      "anh.vtn@phongvu-mna.vn": 14,
+      "anh.vtn@phongvu-mna.vn": 16,
       "quyen.tv@phongvu-mna.vn": 18,
-      "huong.ns@phongvu-mna.vn": 12,
+      "huong.ns@phongvu-mna.vn": 13,
       "long.nd@phongvu-mna.vn": 13,
       "hong.lc@phongvu-mna.vn": 12,
       "hieu.hv@phongvu-mna.vn": 28,
@@ -3619,24 +3631,25 @@
       "khoa.pd01@phongvu-mna.vn": 3,
       "tuan.hnq@phongvu-mna.vn": 22,
       "vu.nl@phongvu-mna.vn": 3,
-      "hung.nm02@phongvu-mna.vn": 54,
+      "hung.nm02@phongvu-mna.vn": 58,
       "huong.htk@phongvu-mna.vn": 3,
       "ngan.ttk01@phongvu-mna.vn": 37,
       "nguyen.nh@phongvu-mna.vn": 9,
       "thao.htt@phongvu-mna.vn": 3,
-      "chinh.ltd01@phongvu-mna.vn": 30,
+      "chinh.ltd01@phongvu-mna.vn": 32,
       "phong.lq@phongvu-mna.vn": 11,
       "khanh.px@phongvu-mna.vn": 1,
-      "quang.tm@phongvu-mna.vn": 28,
+      "quang.tm@phongvu-mna.vn": 30,
       "duy.mk@phongvu-mna.vn": 6,
       "nam.nv@phongvu-mna.vn": 8,
       "tuan.tt02@phongvu-mna.vn": 1,
-      "hoa.nt@phongvu-mna.vn": 7,
+      "hoa.nt@phongvu-mna.vn": 9,
       "thoa.ntm@phongvu-mna.vn": 4,
       "khuong.tv@phongvu-mna.vn": 15,
       "vy.lh@phongvu-shop.vn": 2,
       "tai.tv@phongvu-mna.vn": 1,
-      "duy.tn@phongvu-mna.vn": 3
+      "duy.tn@phongvu-mna.vn": 3,
+      "ha.bt@phongvu.vn": 5
     }
   },
   "tags": [
@@ -3648,6 +3661,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2026-05-09T12:25:21.287Z",
-  "versionId": "6654512a-d7da-472c-bd56-93f60609d7e3"
+  "updatedAt": "2026-05-15T08:17:33.845Z",
+  "versionId": "aa55e4c3-7f64-4cab-971d-5877b6aa34c0"
 }
